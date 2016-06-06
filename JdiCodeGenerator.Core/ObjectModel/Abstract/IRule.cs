@@ -6,6 +6,7 @@
     {
         HtmlElementTypes SourceType { get; set; }
         JdiElementTypes TargetType { get; set; }
-        IEnumerable<IRuleCondition> Conditions { get; set; }
+        IEnumerable<IRuleCondition> OrConditions { get; set; }
+        string Description { get; set; }
     }
 }

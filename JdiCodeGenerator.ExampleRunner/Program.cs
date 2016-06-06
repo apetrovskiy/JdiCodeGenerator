@@ -14,8 +14,11 @@
         {
             var list = new List<string>
             {
+                // "file:///C:/1/bootstrap.html"
                 // "http://localhost:1234/bootstrap/users",
                 // "http://localhost:1234/bootstrap/users/user",
+
+                // "http://localhost:1234/",
                 
                 "http://presentation.creative-tim.com/",
                 "http://www.crit-research.it/",

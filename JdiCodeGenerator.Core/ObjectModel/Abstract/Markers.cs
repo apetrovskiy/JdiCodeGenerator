@@ -5,7 +5,9 @@
         Id,
         Name,
         Class,
-        Tag,
+        // Tag,
+        Type,
+        Role,
         OtherAttribute
     }
 }

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JdiCodeGenerator.Tests", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JdiCodeGenerator.ExampleRunner", "JdiCodeGenerator.ExampleRunner\JdiCodeGenerator.ExampleRunner.csproj", "{0CAD787A-50E5-4135-A01E-D2F641E08988}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1B2CC494-C98E-41EA-B654-C2071FC6D331}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

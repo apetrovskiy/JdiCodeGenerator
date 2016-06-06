@@ -17,7 +17,8 @@
                 {
                     SourceType = HtmlElementTypes.Input,
                     TargetType = JdiElementTypes.TextField,
-                    Conditions = new List<IRuleCondition>
+                    // Description = "IButton"
+                    OrConditions = new List<IRuleCondition>
                     {
                         new RuleCondition
                         {
@@ -26,6 +27,19 @@
                             MarkerValue = "form-control"
                         }
                     }
+                },
+                //new Rule
+                //{
+                //    SourceType = HtmlElementTypes.Div,
+                //    TargetType = JdiElementTypes.Button
+                //},
+                new Rule
+                {
+                    
+                },
+                new Rule
+                {
+                    
                 }
             };
         }

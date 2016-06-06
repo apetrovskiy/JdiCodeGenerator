@@ -7,6 +7,6 @@
         Parent,
         Ancestor,
         Child,
-        Other
+        Descendant
     }
 }

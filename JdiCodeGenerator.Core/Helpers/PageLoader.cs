@@ -25,6 +25,9 @@
         {
             var convertor = new HtmlElementToCodeEntryConvertor();
             return docNode.Descendants()
+                // 20160606
+                // experimental
+                .Where(node => node.NodeType == HtmlNodeType.Element)
                 .Select(node => convertor.ConvertToCodeEntry(node))
                 .Where(codeEntry => !excludeList.Contains(codeEntry.Type))
                 .SetBestChoice()

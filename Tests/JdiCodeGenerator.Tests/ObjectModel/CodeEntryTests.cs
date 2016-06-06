@@ -62,7 +62,7 @@
         [InlineData(new[] { "id", "id" }, "select", "ICheckBox")]
         [InlineData(new[] { "id", "id" }, "a", "ILink")]
         [InlineData(new[] { "id", "id" }, "img", "IImage")]
-        //[InlineData(new[] { "id", "id" }, "label", "ILabel")]
+        // [InlineData(new[] { "id", "id" }, "textarea", "ITextArea")]
         //[InlineData(new[] { "id", "id" }, "label", "ILabel")]
         //[InlineData(new[] { "id", "id" }, "label", "ILabel")]
         //[InlineData(new[] { "id", "id" }, "label", "ILabel")]
