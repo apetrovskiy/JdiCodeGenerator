@@ -87,10 +87,12 @@
             var folderForExportFiles = @"D:\333";
             if (null != args && args.Any() && !string.IsNullOrEmpty(args[0]))
                 folderForExportFiles = args[0];
+            if (!Directory.Exists(folderForExportFiles))
+                Directory.CreateDirectory(folderForExportFiles);
             var loader = new PageLoader();
             var exporter = new CodeEntriesExporter();
             var importer = new CodeEntriesImporter();
-            int fileNumber = 0;
+            var fileNumber = 0;
             list.ForEach(url =>
             {
                 Console.WriteLine("===============================================================================");
