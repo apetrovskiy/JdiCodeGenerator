@@ -95,7 +95,6 @@
     <Compile Include="ObjectModel\Abstract\HtmlElementTypes.cs" />
     <Compile Include="ObjectModel\Abstract\FindTypes.cs" />
     <Compile Include="ObjectModel\Abstract\ICodeEntry.cs" />
-    <Compile Include="ObjectModel\Abstract\ILocatorDefinition.cs" />
     <Compile Include="ObjectModel\Abstract\IFrameworkAlingmentAnalysisPlugin.cs" />
     <Compile Include="ObjectModel\Abstract\IRule.cs" />
     <Compile Include="ObjectModel\Abstract\IRuleCondition.cs" />

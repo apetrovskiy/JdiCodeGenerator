@@ -23,19 +23,19 @@
                     node.CreateCssLocator(),
                     node.CreateXpathLocator()
                 });
-            codeEntry.Locators.RemoveAll(locator => null == locator);
+            // experimental
+            // codeEntry.Locators.RemoveAll(locator => null == locator);
+            codeEntry.Locators.RemoveAll(locator => null == locator || locator.SearchString == string.Empty);
 
             // TODO: write the code behind // ??
-            codeEntry.JdiMemberType = node.ConvertHtmlTypeToJdiType();
+            codeEntry.JdiMemberType = node.ApplyApplicableAnalyzers();
+            if (JdiElementTypes.Element == codeEntry.JdiMemberType)
+                codeEntry.JdiMemberType = codeEntry.HtmlMemberType.ConvertHtmlTypeToJdiType();
 
             // temporarily!
-            // codeEntry.Type = node.GetOriginalNameOfElement();
-            // experimental
             codeEntry.Type = node.GetOriginalNameOfElement().CleanUpFromWrongCharacters();
 
             // temporarily!
-            // codeEntry.MemberType = node.GetOriginalNameOfElement();
-            // experimental
             codeEntry.MemberType = node.GetOriginalNameOfElement().CleanUpFromWrongCharacters();
 
             return codeEntry;

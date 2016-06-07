@@ -64,10 +64,6 @@
         [InlineData(new[] { "id", "id" }, "img", "IImage")]
         // [InlineData(new[] { "id", "id" }, "textarea", "ITextArea")]
         //[InlineData(new[] { "id", "id" }, "label", "ILabel")]
-        //[InlineData(new[] { "id", "id" }, "label", "ILabel")]
-        //[InlineData(new[] { "id", "id" }, "label", "ILabel")]
-        //[InlineData(new[] { "id", "id" }, "label", "ILabel")]
-        //[InlineData(new[] { "id", "id" }, "label", "ILabel")]
         [Trait("Category", "EntryJdiType")]
         public void GenerateCodeEntryWithBestLocator(string[] stringLocatorDefinitions, string memberType, string expectedJdiType)
         {
@@ -94,18 +90,12 @@
 
         void WhenGeneratingCode()
         {
-            // var node = Substitute.For<HtmlNode>(HtmlNodeType.Element, new HtmlDocument(), 1);
             var node = Substitute.For<HtmlNodeMock>(HtmlNodeType.Element, new HtmlDocument(), 1);
             node.OriginalName.Returns(_entry.MemberType);
-            // _entry.JdiMemberType = node.ConvertHtmlTypeToJdiType();
 
-            // var htmlNodeType = new General().Analyze(node.OriginalName);
-            //// result = node.ApplyGeneralAnalyzer();
-            // _entry.JdiMemberType = node.ApplyApplicableAnalyzers();
-            // _entry.JdiMemberType = node.ApplyApplicableAnalyzers();
             var bootstrapAnalyzer = new Bootstrap();
-            var htmlElementType = bootstrapAnalyzer.ConvertHtmlNativeTypeToHtmlElementType(node.OriginalName);
-            _entry.JdiMemberType = bootstrapAnalyzer.ConvertHtmlTypeToJdiType(htmlElementType);
+            // var htmlElementType = bootstrapAnalyzer.ConvertHtmlNativeTypeToHtmlElementType(node.OriginalName);
+            _entry.JdiMemberType = _entry.HtmlMemberType.ConvertHtmlTypeToJdiType();
 
             _code = _entry.GenerateCodeForEntry(SupportedLanguages.Java);
         }

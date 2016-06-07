@@ -25,8 +25,8 @@
         {
             var convertor = new HtmlElementToCodeEntryConvertor();
             return docNode.Descendants()
-                // 20160606
-                // experimental
+                .FirstOrDefault(bodyNode => bodyNode.OriginalName.ToLower() == "body")
+                .Descendants()
                 .Where(node => node.NodeType == HtmlNodeType.Element)
                 .Select(node => convertor.ConvertToCodeEntry(node))
                 .Where(codeEntry => !excludeList.Contains(codeEntry.Type))

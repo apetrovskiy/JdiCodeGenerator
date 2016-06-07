@@ -1,6 +1,5 @@
 ﻿namespace JdiCodeGenerator.Core.ObjectModel
 {
-    using System;
     using Abstract;
 
     public class RuleCondition : IRuleCondition

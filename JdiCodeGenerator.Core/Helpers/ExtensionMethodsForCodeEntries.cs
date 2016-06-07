@@ -138,8 +138,6 @@
                     grouping.ToList().Skip(1).ForEach(item => { item.MemberName += ++i; });
                     return grouping;
                 }).SelectMany(grouping => grouping.Select(item => item))
-            // 20160606
-            // experimental
                 .ToList();
             return distinguishNamesForMembers;
         }

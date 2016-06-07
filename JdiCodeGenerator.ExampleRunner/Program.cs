@@ -73,7 +73,7 @@
                 "http://spikenode.com/",
                 "http://guizion.com/",
                 "https://www.glaz-displayschutz.de/"
-                
+
             };
             var listNotToDisplay = new[] { "html", "head", "body", "#comment", "#text", "div", "meta", "p", "h1", "h2", "h3", "h4", "h5", "h6", "small", "font", "script", "i", "br", "hr", "strong", "style", "title", "li", "ul", "img", "span", "noscript" };
             // const string FolderForExportFiles = ".";
@@ -96,7 +96,6 @@
                     writer.WriteLine(@"// {0}", url);
                     entries.ToList().ForEach(elementDefinition =>
                     {
-                        // Console.WriteLine(elementDefinition.GenerateCodeForEntry(SupportedLanguages.Java));
                         var codeEntryString = elementDefinition.GenerateCodeForEntry(SupportedLanguages.Java);
                         Console.WriteLine(codeEntryString);
                         writer.WriteLine(codeEntryString);

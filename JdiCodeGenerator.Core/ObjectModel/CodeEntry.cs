@@ -13,6 +13,7 @@
         public string MemberName { get; set; }
         public HtmlElementTypes HtmlMemberType { get; set; }
         public JdiElementTypes JdiMemberType { get; set; }
+        // for debugging purposes
         // public string MemberType { get; set; }
         string _memberType;
         public string MemberType
@@ -39,21 +40,21 @@
             // TODO: for the future use
             _language = language;
 
-            FilterOutWrongLocators();
+            // FilterOutWrongLocators();
 
             result = GenerateCodeEntryWithBestLocator();
 
             return result;
         }
 
-        void FilterOutWrongLocators()
-        {
-            // TODO: test with Selenium
-            Locators.ForEach(locator =>
-            {
-                // if () outside the screen
-            });
-        }
+        //void FilterOutWrongLocators()
+        //{
+        //    // TODO: test with Selenium
+        //    Locators.ForEach(locator =>
+        //    {
+        //        // if () outside the screen
+        //    });
+        //}
 
         internal string GenerateCodeEntryWithBestLocator()
         {
