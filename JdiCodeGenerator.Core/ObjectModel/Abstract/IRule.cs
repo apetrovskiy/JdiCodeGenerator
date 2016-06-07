@@ -5,9 +5,11 @@
 
     public interface IRule
     {
-        HtmlElementTypes SourceType { get; set; }
+        // HtmlElementTypes SourceTypes { get; set; }
+        List<HtmlElementTypes> SourceTypes { get; set; }
         JdiElementTypes TargetType { get; set; }
         IEnumerable<IRuleCondition> OrConditions { get; set; }
+        IEnumerable<IRuleCondition> AndConditions { get; set; }
         string Description { get; set; }
         bool IsMatch(HtmlNode node);
     }

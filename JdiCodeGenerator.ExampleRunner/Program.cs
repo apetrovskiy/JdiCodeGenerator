@@ -19,7 +19,8 @@
                 // "http://localhost:1234/bootstrap/users/user",
 
                 // "http://localhost:1234/",
-                
+
+
                 "http://presentation.creative-tim.com/",
                 "http://www.crit-research.it/",
                 "http://www.blackbox.cool/",
@@ -47,7 +48,7 @@
                 "http://www.littlehj.com/",
                 "http://thefounderspledge.org/",
 
-                "http://www.folchstudio.com/",
+                // "http://www.folchstudio.com/",
                 "https://maple.com/",
                 "http://www.racefurniture.com.au/",
                 "http://www1.nyc.gov/html/onenyc/",
@@ -73,6 +74,12 @@
                 "http://spikenode.com/",
                 "http://guizion.com/",
                 "https://www.glaz-displayschutz.de/"
+
+                ,
+                "http://localhost/1/page4.htm"
+                ,
+                "http://yuntolovo-spb.ru/",
+                "http://yuntolovo-spb.ru/gallery/building-progress/2-ya-ochered/2016/may/"
 
             };
             var listNotToDisplay = new[] { "html", "head", "body", "#comment", "#text", "div", "meta", "p", "h1", "h2", "h3", "h4", "h5", "h6", "small", "font", "script", "i", "br", "hr", "strong", "style", "title", "li", "ul", "img", "span", "noscript" };

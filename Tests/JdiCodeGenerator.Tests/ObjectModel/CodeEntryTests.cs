@@ -93,7 +93,7 @@
             var node = Substitute.For<HtmlNodeMock>(HtmlNodeType.Element, new HtmlDocument(), 1);
             node.OriginalName.Returns(_entry.MemberType);
 
-            var bootstrapAnalyzer = new Bootstrap();
+            var bootstrapAnalyzer = new Bootstrap3();
             // var htmlElementType = bootstrapAnalyzer.ConvertHtmlNativeTypeToHtmlElementType(node.OriginalName);
             _entry.JdiMemberType = _entry.HtmlMemberType.ConvertHtmlTypeToJdiType();
 

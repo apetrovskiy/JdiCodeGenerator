@@ -71,7 +71,7 @@
             var overallResult = string.Empty;
 
             if (SupportedLanguages.Java == _language || SupportedLanguages.CSharp == _language)
-                overallResult = string.IsNullOrEmpty(result) ? result : result + string.Format("\r\npublic {0} {1};", "I" + JdiMemberType, MemberName);
+                overallResult = string.IsNullOrEmpty(result) ? result : result + string.Format("\r\npublic {0} {1};", JdiMemberType.ConvertToTypeString(), MemberName);
 
             return overallResult;
         }

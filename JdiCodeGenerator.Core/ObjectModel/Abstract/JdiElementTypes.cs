@@ -2,6 +2,7 @@
 {
     public enum JdiElementTypes
     {
+        // simple
         Element,
         Button,
         CheckBox,
@@ -13,17 +14,45 @@
         Text,
         TextArea,
         TextField,
+        // from the bootstrap docs
+        MenuItem, // ??
+        TabItem, // ??
+        NavBar, // ??
+        Pager, // ??
+        Progress, // ??
+        List, // ??
+        ListItem, // ??
+        // Table, // ??
+        Popover,
+        Carousel,
+        // complex
+        CheckList,
+        ComboBox,
         DropDown,
-        MenuItem,
-        Tabs,
-        TabItem,
-        NavBar,
+        DropList,
         Form,
+        Group,
+        Menu,
+        Page,
         Pagination,
-        Pager,
-        Progress,
-        List,
-        ListItem,
-        Table
+        Popup,
+        RadioButtons,
+        Search,
+        Selector,
+        Tabs,
+        TextList,
+        // table
+        Table,
+        Cell,
+        Column,
+        Coulmns,
+        DynamicTable,
+        ElementIndexType, // ?/
+        Row,
+        RowColumn,
+        Rows,
+        TableLine // ,
+        // 
+        
     }
 }

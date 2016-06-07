@@ -23,8 +23,6 @@
                     node.CreateCssLocator(),
                     node.CreateXpathLocator()
                 });
-            // experimental
-            // codeEntry.Locators.RemoveAll(locator => null == locator);
             codeEntry.Locators.RemoveAll(locator => null == locator || locator.SearchString == string.Empty);
 
             // TODO: write the code behind // ??

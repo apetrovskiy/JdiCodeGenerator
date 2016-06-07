@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\ExtensionMethodsForImportExport.cs" />
+    <Compile Include="Helpers\ExtensionMethodsForJdiTypes.cs" />
     <Compile Include="Helpers\HtmlElementToCodeEntryConvertor.cs" />
     <Compile Include="Helpers\ExtensionMethodsForCodeEntries.cs" />
     <Compile Include="Helpers\ExtensionMethodsForHtmlElements.cs" />
@@ -108,7 +109,7 @@
     <Compile Include="ObjectModel\LocatorDefinition.cs" />
     <Compile Include="ObjectModel\Plugins\AngularJs.cs" />
     <Compile Include="ObjectModel\Plugins\BootstrapAndCompetitors\Boilerplate.cs" />
-    <Compile Include="ObjectModel\Plugins\BootstrapAndCompetitors\Bootstrap.cs" />
+    <Compile Include="ObjectModel\Plugins\BootstrapAndCompetitors\Bootstrap3.cs" />
     <Compile Include="ObjectModel\Plugins\BootstrapAndCompetitors\Foundation.cs" />
     <Compile Include="ObjectModel\Plugins\BootstrapAndCompetitors\Ink.cs" />
     <Compile Include="ObjectModel\Plugins\BootstrapAndCompetitors\KickStart.cs" />
