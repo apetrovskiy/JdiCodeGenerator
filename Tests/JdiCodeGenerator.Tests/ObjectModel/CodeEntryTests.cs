@@ -1,5 +1,6 @@
 ﻿namespace JdiCodeGenerator.Tests.ObjectModel
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Core.Helpers;
@@ -78,8 +79,8 @@
             _entry = new CodeEntry
             {
                 Locators = locatorDefinitions.ToList(),
-                // HtmlMemberType = memberType,
-                MemberType = memberType
+                HtmlMemberType = Enum.GetValues(typeof(HtmlElementTypes)).Cast<HtmlElementTypes>().FirstOrDefault(val => 0 == string.Compare(val.ToString().ToLower(), memberType, StringComparison.Ordinal)),
+            MemberType = memberType
             };
         }
 
