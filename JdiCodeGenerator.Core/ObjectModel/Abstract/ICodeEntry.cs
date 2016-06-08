@@ -12,7 +12,7 @@
         JdiElementTypes JdiMemberType { get; set; }
         string MemberType { get; set; }
         string GenerateCodeForEntry(SupportedLanguages language);
-
+        string EnumerationTypeName { get; set; }
         // temporarily!
         string Type { get; set; }
     }

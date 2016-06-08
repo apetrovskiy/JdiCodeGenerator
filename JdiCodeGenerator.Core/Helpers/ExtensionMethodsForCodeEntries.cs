@@ -151,7 +151,6 @@
         */
 
         internal const string NoName = "NoName";
-        internal const string NoTypeDetected = "noTypeDetected";
         internal static string GenerateNameBasedOnNamingPreferences(this ICodeEntry codeEntry)
         {
             var prefix = codeEntry.JdiMemberType.ToString().Substring(0, 1).ToLower() + codeEntry.JdiMemberType.ToString().Substring(1);

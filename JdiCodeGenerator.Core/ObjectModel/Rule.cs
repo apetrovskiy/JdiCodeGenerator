@@ -12,6 +12,7 @@
         public IEnumerable<IRuleCondition> OrConditions { get; set; }
         public IEnumerable<IRuleCondition> AndConditions { get; set; }
         public string Description { get; set; }
+        public Dictionary<string, IRule> InternalElements { get; set; }
         public List<HtmlElementTypes> SourceTypes { get; set; }
         public JdiElementTypes TargetType { get; set; }
 
@@ -20,6 +21,7 @@
             SourceTypes = new List<HtmlElementTypes>();
             OrConditions = new List<IRuleCondition>();
             AndConditions = new List<IRuleCondition>();
+            InternalElements = new Dictionary<string, IRule>();
             TargetType = JdiElementTypes.Element;
         }
 
@@ -34,9 +36,6 @@
 
         bool ResolveRuleToJdiType(HtmlNode node)
         {
-            // experimental
-            // return OrConditions.Any(condition => CheckCondition(node, condition));
-            // (!orList.Any() || orList.Any(item => item)) && (!andList.Any() || andList.All(item => item))
             return (!OrConditions.Any() || OrConditions.Any(condition => CheckCondition(node, condition))) &&
             (!AndConditions.Any() || AndConditions.All(condition => CheckCondition(node, condition)));
         }
@@ -44,16 +43,12 @@
         bool CheckCondition(HtmlNode node, IRuleCondition condition)
         {
             var nodesForCondition = GetNodesThatMatchTheCondition(node, condition.Relationship, condition.Marker);
-            // if (null == nodeForConditions)
-            //     return false;
-            // return NodeMatchesTheCondition(nodeForConditions, condition.Marker, condition.MarkerValues);
             var forCondition = nodesForCondition as HtmlNode[] ?? nodesForCondition.ToArray();
             if (!forCondition.Any())
                 return false;
             return forCondition.Any(probeNode => NodeMatchesTheCondition(probeNode, condition.Marker, condition.MarkerValues));
         }
 
-        // HtmlNode GetNodesThatMatchTheCondition(HtmlNode node, NodeRelationships relationship, Markers marker)
         IEnumerable<HtmlNode> GetNodesThatMatchTheCondition(HtmlNode node, NodeRelationships relationship, Markers marker)
         {
             // TODO: refactor this!
@@ -83,7 +78,6 @@
             }
         }
 
-        // bool NodeMatchesTheCondition(HtmlNode nodeForCondition, Markers marker, List<string> markerValues)
         bool NodeMatchesTheCondition(HtmlNode nodeForCondition, Markers marker, List<string> markerValues)
         {
             var attributeValue = nodeForCondition.GetAttributeValue(marker);

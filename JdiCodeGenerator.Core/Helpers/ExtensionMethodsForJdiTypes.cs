@@ -1,11 +1,10 @@
 ﻿namespace JdiCodeGenerator.Core.Helpers
 {
-    using System;
     using ObjectModel.Abstract;
 
     public static class ExtensionMethodsForJdiTypes
     {
-        public static string ConvertToTypeString(this JdiElementTypes jdiType)
+        public static string ConvertToTypeString(this JdiElementTypes jdiType, string typeName = "")
         {
             switch (jdiType)
             {
@@ -47,9 +46,9 @@
                 case JdiElementTypes.Selector:
                 case JdiElementTypes.Tabs:
                 case JdiElementTypes.TextList:
-                    return "I" + jdiType + @"<Integer>";
+                    return "I" + jdiType + string.Format(@"<{0}>", typeName);
                 case JdiElementTypes.Table:
-                    return "I" + jdiType + @"<Integer>";
+                    return "I" + jdiType + string.Format(@"<{0}>", typeName);
                 default:
                     return "IElement";
             }

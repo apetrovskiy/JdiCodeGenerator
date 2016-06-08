@@ -7,5 +7,6 @@
     {
         JdiElementTypes Analyze(HtmlNode node);
         IEnumerable<IRule> Rules { get; set; }
+        IEnumerable<string> ExcludeList { get; set; }
     }
 }

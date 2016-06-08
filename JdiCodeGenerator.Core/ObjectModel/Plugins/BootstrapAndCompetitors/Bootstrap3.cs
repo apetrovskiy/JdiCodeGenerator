@@ -8,9 +8,11 @@
     public class Bootstrap3 : IFrameworkAlingmentAnalysisPlugin
     {
         public IEnumerable<IRule> Rules { get; set; }
+        public IEnumerable<string> ExcludeList { get; set; }
 
         public Bootstrap3()
         {
+            ExcludeList = new List<string> { "aaa", "bbb", "ccc" };
             Rules = new List<IRule>
             {
                 new Rule
@@ -38,8 +40,50 @@
                     AndConditions = new List<IRuleCondition>
                     {
                         new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "dropdown", "dropup" } },
-                        // new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Class, MarkerValues = new List<string> { "dropdown-toggle" } },
-                        new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Class, MarkerValues = new List<string> { "dropdown-menu" }}
+                        new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Class, MarkerValues = new List<string> { "dropdown-toggle" } },
+                        new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Class, MarkerValues = new List<string> { "dropdown-menu" } }
+                    },
+                    /*
+@JDropdown(root = @FindBy(css = "dropdown"), value = @FindBy(id = "dropdownMenu1"), list = @FindBy(tagName = "li"))
+IDropDown<JobCategories> category;
+                    */
+                    InternalElements = new Dictionary<string, IRule>
+                    {
+                        { Resources.Bootstrap3_DropDown_root, new Rule { SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Div }, TargetType = JdiElementTypes.DropDown, OrConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "dropdown", "dropup" } } } } },
+                        { Resources.Bootstrap3_DropDown_value, new Rule { SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Button }, TargetType = JdiElementTypes.Button, OrConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Class, MarkerValues = new List<string> { "dropdown-toggle" } } } } },
+                        { Resources.Bootstrap3_DropDown_list, new Rule { SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Li }, TargetType = JdiElementTypes.ListItem, OrConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Tag, MarkerValues = new List<string> { "li" } } } } }
+                    }
+                },
+                new Rule
+                {
+                    #region example
+                    /*
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default">1</button>
+  <button type="button" class="btn btn-default">2</button>
+
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Dropdown
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a href="#">Dropdown link</a></li>
+      <li><a href="#">Dropdown link</a></li>
+    </ul>
+  </div>
+</div>
+                    */
+                    #endregion
+                    Description = "Dropdown in a button of the button group",
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Div },
+                    TargetType = JdiElementTypes.DropDown,
+                    AndConditions = new List<IRuleCondition>
+                    {
+                        new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "btn-group" } },
+                        // new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Role, MarkerValues = new List<string> { "group" } },
+                        new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Class, MarkerValues = new List<string> { "dropdown-toggle" } },
+                        new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Class, MarkerValues = new List<string> { "dropdown-menu" } }
                     }
                 },
                 new Rule

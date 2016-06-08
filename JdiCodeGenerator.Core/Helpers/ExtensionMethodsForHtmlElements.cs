@@ -4,7 +4,6 @@
     using HtmlAgilityPack;
     using ObjectModel;
     using ObjectModel.Abstract;
-    using ObjectModel.Plugins;
 
     public static class ExtensionMethodsForHtmlElements
     {

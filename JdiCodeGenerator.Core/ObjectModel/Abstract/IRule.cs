@@ -5,12 +5,12 @@
 
     public interface IRule
     {
-        // HtmlElementTypes SourceTypes { get; set; }
         List<HtmlElementTypes> SourceTypes { get; set; }
         JdiElementTypes TargetType { get; set; }
         IEnumerable<IRuleCondition> OrConditions { get; set; }
         IEnumerable<IRuleCondition> AndConditions { get; set; }
         string Description { get; set; }
+        Dictionary<string, IRule> InternalElements { get; set; }
         bool IsMatch(HtmlNode node);
     }
 }

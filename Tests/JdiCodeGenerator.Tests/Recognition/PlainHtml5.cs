@@ -1,11 +1,5 @@
 ﻿namespace JdiCodeGenerator.Tests.Recognition
 {
-    using System.Reflection;
-    using Core.ObjectModel;
-    using Core.ObjectModel.Abstract;
-    using HtmlAgilityPack;
-    using Xunit;
-
     public class PlainHtml5
     {
         /*

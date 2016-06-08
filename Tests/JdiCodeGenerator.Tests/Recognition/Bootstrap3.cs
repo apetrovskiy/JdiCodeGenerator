@@ -1,5 +1,6 @@
 ﻿namespace JdiCodeGenerator.Tests.Recognition
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Core.Helpers;
@@ -511,7 +512,7 @@
     <li><a href=""#"">Separated link</a></li>
   </ul>
 </div>
-", "IDropDown<Integer>", 0)]
+", "IDropDown<SomeEnum>", 0)]
     [InlineData(@"
 <div class=""dropup"">
 <button class=""btn btn-default dropdown-toggle"" type=""button"" id=""dropdownMenu2"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">
@@ -526,98 +527,144 @@ Dropup
 <li><a href=""#"">Separated link</a></li>
 </ul>
 </div>
-", "IDropDown<Integer>", 0)]
-        #region commented
-        /*
-    [InlineData(@"
-<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dLabel">
-<li><a href="#">Action</a></li>
-<li><a href="#">Another action</a></li>
-</ul>
-", "IDropDown<Integer>")] // alignment
-    [InlineData(@"
-<ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
-...
-<li class="dropdown-header">Dropdown header</li>
-...
-</ul>
-", "IDropDown<Integer>")] // headers
-    [InlineData(@"
-<ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
-...
-<li role="separator" class="divider"></li>
-...
-</ul>
-", "")] // divider
-    [InlineData(@"
-<ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
-<li><a href="#">Regular link</a></li>
-<li class="disabled"><a href="#">Disabled link</a></li>
-<li><a href="#">Another link</a></li>
-</ul>
-", "")] // disabled menu items
-*/
-#endregion
+", "IDropDown<SomeEnum>", 0)]
 
-
-        #region commented
-        /*
     [InlineData(@"
-<div class="btn-group" role="group" aria-label="...">
-<button type="button" class="btn btn-default">1</button>
-<button type="button" class="btn btn-default">2</button>
+<div class=""dropdown"">
+    <button class=""btn btn-default dropdown-toggle"" />
+    <ul class=""dropdown-menu dropdown-menu-right"" aria-labelledby=""dLabel"">
+    <li><a href=""#"">Action</a></li>
+    <li><a href=""#"">Another action</a></li>
+    </ul>
+</div>
+", "IDropDown<SomeEnum>", 0)] // alignment
+    [InlineData(@"
+<div class=""dropdown"">
+    <button class=""btn btn-default dropdown-toggle"" />
+    <ul class=""dropdown-menu"" aria-labelledby=""dropdownMenu3"">
+    ...
+    <li class=""dropdown-header"">Dropdown header</li>
+    ...
+    </ul>
+</div>
+", "IDropDown<SomeEnum>", 0)] // headers
+    [InlineData(@"
+<div class=""dropdown"">
+    <ul class=""dropdown-menu"" aria-labelledby=""dropdownMenuDivider"">
+    ...
+    <li role=""separator"" class=""divider""></li>
+    ...
+    </ul>
+</div>
+", "IElement", 2)] // divider
+    [InlineData(@"
+<div class=""dropdown"">
+    <ul class=""dropdown-menu"" aria-labelledby=""dropdownMenu4"">
+    <li><a href=""#"">Regular link</a></li>
+    <li class=""disabled""><a href=""#"">Disabled link</a></li>
+    <li><a href=""#"">Another link</a></li>
+    </ul>
+</div>
+", "ILink", 3)] // disabled menu items
 
-<div class="btn-group" role="group">
-<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        [InlineData(@"
+<div class=""btn-group"" role=""group"" aria-label=""..."">
+<button type=""button"" class=""btn btn-default"">1</button>
+<button type=""button"" class=""btn btn-default"">2</button>
+
+<div class=""btn-group"" role=""group"">
+<button type=""button"" class=""btn btn-default dropdown-toggle"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">
   Dropdown
-  <span class="caret"></span>
+  <span class=""caret""></span>
 </button>
-<ul class="dropdown-menu">
-  <li><a href="#">Dropdown link</a></li>
-  <li><a href="#">Dropdown link</a></li>
+<ul class=""dropdown-menu"">
+  <li><a href=""#"">Dropdown link</a></li>
+  <li><a href=""#"">Dropdown link</a></li>
 </ul>
 </div>
 </div>
-", "")] // nesting
+", "IDropDown<SomeEnum>", 3)] // nesting
     [InlineData(@"
-<div class="btn-group-vertical" role="group" aria-label="...">
+<!--
+<div class=""btn-group-vertical"" role=""group"" aria-label=""..."">
 ...
 </div>
-", "")] // vertical variation
+-->
+<div class=""bs-example"" data-example-id=""vertical-button-group"">
+    <div class=""btn-group-vertical"" role=""group"" aria-label=""Vertical button group"">
+        <button type=""button"" class=""btn btn-default"">Button</button>
+        <button type=""button"" class=""btn btn-default"">Button</button>
+        <div class=""btn-group"" role=""group"">
+            <button id=""btnGroupVerticalDrop1"" type=""button"" class=""btn btn-default dropdown-toggle"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false""> Dropdown <span class=""caret""></span>
+            </button>
+            <ul class=""dropdown-menu"" aria-labelledby=""btnGroupVerticalDrop1"">
+                <li><a href=""#"">Dropdown link</a></li>
+                <li><a href=""#"">Dropdown link</a></li>
+            </ul>
+        </div>
+        <button type=""button"" class=""btn btn-default"">Button</button>
+        <button type=""button"" class=""btn btn-default"">Button</button>
+        <div class=""btn-group"" role=""group"">
+            <button id=""btnGroupVerticalDrop2"" type=""button"" class=""btn btn-default dropdown-toggle"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false""> Dropdown <span class=""caret""></span> </button>
+            <ul class=""dropdown-menu"" aria-labelledby=""btnGroupVerticalDrop2"">
+                <li><a href=""#"">Dropdown link</a></li>
+                <li><a href=""#"">Dropdown link</a></li>
+            </ul>
+        </div>
+        <div class=""btn-group"" role=""group"">
+            <button id=""btnGroupVerticalDrop3"" type=""button"" class=""btn btn-default dropdown-toggle"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false""> Dropdown <span class=""caret""></span> </button>
+            <ul class=""dropdown-menu"" aria-labelledby=""btnGroupVerticalDrop3"">
+                <li><a href=""#"">Dropdown link</a></li> <li><a href=""#"">Dropdown link</a></li>
+            </ul>
+        </div>
+        <div class=""btn-group"" role=""group"">
+            <button id=""btnGroupVerticalDrop4"" type=""button"" class=""btn btn-default dropdown-toggle"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false""> Dropdown <span class=""caret""></span> </button>
+            <ul class=""dropdown-menu"" aria-labelledby=""btnGroupVerticalDrop4"">
+                <li><a href=""#"">Dropdown link</a></li>
+                <li><a href=""#"">Dropdown link</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+", "IDropDown<SomeEnum>", 4)] // vertical variation
 
     [InlineData(@"
-<div class="btn-group btn-group-justified" role="group" aria-label="...">
+<!--<div class=""btn-group btn-group-justified"" role=""group"" aria-label=""..."">
 ...
-</div>
-", "")] // justified button groups
-    [InlineData(@"
-<div class="btn-group btn-group-justified" role="group" aria-label="...">
-<div class="btn-group" role="group">
-<button type="button" class="btn btn-default">Left</button>
-</div>
-<div class="btn-group" role="group">
-<button type="button" class="btn btn-default">Middle</button>
-</div>
-<div class="btn-group" role="group">
-<button type="button" class="btn btn-default">Right</button>
-</div>
-</div>
-", "")]
+</div>-->
+<div class=""bs-example"" data-example-id=""simple-justified-button-group""> <div class=""btn-group btn-group-justified"" role=""group"" aria-label=""Justified button group""> <a href=""#"" class=""btn btn-default"" role=""button"">Left</a> <a href=""#"" class=""btn btn-default"" role=""button"">Middle</a> <a href=""#"" class=""btn btn-default"" role=""button"">Right</a> </div> <br> <div class=""btn-group btn-group-justified"" role=""group"" aria-label=""Justified button group with nested dropdown""> <a href=""#"" class=""btn btn-default"" role=""button"">Left</a> <a href=""#"" class=""btn btn-default"" role=""button"">Middle</a> <div class=""btn-group"" role=""group""> <a href=""#"" class=""btn btn-default dropdown-toggle"" data-toggle=""dropdown"" role=""button"" aria-haspopup=""true"" aria-expanded=""false""> Dropdown <span class=""caret""></span> </a> <ul class=""dropdown-menu""> <li><a href=""#"">Action</a></li> <li><a href=""#"">Another action</a></li> <li><a href=""#"">Something else here</a></li> <li role=""separator"" class=""divider""></li> <li><a href=""#"">Separated link</a></li> </ul> </div> </div> </div>
+", "IDropDown<SomeEnum>", 8)] // justified button groups
+
+//    [InlineData(@"
+//<div class="btn-group btn-group-justified" role="group" aria-label="...">
+//<div class="btn-group" role="group">
+//<button type="button" class="btn btn-default">Left</button>
+//</div>
+//<div class="btn-group" role="group">
+//<button type="button" class="btn btn-default">Middle</button>
+//</div>
+//<div class="btn-group" role="group">
+//<button type="button" class="btn btn-default">Right</button>
+//</div>
+//</div>
+//", "")]
     [InlineData(@"
 <!-- Single button -->
-<div class="btn-group">
-<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Action <span class="caret"></span>
+<div class=""btn-group"">
+<button type=""button"" class=""btn btn-default dropdown-toggle"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">
+Action <span class=""caret""></span>
 </button>
-<ul class="dropdown-menu">
-<li><a href="#">Action</a></li>
-<li><a href="#">Another action</a></li>
-<li><a href="#">Something else here</a></li>
-<li role="separator" class="divider"></li>
-<li><a href="#">Separated link</a></li>
+<ul class=""dropdown-menu"">
+<li><a href=""#"">Action</a></li>
+<li><a href=""#"">Another action</a></li>
+<li><a href=""#"">Something else here</a></li>
+<li role=""separator"" class=""divider""></li>
+<li><a href=""#"">Separated link</a></li>
 </ul>
 </div>
-", "IDropDown<Integer>")] // button dropdowns
+", "IDropDown<SomeEnum>", 0)] // button dropdowns
+        #region commented
+        /*
     [InlineData(@"
 <!-- Split button -->
 <div class="btn-group">
@@ -634,7 +681,7 @@ Action <span class="caret"></span>
 <li><a href="#">Separated link</a></li>
 </ul>
 </div>
-", "IDropDown<Integer>")] // split button dropdowns
+", "IDropDown<SomeEnum>")] // split button dropdowns
     [InlineData(@"
 <!-- Large button group -->
 <div class="btn-group">
@@ -677,7 +724,7 @@ Extra small button <span class="caret"></span>
 <!-- Dropdown menu links -->
 </ul>
 </div>
-", "IDropDown<Integer>")] // dropup variation
+", "IDropDown<SomeEnum>")] // dropup variation
     [InlineData(@"
 <div class="input-group">
 <span class="input-group-addon" id="basic-addon1">@</span>
@@ -1426,7 +1473,7 @@ Panel content
 
 ", "")]
 */
-#endregion
+        #endregion
         [Trait("Category", "Bootstrap 3, collection")]
         public void ParseBootstrap3ForCollection(string input, string expected, int elementPosition)
         {
@@ -1456,6 +1503,9 @@ Panel content
 
         void ThenThereIsCollectionOfElementsOfType(string expected)
         {
+            //Console.WriteLine("================================================================================================");
+            //Console.WriteLine(_entry.GenerateCodeForEntry(SupportedLanguages.Java));
+
             Assert.True(_entry.GenerateCodeForEntry(SupportedLanguages.Java).Contains(expected));
         }
     }

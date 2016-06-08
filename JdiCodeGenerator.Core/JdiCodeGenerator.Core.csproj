@@ -94,6 +94,11 @@
     <Compile Include="ObjectModel\Rule.cs" />
     <Compile Include="ObjectModel\RuleCondition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="WebNames.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -107,6 +112,10 @@
     <Content Include="Tests\TutorialTests\README.txt" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="WebNames.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>WebNames.Designer.cs</LastGenOutput>

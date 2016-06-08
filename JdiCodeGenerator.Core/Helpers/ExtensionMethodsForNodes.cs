@@ -25,13 +25,11 @@
 
         public static string GetAttributeValue(this HtmlNode node, string attributeName)
         {
-            // return node.Attributes.First(attribute => attribute.Name.ToLower() == attributeName).Value;
             return NodeWithAttributes(node) ? node.Attributes.First(attribute => attribute.Name.ToLower() == attributeName).Value : string.Empty;
         }
 
         public static string GetAttributeValue(this HtmlNode node, Markers marker)
         {
-            // return node.Attributes.First(attribute => attribute.Name.ToLower() == marker.ConvertMarkerToStringNameOfAttribute()).Value;
             return NodeWithAttributes(node) ? node.Attributes.First(attribute => attribute.Name.ToLower() == marker.ConvertMarkerToStringNameOfAttribute()).Value : string.Empty;
         }
 

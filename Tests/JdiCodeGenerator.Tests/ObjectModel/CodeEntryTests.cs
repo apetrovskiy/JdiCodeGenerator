@@ -6,7 +6,6 @@
     using Core.Helpers;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
-    using Core.ObjectModel.Plugins.BootstrapAndCompetitors;
     using HtmlAgilityPack;
     using Mocks;
     using NSubstitute;
