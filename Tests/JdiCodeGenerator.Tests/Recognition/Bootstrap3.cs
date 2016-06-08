@@ -489,6 +489,135 @@
         ", "")]
         */
         #endregion
+        [InlineData(@"
+<div class=""input-group"">
+<span class=""input-group-addon"" id=""basic-addon1"">@</span>
+<input type = ""text"" class=""form-control"" placeholder=""Username"" aria-describedby=""basic-addon1"">
+</div>
+", "ITextField", 2)]
+        [InlineData(@"
+<div class=""input-group"">
+<input type = ""text"" class=""form-control"" placeholder=""Recipient's username"" aria-describedby=""basic-addon2"">
+<span class=""input-group-addon"" id=""basic-addon2"">@example.com</span>
+</div>
+", "ITextField", 1)]
+        [InlineData(@"
+< div class=""input-group"">
+<span class=""input-group-addon"">$</span>
+<input type = ""text"" class=""form-control"" aria-label=""Amount(to the nearest dollar)"">
+<span class=""input-group-addon"">.00</span>
+</div>
+", "ITextField", 2)]
+        [InlineData(@"
+<label for=""basic-url"">Your vanity URL</label>
+<div class=""input-group"">
+<span class=""input-group-addon"" id=""basic-addon3"">https://example.com/users/</span>
+<input type = ""text"" class=""form-control"" id=""basic-url"" aria-describedby=""basic-addon3"">
+</div>
+", "ITextField", 3)]
+
+        [InlineData(@"
+<form class=""navbar-form navbar-left"" role=""search"">
+    <div class=""row"">
+    <div class=""col-lg-6"">
+    <div class=""input-group"">
+      <span class=""input-group-addon"">
+        <input type=""checkbox"" aria-label=""..."">
+      </span>
+      <input type=""text"" class=""form-control"" aria-label=""..."">
+    </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+    <div class=""col-lg-6"">
+    <div class=""input-group"">
+      <span class=""input-group-addon"">
+        <input type=""radio"" aria-label=""..."">
+      </span>
+      <input type=""text"" class=""form-control"" aria-label=""..."">
+    </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+</form>
+", "ICheckBox", 5)] // Checkboxes and radio addons
+//        [InlineData(@"
+//<form class=""navbar-form navbar-left"" role=""search"">
+//    <div class=""row"">
+//    <div class=""col-lg-6"">
+//    <div class=""input-group"">
+//      <span class=""input-group-addon"">
+//        <input type=""checkbox"" aria-label=""..."">
+//      </span>
+//      <input type=""text"" class=""form-control"" aria-label=""..."">
+//    </div><!-- /input-group -->
+//    </div><!-- /.col-lg-6 -->
+//    <div class=""col-lg-6"">
+//    <div class=""input-group"">
+//      <span class=""input-group-addon"">
+//        <input type=""radio"" aria-label=""..."">
+//      </span>
+//      <input type=""text"" class=""form-control"" aria-label=""..."">
+//    </div><!-- /input-group -->
+//    </div><!-- /.col-lg-6 -->
+//    </div><!-- /.row -->
+//</form>
+//", "IRadioButtons", 10)] // Checkboxes and radio addons
+        [InlineData(@"
+<form class=""navbar-form navbar-left"" role=""search"">
+    <div class=""row"">
+    <div class=""col-lg-6"">
+    <div class=""input-group"">
+      <span class=""input-group-btn"">
+        <button class=""btn btn-default"" type=""button"">Go!</button>
+      </span>
+      <input type=""text"" class=""form-control"" placeholder=""Search for..."">
+    </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+    <div class=""col-lg-6"">
+    <div class=""input-group"">
+      <input type=""text"" class=""form-control"" placeholder=""Search for..."">
+      <span class=""input-group-btn"">
+        <button class=""btn btn-default"" type=""button"">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+</form>
+", "IButton", 11)] // Button addons
+        [InlineData(@"
+<form class=""navbar-form navbar-left"" role=""search"">
+    <div class=""row"">
+    <div class=""col-lg-6"">
+    <div class=""input-group"">
+      <div class=""input-group-btn"">
+        <button type=""button"" class=""btn btn-default dropdown-toggle"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">Action <span class=""caret""></span></button>
+        <ul class=""dropdown-menu"">
+          <li><a href=""#"">Action</a></li>
+          <li><a href=""#"">Another action</a></li>
+          <li><a href=""#"">Something else here</a></li>
+          <li role=""separator"" class=""divider""></li>
+          <li><a href=""#"">Separated link</a></li>
+        </ul>
+      </div><!-- /btn-group -->
+      <input type=""text"" class=""form-control"" aria-label=""..."">
+    </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+    <div class=""col-lg-6"">
+    <div class=""input-group"">
+      <input type=""text"" class=""form-control"" aria-label=""..."">
+      <div class=""input-group-btn"">
+        <button type=""button"" class=""btn btn-default dropdown-toggle"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">Action <span class=""caret""></span></button>
+        <ul class=""dropdown-menu dropdown-menu-right"">
+          <li><a href=""#"">Action</a></li>
+          <li><a href=""#"">Another action</a></li>
+          <li><a href=""#"">Something else here</a></li>
+          <li role=""separator"" class=""divider""></li>
+          <li><a href=""#"">Separated link</a></li>
+        </ul>
+      </div><!-- /btn-group -->
+    </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+</form>
+", "IButton", 5)] // Buttons with dropdowns
         [Trait("Category", "Bootstrap 3, single element")]
         public void ParseBootstrap3ForSingleElement(string input, string expected, int elementPosition)
         {
@@ -663,182 +792,199 @@ Action <span class=""caret""></span>
 </ul>
 </div>
 ", "IDropDown<SomeEnum>", 0)] // button dropdowns
-        #region commented
-        /*
+
     [InlineData(@"
 <!-- Split button -->
-<div class="btn-group">
-<button type="button" class="btn btn-danger">Action</button>
-<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<span class="caret"></span>
-<span class="sr-only">Toggle Dropdown</span>
+<div class=""btn-group"">
+<button type=""button"" class=""btn btn-danger"">Action</button>
+<button type=""button"" class=""btn btn-danger dropdown-toggle"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">
+<span class=""caret""></span>
+<span class=""sr-only"">Toggle Dropdown</span>
 </button>
-<ul class="dropdown-menu">
-<li><a href="#">Action</a></li>
-<li><a href="#">Another action</a></li>
-<li><a href="#">Something else here</a></li>
-<li role="separator" class="divider"></li>
-<li><a href="#">Separated link</a></li>
+<ul class=""dropdown-menu"">
+<li><a href=""#"">Action</a></li>
+<li><a href=""#"">Another action</a></li>
+<li><a href=""#"">Something else here</a></li>
+<li role=""separator"" class=""divider""></li>
+<li><a href=""#"">Separated link</a></li>
 </ul>
 </div>
-", "IDropDown<SomeEnum>")] // split button dropdowns
+", "IDropDown<SomeEnum>", 0)] // split button dropdowns
+
     [InlineData(@"
 <!-- Large button group -->
-<div class="btn-group">
-<button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Large button <span class="caret"></span>
+<div class=""btn-group"">
+<button class=""btn btn-default btn-lg dropdown-toggle"" type=""button"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">
+Large button <span class=""caret""></span>
 </button>
-<ul class="dropdown-menu">
+<ul class=""dropdown-menu"">
 ...
 </ul>
 </div>
-
+", "IDropDown<SomeEnum>", 0)]
+        [InlineData(@"
 <!-- Small button group -->
-<div class="btn-group">
-<button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Small button <span class="caret"></span>
+<div class=""btn-group"">
+<button class=""btn btn-default btn-sm dropdown-toggle"" type=""button"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">
+Small button <span class=""caret""></span>
 </button>
-<ul class="dropdown-menu">
+<ul class=""dropdown-menu"">
 ...
 </ul>
 </div>
-
+", "IDropDown<SomeEnum>", 0)]
+        [InlineData(@"
 <!-- Extra small button group -->
-<div class="btn-group">
-<button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Extra small button <span class="caret"></span>
+<div class=""btn-group"">
+<button class=""btn btn-default btn-xs dropdown-toggle"" type=""button"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">
+Extra small button <span class=""caret""></span>
 </button>
-<ul class="dropdown-menu">
+<ul class=""dropdown-menu"">
 ...
 </ul>
 </div>
-", "")] // sizing x3
+", "IDropDown<SomeEnum>", 0)] // sizing x3
+
     [InlineData(@"
-<div class="btn-group dropup">
-<button type="button" class="btn btn-default">Dropup</button>
-<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<span class="caret"></span>
-<span class="sr-only">Toggle Dropdown</span>
+<div class=""btn-group dropup"">
+<button type=""button"" class=""btn btn-default"">Dropup</button>
+<button type=""button"" class=""btn btn-default dropdown-toggle"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">
+<span class=""caret""></span>
+<span class=""sr-only"">Toggle Dropdown</span>
 </button>
-<ul class="dropdown-menu">
+<ul class=""dropdown-menu"">
 <!-- Dropdown menu links -->
 </ul>
 </div>
-", "IDropDown<SomeEnum>")] // dropup variation
+", "IDropDown<SomeEnum>", 0)] // dropup variation
+
     [InlineData(@"
-<div class="input-group">
-<span class="input-group-addon" id="basic-addon1">@</span>
-<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
-</div>
+<form class=""navbar-form navbar-left"" role=""search"">
+    <div class=""input-group"">
+    <span class=""input-group-addon"" id=""basic-addon1"">@</span>
+    <input type=""text"" class=""form-control"" placeholder=""Username"" aria-describedby=""basic-addon1"">
+    </div>
 
-<div class="input-group">
-<input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2">
-<span class="input-group-addon" id="basic-addon2">@example.com</span>
-</div>
+    <div class=""input-group"">
+    <input type=""text"" class=""form-control"" placeholder=""Recipient's username"" aria-describedby=""basic-addon2"">
+    <span class=""input-group-addon"" id=""basic-addon2"">@example.com</span>
+    </div>
 
-<div class="input-group">
-<span class="input-group-addon">$</span>
-<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-<span class="input-group-addon">.00</span>
-</div>
+    <div class=""input-group"">
+    <span class=""input-group-addon"">$</span>
+    <input type=""text"" class=""form-control"" aria-label=""Amount (to the nearest dollar)"">
+    <span class=""input-group-addon"">.00</span>
+    </div>
 
-<label for="basic-url">Your vanity URL</label>
-<div class="input-group">
-<span class="input-group-addon" id="basic-addon3">https://example.com/users/</span>
-<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-</div>
-", "IForm<Integer>")] // input groups
+    <label for=""basic-url"">Your vanity URL</label>
+    <div class=""input-group"">
+    <span class=""input-group-addon"" id=""basic-addon3"">https://example.com/users/</span>
+    <input type=""text"" class=""form-control"" id=""basic-url"" aria-describedby=""basic-addon3"">
+    </div>
+</form>
+", "IForm<SomeEnum>", 0)] // input groups
+
     [InlineData(@"
-<div class="input-group input-group-lg">
-<span class="input-group-addon" id="sizing-addon1">@</span>
-<input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
-</div>
+<form class=""navbar-form navbar-left"" role=""search"">
+    <div class=""input-group input-group-lg"">
+    <span class=""input-group-addon"" id=""sizing-addon1"">@</span>
+    <input type=""text"" class=""form-control"" placeholder=""Username"" aria-describedby=""sizing-addon1"">
+    </div>
 
-<div class="input-group">
-<span class="input-group-addon" id="sizing-addon2">@</span>
-<input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2">
-</div>
+    <div class=""input-group"">
+    <span class=""input-group-addon"" id=""sizing-addon2"">@</span>
+    <input type=""text"" class=""form-control"" placeholder=""Username"" aria-describedby=""sizing-addon2"">
+    </div>
 
-<div class="input-group input-group-sm">
-<span class="input-group-addon" id="sizing-addon3">@</span>
-<input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon3">
-</div>
-", "")] // sizing
-    [InlineData(@"
-<div class="row">
-<div class="col-lg-6">
-<div class="input-group">
-  <span class="input-group-addon">
-    <input type="checkbox" aria-label="...">
-  </span>
-  <input type="text" class="form-control" aria-label="...">
-</div><!-- /input-group -->
-</div><!-- /.col-lg-6 -->
-<div class="col-lg-6">
-<div class="input-group">
-  <span class="input-group-addon">
-    <input type="radio" aria-label="...">
-  </span>
-  <input type="text" class="form-control" aria-label="...">
-</div><!-- /input-group -->
-</div><!-- /.col-lg-6 -->
-</div><!-- /.row -->
-", "")] // Checkboxes and radio addons
-    [InlineData(@"
-<div class="row">
-<div class="col-lg-6">
-<div class="input-group">
-  <span class="input-group-btn">
-    <button class="btn btn-default" type="button">Go!</button>
-  </span>
-  <input type="text" class="form-control" placeholder="Search for...">
-</div><!-- /input-group -->
-</div><!-- /.col-lg-6 -->
-<div class="col-lg-6">
-<div class="input-group">
-  <input type="text" class="form-control" placeholder="Search for...">
-  <span class="input-group-btn">
-    <button class="btn btn-default" type="button">Go!</button>
-  </span>
-</div><!-- /input-group -->
-</div><!-- /.col-lg-6 -->
-</div><!-- /.row -->
-", "")] // Button addons
-    [InlineData(@"
-<div class="row">
-<div class="col-lg-6">
-<div class="input-group">
-  <div class="input-group-btn">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <li><a href="#">Action</a></li>
-      <li><a href="#">Another action</a></li>
-      <li><a href="#">Something else here</a></li>
-      <li role="separator" class="divider"></li>
-      <li><a href="#">Separated link</a></li>
-    </ul>
-  </div><!-- /btn-group -->
-  <input type="text" class="form-control" aria-label="...">
-</div><!-- /input-group -->
-</div><!-- /.col-lg-6 -->
-<div class="col-lg-6">
-<div class="input-group">
-  <input type="text" class="form-control" aria-label="...">
-  <div class="input-group-btn">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
-    <ul class="dropdown-menu dropdown-menu-right">
-      <li><a href="#">Action</a></li>
-      <li><a href="#">Another action</a></li>
-      <li><a href="#">Something else here</a></li>
-      <li role="separator" class="divider"></li>
-      <li><a href="#">Separated link</a></li>
-    </ul>
-  </div><!-- /btn-group -->
-</div><!-- /input-group -->
-</div><!-- /.col-lg-6 -->
-</div><!-- /.row -->
-", "")] // Buttons with dropdowns
+    <div class=""input-group input-group-sm"">
+    <span class=""input-group-addon"" id=""sizing-addon3"">@</span>
+    <input type=""text"" class=""form-control"" placeholder=""Username"" aria-describedby=""sizing-addon3"">
+    </div>
+</form>
+", "IForm<SomeEnum>", 0)] // sizing
 
+    [InlineData(@"
+<form class=""navbar-form navbar-left"" role=""search"">
+    <div class=""row"">
+    <div class=""col-lg-6"">
+    <div class=""input-group"">
+      <span class=""input-group-addon"">
+        <input type=""checkbox"" aria-label=""..."">
+      </span>
+      <input type=""text"" class=""form-control"" aria-label=""..."">
+    </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+    <div class=""col-lg-6"">
+    <div class=""input-group"">
+      <span class=""input-group-addon"">
+        <input type=""radio"" aria-label=""..."">
+      </span>
+      <input type=""text"" class=""form-control"" aria-label=""..."">
+    </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+</form>
+", "IForm<SomeEnum>", 0)] // Checkboxes and radio addons
+    [InlineData(@"
+<form class=""navbar-form navbar-left"" role=""search"">
+    <div class=""row"">
+    <div class=""col-lg-6"">
+    <div class=""input-group"">
+      <span class=""input-group-btn"">
+        <button class=""btn btn-default"" type=""button"">Go!</button>
+      </span>
+      <input type=""text"" class=""form-control"" placeholder=""Search for..."">
+    </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+    <div class=""col-lg-6"">
+    <div class=""input-group"">
+      <input type=""text"" class=""form-control"" placeholder=""Search for..."">
+      <span class=""input-group-btn"">
+        <button class=""btn btn-default"" type=""button"">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+</form>
+", "IForm<SomeEnum>", 0)] // Button addons
+    [InlineData(@"
+<form class=""navbar-form navbar-left"" role=""search"">
+    <div class=""row"">
+    <div class=""col-lg-6"">
+    <div class=""input-group"">
+      <div class=""input-group-btn"">
+        <button type=""button"" class=""btn btn-default dropdown-toggle"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">Action <span class=""caret""></span></button>
+        <ul class=""dropdown-menu"">
+          <li><a href=""#"">Action</a></li>
+          <li><a href=""#"">Another action</a></li>
+          <li><a href=""#"">Something else here</a></li>
+          <li role=""separator"" class=""divider""></li>
+          <li><a href=""#"">Separated link</a></li>
+        </ul>
+      </div><!-- /btn-group -->
+      <input type=""text"" class=""form-control"" aria-label=""..."">
+    </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+    <div class=""col-lg-6"">
+    <div class=""input-group"">
+      <input type=""text"" class=""form-control"" aria-label=""..."">
+      <div class=""input-group-btn"">
+        <button type=""button"" class=""btn btn-default dropdown-toggle"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">Action <span class=""caret""></span></button>
+        <ul class=""dropdown-menu dropdown-menu-right"">
+          <li><a href=""#"">Action</a></li>
+          <li><a href=""#"">Another action</a></li>
+          <li><a href=""#"">Something else here</a></li>
+          <li role=""separator"" class=""divider""></li>
+          <li><a href=""#"">Separated link</a></li>
+        </ul>
+      </div><!-- /btn-group -->
+    </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+</form>
+", "IForm<SomeEnum>", 0)] // Buttons with dropdowns
+        #region commented
+        /*
     [InlineData(@"
 <div class="input-group">
 <div class="input-group-btn">

@@ -10,6 +10,8 @@
     {
         public static bool HasAttribute(this HtmlNode node, string attributeName)
         {
+            if ("tag" == attributeName.ToLower())
+                return true;
             return node.Attributes.Any(attribute => attribute.Name.ToLower() == attributeName);
         }
 
@@ -25,11 +27,19 @@
 
         public static string GetAttributeValue(this HtmlNode node, string attributeName)
         {
+            if (null == node)
+                return string.Empty;
+            if ("tag" == attributeName.ToLower())
+                return node.OriginalName;
             return NodeWithAttributes(node) ? node.Attributes.First(attribute => attribute.Name.ToLower() == attributeName).Value : string.Empty;
         }
 
         public static string GetAttributeValue(this HtmlNode node, Markers marker)
         {
+            if (null == node)
+                return string.Empty;
+            if (Markers.Tag == marker)
+                return node.OriginalName;
             return NodeWithAttributes(node) ? node.Attributes.First(attribute => attribute.Name.ToLower() == marker.ConvertMarkerToStringNameOfAttribute()).Value : string.Empty;
         }
 

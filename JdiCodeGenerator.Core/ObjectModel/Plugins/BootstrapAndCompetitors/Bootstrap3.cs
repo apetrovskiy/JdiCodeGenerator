@@ -207,6 +207,23 @@ IDropDown<JobCategories> category;
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "table" } } }
                 },
+                //new Rule
+                //{
+                //    Description = "Form inline, group",
+                //    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Form },
+                //    TargetType = JdiElementTypes.Form,
+                //    OrConditions = new List<IRuleCondition>
+                //    {
+                //        new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "form-inline", "form-horizontal" } },
+                //        new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Class, MarkerValues = new List<string> { "form-group", "form-control" } }
+                //    }
+                //    //,
+                //    //AndConditions = new List<IRuleCondition>
+                //    //{
+                //    //    // new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "form-group" } },
+                //    //    new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Class, MarkerValues = new List<string> {  } }
+                //    //}
+                //},
                 new Rule
                 {
                     Description = "Form inline, group",
@@ -214,15 +231,15 @@ IDropDown<JobCategories> category;
                     TargetType = JdiElementTypes.Form,
                     OrConditions = new List<IRuleCondition>
                     {
-                        new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "form-inline", "form-horizontal" } },
+                        // new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "form-inline", "form-horizontal" } },
+                        // new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "form" } },
+                        new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "form" } }
+                    }
+                    ,
+                    AndConditions = new List<IRuleCondition>
+                    {
                         new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Class, MarkerValues = new List<string> { "form-group", "form-control" } }
                     }
-                    //,
-                    //AndConditions = new List<IRuleCondition>
-                    //{
-                    //    // new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "form-group" } },
-                    //    new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Class, MarkerValues = new List<string> {  } }
-                    //}
                 },
                 new Rule
                 {
