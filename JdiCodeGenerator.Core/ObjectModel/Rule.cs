@@ -43,41 +43,47 @@
 
         bool CheckCondition(HtmlNode node, IRuleCondition condition)
         {
-            var nodeForCondition = GetNodeThatMatchesTheCondition(node, condition.Relationship, condition.Marker);
-            if (null == nodeForCondition)
+            var nodesForCondition = GetNodesThatMatchTheCondition(node, condition.Relationship, condition.Marker);
+            // if (null == nodeForConditions)
+            //     return false;
+            // return NodeMatchesTheCondition(nodeForConditions, condition.Marker, condition.MarkerValues);
+            var forCondition = nodesForCondition as HtmlNode[] ?? nodesForCondition.ToArray();
+            if (!forCondition.Any())
                 return false;
-            return NodeMatchesTheCondition(nodeForCondition, condition.Marker, condition.MarkerValues);
+            return forCondition.Any(probeNode => NodeMatchesTheCondition(probeNode, condition.Marker, condition.MarkerValues));
         }
 
-        HtmlNode GetNodeThatMatchesTheCondition(HtmlNode node, NodeRelationships relationship, Markers marker)
+        // HtmlNode GetNodesThatMatchTheCondition(HtmlNode node, NodeRelationships relationship, Markers marker)
+        IEnumerable<HtmlNode> GetNodesThatMatchTheCondition(HtmlNode node, NodeRelationships relationship, Markers marker)
         {
             // TODO: refactor this!
             switch (relationship)
             {
                 case NodeRelationships.Self:
-                    return node.HasAttribute(marker) ? node : null;
+                    return node.HasAttribute(marker) ? new List<HtmlNode> {node} : new List<HtmlNode> {null};
                 case NodeRelationships.Sibling:
                     // TODO: write better code!
-                    return null;
+                    return new List<HtmlNode> { null };
                 case NodeRelationships.Parent:
-                    return node.ParentNode.HasAttribute(marker) ? node.ParentNode : null;
+                    return node.ParentNode.HasAttribute(marker) ? new List<HtmlNode> { node.ParentNode } : new List<HtmlNode> { null };
                 case NodeRelationships.Ancestor:
                     return node.Ancestors().Any(ancestor => ancestor.HasAttribute(marker))
-                        ? node.Ancestors().FirstOrDefault(ancestor => ancestor.HasAttribute(marker))
-                        : null;
+                        ? node.Ancestors().Where(ancestor => ancestor.HasAttribute(marker)).ToList()
+                        : new List<HtmlNode> { null };
                 case NodeRelationships.Child:
                     return node.ChildNodes.Any(childNode => childNode.HasAttribute(marker))
-                        ? node.ChildNodes.FirstOrDefault(childNode => childNode.HasAttribute(marker))
-                        : null;
+                        ? node.ChildNodes.Where(childNode => childNode.HasAttribute(marker)).ToList()
+                        : new List<HtmlNode> { null };
                 case NodeRelationships.Descendant:
                     return node.Descendants().Any(descendant => descendant.HasAttribute(marker))
-                        ? node.Descendants().FirstOrDefault(childNode => childNode.HasAttribute(marker))
-                        : null;
+                        ? node.Descendants().Where(childNode => childNode.HasAttribute(marker)).ToList()
+                        : new List<HtmlNode> { null };
                 default:
-                    return null;
+                    return new List<HtmlNode> { null };
             }
         }
 
+        // bool NodeMatchesTheCondition(HtmlNode nodeForCondition, Markers marker, List<string> markerValues)
         bool NodeMatchesTheCondition(HtmlNode nodeForCondition, Markers marker, List<string> markerValues)
         {
             var attributeValue = nodeForCondition.GetAttributeValue(marker);

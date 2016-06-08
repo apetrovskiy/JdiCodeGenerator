@@ -15,6 +15,7 @@
             {
                 new Rule
                 {
+                    Description = "Form input",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Input },
                     TargetType = JdiElementTypes.TextField,
                     OrConditions = new List<IRuleCondition>
@@ -22,6 +23,7 @@
                 },
                 new Rule
                 {
+                    Description = "Button",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Button, HtmlElementTypes.A, HtmlElementTypes.Input },
                     TargetType = JdiElementTypes.Button,
                     OrConditions = new List<IRuleCondition>
@@ -29,6 +31,7 @@
                 },
                 new Rule
                 {
+                    Description = "Dropdown",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Div },
                     TargetType = JdiElementTypes.DropDown,
                     // OrConditions = new List<IRuleCondition>
@@ -41,6 +44,7 @@
                 },
                 new Rule
                 {
+                    Description = "Menu item",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Ul },
                     TargetType = JdiElementTypes.MenuItem,
                     OrConditions = new List<IRuleCondition>
@@ -48,6 +52,7 @@
                 },
                 new Rule
                 {
+                    Description = "CheckBox",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Input },
                     TargetType = JdiElementTypes.CheckBox,
                     OrConditions = new List<IRuleCondition>
@@ -55,6 +60,7 @@
                 },
                 new Rule
                 {
+                    Description = "Tabs",
                     // see also http://getbootstrap.com/javascript/#markup
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Ul },
                     TargetType = JdiElementTypes.Tabs,
@@ -63,6 +69,7 @@
                 },
                 new Rule
                 {
+                    Description = "TabItem",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Li },
                     TargetType = JdiElementTypes.TabItem,
                     OrConditions = new List<IRuleCondition>
@@ -70,6 +77,7 @@
                 },
                 new Rule
                 {
+                    Description = "NavBar",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Nav },
                     TargetType = JdiElementTypes.NavBar,
                     OrConditions = new List<IRuleCondition>
@@ -77,6 +85,7 @@
                 },
                 new Rule
                 {
+                    Description = "NavBar Form",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Form },
                     TargetType = JdiElementTypes.Form,
                     OrConditions = new List<IRuleCondition>
@@ -84,6 +93,7 @@
                 },
                 new Rule
                 {
+                    Description = "Pagination",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Ul },
                     TargetType = JdiElementTypes.Pagination,
                     OrConditions = new List<IRuleCondition>
@@ -91,6 +101,7 @@
                 },
                 new Rule
                 {
+                    Description = "Pager",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Ul },
                     TargetType = JdiElementTypes.Pager,
                     OrConditions = new List<IRuleCondition>
@@ -98,6 +109,7 @@
                 },
                 new Rule
                 {
+                    Description = "Label",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Label },
                     TargetType = JdiElementTypes.Label,
                     OrConditions = new List<IRuleCondition>
@@ -105,6 +117,7 @@
                 },
                 new Rule
                 {
+                    Description = "Progress",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Div },
                     TargetType = JdiElementTypes.Progress,
                     OrConditions = new List<IRuleCondition>
@@ -112,6 +125,7 @@
                 },
                 new Rule
                 {
+                    Description = "List",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Ul },
                     TargetType = JdiElementTypes.List,
                     OrConditions = new List<IRuleCondition>
@@ -119,6 +133,7 @@
                 },
                 new Rule
                 {
+                    Description = "ListItem",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Li },
                     TargetType = JdiElementTypes.ListItem,
                     OrConditions = new List<IRuleCondition>
@@ -126,6 +141,7 @@
                 },
                 new Rule
                 {
+                    Description = "ListItem alt",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.A },
                     TargetType = JdiElementTypes.ListItem,
                     OrConditions = new List<IRuleCondition>
@@ -133,6 +149,7 @@
                 },
                 new Rule
                 {
+                    Description = "ListItem alt 2",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Button },
                     TargetType = JdiElementTypes.ListItem,
                     OrConditions = new List<IRuleCondition>
@@ -140,6 +157,7 @@
                 },
                 new Rule
                 {
+                    Description = "Table",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Table },
                     TargetType = JdiElementTypes.Table,
                     OrConditions = new List<IRuleCondition>
@@ -147,6 +165,7 @@
                 },
                 new Rule
                 {
+                    Description = "Form inline, group",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Form },
                     TargetType = JdiElementTypes.Form,
                     OrConditions = new List<IRuleCondition>
@@ -163,6 +182,7 @@
                 },
                 new Rule
                 {
+                    Description = "Table alt",
                     SourceTypes = new List<HtmlElementTypes>(),
                     TargetType = JdiElementTypes.Table,
                     OrConditions = new List<IRuleCondition>
@@ -170,6 +190,7 @@
                 },
                 new Rule
                 {
+                    Description = "Modal",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Div },
                     TargetType = JdiElementTypes.Popup,
                     AndConditions = new List<IRuleCondition>
@@ -183,6 +204,7 @@
                 // carousel see http://getbootstrap.com/javascript/#carousel-examples
                 new Rule
                 {
+                    Description = "Carousel",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Div },
                     TargetType = JdiElementTypes.Carousel,
                     AndConditions = new List<IRuleCondition>
@@ -194,9 +216,34 @@
                         // new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Class, MarkerValues = new List<string> { "carousel-control" } }
                     }
                 },
+                new Rule
+                {
+                    Description = "Label",
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Span },
+                    TargetType = JdiElementTypes.Label,
+                    OrConditions = new List<IRuleCondition>
+                    { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "label" } } }
+                },
+                new Rule
+                {
+                    Description = "Jumbo, alert, well",
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Div },
+                    TargetType = JdiElementTypes.Text,
+                    OrConditions = new List<IRuleCondition>
+                    { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "jumbotron", "page-header", "alert", "well" } } }
+                },
+                new Rule
+                {
+                    Description = "navbar-text",
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.P },
+                    TargetType = JdiElementTypes.Text,
+                    OrConditions = new List<IRuleCondition>
+                    { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "navbar-text" } } }
+                },
                 // experimental rules
                 new Rule
                 {
+                    Description = "experimental: Menu",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Ul },
                     TargetType = JdiElementTypes.Menu,
                     AndConditions = new List<IRuleCondition>

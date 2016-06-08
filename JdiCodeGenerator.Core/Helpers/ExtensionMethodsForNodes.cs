@@ -25,12 +25,19 @@
 
         public static string GetAttributeValue(this HtmlNode node, string attributeName)
         {
-            return node.Attributes.First(attribute => attribute.Name.ToLower() == attributeName).Value;
+            // return node.Attributes.First(attribute => attribute.Name.ToLower() == attributeName).Value;
+            return NodeWithAttributes(node) ? node.Attributes.First(attribute => attribute.Name.ToLower() == attributeName).Value : string.Empty;
         }
 
         public static string GetAttributeValue(this HtmlNode node, Markers marker)
         {
-            return node.Attributes.First(attribute => attribute.Name.ToLower() == marker.ConvertMarkerToStringNameOfAttribute()).Value;
+            // return node.Attributes.First(attribute => attribute.Name.ToLower() == marker.ConvertMarkerToStringNameOfAttribute()).Value;
+            return NodeWithAttributes(node) ? node.Attributes.First(attribute => attribute.Name.ToLower() == marker.ConvertMarkerToStringNameOfAttribute()).Value : string.Empty;
+        }
+
+        static bool NodeWithAttributes(HtmlNode node)
+        {
+            return null != node && null != node.Attributes && node.Attributes.Any();
         }
 
         public static bool HasAttributeValue(this HtmlNode node, string attributeName, string attributeValue)

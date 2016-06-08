@@ -78,6 +78,9 @@
     <Compile Include="Plugins\BoilerplateTests.cs" />
     <Compile Include="Plugins\BootstrapTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recognition\Bootstrap3.cs" />
+    <Compile Include="Recognition\Internals\TestFactory.cs" />
+    <Compile Include="Recognition\PlainHtml5.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

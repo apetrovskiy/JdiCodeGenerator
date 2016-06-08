@@ -21,7 +21,7 @@
             return GetCodeEntries(_docNode, excludeList);
         }
 
-        IEnumerable<ICodeEntry> GetCodeEntries(HtmlNode docNode, IEnumerable<string> excludeList)
+        internal IEnumerable<ICodeEntry> GetCodeEntries(HtmlNode docNode, IEnumerable<string> excludeList)
         {
             var convertor = new HtmlElementToCodeEntryConvertor();
             return docNode.Descendants()

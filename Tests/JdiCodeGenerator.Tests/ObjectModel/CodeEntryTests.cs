@@ -35,52 +35,53 @@
         */
 
         [Theory]
-        [InlineData(new[] { "id", "" }, "", "noTypeDetectedNoName")]
-        [InlineData(new[] { "id", "" }, "input", "inputNoName")]
-        [InlineData(new[] { "id", "id" }, "input", "inputId")]
-        [InlineData(new[] { "name", "some name" }, "input", "inputSomeName")]
-        [InlineData(new[] { "css", ".a .ul" }, "input", "inputNoName")] // ??
-        [InlineData(new[] { "css", "[name='a']" }, "input", "inputNoName")] // ??
-        [InlineData(new[] { "className", ".a .ul" }, "input", "inputAUl")]
-        [InlineData(new[] { "xpath", "//*[class=test]" }, "input", "inputNoName")] // ??
-        [InlineData(new[] { "linkText", "/aa/bb/cc" }, "input", "inputAaBbCc")]
-        [InlineData(new[] { "tagName", "ttt" }, "input", "inputTtt")]
-        [InlineData(new[] { "tagName", "ttt" }, "?xml", "xmlTtt")]
+        [InlineData(new[] { "id", "" }, "", "element", "elementNoName")]
+        [InlineData(new[] { "id", "" }, "input", "textfield", "textFieldNoName")]
+        [InlineData(new[] { "id", "id" }, "input", "textfield", "textFieldId")]
+        [InlineData(new[] { "name", "some name" }, "input", "textfield", "textFieldSomeName")]
+        [InlineData(new[] { "css", ".a .ul" }, "input", "textfield", "textFieldNoName")] // ??
+        [InlineData(new[] { "css", "[name='a']" }, "input", "textfield", "textFieldNoName")] // ??
+        [InlineData(new[] { "className", ".a .ul" }, "input", "textfield", "textFieldAUl")]
+        [InlineData(new[] { "xpath", "//*[class=test]" }, "input", "textfield", "textFieldNoName")] // ??
+        [InlineData(new[] { "linkText", "/aa/bb/cc" }, "input", "textfield", "textFieldAaBbCc")]
+        [InlineData(new[] { "tagName", "ttt" }, "input", "textfield", "textFieldTtt")]
+        [InlineData(new[] { "tagName", "ttt" }, "?xml", "element", "elementTtt")]
         [Trait("Category", "EntryTitle")]
-        public void GeneratesEntryTitle(string[] stringLocatorDefinitions, string memberType, string expectedTitle)
+        public void GeneratesEntryTitle(string[] stringLocatorDefinitions, string memberType, string jdiMemberType, string expectedTitle)
         {
             var locatorDefinitions = ConvertStringArrayToLocatorDefinitions(stringLocatorDefinitions);
-            GivenCodeEntry(locatorDefinitions, memberType);
+            GivenCodeEntry(locatorDefinitions, jdiMemberType, memberType);
             WhenGeneratingTitle();
             ThenTitleIs(expectedTitle);
         }
 
         [Theory]
-        [InlineData(new[] { "id", "id" }, "", "IElement")]
-        [InlineData(new[] { "id", "id" }, "input", "ITextField")]
-        [InlineData(new[] { "id", "id" }, "label", "ILabel")]
-        [InlineData(new[] { "id", "id" }, "button", "IButton")]
-        [InlineData(new[] { "id", "id" }, "select", "ICheckBox")]
-        [InlineData(new[] { "id", "id" }, "a", "ILink")]
-        [InlineData(new[] { "id", "id" }, "img", "IImage")]
+        [InlineData(new[] { "id", "id" }, "", "element", "IElement")]
+        [InlineData(new[] { "id", "id" }, "input", "textfield", "ITextField")]
+        [InlineData(new[] { "id", "id" }, "label", "label", "ILabel")]
+        [InlineData(new[] { "id", "id" }, "button", "button", "IButton")]
+        [InlineData(new[] { "id", "id" }, "select", "checkbox", "ICheckBox")]
+        [InlineData(new[] { "id", "id" }, "a", "link", "ILink")]
+        [InlineData(new[] { "id", "id" }, "img", "image", "IImage")]
         // [InlineData(new[] { "id", "id" }, "textarea", "ITextArea")]
         //[InlineData(new[] { "id", "id" }, "label", "ILabel")]
         [Trait("Category", "EntryJdiType")]
-        public void GenerateCodeEntryWithBestLocator(string[] stringLocatorDefinitions, string memberType, string expectedJdiType)
+        public void GenerateCodeEntryWithBestLocator(string[] stringLocatorDefinitions, string memberType, string jdiMemberType, string expectedJdiType)
         {
             var locatorDefinitions = ConvertStringArrayToLocatorDefinitions(stringLocatorDefinitions);
-            GivenCodeEntry(locatorDefinitions, memberType);
+            GivenCodeEntry(locatorDefinitions, jdiMemberType, memberType);
             WhenGeneratingCode();
             ThenCodeContains(expectedJdiType);
         }
 
-        void GivenCodeEntry(IEnumerable<LocatorDefinition> locatorDefinitions, string memberType)
+        void GivenCodeEntry(IEnumerable<LocatorDefinition> locatorDefinitions, string jdiMemberType, string memberType)
         {
             _entry = new CodeEntry
             {
                 Locators = locatorDefinitions.ToList(),
                 HtmlMemberType = Enum.GetValues(typeof(HtmlElementTypes)).Cast<HtmlElementTypes>().FirstOrDefault(val => 0 == string.Compare(val.ToString().ToLower(), memberType, StringComparison.Ordinal)),
-            MemberType = memberType
+                JdiMemberType = Enum.GetValues(typeof(JdiElementTypes)).Cast<JdiElementTypes>().FirstOrDefault(val => 0 == string.Compare(val.ToString().ToLower(), jdiMemberType, StringComparison.Ordinal)),
+                MemberType = memberType
             };
         }
 
@@ -94,8 +95,7 @@
             var node = Substitute.For<HtmlNodeMock>(HtmlNodeType.Element, new HtmlDocument(), 1);
             node.OriginalName.Returns(_entry.MemberType);
 
-            var bootstrapAnalyzer = new Bootstrap3();
-            // var htmlElementType = bootstrapAnalyzer.ConvertHtmlNativeTypeToHtmlElementType(node.OriginalName);
+            // var bootstrapAnalyzer = new Bootstrap3();
             _entry.JdiMemberType = _entry.HtmlMemberType.ConvertHtmlTypeToJdiType();
 
             _code = _entry.GenerateCodeForEntry(SupportedLanguages.Java);

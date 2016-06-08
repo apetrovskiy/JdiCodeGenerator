@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    // using Epam.JDI.Commons;
     using ObjectModel.Abstract;
 
     public static class ExtensionMethodsForCodeEntries
@@ -155,26 +154,25 @@
         internal const string NoTypeDetected = "noTypeDetected";
         internal static string GenerateNameBasedOnNamingPreferences(this ICodeEntry codeEntry)
         {
-            if (string.IsNullOrEmpty(codeEntry.MemberType))
-                codeEntry.MemberType = NoTypeDetected;
+            var prefix = codeEntry.JdiMemberType.ToString().Substring(0, 1).ToLower() + codeEntry.JdiMemberType.ToString().Substring(1);
             if (!codeEntry.Locators.Any())
-                return codeEntry.MemberType + NoName;
+                return prefix + NoName;
             if (codeEntry.Locators.Any(locator => locator.SearchTypePreference == SearchTypePreferences.name))
-                return codeEntry.MemberType + codeEntry.Locators.First(locator => locator.SearchTypePreference == SearchTypePreferences.name).SearchString.ToPascalCase();
+                return prefix + codeEntry.Locators.First(locator => locator.SearchTypePreference == SearchTypePreferences.name).SearchString.ToPascalCase();
 
             if (codeEntry.Locators.Any(locator => locator.SearchTypePreference == SearchTypePreferences.id))
-                return codeEntry.MemberType + codeEntry.Locators.First(locator => locator.SearchTypePreference == SearchTypePreferences.id).SearchString.ToPascalCase();
+                return prefix + codeEntry.Locators.First(locator => locator.SearchTypePreference == SearchTypePreferences.id).SearchString.ToPascalCase();
 
             if (codeEntry.Locators.Any(locator => locator.SearchTypePreference == SearchTypePreferences.tagName))
-                return codeEntry.MemberType + codeEntry.Locators.First(locator => locator.SearchTypePreference == SearchTypePreferences.tagName).SearchString.ToPascalCase();
+                return prefix + codeEntry.Locators.First(locator => locator.SearchTypePreference == SearchTypePreferences.tagName).SearchString.ToPascalCase();
 
             if (codeEntry.Locators.Any(locator => locator.SearchTypePreference == SearchTypePreferences.linkText))
-                return codeEntry.MemberType + codeEntry.Locators.First(locator => locator.SearchTypePreference == SearchTypePreferences.linkText).SearchString.ToPascalCase();
+                return prefix + codeEntry.Locators.First(locator => locator.SearchTypePreference == SearchTypePreferences.linkText).SearchString.ToPascalCase();
 
             if (codeEntry.Locators.Any(locator => locator.SearchTypePreference == SearchTypePreferences.className))
-                return codeEntry.MemberType + codeEntry.Locators.First(locator => locator.SearchTypePreference == SearchTypePreferences.className).SearchString.ToPascalCase();
+                return prefix + codeEntry.Locators.First(locator => locator.SearchTypePreference == SearchTypePreferences.className).SearchString.ToPascalCase();
 
-            return codeEntry.MemberType + NoName;
+            return prefix + NoName;
         }
     }
 }

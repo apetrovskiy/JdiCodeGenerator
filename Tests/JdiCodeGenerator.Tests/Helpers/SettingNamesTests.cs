@@ -35,7 +35,7 @@
         void GivenCodeEntries(string[] originalSequence)
         {
             _codeEntries = new List<ICodeEntry>();
-            originalSequence.ToList().ForEach(item => _codeEntries.Add(new CodeEntry { MemberName = item, MemberType = "button", Locators = new List<LocatorDefinition> { new LocatorDefinition { IsBestChoice = true, SearchString = item, Attribute = FindTypes.FindBy, SearchTypePreference = SearchTypePreferences.id } } }));
+            originalSequence.ToList().ForEach(item => _codeEntries.Add(new CodeEntry { MemberName = item, MemberType = "button", JdiMemberType = JdiElementTypes.Button, Locators = new List<LocatorDefinition> { new LocatorDefinition { IsBestChoice = true, SearchString = item, Attribute = FindTypes.FindBy, SearchTypePreference = SearchTypePreferences.id } } }));
             for (int i = 0; i < originalSequence.Length; i++)
                 _codeEntries[i].MemberName = originalSequence[i];
         }

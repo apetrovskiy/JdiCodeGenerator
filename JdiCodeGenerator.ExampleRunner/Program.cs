@@ -22,7 +22,7 @@
 
 
                 "http://presentation.creative-tim.com/",
-                "http://www.crit-research.it/",
+                // "http://www.crit-research.it/",
                 "http://www.blackbox.cool/",
                 "http://indicius.com/",
                 "http://www.spotify-thedrop.com/#/",
@@ -82,7 +82,8 @@
                 "http://yuntolovo-spb.ru/gallery/building-progress/2-ya-ochered/2016/may/"
 
             };
-            var listNotToDisplay = new[] { "html", "head", "body", "#comment", "#text", "div", "meta", "p", "h1", "h2", "h3", "h4", "h5", "h6", "small", "font", "script", "i", "br", "hr", "strong", "style", "title", "li", "ul", "img", "span", "noscript" };
+            // var listNotToDisplay = new[] { "html", "head", "body", "#comment", "#text", "div", "meta", "p", "h1", "h2", "h3", "h4", "h5", "h6", "small", "font", "script", "i", "br", "hr", "strong", "style", "title", "li", "ul", "img", "span", "noscript" };
+            var listNotToDisplay = new[] { "html", "head", "body", "#comment", "#text", "meta", "h1", "h2", "h3", "h4", "h5", "h6", "small", "font", "script", "i", "br", "hr", "strong", "style", "title", "img", "noscript" };
             // const string FolderForExportFiles = ".";
             var folderForExportFiles = @"D:\333";
             if (null != args && args.Any() && !string.IsNullOrEmpty(args[0]))

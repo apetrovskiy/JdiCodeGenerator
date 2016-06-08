@@ -1,7 +1,7 @@
 ﻿namespace JdiCodeGenerator.Tests.Helpers
 {
     using Xunit;
-    using JdiCodeGenerator.Core.Helpers;
+    using Core.Helpers;
 
     public class NameGenerationTests
     {
