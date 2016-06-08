@@ -68,8 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Convertors\ElementToMemberConvertorTests.cs" />
-    <Compile Include="Example\StringTests2.cs" />
-    <Compile Include="Example\StringTests3.cs" />
     <Compile Include="Helpers\BestChoiceTests.cs" />
     <Compile Include="Helpers\ExcludeListTests.cs" />
     <Compile Include="Helpers\GenerateCodeEntryWithBestLocatorTests.cs" />
@@ -85,13 +83,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\JdiCodeGenerator.Core\JdiCodeGenerator.Core.csproj">
-      <Project>{BA031019-F185-472C-BE8C-CD53BE4823EC}</Project>
-      <Name>JdiCodeGenerator.Core</Name>
-    </ProjectReference>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+    <Folder Include="Example\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\JdiCodeGenerator.Core\JdiCodeGenerator.Core.csproj">
+      <Project>{ba031019-f185-472c-be8c-cd53be4823ec}</Project>
+      <Name>JdiCodeGenerator.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

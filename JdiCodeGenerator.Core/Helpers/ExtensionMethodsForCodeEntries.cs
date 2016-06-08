@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Epam.JDI.Commons;
+    // using Epam.JDI.Commons;
     using ObjectModel.Abstract;
 
     public static class ExtensionMethodsForCodeEntries
@@ -121,21 +121,21 @@
         public static IEnumerable<ICodeEntry> SetBestChoice(this IEnumerable<ICodeEntry> codeEntries)
         {
             var entries = codeEntries as ICodeEntry[] ?? codeEntries.ToArray();
-            entries.ForEach(codeEntry => codeEntry.Locators.ForEach(locator => locator.IsBestChoice = false));
-            entries.ForEach(codeEntry => codeEntry.Locators.OrderBy(locator => (int)locator.SearchTypePreference).First().IsBestChoice = true);
+            entries.ToList().ForEach(codeEntry => codeEntry.Locators.ForEach(locator => locator.IsBestChoice = false));
+            entries.ToList().ForEach(codeEntry => codeEntry.Locators.OrderBy(locator => (int)locator.SearchTypePreference).First().IsBestChoice = true);
             return entries;
         }
 
         public static IEnumerable<ICodeEntry> SetDistinguishNamesForMembers(this IEnumerable<ICodeEntry> codeEntries)
         {
             var distinguishNamesForMembers = codeEntries as ICodeEntry[] ?? codeEntries.ToArray();
-            distinguishNamesForMembers.ForEach(codeEntry => codeEntry.MemberName = codeEntry.GenerateNameBasedOnNamingPreferences());
+            distinguishNamesForMembers.ToList().ForEach(codeEntry => codeEntry.MemberName = codeEntry.GenerateNameBasedOnNamingPreferences());
             distinguishNamesForMembers
                 .GroupBy(codeEntryName => codeEntryName.MemberName)
                 .Select(grouping =>
                 {
                     var i = 0;
-                    grouping.ToList().Skip(1).ForEach(item => { item.MemberName += ++i; });
+                    grouping.ToList().Skip(1).ToList().ForEach(item => { item.MemberName += ++i; });
                     return grouping;
                 }).SelectMany(grouping => grouping.Select(item => item))
                 .ToList();
