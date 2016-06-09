@@ -10,7 +10,7 @@
     {
         public static bool HasAttribute(this HtmlNode node, string attributeName)
         {
-            if ("tag" == attributeName.ToLower())
+            if (WebNames.AttributeNameTag == attributeName.ToLower())
                 return true;
             return node.Attributes.Any(attribute => attribute.Name.ToLower() == attributeName);
         }
@@ -29,7 +29,7 @@
         {
             if (null == node)
                 return string.Empty;
-            if ("tag" == attributeName.ToLower())
+            if (WebNames.AttributeNameTag == attributeName.ToLower())
                 return node.OriginalName;
             return NodeWithAttributes(node) ? node.Attributes.First(attribute => attribute.Name.ToLower() == attributeName).Value : string.Empty;
         }
@@ -57,6 +57,9 @@
         {
             return node.Attributes.First(attribute => attribute.Name.ToLower() == marker.ConvertMarkerToStringNameOfAttribute()).Value == attributeValue;
         }
+
+        // experimental
+        public static IFrameworkAlingmentAnalysisPlugin AnalyzerThatWon { get; set; }
 
         public static JdiElementTypes ApplyApplicableAnalyzers(this HtmlNode node)
         {

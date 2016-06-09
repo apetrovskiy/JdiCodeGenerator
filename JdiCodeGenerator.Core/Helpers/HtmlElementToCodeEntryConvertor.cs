@@ -27,6 +27,13 @@
 
             // TODO: write the code behind // ??
             codeEntry.JdiMemberType = node.ApplyApplicableAnalyzers();
+
+            // experimental
+            //codeEntry.AnalyzerThatWon = ExtensionMethodsForNodes.AnalyzerThatWon;
+            //codeEntry.RuleThatWon = ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon;
+            codeEntry.AnalyzerThatWon = null != ExtensionMethodsForNodes.AnalyzerThatWon ? ExtensionMethodsForNodes.AnalyzerThatWon.GetType().Name : string.Empty;
+            codeEntry.RuleThatWon = null != ExtensionMethodsForNodes.AnalyzerThatWon && null != ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon ? ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon.GetType().Name : string.Empty;
+
             if (JdiElementTypes.Element == codeEntry.JdiMemberType)
                 codeEntry.JdiMemberType = codeEntry.HtmlMemberType.ConvertHtmlTypeToJdiType();
 

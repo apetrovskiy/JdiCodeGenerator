@@ -55,7 +55,9 @@
             switch (relationship)
             {
                 case NodeRelationships.Self:
-                    return node.HasAttribute(marker) ? new List<HtmlNode> {node} : new List<HtmlNode> {null};
+                    // return node.HasAttribute(marker) ? new List<HtmlNode> {node} : new List<HtmlNode> {null};
+                    var result = node.HasAttribute(marker) ? new List<HtmlNode> { node } : new List<HtmlNode> { null };
+                    return result;
                 case NodeRelationships.Sibling:
                     // TODO: write better code!
                     return new List<HtmlNode> { null };
@@ -69,10 +71,20 @@
                     return node.ChildNodes.Any(childNode => childNode.HasAttribute(marker))
                         ? node.ChildNodes.Where(childNode => childNode.HasAttribute(marker)).ToList()
                         : new List<HtmlNode> { null };
+                //return node.SelectNodes("*").Any(childNode => childNode.HasAttribute(marker))
+                //    ? node.SelectNodes("*").Where(childNode => childNode.HasAttribute(marker)).ToList()
+                //    : new List<HtmlNode> { null };
                 case NodeRelationships.Descendant:
-                    return node.Descendants().Any(descendant => descendant.HasAttribute(marker))
+                    //return node.Descendants().Any(descendant => descendant.HasAttribute(marker))
+                    //    ? node.Descendants().Where(childNode => childNode.HasAttribute(marker)).ToList()
+                    //    : new List<HtmlNode> { null };
+                    var result2 = node.Descendants().Any(descendant => descendant.HasAttribute(marker))
                         ? node.Descendants().Where(childNode => childNode.HasAttribute(marker)).ToList()
                         : new List<HtmlNode> { null };
+                    //var result2 = node.SelectNodes("*").Any(descendant => descendant.HasAttribute(marker))
+                    //    ? node.SelectNodes("*").Where(childNode => childNode.HasAttribute(marker)).ToList()
+                    //    : new List<HtmlNode> { null };
+                    return result2;
                 default:
                     return new List<HtmlNode> { null };
             }

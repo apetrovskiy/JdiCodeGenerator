@@ -3,12 +3,14 @@
     using System.Collections.Generic;
     using System.Linq;
     using Abstract;
+    using Helpers;
     using HtmlAgilityPack;
 
     public class Bootstrap3 : IFrameworkAlingmentAnalysisPlugin
     {
         public IEnumerable<IRule> Rules { get; set; }
         public IEnumerable<string> ExcludeList { get; set; }
+        public IRule RuleThatWon { get; set; }
 
         public Bootstrap3()
         {
@@ -232,7 +234,7 @@ IDropDown<JobCategories> category;
                     OrConditions = new List<IRuleCondition>
                     {
                         // new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "form-inline", "form-horizontal" } },
-                        // new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "form" } },
+                        new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "form" } },
                         new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "form" } }
                     }
                     ,
@@ -326,7 +328,13 @@ IDropDown<JobCategories> category;
         JdiElementTypes GetJdiTypeOfElementByUsingRules(HtmlNode node)
         {
             var firstRule = Rules.FirstOrDefault(rule => rule.IsMatch(node));
-            return firstRule?.TargetType ?? JdiElementTypes.Element;
+            
+            // experimental
+            RuleThatWon = firstRule;
+            ExtensionMethodsForNodes.AnalyzerThatWon = this;
+
+            // return firstRule?.TargetType ?? JdiElementTypes.Element;
+            return null == firstRule ? JdiElementTypes.Element : firstRule.TargetType;
         }
     }
 }

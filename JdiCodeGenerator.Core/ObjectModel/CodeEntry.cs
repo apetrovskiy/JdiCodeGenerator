@@ -23,6 +23,9 @@
         }
 
         // temporarily!
+        //public IFrameworkAlingmentAnalysisPlugin AnalyzerThatWon { get; set; }
+        //public IRule RuleThatWon { get; set; }
+        public string RuleThatWon { get; set; }
         public string Type { get; set; }
 
         SupportedLanguages _language;
@@ -48,6 +51,7 @@
         }
 
         public string EnumerationTypeName { get; set; }
+        public string AnalyzerThatWon { get; set; }
 
         //void FilterOutWrongLocators()
         //{

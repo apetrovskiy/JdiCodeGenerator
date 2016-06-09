@@ -1,6 +1,5 @@
 ﻿namespace JdiCodeGenerator.Tests.Recognition
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Core.Helpers;
@@ -15,6 +14,37 @@
         CodeEntry _entry;
         HtmlDocument _doc;
         readonly List<ICodeEntry> _entries;
+
+        const string HtmlFirstPart = @"
+<!DOCTYPE html>
+<html lang=""en"">
+  <head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <meta name=""viewport"" content=""width=device-width, initial-scale=1"">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href=""css/bootstrap.min.css"" rel=""stylesheet"">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src=""https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js""></script>
+      <script src=""https://oss.maxcdn.com/respond/1.4.2/respond.min.js""></script>
+    <![endif]-->
+  </head>
+  <body>
+";
+        const string HtmlLastPath = @"
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src=""https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js""></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src=""js/bootstrap.min.js""></script>
+  </body>
+</html>
+";
 
         public Bootstrap3()
         {
@@ -983,38 +1013,103 @@ Extra small button <span class=""caret""></span>
     </div><!-- /.row -->
 </form>
 ", "IForm<SomeEnum>", 0)] // Buttons with dropdowns
+
+    [InlineData(@"
+<!--<form class=""bs-example bs-example-form"" data-example-id=""input-group-segmented-buttons"">-->
+<form class=""navbar-form navbar-left"" role=""search"">
+    <div class=""row"">
+        <div class=""col-lg-6"">
+            <div class=""input-group"">
+                <div class=""input-group-btn"">
+                <button type=""button"" class=""btn btn-default"">Action</button>
+                <button type=""button"" class=""btn btn-default dropdown-toggle"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">
+                    <span class=""caret""></span>
+                    <span class=""sr-only"">Toggle Dropdown</span> </button>
+                <ul class=""dropdown-menu"">
+                    <li><a href=""#"">Action</a></li> <li><a href=""#"">Another action</a></li>
+                    <li><a href=""#"">Something else here</a></li>
+                    <li role=""separator"" class=""divider""></li>
+                    <li><a href=""#"">Separated link</a></li> </ul> </div>
+                <input type=""text"" class=""form-control"" aria-label=""Text input with segmented button dropdown"">
+                </div>
+            </div>
+            <div class=""col-lg-6"">
+                <div class=""input-group"">
+                    <input type=""text"" class=""form-control"" aria-label=""Text input with segmented button dropdown"">
+                    <div class=""input-group-btn"">
+                    <button type=""button"" class=""btn btn-default"">Action</button>
+                    <button type=""button"" class=""btn btn-default dropdown-toggle"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">
+                        <span class=""caret""></span> <span class=""sr-only"">Toggle Dropdown</span> </button>
+                    <ul class=""dropdown-menu dropdown-menu-right"">
+                        <li><a href=""#"">Action</a></li> <li><a href=""#"">Another action</a></li>
+                        <li><a href=""#"">Something else here</a></li> <li role=""separator"" class=""divider""></li>
+                        <li><a href=""#"">Separated link</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+<!--< div class=""input-group"">
+<div class=""input-group-btn"">
+ Button and dropdown menu 
+</div>
+<input type=""text"" class=""form-control"" aria-label=""..."">
+</div>
+
+<div class=""input-group"">
+<input type=""text"" class=""form-control"" aria-label=""..."">
+<div class=""input-group-btn"">
+ Button and dropdown menu 
+</div>
+</div>-->
+", "IForm<SomeEnum>", 0)] // Segmented buttons
+
+    [InlineData(@"
+    <!--<form class=""bs - example bs - example - form"" data-example-id=""input - group - multiple - buttons"">-->
+    <form class=""navbar-form navbar-left"" role=""search"">
+        < div class=""row"">
+            <div class=""col-lg-6"">
+                <div class=""input-group"">
+                    <div class=""input-group-btn"">
+                        <button type = ""button"" class=""btn btn-default"" aria-label=""Bold""><span class=""glyphicon glyphicon-bold""></span></button>
+                        <button type = ""button"" class=""btn btn-default"" aria-label=""Italic""><span class=""glyphicon glyphicon-italic""></span></button>
+                    </div>
+                    <input type = ""text"" class=""form-control"" aria-label=""Text input with multiple buttons"">
+                </div>
+            </div>
+            <div class=""col-lg-6"">
+                <div class=""input-group"">
+                    <input type = ""text"" class=""form-control"" aria-label=""Text input with multiple buttons"">
+                    <div class=""input-group-btn"">
+                        <button type = ""button"" class=""btn btn-default"" aria-label=""Help""><span class=""glyphicon glyphicon-question-sign""></span></button>
+                        <button type = ""button"" class=""btn btn-default"">Action</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!--<div class=""input-group"">
+    <div class=""input-group-btn"">
+     Buttons
+    </div>
+    <input type = ""text"" class=""form-control"" aria-label=""..."">
+    </div>
+
+    <div class=""input-group"">
+    <input type = ""text"" class=""form-control"" aria-label=""..."">
+    <div class=""input-group-btn"">
+     Buttons
+    </div>
+    </div>-->
+
+", "IForm<SomeEnum>", 0)] // Multiple buttons
         #region commented
         /*
-    [InlineData(@"
-<div class="input-group">
-<div class="input-group-btn">
-<!-- Button and dropdown menu -->
-</div>
-<input type="text" class="form-control" aria-label="...">
-</div>
-
-<div class="input-group">
-<input type="text" class="form-control" aria-label="...">
-<div class="input-group-btn">
-<!-- Button and dropdown menu -->
-</div>
-</div>
-", "")] // Segmented buttons
-    [InlineData(@"
-<div class="input-group">
-<div class="input-group-btn">
-<!-- Buttons -->
-</div>
-<input type="text" class="form-control" aria-label="...">
-</div>
-
-<div class="input-group">
-<input type="text" class="form-control" aria-label="...">
-<div class="input-group-btn">
-<!-- Buttons -->
-</div>
-</div>
-", "")] // Multiple buttons
     [InlineData(@"
 <ul class="nav nav-tabs">
 <li role="presentation" class="active"><a href="#">Home</a></li>
@@ -1077,75 +1172,80 @@ Extra small button <span class=""caret""></span>
 ...
 </ul>
 ", "")] // Pills with dropdowns
-    [InlineData(@"
-<nav class="navbar navbar-default">
-<div class="container-fluid">
+*/
+        #endregion
+        [InlineData(@"
+<nav class=""navbar navbar-default"">
+<div class=""container-fluid"">
 <!-- Brand and toggle get grouped for better mobile display -->
-<div class="navbar-header">
-  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-    <span class="sr-only">Toggle navigation</span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
+<div class=""navbar-header"">
+  <button type=""button"" class=""navbar-toggle collapsed"" data-toggle=""collapse"" data-target=""#bs-example-navbar-collapse-1"" aria-expanded=""false"">
+    <span class=""sr-only"">Toggle navigation</span>
+    <span class=""icon-bar""></span>
+    <span class=""icon-bar""></span>
+    <span class=""icon-bar""></span>
   </button>
-  <a class="navbar-brand" href="#">Brand</a>
+  <a class=""navbar-brand"" href=""#"">Brand</a>
 </div>
 
 <!-- Collect the nav links, forms, and other content for toggling -->
-<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-  <ul class="nav navbar-nav">
-    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-    <li><a href="#">Link</a></li>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-      <ul class="dropdown-menu">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li role="separator" class="divider"></li>
-        <li><a href="#">Separated link</a></li>
-        <li role="separator" class="divider"></li>
-        <li><a href="#">One more separated link</a></li>
+<div class=""collapse navbar-collapse"" id=""bs-example-navbar-collapse-1"">
+  <ul class=""nav navbar-nav"">
+    <li class=""active""><a href=""#"">Link <span class=""sr-only"">(current)</span></a></li>
+    <li><a href=""#"">Link</a></li>
+    <li class=""dropdown"">
+      <a href=""#"" class=""dropdown-toggle"" data-toggle=""dropdown"" role=""button"" aria-haspopup=""true"" aria-expanded=""false"">Dropdown <span class=""caret""></span></a>
+      <ul class=""dropdown-menu"">
+        <li><a href=""#"">Action</a></li>
+        <li><a href=""#"">Another action</a></li>
+        <li><a href=""#"">Something else here</a></li>
+        <li role=""separator"" class=""divider""></li>
+        <li><a href=""#"">Separated link</a></li>
+        <li role=""separator"" class=""divider""></li>
+        <li><a href=""#"">One more separated link</a></li>
       </ul>
     </li>
   </ul>
-  <form class="navbar-form navbar-left" role="search">
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Search">
+  <form class=""navbar-form navbar-left"" role=""search"">
+    <div class=""form-group"">
+      <input type=""text"" class=""form-control"" placeholder=""Search"">
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type=""submit"" class=""btn btn-default"">Submit</button>
   </form>
-  <ul class="nav navbar-nav navbar-right">
-    <li><a href="#">Link</a></li>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-      <ul class="dropdown-menu">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li role="separator" class="divider"></li>
-        <li><a href="#">Separated link</a></li>
+  <ul class=""nav navbar-nav navbar-right"">
+    <li><a href=""#"">Link</a></li>
+    <li class=""dropdown"">
+      <a href=""#"" class=""dropdown-toggle"" data-toggle=""dropdown"" role=""button"" aria-haspopup=""true"" aria-expanded=""false"">Dropdown <span class=""caret""></span></a>
+      <ul class=""dropdown-menu"">
+        <li><a href=""#"">Action</a></li>
+        <li><a href=""#"">Another action</a></li>
+        <li><a href=""#"">Something else here</a></li>
+        <li role=""separator"" class=""divider""></li>
+        <li><a href=""#"">Separated link</a></li>
       </ul>
     </li>
   </ul>
 </div><!-- /.navbar-collapse -->
 </div><!-- /.container-fluid -->
 </nav>
-", "")] // Default NavBar
-    [InlineData(@"
+", "INavBar", 0)] // Default NavBar
+
+        #region commented
+        /*
+[InlineData(@"
 <nav class="navbar navbar-default">
 <div class="container-fluid">
 <div class="navbar-header">
-  <a class="navbar-brand" href="#">
-    <img alt="Brand" src="...">
-  </a>
+<a class="navbar-brand" href="#">
+<img alt="Brand" src="...">
+</a>
 </div>
 </div>
 </nav>
 ", "")] // Brand image
 
 
-    [InlineData(@"
+[InlineData(@"
 <form class="navbar-form navbar-left" role="search">
 <div class="form-group">
 <input type="text" class="form-control" placeholder="Search">
@@ -1153,46 +1253,46 @@ Extra small button <span class=""caret""></span>
 <button type="submit" class="btn btn-default">Submit</button>
 </form>
 ", "")] // Forms
-    [InlineData(@"
+[InlineData(@"
 <nav class="navbar navbar-default navbar-fixed-top">
 <div class="container">
 ...
 </div>
 </nav>
 ", "")] // Component alignment // Fixed to top
-    [InlineData(@"
+[InlineData(@"
 <nav class="navbar navbar-default navbar-fixed-bottom">
 <div class="container">
 ...
 </div>
 </nav>
 ", "")] // Fixed to bottom
-    [InlineData(@"
+[InlineData(@"
 <nav class="navbar navbar-default navbar-static-top">
 <div class="container">
 ...
 </div>
 </nav>
 ", "")] // Static top
-    [InlineData(@"
+[InlineData(@"
 <nav class="navbar navbar-inverse">
 ...
 </nav>
 ", "")] // Inverted navbar
-    [InlineData(@"
+[InlineData(@"
 <ol class="breadcrumb">
 <li><a href="#">Home</a></li>
 <li><a href="#">Library</a></li>
 <li class="active">Data</li>
 </ol>
 ", "")] // Breadcrumbs
-    [InlineData(@"
+[InlineData(@"
 <nav>
 <ul class="pagination">
 <li>
-  <a href="#" aria-label="Previous">
-    <span aria-hidden="true">&laquo;</span>
-  </a>
+<a href="#" aria-label="Previous">
+<span aria-hidden="true">&laquo;</span>
+</a>
 </li>
 <li><a href="#">1</a></li>
 <li><a href="#">2</a></li>
@@ -1200,14 +1300,14 @@ Extra small button <span class=""caret""></span>
 <li><a href="#">4</a></li>
 <li><a href="#">5</a></li>
 <li>
-  <a href="#" aria-label="Next">
-    <span aria-hidden="true">&raquo;</span>
-  </a>
+<a href="#" aria-label="Next">
+<span aria-hidden="true">&raquo;</span>
+</a>
 </li>
 </ul>
 </nav>
 ", "")] // Pagination // Default pagination
-    [InlineData(@"
+[InlineData(@"
 <nav>
 <ul class="pagination">
 <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
@@ -1216,27 +1316,27 @@ Extra small button <span class=""caret""></span>
 </ul>
 </nav>
 ", "")] // Disabled and active states
-    [InlineData(@"
+[InlineData(@"
 <nav>
 <ul class="pagination">
 <li class="disabled">
-  <span>
-    <span aria-hidden="true">&laquo;</span>
-  </span>
+<span>
+<span aria-hidden="true">&laquo;</span>
+</span>
 </li>
 <li class="active">
-  <span>1 <span class="sr-only">(current)</span></span>
+<span>1 <span class="sr-only">(current)</span></span>
 </li>
 ...
 </ul>
 </nav>
 ", "")]
-    [InlineData(@"
+[InlineData(@"
 <nav><ul class="pagination pagination-lg">...</ul></nav>
 <nav><ul class="pagination">...</ul></nav>
 <nav><ul class="pagination pagination-sm">...</ul></nav>
 ", "")] // Sizing
-    [InlineData(@"
+[InlineData(@"
 <nav>
 <ul class="pager">
 <li><a href="#">Previous</a></li>
@@ -1245,7 +1345,7 @@ Extra small button <span class=""caret""></span>
 </nav>
 ", "")] // Pager // Default example
 
-    [InlineData(@"
+[InlineData(@"
 <nav>
 <ul class="pager">
 <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
@@ -1253,7 +1353,7 @@ Extra small button <span class=""caret""></span>
 </ul>
 </nav>
 ", "")] // Aligned links
-    [InlineData(@"
+[InlineData(@"
 <nav>
 <ul class="pager">
 <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
@@ -1261,45 +1361,45 @@ Extra small button <span class=""caret""></span>
 </ul>
 </nav>
 ", "")] // Optional disabled state
-    [InlineData(@"
+[InlineData(@"
 <div class="row">
 <div class="col-xs-6 col-md-3">
 <a href="#" class="thumbnail">
-  <img src="..." alt="...">
+<img src="..." alt="...">
 </a>
 </div>
 ...
 </div>
 ", "")] // Thumbnails // Default example
-    [InlineData(@"
+[InlineData(@"
 <div class="row">
 <div class="col-sm-6 col-md-4">
 <div class="thumbnail">
-  <img src="..." alt="...">
-  <div class="caption">
-    <h3>Thumbnail label</h3>
-    <p>...</p>
-    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-  </div>
+<img src="..." alt="...">
+<div class="caption">
+<h3>Thumbnail label</h3>
+<p>...</p>
+<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+</div>
 </div>
 </div>
 </div>
 ", "")] // Custom content
-    [InlineData(@"
+[InlineData(@"
 <div class="progress">
 <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
 <span class="sr-only">60% Complete</span>
 </div>
 </div>
 ", "")] // Progress bars
-    [InlineData(@"
+[InlineData(@"
 <div class="progress">
 <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
 60%
 </div>
 </div>
 ", "")] // With label
-    [InlineData(@"
+[InlineData(@"
 <div class="progress">
 <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">
 0%
@@ -1311,7 +1411,7 @@ Extra small button <span class=""caret""></span>
 </div>
 </div>
 ", "")]
-    [InlineData(@"
+[InlineData(@"
 <div class="progress">
 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
 <span class="sr-only">40% Complete (success)</span>
@@ -1333,7 +1433,7 @@ Extra small button <span class=""caret""></span>
 </div>
 </div>
 ", "")] // Contextual alternatives
-    [InlineData(@"
+[InlineData(@"
 <div class="progress">
 <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
 <span class="sr-only">40% Complete (success)</span>
@@ -1355,14 +1455,14 @@ Extra small button <span class=""caret""></span>
 </div>
 </div>
 ", "")] // Striped
-    [InlineData(@"
+[InlineData(@"
 <div class="progress">
 <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
 <span class="sr-only">45% Complete</span>
 </div>
 </div>
 ", "")] // Animated
-    [InlineData(@"
+[InlineData(@"
 <div class="progress">
 <div class="progress-bar progress-bar-success" style="width: 35%">
 <span class="sr-only">35% Complete (success)</span>
@@ -1376,11 +1476,11 @@ Extra small button <span class=""caret""></span>
 </div>
 ", "")] // Stacked
 
-    [InlineData(@"
+[InlineData(@"
 <div class="media">
 <div class="media-left">
 <a href="#">
-  <img class="media-object" src="..." alt="...">
+<img class="media-object" src="..." alt="...">
 </a>
 </div>
 <div class="media-body">
@@ -1389,11 +1489,11 @@ Extra small button <span class=""caret""></span>
 </div>
 </div>
 ", "")] // Media object // Default media
-    [InlineData(@"
+[InlineData(@"
 <div class="media">
 <div class="media-left media-middle">
 <a href="#">
-  <img class="media-object" src="..." alt="...">
+<img class="media-object" src="..." alt="...">
 </a>
 </div>
 <div class="media-body">
@@ -1402,22 +1502,22 @@ Extra small button <span class=""caret""></span>
 </div>
 </div>
 ", "")] // Media alignment
-    [InlineData(@"
+[InlineData(@"
 <ul class="media-list">
 <li class="media">
 <div class="media-left">
-  <a href="#">
-    <img class="media-object" src="..." alt="...">
-  </a>
+<a href="#">
+<img class="media-object" src="..." alt="...">
+</a>
 </div>
 <div class="media-body">
-  <h4 class="media-heading">Media heading</h4>
-  ...
+<h4 class="media-heading">Media heading</h4>
+...
 </div>
 </li>
 </ul>
 ", "")] // Media list
-    [InlineData(@"
+[InlineData(@"
 <ul class="list-group">
 <li class="list-group-item">Cras justo odio</li>
 <li class="list-group-item">Dapibus ac facilisis in</li>
@@ -1426,7 +1526,7 @@ Extra small button <span class=""caret""></span>
 <li class="list-group-item">Vestibulum at eros</li>
 </ul>
 ", "")] // List group
-    [InlineData(@"
+[InlineData(@"
 <ul class="list-group">
 <li class="list-group-item">
 <span class="badge">14</span>
@@ -1434,7 +1534,7 @@ Cras justo odio
 </li>
 </ul>
 ", "")] // Badges
-    [InlineData(@"
+[InlineData(@"
 <div class="list-group">
 <a href="#" class="list-group-item active">
 Cras justo odio
@@ -1445,7 +1545,7 @@ Cras justo odio
 <a href="#" class="list-group-item">Vestibulum at eros</a>
 </div>
 ", "")] // Linked items
-    [InlineData(@"
+[InlineData(@"
 <div class="list-group">
 <button type="button" class="list-group-item">Cras justo odio</button>
 <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
@@ -1454,7 +1554,7 @@ Cras justo odio
 <button type="button" class="list-group-item">Vestibulum at eros</button>
 </div>
 ", "")] // Button items
-    [InlineData(@"
+[InlineData(@"
 <div class="list-group">
 <a href="#" class="list-group-item disabled">
 Cras justo odio
@@ -1465,7 +1565,7 @@ Cras justo odio
 <a href="#" class="list-group-item">Vestibulum at eros</a>
 </div>
 ", "")] // Disabled items
-    [InlineData(@"
+[InlineData(@"
 <ul class="list-group">
 <li class="list-group-item list-group-item-success">Dapibus ac facilisis in</li>
 <li class="list-group-item list-group-item-info">Cras sit amet nibh libero</li>
@@ -1479,7 +1579,7 @@ Cras justo odio
 <a href="#" class="list-group-item list-group-item-danger">Vestibulum at eros</a>
 </div>
 ", "")] // Contextual classes
-    [InlineData(@"
+[InlineData(@"
 <div class="list-group">
 <a href="#" class="list-group-item active">
 <h4 class="list-group-item-heading">List group item heading</h4>
@@ -1487,7 +1587,7 @@ Cras justo odio
 </a>
 </div>
 ", "")] // Custom content
-    [InlineData(@"
+[InlineData(@"
 <div class="panel panel-default">
 <div class="panel-body">
 Basic panel example
@@ -1495,7 +1595,7 @@ Basic panel example
 </div>
 ", "")] // Panels
 
-    [InlineData(@"
+[InlineData(@"
 <div class="panel panel-default">
 <div class="panel-heading">Panel heading without title</div>
 <div class="panel-body">
@@ -1512,7 +1612,7 @@ Panel content
 </div>
 </div>
 ", "")] // Panel with heading
-    [InlineData(@"
+[InlineData(@"
 <div class="panel panel-default">
 <div class="panel-body">
 Panel content
@@ -1520,14 +1620,14 @@ Panel content
 <div class="panel-footer">Panel footer</div>
 </div>
 ", "")] // Panel with footer
-    [InlineData(@"
+[InlineData(@"
 <div class="panel panel-primary">...</div>
 <div class="panel panel-success">...</div>
 <div class="panel panel-info">...</div>
 <div class="panel panel-warning">...</div>
 <div class="panel panel-danger">...</div>
 ", "")] // Contextual alternatives
-    [InlineData(@"
+[InlineData(@"
 <div class="panel panel-default">
 <!-- Default panel contents -->
 <div class="panel-heading">Panel heading</div>
@@ -1541,7 +1641,7 @@ Panel content
 </table>
 </div>
 ", "")] // With tables
-    [InlineData(@"
+[InlineData(@"
 <div class="panel panel-default">
 <!-- Default panel contents -->
 <div class="panel-heading">Panel heading</div>
@@ -1552,7 +1652,7 @@ Panel content
 </table>
 </div>
 ", "")]
-    [InlineData(@"
+[InlineData(@"
 <div class="panel panel-default">
 <!-- Default panel contents -->
 <div class="panel-heading">Panel heading</div>
@@ -1570,7 +1670,7 @@ Panel content
 </ul>
 </div>
 ", "")] // With list groups
-    [InlineData(@"
+[InlineData(@"
 <!-- 16:9 aspect ratio -->
 <div class="embed-responsive embed-responsive-16by9">
 <iframe class="embed-responsive-item" src="..."></iframe>
@@ -1581,41 +1681,41 @@ Panel content
 <iframe class="embed-responsive-item" src="..."></iframe>
 </div>
 ", "")] // Responsive embed
-    [InlineData(@"
+[InlineData(@"
 
 ", "")]
 
-    [InlineData(@"
+[InlineData(@"
 
 ", "")]
-    [InlineData(@"
+[InlineData(@"
 
 ", "")]
-    [InlineData(@"
+[InlineData(@"
 
 ", "")]
-    [InlineData(@"
+[InlineData(@"
 
 ", "")]
-    [InlineData(@"
+[InlineData(@"
 
 ", "")]
-    [InlineData(@"
+[InlineData(@"
 
 ", "")]
-    [InlineData(@"
+[InlineData(@"
 
 ", "")]
-    [InlineData(@"
+[InlineData(@"
 
 ", "")]
-    [InlineData(@"
+[InlineData(@"
 
 ", "")]
-    [InlineData(@"
+[InlineData(@"
 
 ", "")]
-    [InlineData(@"
+[InlineData(@"
 
 ", "")]
 */
@@ -1630,7 +1730,8 @@ Panel content
         
         void GivenHtml(string input)
         {
-            var fullHtml = @"<html><head></head><body>" + input + "</body></html>";
+            // var fullHtml = @"<html><head></head><body>" + input + "</body></html>";
+            var fullHtml = HtmlFirstPart + input + HtmlLastPath;
             _doc = new HtmlDocument();
             _doc.LoadHtml(fullHtml);
         }
