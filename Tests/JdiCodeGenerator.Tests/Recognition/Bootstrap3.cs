@@ -194,7 +194,16 @@
 <button type=""button"" class=""btn btn-default"">Middle</button>
 <button type=""button"" class=""btn btn-default"">Right</button>
 </div>
+", "IButton", 0)] // button groups
+// ", "IButton", 1)] // button groups
+        [InlineData(@"
+<div class=""btn-group"" role=""group"" aria-label=""..."">
+<button type=""button"" class=""btn btn-default"">Left</button>
+<button type=""button"" class=""btn btn-default"">Middle</button>
+<button type=""button"" class=""btn btn-default"">Right</button>
+</div>
 ", "IButton", 1)] // button groups
+// ", "IButton", 2)] // button groups
         [InlineData(@"
 <div class=""btn-group"" role=""group"" aria-label=""..."">
 <button type=""button"" class=""btn btn-default"">Left</button>
@@ -202,46 +211,47 @@
 <button type=""button"" class=""btn btn-default"">Right</button>
 </div>
 ", "IButton", 2)] // button groups
-        [InlineData(@"
-<div class=""btn-group"" role=""group"" aria-label=""..."">
-<button type=""button"" class=""btn btn-default"">Left</button>
-<button type=""button"" class=""btn btn-default"">Middle</button>
-<button type=""button"" class=""btn btn-default"">Right</button>
-</div>
-", "IButton", 3)] // button groups
+// ", "IButton", 3)] // button groups
         [InlineData(@"
 <div class=""btn-toolbar"" role=""toolbar"" aria-label=""..."">
 <div class=""btn-group"" role=""group"" aria-label=""...""><button type=""button"" class=""btn btn-default"">Button1</button></div>
 <div class=""btn-group"" role=""group"" aria-label=""..."">...</div>
 <div class=""btn-group"" role=""group"" aria-label=""..."">...</div>
 </div>
-", "IButton", 2)] // button toolbar
+", "IButton", 0)] // button toolbar
+// ", "IButton", 2)] // button toolbar
         [InlineData(@"
 <div class=""btn-toolbar"" role=""toolbar"" aria-label=""..."">
 <div class=""btn-group"" role=""group"" aria-label=""..."">...</div>
 <div class=""btn-group"" role=""group"" aria-label=""...""><button type=""button"" class=""btn btn-default"">Button1</button></div>
 <div class=""btn-group"" role=""group"" aria-label=""..."">...</div>
 </div>
-", "IButton", 3)] // button toolbar
+", "IButton", 0)] // button toolbar
+// ", "IButton", 3)] // button toolbar
         [InlineData(@"
 <div class=""btn-toolbar"" role=""toolbar"" aria-label=""..."">
 <div class=""btn-group"" role=""group"" aria-label=""..."">...</div>
 <div class=""btn-group"" role=""group"" aria-label=""..."">...</div>
 <div class=""btn-group"" role=""group"" aria-label=""...""><button type=""button"" class=""btn btn-default"">Button1</button></div>
 </div>
-", "IButton", 4)] // button toolbar
+", "IButton", 0)] // button toolbar
+// ", "IButton", 4)] // button toolbar
         [InlineData(@"
 <div class=""btn-group btn-group-lg"" role=""group"" aria-label=""...""><button type=""button"" class=""btn btn-default"">Button1</button></div>
-", "IButton", 1)] // sizing
+", "IButton", 0)] // sizing
+// ", "IButton", 1)] // sizing
         [InlineData(@"
 <div class=""btn-group"" role=""group"" aria-label=""...""><button type=""button"" class=""btn btn-default"">Button1</button></div>
-", "IButton", 1)] // sizing
+", "IButton", 0)] // sizing
+// ", "IButton", 1)] // sizing
         [InlineData(@"
 <div class=""btn-group btn-group-sm"" role=""group"" aria-label=""...""><button type=""button"" class=""btn btn-default"">Button1</button></div>
-", "IButton", 1)] // sizing
+", "IButton", 0)] // sizing
+// ", "IButton", 1)] // sizing
         [InlineData(@"
 <div class=""btn-group btn-group-xs"" role=""group"" aria-label=""...""><button type=""button"" class=""btn btn-default"">Button1</button></div>
-", "IButton", 1)] // sizing
+", "IButton", 0)] // sizing
+// ", "IButton", 1)] // sizing
         #region commented
         /*
         [InlineData(@"
@@ -526,27 +536,31 @@
 <span class=""input-group-addon"" id=""basic-addon1"">@</span>
 <input type = ""text"" class=""form-control"" placeholder=""Username"" aria-describedby=""basic-addon1"">
 </div>
-", "ITextField", 2)]
+", "ITextField", 0)]
+// ", "ITextField", 2)]
         [InlineData(@"
 <div class=""input-group"">
 <input type = ""text"" class=""form-control"" placeholder=""Recipient's username"" aria-describedby=""basic-addon2"">
 <span class=""input-group-addon"" id=""basic-addon2"">@example.com</span>
 </div>
-", "ITextField", 1)]
+", "ITextField", 0)]
+// ", "ITextField", 1)]
         [InlineData(@"
 < div class=""input-group"">
 <span class=""input-group-addon"">$</span>
 <input type = ""text"" class=""form-control"" aria-label=""Amount(to the nearest dollar)"">
 <span class=""input-group-addon"">.00</span>
 </div>
-", "ITextField", 2)]
+", "ITextField", 0)]
+// ", "ITextField", 2)]
         [InlineData(@"
 <label for=""basic-url"">Your vanity URL</label>
 <div class=""input-group"">
 <span class=""input-group-addon"" id=""basic-addon3"">https://example.com/users/</span>
 <input type = ""text"" class=""form-control"" id=""basic-url"" aria-describedby=""basic-addon3"">
 </div>
-", "ITextField", 3)]
+", "ITextField", 1)]
+// ", "ITextField", 3)]
 
         [InlineData(@"
 <form class=""navbar-form navbar-left"" role=""search"">
@@ -569,7 +583,8 @@
     </div><!-- /.col-lg-6 -->
     </div><!-- /.row -->
 </form>
-", "ICheckBox", 5)] // Checkboxes and radio addons
+", "ICheckBox", 1)] // Checkboxes and radio addons
+// ", "ICheckBox", 5)] // Checkboxes and radio addons
 //        [InlineData(@"
 //<form class=""navbar-form navbar-left"" role=""search"">
 //    <div class=""row"">
@@ -613,7 +628,8 @@
     </div><!-- /.col-lg-6 -->
     </div><!-- /.row -->
 </form>
-", "IButton", 11)] // Button addons
+", "IButton", 4)] // Button addons
+// ", "IButton", 11)] // Button addons
         [InlineData(@"
 <form class=""navbar-form navbar-left"" role=""search"">
     <div class=""row"">
@@ -649,7 +665,8 @@
     </div><!-- /.col-lg-6 -->
     </div><!-- /.row -->
 </form>
-", "IButton", 5)] // Buttons with dropdowns
+", "IButton", 1)] // Buttons with dropdowns
+// ", "IButton", 5)] // Buttons with dropdowns
         [Trait("Category", "Bootstrap 3, single element")]
         public void ParseBootstrap3ForSingleElement(string input, string expected, int elementPosition)
         {
@@ -717,7 +734,8 @@ Dropup
     ...
     </ul>
 </div>
-", "IElement", 2)] // divider
+", "IMenuItem", 0)] // divider
+// ", "IElement", 2)] // divider
     [InlineData(@"
 <div class=""dropdown"">
     <ul class=""dropdown-menu"" aria-labelledby=""dropdownMenu4"">
@@ -789,7 +807,7 @@ Dropup
         </div>
     </div>
 </div>
-", "IDropDown<SomeEnum>", 1)] // vertical variation
+", "IDropDown<SomeEnum>", 0)] // vertical variation
 // 20160610
 // ", "IDropDown<SomeEnum>", 4)] // vertical variation
 
@@ -798,7 +816,7 @@ Dropup
 ...
 </div>-->
 <div class=""bs-example"" data-example-id=""simple-justified-button-group""> <div class=""btn-group btn-group-justified"" role=""group"" aria-label=""Justified button group""> <a href=""#"" class=""btn btn-default"" role=""button"">Left</a> <a href=""#"" class=""btn btn-default"" role=""button"">Middle</a> <a href=""#"" class=""btn btn-default"" role=""button"">Right</a> </div> <br> <div class=""btn-group btn-group-justified"" role=""group"" aria-label=""Justified button group with nested dropdown""> <a href=""#"" class=""btn btn-default"" role=""button"">Left</a> <a href=""#"" class=""btn btn-default"" role=""button"">Middle</a> <div class=""btn-group"" role=""group""> <a href=""#"" class=""btn btn-default dropdown-toggle"" data-toggle=""dropdown"" role=""button"" aria-haspopup=""true"" aria-expanded=""false""> Dropdown <span class=""caret""></span> </a> <ul class=""dropdown-menu""> <li><a href=""#"">Action</a></li> <li><a href=""#"">Another action</a></li> <li><a href=""#"">Something else here</a></li> <li role=""separator"" class=""divider""></li> <li><a href=""#"">Separated link</a></li> </ul> </div> </div> </div>
-", "IDropDown<SomeEnum>", 6)] // justified button groups
+", "IDropDown<SomeEnum>", 3)] // justified button groups
 // 20160610
 // ", "IDropDown<SomeEnum>", 8)] // justified button groups
 

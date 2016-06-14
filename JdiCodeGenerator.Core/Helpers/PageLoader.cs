@@ -154,7 +154,8 @@
 
                 while (!finishedLoading)
                 {
-                    Thread.Sleep(20);
+                    // Thread.Sleep(20);
+                    Thread.Sleep(100);
                     WebCore.Update();
                 }
                 WebCore.Shutdown();

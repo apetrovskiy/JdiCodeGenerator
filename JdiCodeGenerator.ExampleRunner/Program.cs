@@ -36,7 +36,7 @@
                 //"http://calhoun.ca/",
                 //"https://onreplaytv.com/",
                 //"http://www.empor.cc/",
-                //"https://www.mongodb.com/cloud",
+                "https://www.mongodb.com/cloud",
                 //"http://threedaysgrace.com/",
                 //"https://www.nasa.gov/",
                 //"https://overv.io/",
@@ -46,7 +46,7 @@
                 // "http://www.fifa.com/",
                 //"http://www.placemeter.com/",
                 //"http://www.littlehj.com/",
-                "http://thefounderspledge.org/",
+                //"http://thefounderspledge.org/",
 
                 //// "http://www.folchstudio.com/",
                 //"https://maple.com/",
@@ -114,6 +114,21 @@
                     writer.Flush();
                     writer.Close();
                 }
+                /*
+                using (var tempWriter = new StreamWriter(folderForExportFiles + @"\" + (400 + fileNumber)))
+                {
+                    tempWriter.WriteLine("tag;css;name;id;class");
+                    entries.ToList().ForEach(eltDef => tempWriter.WriteLine("{0};{1};{2};{3};{4}",
+                        eltDef.HtmlMemberType.ToString().ToLower(),
+                        eltDef.Locators.Any(l => l.SearchTypePreference == SearchTypePreferences.css) ? eltDef.Locators.FirstOrDefault(l => l.SearchTypePreference == SearchTypePreferences.css).SearchString : string.Empty,
+                        eltDef.Locators.Any(l => l.SearchTypePreference == SearchTypePreferences.name) ? eltDef.Locators.FirstOrDefault(l => l.SearchTypePreference == SearchTypePreferences.name).SearchString : string.Empty,
+                        eltDef.Locators.Any(l => l.SearchTypePreference == SearchTypePreferences.id) ? eltDef.Locators.FirstOrDefault(l => l.SearchTypePreference == SearchTypePreferences.id).SearchString : string.Empty,
+                        eltDef.Locators.Any(l => l.SearchTypePreference == SearchTypePreferences.className) ? eltDef.Locators.FirstOrDefault(l => l.SearchTypePreference == SearchTypePreferences.className).SearchString : string.Empty
+                        ));
+                    tempWriter.Flush();
+                    tempWriter.Close();
+                }
+                */
 
                 exporter.WriteToFile(entries, folderForExportFiles + @"\" + (100 + ++fileNumber));
                 var importedEntries = importer.LoadFromFile(folderForExportFiles + @"\" + (100 + fileNumber));

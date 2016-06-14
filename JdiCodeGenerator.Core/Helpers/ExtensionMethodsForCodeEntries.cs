@@ -66,7 +66,15 @@
             '%',
             '\r',
             '\n',
-            ';'
+            ';',
+            '!',
+            '™',
+            '<',
+            '>',
+            '©',
+            '‹',
+            '\'',
+            '™'
             };
         internal static string ToPascalCase(this string wronglyFormattedString)
         {
