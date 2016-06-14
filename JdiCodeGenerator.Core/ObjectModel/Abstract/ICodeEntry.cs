@@ -22,5 +22,7 @@
 
         // temporarily!
         string Type { get; set; }
+        // bool ProcessChildren { get; set; }
+        bool ProcessChildren { get; }
     }
 }

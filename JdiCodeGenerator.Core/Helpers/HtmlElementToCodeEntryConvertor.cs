@@ -1,6 +1,7 @@
 ﻿namespace JdiCodeGenerator.Core.Helpers
 {
     using System.Collections.Generic;
+    using System.Linq;
     using HtmlAgilityPack;
     using ObjectModel;
     using ObjectModel.Abstract;
@@ -29,8 +30,6 @@
             codeEntry.JdiMemberType = node.ApplyApplicableAnalyzers();
 
             // experimental
-            //codeEntry.AnalyzerThatWon = ExtensionMethodsForNodes.AnalyzerThatWon;
-            //codeEntry.RuleThatWon = ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon;
             codeEntry.AnalyzerThatWon = null != ExtensionMethodsForNodes.AnalyzerThatWon ? ExtensionMethodsForNodes.AnalyzerThatWon.GetType().Name : string.Empty;
             codeEntry.RuleThatWon = null != ExtensionMethodsForNodes.AnalyzerThatWon && null != ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon ? ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon.GetType().Name : string.Empty;
 
@@ -44,6 +43,32 @@
             codeEntry.MemberType = node.GetOriginalNameOfElement().CleanUpFromWrongCharacters();
 
             return codeEntry;
+        }
+
+        public IEnumerable<ICodeEntry> ConvertToCodeEntries(HtmlNode rootNode)
+        {
+            //var codeEntry = ConvertToCodeEntry(rootNode);
+            //return codeEntry.ProcessChildren ? rootNode.ChildNodes
+            //    .Where(node => node.NodeType == HtmlNodeType.Element)
+            //    .SelectMany(ConvertToCodeEntries).ToList() :
+            //new List<ICodeEntry> {codeEntry};
+
+            var processChildren = rootNode.OriginalName == WebNames.ElementTypeBody
+                ? true
+                : ConvertToCodeEntry(rootNode).ProcessChildren;
+
+            var resultList = new List<ICodeEntry>();
+            if (rootNode.OriginalName != WebNames.ElementTypeBody)
+                resultList.Add(ConvertToCodeEntry(rootNode));
+
+            if (processChildren)
+                resultList.AddRange(
+                    rootNode.ChildNodes
+                    .Where(node => node.NodeType == HtmlNodeType.Element)
+                    .SelectMany(ConvertToCodeEntries).ToList()
+                    );
+
+            return resultList;
         }
     }
 }

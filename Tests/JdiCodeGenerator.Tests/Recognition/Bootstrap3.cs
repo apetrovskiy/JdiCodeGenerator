@@ -115,7 +115,9 @@
   <li role=""presentation""><a href=""#"">Profile</a></li>
   <li role=""presentation""><a href=""#"">Messages <span class=""badge"">3</span></a></li>
 </ul>
-", "ILink", 2)]
+", "ITabs", 0)]
+// 20160610
+// ", "ILink", 2)]
         [InlineData(@"
 <div class=""jumbotron"">
   <h1>Hello, world!</h1>
@@ -742,11 +744,13 @@ Dropup
 </ul>
 </div>
 </div>
-", "IDropDown<SomeEnum>", 3)] // nesting
-    [InlineData(@"
+", "IDropDown<SomeEnum>", 0)] // nesting
+// 20160610
+// ", "IDropDown<SomeEnum>", 3)] // nesting
+        [InlineData(@"
 <!--
 <div class=""btn-group-vertical"" role=""group"" aria-label=""..."">
-...
+...btn-group-vertical
 </div>
 -->
 <div class=""bs-example"" data-example-id=""vertical-button-group"">
@@ -785,14 +789,18 @@ Dropup
         </div>
     </div>
 </div>
-", "IDropDown<SomeEnum>", 4)] // vertical variation
+", "IDropDown<SomeEnum>", 1)] // vertical variation
+// 20160610
+// ", "IDropDown<SomeEnum>", 4)] // vertical variation
 
     [InlineData(@"
 <!--<div class=""btn-group btn-group-justified"" role=""group"" aria-label=""..."">
 ...
 </div>-->
 <div class=""bs-example"" data-example-id=""simple-justified-button-group""> <div class=""btn-group btn-group-justified"" role=""group"" aria-label=""Justified button group""> <a href=""#"" class=""btn btn-default"" role=""button"">Left</a> <a href=""#"" class=""btn btn-default"" role=""button"">Middle</a> <a href=""#"" class=""btn btn-default"" role=""button"">Right</a> </div> <br> <div class=""btn-group btn-group-justified"" role=""group"" aria-label=""Justified button group with nested dropdown""> <a href=""#"" class=""btn btn-default"" role=""button"">Left</a> <a href=""#"" class=""btn btn-default"" role=""button"">Middle</a> <div class=""btn-group"" role=""group""> <a href=""#"" class=""btn btn-default dropdown-toggle"" data-toggle=""dropdown"" role=""button"" aria-haspopup=""true"" aria-expanded=""false""> Dropdown <span class=""caret""></span> </a> <ul class=""dropdown-menu""> <li><a href=""#"">Action</a></li> <li><a href=""#"">Another action</a></li> <li><a href=""#"">Something else here</a></li> <li role=""separator"" class=""divider""></li> <li><a href=""#"">Separated link</a></li> </ul> </div> </div> </div>
-", "IDropDown<SomeEnum>", 8)] // justified button groups
+", "IDropDown<SomeEnum>", 6)] // justified button groups
+// 20160610
+// ", "IDropDown<SomeEnum>", 8)] // justified button groups
 
 //    [InlineData(@"
 //<div class="btn-group btn-group-justified" role="group" aria-label="...">

@@ -28,6 +28,81 @@
         public string RuleThatWon { get; set; }
         public string Type { get; set; }
 
+        public bool ProcessChildren
+        {
+            get
+            {
+                switch (JdiMemberType)
+                {
+                    case JdiElementTypes.Element:
+                    case JdiElementTypes.Button:
+                    case JdiElementTypes.CheckBox:
+                    case JdiElementTypes.DatePicker:
+                    case JdiElementTypes.FileInput:
+                    case JdiElementTypes.Image:
+                    case JdiElementTypes.Label:
+                    case JdiElementTypes.Link:
+                    case JdiElementTypes.Text:
+                    case JdiElementTypes.TextArea:
+                    case JdiElementTypes.TextField:
+                        return true;
+                    case JdiElementTypes.MenuItem:
+                    case JdiElementTypes.TabItem:
+                    case JdiElementTypes.NavBar:
+                    case JdiElementTypes.Pager:
+                    case JdiElementTypes.Progress:
+                    case JdiElementTypes.List:
+                    case JdiElementTypes.ListItem:
+                    case JdiElementTypes.Popover:
+                    case JdiElementTypes.Carousel:
+                        return true;
+                    case JdiElementTypes.CheckList:
+                    case JdiElementTypes.ComboBox:
+                    case JdiElementTypes.DropDown:
+                    case JdiElementTypes.DropList:
+                        return false;
+                    case JdiElementTypes.Form:
+                        // TODO: generate elements during form processing
+                        return true;
+                    case JdiElementTypes.Group:
+                        return false;
+                    case JdiElementTypes.Menu:
+                        return false;
+                    case JdiElementTypes.Page:
+                        return true;
+                    case JdiElementTypes.Pagination:
+                        return false;
+                    case JdiElementTypes.Popup:
+                        // TODO: generate elements during form processing
+                        return true;
+                    case JdiElementTypes.RadioButtons:
+                        return false;
+                    case JdiElementTypes.Search:
+                        return true;
+                    case JdiElementTypes.Selector:
+                        return true;
+                    case JdiElementTypes.Tabs:
+                        return false;
+                    case JdiElementTypes.TextList:
+                        return false;
+                    case JdiElementTypes.Table:
+                    case JdiElementTypes.Cell:
+                    case JdiElementTypes.Column:
+                    case JdiElementTypes.Coulmns:
+                    case JdiElementTypes.DynamicTable:
+                    case JdiElementTypes.ElementIndexType:
+                    case JdiElementTypes.Row:
+                    case JdiElementTypes.RowColumn:
+                    case JdiElementTypes.Rows:
+                    case JdiElementTypes.TableLine:
+                        // TODO: generate elements during form processing
+                        return false;
+                    default:
+                        return true;
+                }
+            }
+        }
+
         SupportedLanguages _language;
 
         public CodeEntry()
@@ -181,8 +256,7 @@
         string GenerateAnnotationForComplexType()
         {
             EnumerationTypeName = GenerateEnumerationTypeName();
-            return string.Format(@"@J{0}(root = {1}, value = {2}, list = {3})", GetNormalizedLocatorName(),
-                GetDropDownRootLocator(), GetDropDownValueLocator(), GetDropDownListLocator());
+            return string.Format(@"@J{0}(root = {1}, value = {2}, list = {3})", GetNormalizedLocatorName(), GetDropDownRootLocator(), GetDropDownValueLocator(), GetDropDownListLocator());
         }
 
         string GetNormalizedLocatorName()
