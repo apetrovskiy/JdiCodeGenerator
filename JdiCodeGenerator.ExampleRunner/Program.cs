@@ -36,14 +36,14 @@
                 //"http://calhoun.ca/",
                 //"https://onreplaytv.com/",
                 //"http://www.empor.cc/",
-                "https://www.mongodb.com/cloud",
+                //"https://www.mongodb.com/cloud",
                 //"http://threedaysgrace.com/",
                 //"https://www.nasa.gov/",
                 //"https://overv.io/",
                 //"http://liveramp.com/",
                 // "https://www.aceandtate.com/",
                 // "http://www.washington.edu/",
-                // "http://www.fifa.com/",
+                "http://www.fifa.com/",
                 //"http://www.placemeter.com/",
                 //"http://www.littlehj.com/",
                 //"http://thefounderspledge.org/",
@@ -113,6 +113,28 @@
                     });
                     writer.Flush();
                     writer.Close();
+                }
+
+                /*
+        // driver.findElement(By.xpath())
+        // driver.findElement(By.className())
+        // driver.findElement(By.cssSelector())
+        // driver.findElement(By.id())
+        // driver.findElement(By.linkText())
+        // driver.findElement(By.name())
+        // driver.findElement(By.partialLinkText())
+        // driver.findElement(By.tagName())
+                */
+                using (var tempWriter = new StreamWriter(folderForExportFiles + @"\" + (400 + fileNumber)))
+                {
+                    // tempWriter.WriteLine("tag;css;name;id;class");
+                    // displayedElementsNumber++;
+                    entries.ToList().ForEach(eltDef => tempWriter.WriteLine("try {{ allElementsNumber++; WebElement element = driver.findElement(By.{0}(\"{1}\")); foundElementsNumber++; if (element.isDisplayed()) displayedElementsNumber++; }} catch (Exception e) {{ System.out.println(\"failed: {1}\"); }}",
+                        eltDef.Locators.Any() ? eltDef.Locators.First(loc => loc.IsBestChoice).SearchTypePreference.ToString() : "_",
+                        eltDef.Locators.Any() ? eltDef.Locators.First(loc => loc.IsBestChoice).SearchString : "_"
+                        ));
+                    tempWriter.Flush();
+                    tempWriter.Close();
                 }
                 /*
                 using (var tempWriter = new StreamWriter(folderForExportFiles + @"\" + (400 + fileNumber)))

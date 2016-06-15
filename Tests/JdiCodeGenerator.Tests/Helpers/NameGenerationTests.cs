@@ -54,6 +54,25 @@
         [InlineData("http://site:111/page.htm%20?param1=2%param2=word", "HttpSite111PageHtm20Param12Param2Word")]
         [InlineData(@"http://site:111/page.htm
                     %20?param1=2%param2=word", "HttpSite111PageHtm20Param12Param2Word")]
+
+        [InlineData("http://site:111/page.htm%20?param1=2;param2=word", "HttpSite111PageHtm20Param12Param2Word")]
+        [InlineData("http://site:111/page.htm%20?param1=2!param2=word", "HttpSite111PageHtm20Param12Param2Word")]
+        [InlineData("http://site:111/page.htm%20?param1=2™param2=word", "HttpSite111PageHtm20Param12Param2Word")]
+        [InlineData("http://site:111/page.htm%20?param1=2<param2=word", "HttpSite111PageHtm20Param12Param2Word")]
+        [InlineData("http://site:111/page.htm%20?param1=2>param2=word", "HttpSite111PageHtm20Param12Param2Word")]
+        [InlineData("http://site:111/page.htm%20?param1=2©param2=word", "HttpSite111PageHtm20Param12Param2Word")]
+
+        [InlineData("http://site:111/page.htm%20?param1=2‹param2=word", "HttpSite111PageHtm20Param12Param2Word")]
+        [InlineData("http://site:111/page.htm%20?param1=2™param2=word", "HttpSite111PageHtm20Param12Param2Word")]
+        [InlineData("http://site:111/page.htm%20?param1=2\"param2=word", "HttpSite111PageHtm20Param12Param2Word")]
+        [InlineData("http://site:111/page.htm%20?param1=2 param2=word", "HttpSite111PageHtm20Param12Param2Word")]
+        [InlineData("http://site:111/page.htm%20?param1=2№param2=word", "HttpSite111PageHtm20Param12Param2Word")]
+
+        [InlineData("http://site:111/page.htm%20?param1=2—param2=word", "HttpSite111PageHtm20Param12Param2Word")]
+        [InlineData("http://site:111/page.htm%20?param1=2¬param2=word", "HttpSite111PageHtm20Param12Param2Word")]
+        [InlineData("http://site:111/page.htm%20?param1=2±param2=word", "HttpSite111PageHtm20Param12Param2Word")]
+        [InlineData("http://site:111/page.htm%20?param1=2§param2=word", "HttpSite111PageHtm20Param12Param2Word")]
+        // [InlineData("http://site:111/page.htm%20?param1=2%param2=word", "HttpSite111PageHtm20Param12Param2Word")]
         [Trait("Category", "NameGeneration")]
         public void EmptyString(string input, string expected)
         {

@@ -64,6 +64,10 @@
         {
             // return node.CreateDomLocatorByAttribute(WebNames.AttributeNameHref, SearchTypePreferences.linkText);
             var fullLinkText = node.InnerText;
+
+            // experimental
+            fullLinkText = fullLinkText.Replace("\"", "\\\"");
+
             string[] fullLinkTextParts = {};
             if (fullLinkText.Contains("\r"))
                 fullLinkTextParts = fullLinkText.Split('\r');
