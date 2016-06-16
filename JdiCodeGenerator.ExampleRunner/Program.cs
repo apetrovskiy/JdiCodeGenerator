@@ -36,14 +36,14 @@
                 //"http://calhoun.ca/",
                 //"https://onreplaytv.com/",
                 //"http://www.empor.cc/",
-                //"https://www.mongodb.com/cloud",
+                "https://www.mongodb.com/cloud",
                 //"http://threedaysgrace.com/",
                 //"https://www.nasa.gov/",
                 //"https://overv.io/",
                 //"http://liveramp.com/",
                 // "https://www.aceandtate.com/",
                 // "http://www.washington.edu/",
-                "http://www.fifa.com/",
+                // "http://www.fifa.com/",
                 //"http://www.placemeter.com/",
                 //"http://www.littlehj.com/",
                 //"http://thefounderspledge.org/",
@@ -129,7 +129,8 @@
                 {
                     // tempWriter.WriteLine("tag;css;name;id;class");
                     // displayedElementsNumber++;
-                    entries.ToList().ForEach(eltDef => tempWriter.WriteLine("try {{ allElementsNumber++; WebElement element = driver.findElement(By.{0}(\"{1}\")); foundElementsNumber++; if (element.isDisplayed()) displayedElementsNumber++; }} catch (Exception e) {{ System.out.println(\"failed: {1}\"); }}",
+                    // entries.ToList().ForEach(eltDef => tempWriter.WriteLine("try {{ allElementsNumber++; WebElement element = driver.findElement(By.{0}(\"{1}\")); foundElementsNumber++; if (element.isDisplayed()) displayedElementsNumber++; }} catch (Exception e) {{ System.out.println(\"failed: {1}\"); }}",
+                    entries.ToList().ForEach(eltDef => tempWriter.WriteLine("try {{ elementFound = \"0\"; elementDisplayed = \"0\"; allElementsNumber++; WebElement element = driver.findElement(By.{0}(\"{1}\")); foundElementsNumber++; elementFound = \"1\"; if (element.isDisplayed()) {{ displayedElementsNumber++; elementDisplayed = \"1\"; }} }} catch (Exception e) {{ System.out.println(\"failed: {1}\"); }} writeData(fileWriter, \"loc\", \"path\", elementFound, elementDisplayed);",
                         eltDef.Locators.Any() ? eltDef.Locators.First(loc => loc.IsBestChoice).SearchTypePreference.ToString() : "_",
                         eltDef.Locators.Any() ? eltDef.Locators.First(loc => loc.IsBestChoice).SearchString : "_"
                         ));
