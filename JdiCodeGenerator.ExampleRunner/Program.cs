@@ -130,7 +130,10 @@
                     // tempWriter.WriteLine("tag;css;name;id;class");
                     // displayedElementsNumber++;
                     // entries.ToList().ForEach(eltDef => tempWriter.WriteLine("try {{ allElementsNumber++; WebElement element = driver.findElement(By.{0}(\"{1}\")); foundElementsNumber++; if (element.isDisplayed()) displayedElementsNumber++; }} catch (Exception e) {{ System.out.println(\"failed: {1}\"); }}",
-                    entries.ToList().ForEach(eltDef => tempWriter.WriteLine("try {{ elementFound = \"0\"; elementDisplayed = \"0\"; allElementsNumber++; WebElement element = driver.findElement(By.{0}(\"{1}\")); foundElementsNumber++; elementFound = \"1\"; if (element.isDisplayed()) {{ displayedElementsNumber++; elementDisplayed = \"1\"; }} }} catch (Exception e) {{ System.out.println(\"failed: {1}\"); }} writeData(fileWriter, \"loc\", \"path\", elementFound, elementDisplayed);",
+                    // this worked
+                    // entries.ToList().ForEach(eltDef => tempWriter.WriteLine("try {{ elementFound = \"0\"; elementDisplayed = \"0\"; allElementsNumber++; WebElement element = driver.findElement(By.{0}(\"{1}\")); foundElementsNumber++; elementFound = \"1\"; if (element.isDisplayed()) {{ displayedElementsNumber++; elementDisplayed = \"1\"; }} }} catch (Exception e) {{ System.out.println(\"failed: {1}\"); }} writeData(fileWriter, \"{0}\", \"{1}\", elementFound, elementDisplayed);",
+                    entries.ToList().ForEach(eltDef => tempWriter.WriteLine("testLocator(By.{0}(\"{1}\"), \"{0}\", \"{1}\");",
+                        // static void testLocator(org.openqa.selenium.By by, String locatorName, String locatorPath) {
                         eltDef.Locators.Any() ? eltDef.Locators.First(loc => loc.IsBestChoice).SearchTypePreference.ToString() : "_",
                         eltDef.Locators.Any() ? eltDef.Locators.First(loc => loc.IsBestChoice).SearchString : "_"
                         ));
