@@ -37,153 +37,36 @@
             if (string.IsNullOrEmpty(originalString))
                 return string.Empty;
 
-            WrongCharactersSmallList.ForEach(character =>
-            {
-                if (originalString.Contains(character))
-                    originalString = originalString.Replace(character.ToString(), string.Empty);
-            });
+            // 20160625
+            // this worked but was non-standard
+            //WrongCharactersSmallList.ForEach(character =>
+            //{
+            //    if (originalString.Contains(character))
+            //        originalString = originalString.Replace(character.ToString(), string.Empty);
+            //});
+            originalString = JustRemoveWrongCharacter.Replace(originalString, string.Empty);
             return originalString;
         }
 
-        static readonly List<char> WrongCharacters = new List<char> {
-            ' ',
-            '-',
-            '.',
-            '/',
-            '#',
-            ',',
-            '\\',
-            '*',
-            ':',
-            '@',
-            '(',
-            ')',
-            '[',
-            ']',
-            '?',
-            '=',
-            '&',
-            '+',
-            '%',
-            '\r',
-            '\n',
-            ';',
-            '!',
-            '™',
-            '<',
-            '>',
-            '©',
-            '‹',
-            '\'',
-            '™',
-            '"',
-            ' ',
-            '№',
-            '—',
-            '¬',
-            '±',
-            '§'
-            };
-        // Regex.Replace(n, "[^0-9a-zA-Z]+", "");
-        static Regex RightMemberNameRegexp = new Regex("[^0-9a-zA-Z]+", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Multiline);
+        static Regex UppercaseTheNextCharacter = new Regex("[^0-9a-zA-Z]+(?<letter>[a-z])", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Multiline);
+        static Regex JustRemoveWrongCharacter = new Regex("[^0-9a-zA-Z]+", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
         internal static string ToPascalCase(this string wronglyFormattedString)
         {
             if (string.IsNullOrEmpty(wronglyFormattedString))
                 return NoName;
 
-            //const int lowerA = 97;
-            //const int lowerZ = 122;
-            //const int differenceBetweenUpperAndLower = 32;
+            var firstCharacter = (int)wronglyFormattedString[0];
+            wronglyFormattedString = ((char)firstCharacter).ToString().ToUpper() + wronglyFormattedString.Substring(1);
 
-            //WrongCharacters.ForEach(character =>
-            //{
-                //if (0 == wronglyFormattedString.Length) return;
-                var firstCharacter = (int)wronglyFormattedString[0];
-                //if (firstCharacter >= lowerA && firstCharacter <= lowerZ)
-                    wronglyFormattedString = ((char)firstCharacter).ToString().ToUpper() +
-                                             wronglyFormattedString.Substring(1);
-
-            wronglyFormattedString = RightMemberNameRegexp.Replace(wronglyFormattedString, string.Empty);
-
-                //var charPosition = wronglyFormattedString.IndexOf(character);
-
-                //if (charPosition == wronglyFormattedString.Length - 1)
-                //    wronglyFormattedString = wronglyFormattedString.Replace(character.ToString(), string.Empty);
-
-                //while (charPosition >= 0)
-                //{
-                //    if (charPosition < wronglyFormattedString.Length - 1)
-                //    {
-                //        var charToCapitalize = (int)wronglyFormattedString.ElementAt(charPosition + 1);
-                //        if (charToCapitalize >= lowerA && charToCapitalize <= lowerZ)
-                //            charToCapitalize -= differenceBetweenUpperAndLower;
-                //        wronglyFormattedString = wronglyFormattedString.Substring(0, charPosition) +
-                //                                 (char)charToCapitalize +
-                //                                 wronglyFormattedString.Substring(charPosition + 2);
-                //    }
-                //    charPosition = wronglyFormattedString.IndexOf(character);
-                //    if (charPosition == wronglyFormattedString.Length - 1)
-                //    {
-                //        wronglyFormattedString = wronglyFormattedString.Replace(character.ToString(), string.Empty);
-                //    }
-
-                //    charPosition = wronglyFormattedString.IndexOf(character);
-                //}
-            //});
+            wronglyFormattedString = UppercaseTheNextCharacter.Replace(wronglyFormattedString, m => m.ToString().ToUpper());
+            wronglyFormattedString = JustRemoveWrongCharacter.Replace(wronglyFormattedString, string.Empty);
 
             if (string.IsNullOrEmpty(wronglyFormattedString))
                 return NoName;
 
             return wronglyFormattedString;
         }
-        //internal static string ToPascalCase(this string wronglyFormattedString)
-        //{
-        //    if (string.IsNullOrEmpty(wronglyFormattedString))
-        //        return NoName;
-
-        //    const int lowerA = 97;
-        //    const int lowerZ = 122;
-        //    const int differenceBetweenUpperAndLower = 32;
-
-        //    WrongCharacters.ForEach(character =>
-        //    {
-        //        if (0 == wronglyFormattedString.Length) return;
-        //        var firstCharacter = (int) wronglyFormattedString[0];
-        //        if (firstCharacter >= lowerA && firstCharacter <= lowerZ)
-        //            wronglyFormattedString = ((char) firstCharacter).ToString().ToUpper() +
-        //                                     wronglyFormattedString.Substring(1);
-
-        //        var charPosition = wronglyFormattedString.IndexOf(character);
-
-        //        if (charPosition == wronglyFormattedString.Length - 1)
-        //            wronglyFormattedString = wronglyFormattedString.Replace(character.ToString(), string.Empty);
-
-        //        while (charPosition >= 0)
-        //        {
-        //            if (charPosition < wronglyFormattedString.Length - 1)
-        //            {
-        //                var charToCapitalize = (int) wronglyFormattedString.ElementAt(charPosition + 1);
-        //                if (charToCapitalize >= lowerA && charToCapitalize <= lowerZ)
-        //                    charToCapitalize -= differenceBetweenUpperAndLower;
-        //                wronglyFormattedString = wronglyFormattedString.Substring(0, charPosition) +
-        //                                         (char) charToCapitalize +
-        //                                         wronglyFormattedString.Substring(charPosition + 2);
-        //            }
-        //            charPosition = wronglyFormattedString.IndexOf(character);
-        //            if (charPosition == wronglyFormattedString.Length - 1)
-        //            {
-        //                wronglyFormattedString = wronglyFormattedString.Replace(character.ToString(), string.Empty);
-        //            }
-
-        //            charPosition = wronglyFormattedString.IndexOf(character);
-        //        }
-        //    });
-
-        //    if (string.IsNullOrEmpty(wronglyFormattedString))
-        //        return NoName;
-
-        //    return wronglyFormattedString;
-        //}
 
         public static IEnumerable<ICodeEntry> SetBestChoice(this IEnumerable<ICodeEntry> codeEntries)
         {

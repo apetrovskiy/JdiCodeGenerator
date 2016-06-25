@@ -21,7 +21,7 @@
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>Full</DebugType>
     <Optimize>False</Optimize>
@@ -92,18 +92,6 @@
     <Reference Include="Awesomium.Windows.Forms, Version=1.7.5.0, Culture=neutral, PublicKeyToken=9bd24830fbe304a0, processorArchitecture=x86">
       <HintPath>..\packages\Awesomium.Windows.Forms.Unofficial.1.7.5.0\lib\Awesomium.Windows.Forms.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="CefSharp, Version=49.0.1.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CefSharp.Common.49.0.1\CefSharp\x86\CefSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="CefSharp.Core, Version=49.0.1.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CefSharp.Common.49.0.1\CefSharp\x86\CefSharp.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="CefSharp.OffScreen, Version=49.0.1.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CefSharp.OffScreen.49.0.1\CefSharp\x86\CefSharp.OffScreen.dll</HintPath>
     </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
@@ -176,9 +164,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Tests\TutorialTests\README.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx">

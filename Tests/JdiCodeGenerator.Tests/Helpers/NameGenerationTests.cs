@@ -22,7 +22,7 @@
         [InlineData("/link", "Link")]
         [InlineData("/goto/link", "GotoLink")]
         [InlineData("/path/to/link", "PathToLink")]
-        [InlineData("/link_to/file.txt", "Link_toFileTxt")]
+        [InlineData("/link_to/file.txt", "LinkToFileTxt")]
 
         [InlineData(".a", "A")]
         [InlineData(".bbb", "Bbb")]
@@ -72,7 +72,24 @@
         [InlineData("http://site:111/page.htm%20?param1=2¬param2=word", "HttpSite111PageHtm20Param12Param2Word")]
         [InlineData("http://site:111/page.htm%20?param1=2±param2=word", "HttpSite111PageHtm20Param12Param2Word")]
         [InlineData("http://site:111/page.htm%20?param1=2§param2=word", "HttpSite111PageHtm20Param12Param2Word")]
-        // [InlineData("http://site:111/page.htm%20?param1=2%param2=word", "HttpSite111PageHtm20Param12Param2Word")]
+
+        [InlineData("file!(0)", "File0")]
+        [InlineData("file™(0)", "File0")]
+        [InlineData("file<(0)", "File0")]
+        [InlineData("file>(0)", "File0")]
+        [InlineData("file©(0)", "File0")]
+        [InlineData("file‹(0)", "File0")]
+        [InlineData("file\'(0)", "File0")]
+        [InlineData("file'(0)", "File0")]
+        [InlineData("file™(0)", "File0")]
+        [InlineData("file\"(0)", "File0")]
+        [InlineData("file (0)", "File0")]
+        [InlineData("file№(0)", "File0")]
+        [InlineData("file—(0)", "File0")]
+        [InlineData("file¬(0)", "File0")]
+        [InlineData("file±(0)", "File0")]
+        [InlineData("file§(0)", "File0")]
+
         [Trait("Category", "NameGeneration")]
         public void EmptyString(string input, string expected)
         {
