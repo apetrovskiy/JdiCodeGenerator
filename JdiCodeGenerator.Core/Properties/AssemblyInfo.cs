@@ -19,6 +19,7 @@ using System.Runtime.InteropServices;
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 [assembly: InternalsVisibleTo("JdiCodeGenerator.Tests")]
+[assembly: InternalsVisibleTo("JdiCodeGenerator.Specs")]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("ba031019-f185-472c-be8c-cd53be4823ec")]

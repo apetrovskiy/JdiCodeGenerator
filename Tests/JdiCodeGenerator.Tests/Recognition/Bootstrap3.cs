@@ -37,7 +37,7 @@
   </head>
   <body>
 ";
-        const string HtmlLastPath = @"
+        const string HtmlLastPart = @"
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src=""https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js""></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -1757,7 +1757,7 @@ Panel content
         void GivenHtml(string input)
         {
             // var fullHtml = @"<html><head></head><body>" + input + "</body></html>";
-            var fullHtml = HtmlFirstPart + input + HtmlLastPath;
+            var fullHtml = HtmlFirstPart + input + HtmlLastPart;
             _doc = new HtmlDocument();
             _doc.LoadHtml(fullHtml);
         }

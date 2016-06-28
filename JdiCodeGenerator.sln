@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{18EAB0EC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JdiCodeGenerator.Tests", "Tests\JdiCodeGenerator.Tests\JdiCodeGenerator.Tests.csproj", "{7B96A8CE-D149-4911-A31D-484BA31CAD53}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JdiCodeGenerator.Specs", "Tests\JdiCodeGenerator.Specs\JdiCodeGenerator.Specs.csproj", "{E38FCB6A-3338-428B-AB3F-3E62A0D4F2A6}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JdiCodeGenerator.ExampleRunner", "JdiCodeGenerator.ExampleRunner\JdiCodeGenerator.ExampleRunner.csproj", "{0CAD787A-50E5-4135-A01E-D2F641E08988}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1B2CC494-C98E-41EA-B654-C2071FC6D331}"
@@ -49,6 +51,18 @@ Global
 		{7B96A8CE-D149-4911-A31D-484BA31CAD53}.Release|x64.Build.0 = Release|Any CPU
 		{7B96A8CE-D149-4911-A31D-484BA31CAD53}.Release|x86.ActiveCfg = Release|x86
 		{7B96A8CE-D149-4911-A31D-484BA31CAD53}.Release|x86.Build.0 = Release|x86
+		{E38FCB6A-3338-428B-AB3F-3E62A0D4F2A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E38FCB6A-3338-428B-AB3F-3E62A0D4F2A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E38FCB6A-3338-428B-AB3F-3E62A0D4F2A6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E38FCB6A-3338-428B-AB3F-3E62A0D4F2A6}.Debug|x64.Build.0 = Debug|Any CPU
+		{E38FCB6A-3338-428B-AB3F-3E62A0D4F2A6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E38FCB6A-3338-428B-AB3F-3E62A0D4F2A6}.Debug|x86.Build.0 = Debug|Any CPU
+		{E38FCB6A-3338-428B-AB3F-3E62A0D4F2A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E38FCB6A-3338-428B-AB3F-3E62A0D4F2A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E38FCB6A-3338-428B-AB3F-3E62A0D4F2A6}.Release|x64.ActiveCfg = Release|Any CPU
+		{E38FCB6A-3338-428B-AB3F-3E62A0D4F2A6}.Release|x64.Build.0 = Release|Any CPU
+		{E38FCB6A-3338-428B-AB3F-3E62A0D4F2A6}.Release|x86.ActiveCfg = Release|Any CPU
+		{E38FCB6A-3338-428B-AB3F-3E62A0D4F2A6}.Release|x86.Build.0 = Release|Any CPU
 		{0CAD787A-50E5-4135-A01E-D2F641E08988}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0CAD787A-50E5-4135-A01E-D2F641E08988}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CAD787A-50E5-4135-A01E-D2F641E08988}.Debug|x64.ActiveCfg = Debug|x64
@@ -79,5 +93,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7B96A8CE-D149-4911-A31D-484BA31CAD53} = {18EAB0EC-0D5C-45BC-84A9-7D3854150AED}
+		{E38FCB6A-3338-428B-AB3F-3E62A0D4F2A6} = {18EAB0EC-0D5C-45BC-84A9-7D3854150AED}
 	EndGlobalSection
 EndGlobal
