@@ -74,7 +74,10 @@
 
             // apply all applicable
             // TODO: use the selection the user provided
-            var typesOfAnalyzers = AppDomain.CurrentDomain.GetAssemblies().Where(assm => assm.FullName.Contains("JdiCodeGenerator.Core")).SelectMany(assm => assm.GetTypes()).Where(type => type.GetInterfaces().Contains(typeof(IFrameworkAlingmentAnalysisPlugin)));
+            // refactoring
+            // 20160629
+            // var typesOfAnalyzers = AppDomain.CurrentDomain.GetAssemblies().Where(assm => assm.FullName.Contains("JdiCodeGenerator.Core")).SelectMany(assm => assm.GetTypes()).Where(type => type.GetInterfaces().Contains(typeof(IFrameworkAlingmentAnalysisPlugin)));
+            var typesOfAnalyzers = AppDomain.CurrentDomain.GetAssemblies().Where(assm => assm.FullName.Contains("JdiCodeGenerator.Web")).SelectMany(assm => assm.GetTypes()).Where(type => type.GetInterfaces().Contains(typeof(IFrameworkAlingmentAnalysisPlugin)));
 
             typesOfAnalyzers.ToList().ForEach(type => { result = (JdiElementTypes) type.GetMethod("Analyze").Invoke(Activator.CreateInstance(type), new object[] {node}); });
 
