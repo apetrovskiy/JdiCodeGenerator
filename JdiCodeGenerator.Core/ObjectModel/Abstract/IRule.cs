@@ -1,7 +1,7 @@
 ﻿namespace JdiCodeGenerator.Core.ObjectModel.Abstract
 {
     using System.Collections.Generic;
-    using HtmlAgilityPack;
+    //using HtmlAgilityPack;
 
     public interface IRule
     {
@@ -11,6 +11,6 @@
         IEnumerable<IRuleCondition> AndConditions { get; set; }
         string Description { get; set; }
         Dictionary<string, IRule> InternalElements { get; set; }
-        bool IsMatch(HtmlNode node);
+        // bool IsMatch(HtmlNode node);
     }
 }

@@ -1,10 +1,11 @@
-﻿namespace JdiCodeGenerator.ExampleRunner
+﻿using JdiCodeGenerator.Web.Helpers;
+
+namespace JdiCodeGenerator.ExampleRunner
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using Core.Helpers;
     using Core.ImportExport;
     using Core.ObjectModel.Abstract;
 

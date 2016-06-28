@@ -2,12 +2,12 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Core.Helpers;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
     using HtmlAgilityPack;
     using Internals;
     using Xunit;
+    using Web.Helpers;
 
     public class Bootstrap3
     {
@@ -1765,7 +1765,10 @@ Panel content
         void WhenParsing(int elementPosition)
         {
             var pageLoader = new PageLoader();
-            _entries.AddRange(pageLoader.GetCodeEntries(_doc.DocumentNode, TestFactory.ExcludeList));
+            // refactoring
+            // 20160628
+            // _entries.AddRange(pageLoader.GetCodeEntries(_doc.DocumentNode, TestFactory.ExcludeList));
+            _entries.AddRange(pageLoader.GetCodeEntries(_doc.DocumentNode.ToString(), TestFactory.ExcludeList));
             _entry = _entries.Cast<CodeEntry>().ToArray()[elementPosition];
         }
 

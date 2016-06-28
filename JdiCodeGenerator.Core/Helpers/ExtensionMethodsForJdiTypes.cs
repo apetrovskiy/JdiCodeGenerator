@@ -55,7 +55,8 @@
         }
 
         // // TODO: rewrite this method to use rules
-        internal static JdiElementTypes ConvertHtmlTypeToJdiType(this HtmlElementTypes htmlElementType)
+        // internal static JdiElementTypes ConvertHtmlTypeToJdiType(this HtmlElementTypes htmlElementType)
+        public static JdiElementTypes ConvertHtmlTypeToJdiType(this HtmlElementTypes htmlElementType)
         {
             var result = JdiElementTypes.Element;
             switch (htmlElementType)

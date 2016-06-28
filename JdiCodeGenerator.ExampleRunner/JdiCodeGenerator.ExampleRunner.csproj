@@ -112,6 +112,10 @@
       <Project>{ba031019-f185-472c-be8c-cd53be4823ec}</Project>
       <Name>JdiCodeGenerator.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JdiCodeGenerator.Web\JdiCodeGenerator.Web.csproj">
+      <Project>{451d339d-aff9-4f6e-91c2-6c975dde7656}</Project>
+      <Name>JdiCodeGenerator.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
