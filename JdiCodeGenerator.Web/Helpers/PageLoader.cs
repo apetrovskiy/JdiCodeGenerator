@@ -168,10 +168,12 @@
         public IEnumerable<ICodeEntry> GetCodeEntries(string url, IEnumerable<string> excludeList)
         {
             LoadPage(url);
-            return GetCodeEntries(_docNode, excludeList);
+            return GetCodeEntriesFromNode(_docNode, excludeList);
         }
 
-        internal IEnumerable<ICodeEntry> GetCodeEntries(HtmlNode docNode, IEnumerable<string> excludeList)
+        // internal IEnumerable<ICodeEntry> GetCodeEntriesFromNode(HtmlNode docNode, IEnumerable<string> excludeList)
+        // public IEnumerable<ICodeEntry> GetCodeEntriesFromNode(HtmlNode docNode, IEnumerable<string> excludeList)
+        internal IEnumerable<ICodeEntry> GetCodeEntriesFromNode(HtmlNode docNode, IEnumerable<string> excludeList)
         {
             var convertor = new HtmlElementToCodeEntryConvertor();
             //return docNode.Descendants()

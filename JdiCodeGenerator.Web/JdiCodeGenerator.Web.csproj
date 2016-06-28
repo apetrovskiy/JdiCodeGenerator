@@ -57,6 +57,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\JdiCodeGenerator.Core\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Helpers\ExtensionMethodsForHtmlElements.cs" />
     <Compile Include="Helpers\ExtensionMethodsForNodes.cs" />
     <Compile Include="Helpers\HtmlElementToCodeEntryConvertor.cs" />
@@ -74,7 +77,6 @@
     <Compile Include="ObjectModel\Plugins\BootstrapAndCompetitors\Zimit.cs" />
     <Compile Include="ObjectModel\Plugins\General.cs" />
     <Compile Include="ObjectModel\Plugins\ReactJs.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>

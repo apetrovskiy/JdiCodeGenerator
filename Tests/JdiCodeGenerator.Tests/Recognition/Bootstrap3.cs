@@ -1767,8 +1767,8 @@ Panel content
             var pageLoader = new PageLoader();
             // refactoring
             // 20160628
-            // _entries.AddRange(pageLoader.GetCodeEntries(_doc.DocumentNode, TestFactory.ExcludeList));
-            _entries.AddRange(pageLoader.GetCodeEntries(_doc.DocumentNode.ToString(), TestFactory.ExcludeList));
+            _entries.AddRange(pageLoader.GetCodeEntriesFromNode(_doc.DocumentNode, TestFactory.ExcludeList));
+            // _entries.AddRange(pageLoader.GetCodeEntriesFromNode(_doc.DocumentNode.ToString(), TestFactory.ExcludeList));
             _entry = _entries.Cast<CodeEntry>().ToArray()[elementPosition];
         }
 
