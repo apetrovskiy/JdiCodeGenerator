@@ -1,6 +1,4 @@
-﻿using JdiCodeGenerator.Web.Helpers;
-
-namespace JdiCodeGenerator.ExampleRunner
+﻿namespace JdiCodeGenerator.ExampleRunner
 {
     using System;
     using System.Collections.Generic;
@@ -8,6 +6,7 @@ namespace JdiCodeGenerator.ExampleRunner
     using System.Linq;
     using Core.ImportExport;
     using Core.ObjectModel.Abstract;
+    using JdiCodeGenerator.Web.Helpers;
 
     class Program
     {
@@ -37,14 +36,14 @@ namespace JdiCodeGenerator.ExampleRunner
                 //"http://calhoun.ca/",
                 //"https://onreplaytv.com/",
                 //"http://www.empor.cc/",
-                // "https://www.mongodb.com/cloud",
+                "https://www.mongodb.com/cloud",
                 //"http://threedaysgrace.com/",
                 //"https://www.nasa.gov/",
                 //"https://overv.io/",
                 //"http://liveramp.com/",
                 // "https://www.aceandtate.com/",
                 // "http://www.washington.edu/",
-                "http://www.fifa.com/",
+                // "http://www.fifa.com/",
                 //"http://www.placemeter.com/",
                 //"http://www.littlehj.com/",
                 //"http://thefounderspledge.org/",
