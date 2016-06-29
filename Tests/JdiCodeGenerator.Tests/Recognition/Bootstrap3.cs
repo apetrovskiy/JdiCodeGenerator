@@ -1,6 +1,7 @@
 ﻿namespace JdiCodeGenerator.Tests.Recognition
 {
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
@@ -54,48 +55,71 @@
         }
 
         [Theory]
-        [InlineData(@"
-<button type=""button"" class=""btn btn-default"" aria-label=""Left Align"">
-  <span class=""glyphicon glyphicon-align-left"" aria-hidden=""true""></span>
-</button>
-", "IButton", 0)]
+        [InlineData(@"..\Data\Bootstrap3\ButtonDefault.txt", "IButton", 0)]
+        [InlineData(@"..\Data\Bootstrap3\ButtonDefaultLarge.txt", "IButton", 0)]
+        [InlineData(@"..\Data\Bootstrap3\Alert.txt", "IText", 0)] // alert
+        [InlineData(@"..\Data\Bootstrap3\ButtonDefaultNavBar.txt", "IButton", 0)]
+        [InlineData(@"..\Data\Bootstrap3\NavBarText.txt", "IText", 0)]
+        [InlineData(@"..\Data\Bootstrap3\NavBarTextNavBarRight.txt", "IText", 0)]
+        [InlineData(@"..\Data\Bootstrap3\LabelDefaultHeading.txt", "ILabel", 0)]
+        [InlineData(@"..\Data\Bootstrap3\LabelDefault.txt", "ILabel", 0)]
+        [InlineData(@"..\Data\Bootstrap3\LabelPrimary.txt", "ILabel", 0)]
+        [InlineData(@"..\Data\Bootstrap3\LabelSuccess.txt", "ILabel", 0)]
+        [InlineData(@"..\Data\Bootstrap3\LabelInfo.txt", "ILabel", 0)]
+        [Trait("Category", "NEW Bootstrap 3, single element")]
+        public void ParseBootstrap3ForSingleElement_New(string input, string expected, int elementPosition)
+        {
+            // GivenHtml(input);
+            GivenHtml_NewHtmlInFiles(input);
+            WhenParsing(elementPosition);
+            ThenThereIsElementOfType(expected);
+        }
 
-        [InlineData(@"
-<button type=""button"" class=""btn btn-default btn-lg"">
-  <span class=""glyphicon glyphicon-star"" aria-hidden=""true""></span> Star
-</button>
-", "IButton", 0)]
-        [InlineData(@"
-<div class=""alert alert-danger"" role=""alert"">
-  <span class=""glyphicon glyphicon-exclamation-sign"" aria-hidden=""true""></span>
-  <span class=""sr-only"">Error:</span>
-  Enter a valid email address
-</div>
-", "IText", 0)] // alert
-        [InlineData(@"
-<button type=""button"" class=""btn btn-default navbar-btn"">Sign in</button>
-", "IButton", 0)]
-        [InlineData(@"
-<p class=""navbar-text"">Signed in as Mark Otto</p>
-", "IText", 0)]
-        [InlineData(@"
-<p class=""navbar-text navbar-right"">Signed in as <a href=""#"" class=""navbar-link"">Mark Otto</a></p>
-", "IText", 0)]
-        [InlineData(@"
-<h3>Example heading <span class=""label label-default"">New</span></h3>
-", "ILabel", 0)]
-        [InlineData(@"
-<span class=""label label-default"">Default</span>
-", "ILabel", 0)]
-        [InlineData(@"
-<span class=""label label-primary"">Primary</span>
-", "ILabel", 0)]
-        [InlineData(@"
-<span class=""label label-success"">Success</span>
-", "ILabel", 0)]
-        [InlineData(@"
-<span class=""label label-info"">Info</span>
-", "ILabel", 0)]
+        [Theory]
+        #region with HTML in code
+//        [InlineData(@"
+//<button type=""button"" class=""btn btn-default"" aria-label=""Left Align"">
+//  <span class=""glyphicon glyphicon-align-left"" aria-hidden=""true""></span>
+//</button>
+//", "IButton", 0)]
+
+//        [InlineData(@"
+//<button type=""button"" class=""btn btn-default btn-lg"">
+//  <span class=""glyphicon glyphicon-star"" aria-hidden=""true""></span> Star
+//</button>
+//", "IButton", 0)]
+//        [InlineData(@"
+//<div class=""alert alert-danger"" role=""alert"">
+//  <span class=""glyphicon glyphicon-exclamation-sign"" aria-hidden=""true""></span>
+//  <span class=""sr-only"">Error:</span>
+//  Enter a valid email address
+//</div>
+//", "IText", 0)] // alert
+        #endregion
+//        [InlineData(@"
+//<button type=""button"" class=""btn btn-default navbar-btn"">Sign in</button>
+//", "IButton", 0)]
+//        [InlineData(@"
+//<p class=""navbar-text"">Signed in as Mark Otto</p>
+//", "IText", 0)]
+//        [InlineData(@"
+//<p class=""navbar-text navbar-right"">Signed in as <a href=""#"" class=""navbar-link"">Mark Otto</a></p>
+//", "IText", 0)]
+//        [InlineData(@"
+//<h3>Example heading <span class=""label label-default"">New</span></h3>
+//", "ILabel", 0)]
+//        [InlineData(@"
+//<span class=""label label-default"">Default</span>
+//", "ILabel", 0)]
+//        [InlineData(@"
+//<span class=""label label-primary"">Primary</span>
+//", "ILabel", 0)]
+//        [InlineData(@"
+//<span class=""label label-success"">Success</span>
+//", "ILabel", 0)]
+//        [InlineData(@"
+//<span class=""label label-info"">Info</span>
+//", "ILabel", 0)]
         [InlineData(@"
 <span class=""label label-warning"">Warning</span>
 ", "ILabel", 0)]
@@ -670,7 +694,7 @@
         [Trait("Category", "Bootstrap 3, single element")]
         public void ParseBootstrap3ForSingleElement(string input, string expected, int elementPosition)
         {
-            GivenHtml(input);
+            GivenHtml_OriginalForHtmlInCode(input);
             WhenParsing(elementPosition);
             ThenThereIsElementOfType(expected);
         }
@@ -942,7 +966,7 @@ Extra small button <span class=""caret""></span>
 
     [InlineData(@"
 <form class=""navbar-form navbar-left"" role=""search"">
-    <div class=""input-group input-group-lg"">
+    <div class=""input-group path-group-lg"">
     <span class=""input-group-addon"" id=""sizing-addon1"">@</span>
     <input type=""text"" class=""form-control"" placeholder=""Username"" aria-describedby=""sizing-addon1"">
     </div>
@@ -952,7 +976,7 @@ Extra small button <span class=""caret""></span>
     <input type=""text"" class=""form-control"" placeholder=""Username"" aria-describedby=""sizing-addon2"">
     </div>
 
-    <div class=""input-group input-group-sm"">
+    <div class=""input-group path-group-sm"">
     <span class=""input-group-addon"" id=""sizing-addon3"">@</span>
     <input type=""text"" class=""form-control"" placeholder=""Username"" aria-describedby=""sizing-addon3"">
     </div>
@@ -1056,12 +1080,12 @@ Extra small button <span class=""caret""></span>
                     <li><a href=""#"">Something else here</a></li>
                     <li role=""separator"" class=""divider""></li>
                     <li><a href=""#"">Separated link</a></li> </ul> </div>
-                <input type=""text"" class=""form-control"" aria-label=""Text input with segmented button dropdown"">
+                <input type=""text"" class=""form-control"" aria-label=""Text path with segmented button dropdown"">
                 </div>
             </div>
             <div class=""col-lg-6"">
                 <div class=""input-group"">
-                    <input type=""text"" class=""form-control"" aria-label=""Text input with segmented button dropdown"">
+                    <input type=""text"" class=""form-control"" aria-label=""Text path with segmented button dropdown"">
                     <div class=""input-group-btn"">
                     <button type=""button"" class=""btn btn-default"">Action</button>
                     <button type=""button"" class=""btn btn-default dropdown-toggle"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">
@@ -1104,12 +1128,12 @@ Extra small button <span class=""caret""></span>
                         <button type = ""button"" class=""btn btn-default"" aria-label=""Bold""><span class=""glyphicon glyphicon-bold""></span></button>
                         <button type = ""button"" class=""btn btn-default"" aria-label=""Italic""><span class=""glyphicon glyphicon-italic""></span></button>
                     </div>
-                    <input type = ""text"" class=""form-control"" aria-label=""Text input with multiple buttons"">
+                    <input type = ""text"" class=""form-control"" aria-label=""Text path with multiple buttons"">
                 </div>
             </div>
             <div class=""col-lg-6"">
                 <div class=""input-group"">
-                    <input type = ""text"" class=""form-control"" aria-label=""Text input with multiple buttons"">
+                    <input type = ""text"" class=""form-control"" aria-label=""Text path with multiple buttons"">
                     <div class=""input-group-btn"">
                         <button type = ""button"" class=""btn btn-default"" aria-label=""Help""><span class=""glyphicon glyphicon-question-sign""></span></button>
                         <button type = ""button"" class=""btn btn-default"">Action</button>
@@ -1749,15 +1773,34 @@ Panel content
         [Trait("Category", "Bootstrap 3, collection")]
         public void ParseBootstrap3ForCollection(string input, string expected, int elementPosition)
         {
-            GivenHtml(input);
+            GivenHtml_OriginalForHtmlInCode(input);
             WhenParsing(elementPosition);
             ThenThereIsCollectionOfElementsOfType(expected);
         }
         
-        void GivenHtml(string input)
+        void GivenHtml_OriginalForHtmlInCode(string input)
         {
             // var fullHtml = @"<html><head></head><body>" + input + "</body></html>";
             var fullHtml = HtmlFirstPart + input + HtmlLastPart;
+            _doc = new HtmlDocument();
+            _doc.LoadHtml(fullHtml);
+        }
+
+        void GivenHtml_NewHtmlInFiles(string path)
+        {
+            // var fullHtml = @"<html><head></head><body>" + input + "</body></html>";
+            var fullHtml = string.Empty;
+#if DEBUG
+            path = @"Debug\" + path;
+#else
+            path = @"Release\" + path;
+#endif
+            using (var reader = new StreamReader(path))
+            {
+                fullHtml = HtmlFirstPart + reader.ReadToEnd() + HtmlLastPart;
+                reader.Close();
+            }
+            // var fullHtml = HtmlFirstPart + path + HtmlLastPart;
             _doc = new HtmlDocument();
             _doc.LoadHtml(fullHtml);
         }

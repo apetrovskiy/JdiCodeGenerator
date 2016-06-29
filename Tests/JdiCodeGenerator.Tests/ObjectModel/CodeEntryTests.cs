@@ -62,8 +62,8 @@
         [InlineData(new[] { "id", "id" }, "select", "checkbox", "ICheckBox")]
         [InlineData(new[] { "id", "id" }, "a", "link", "ILink")]
         [InlineData(new[] { "id", "id" }, "img", "image", "IImage")]
-        // [InlineData(new[] { "id", "id" }, "textarea", "ITextArea")]
-        //[InlineData(new[] { "id", "id" }, "label", "ILabel")]
+        // [InlineData(new[] { "id", "id" }, "textarea", "textarea", "ITextArea")]
+        // [InlineData(new[] { "id", "id" }, "label", "label", "ILabel")]
         [Trait("Category", "EntryJdiType")]
         public void GenerateCodeEntryWithBestLocator(string[] stringLocatorDefinitions, string memberType, string jdiMemberType, string expectedJdiType)
         {
