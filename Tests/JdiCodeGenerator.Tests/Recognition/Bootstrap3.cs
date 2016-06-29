@@ -55,227 +55,56 @@
         }
 
         [Theory]
-        [InlineData(@"..\Data\Bootstrap3\ButtonDefault.txt", "IButton", 0)]
-        [InlineData(@"..\Data\Bootstrap3\ButtonDefaultLarge.txt", "IButton", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Alert.txt", "IText", 0)] // alert
-        [InlineData(@"..\Data\Bootstrap3\ButtonDefaultNavBar.txt", "IButton", 0)]
-        [InlineData(@"..\Data\Bootstrap3\NavBarText.txt", "IText", 0)]
-        [InlineData(@"..\Data\Bootstrap3\NavBarTextNavBarRight.txt", "IText", 0)]
-        [InlineData(@"..\Data\Bootstrap3\LabelDefaultHeading.txt", "ILabel", 0)]
-        [InlineData(@"..\Data\Bootstrap3\LabelDefault.txt", "ILabel", 0)]
-        [InlineData(@"..\Data\Bootstrap3\LabelPrimary.txt", "ILabel", 0)]
-        [InlineData(@"..\Data\Bootstrap3\LabelSuccess.txt", "ILabel", 0)]
-        [InlineData(@"..\Data\Bootstrap3\LabelInfo.txt", "ILabel", 0)]
-        [Trait("Category", "NEW Bootstrap 3, single element")]
-        public void ParseBootstrap3ForSingleElement_New(string input, string expected, int elementPosition)
-        {
-            // GivenHtml(input);
-            GivenHtml_NewHtmlInFiles(input);
-            WhenParsing(elementPosition);
-            ThenThereIsElementOfType(expected);
-        }
-
-        [Theory]
-        #region with HTML in code
-//        [InlineData(@"
-//<button type=""button"" class=""btn btn-default"" aria-label=""Left Align"">
-//  <span class=""glyphicon glyphicon-align-left"" aria-hidden=""true""></span>
-//</button>
-//", "IButton", 0)]
-
-//        [InlineData(@"
-//<button type=""button"" class=""btn btn-default btn-lg"">
-//  <span class=""glyphicon glyphicon-star"" aria-hidden=""true""></span> Star
-//</button>
-//", "IButton", 0)]
-//        [InlineData(@"
-//<div class=""alert alert-danger"" role=""alert"">
-//  <span class=""glyphicon glyphicon-exclamation-sign"" aria-hidden=""true""></span>
-//  <span class=""sr-only"">Error:</span>
-//  Enter a valid email address
-//</div>
-//", "IText", 0)] // alert
-        #endregion
-//        [InlineData(@"
-//<button type=""button"" class=""btn btn-default navbar-btn"">Sign in</button>
-//", "IButton", 0)]
-//        [InlineData(@"
-//<p class=""navbar-text"">Signed in as Mark Otto</p>
-//", "IText", 0)]
-//        [InlineData(@"
-//<p class=""navbar-text navbar-right"">Signed in as <a href=""#"" class=""navbar-link"">Mark Otto</a></p>
-//", "IText", 0)]
-//        [InlineData(@"
-//<h3>Example heading <span class=""label label-default"">New</span></h3>
-//", "ILabel", 0)]
-//        [InlineData(@"
-//<span class=""label label-default"">Default</span>
-//", "ILabel", 0)]
-//        [InlineData(@"
-//<span class=""label label-primary"">Primary</span>
-//", "ILabel", 0)]
-//        [InlineData(@"
-//<span class=""label label-success"">Success</span>
-//", "ILabel", 0)]
-//        [InlineData(@"
-//<span class=""label label-info"">Info</span>
-//", "ILabel", 0)]
-        [InlineData(@"
-<span class=""label label-warning"">Warning</span>
-", "ILabel", 0)]
-        [InlineData(@"
-<span class=""label label-danger"">Danger</span>
-", "ILabel", 0)]
-        [InlineData(@"
-<a href=""#"">Inbox <span class=""badge"">42</span></a>
-
-<button class=""btn btn-primary"" type=""button"">
-  Messages <span class=""badge"">4</span>
-</button>
-", "ILink", 0)] // Badges
-        [InlineData(@"
-<ul class=""nav nav-pills"" role=""tablist"">
-  <li role=""presentation"" class=""active""><a href=""#"">Home <span class=""badge"">42</span></a></li>
-  <li role=""presentation""><a href=""#"">Profile</a></li>
-  <li role=""presentation""><a href=""#"">Messages <span class=""badge"">3</span></a></li>
-</ul>
-", "ITabs", 0)]
-// 20160610
-// ", "ILink", 2)]
-        [InlineData(@"
-<div class=""jumbotron"">
-  <h1>Hello, world!</h1>
-  <p>...</p>
-  <p><a class=""btn btn-primary btn-lg"" href=""#"" role=""button"">Learn more</a></p>
-</div>
-", "IText", 0)] // Jumbotron
-
-           [InlineData(@"
-<div class=""jumbotron"">
-  <div class=""container"">
-    ...
-  </div>
-</div>
-", "IText", 0)]
-
-        [InlineData(@"
-<div class=""page-header"">
-  <h1>Example page header <small>Subtext for header</small></h1>
-</div>
-", "IText", 0)] // Page header
-        [InlineData(@"
-<div class=""alert alert-success"" role=""alert"">...</div>
-", "IText", 0)] // Alerts
-        [InlineData(@"
-<div class=""alert alert-info"" role=""alert"">...</div>
-", "IText", 0)]
-        [InlineData(@"
-<div class=""alert alert-warning"" role=""alert"">...</div>
-", "IText", 0)]
-        [InlineData(@"
-<div class=""alert alert-danger"" role=""alert"">...</div>
-", "IText", 0)]
-        
-[InlineData(@"
-<div class=""alert alert-warning alert-dismissible"" role=""alert"">
-  <button type=""button"" class=""close"" data-dismiss=""alert"" aria-label=""Close""><span aria-hidden=""true"">&times;</span></button>
-  <strong>Warning!</strong> Better check yourself, you're not looking too good.
-</div>
-", "IText", 0)] // Dismissible alerts
-[InlineData(@"
-<div class=""alert alert-success"" role=""alert"">
-  <a href=""#"" class=""alert-link"">...</a>
-</div>
-", "ILink", 1)] // Links in alerts
-        [InlineData(@"
-<div class=""alert alert-info"" role=""alert"">
-  <a href=""#"" class=""alert-link"">...</a>
-</div>
-", "ILink", 1)]
-[InlineData(@"
-<div class=""alert alert-warning"" role=""alert"">
-  <a href=""#"" class=""alert-link"">...</a>
-</div>
-", "ILink", 1)]
-[InlineData(@"
-<div class=""alert alert-danger"" role=""alert"">
-  <a href=""#"" class=""alert-link"">...</a>
-</div>
-", "ILink", 1)]
-        [InlineData(@"
-<div class=""well"">...</div>
-", "IText", 0)] // Wells // Default well
-        [InlineData(@"
-<div class=""well well - lg"">...</div>
-", "IText", 0)] // Optional classes
-        [InlineData(@"
-<div class=""well well - sm"">...</div>
-", "IText", 0)]
-
-        [InlineData(@"
-<div class=""btn-group"" role=""group"" aria-label=""..."">
-<button type=""button"" class=""btn btn-default"">Left</button>
-<button type=""button"" class=""btn btn-default"">Middle</button>
-<button type=""button"" class=""btn btn-default"">Right</button>
-</div>
-", "IButton", 0)] // button groups
-// ", "IButton", 1)] // button groups
-        [InlineData(@"
-<div class=""btn-group"" role=""group"" aria-label=""..."">
-<button type=""button"" class=""btn btn-default"">Left</button>
-<button type=""button"" class=""btn btn-default"">Middle</button>
-<button type=""button"" class=""btn btn-default"">Right</button>
-</div>
-", "IButton", 1)] // button groups
-// ", "IButton", 2)] // button groups
-        [InlineData(@"
-<div class=""btn-group"" role=""group"" aria-label=""..."">
-<button type=""button"" class=""btn btn-default"">Left</button>
-<button type=""button"" class=""btn btn-default"">Middle</button>
-<button type=""button"" class=""btn btn-default"">Right</button>
-</div>
-", "IButton", 2)] // button groups
-// ", "IButton", 3)] // button groups
-        [InlineData(@"
-<div class=""btn-toolbar"" role=""toolbar"" aria-label=""..."">
-<div class=""btn-group"" role=""group"" aria-label=""...""><button type=""button"" class=""btn btn-default"">Button1</button></div>
-<div class=""btn-group"" role=""group"" aria-label=""..."">...</div>
-<div class=""btn-group"" role=""group"" aria-label=""..."">...</div>
-</div>
-", "IButton", 0)] // button toolbar
-// ", "IButton", 2)] // button toolbar
-        [InlineData(@"
-<div class=""btn-toolbar"" role=""toolbar"" aria-label=""..."">
-<div class=""btn-group"" role=""group"" aria-label=""..."">...</div>
-<div class=""btn-group"" role=""group"" aria-label=""...""><button type=""button"" class=""btn btn-default"">Button1</button></div>
-<div class=""btn-group"" role=""group"" aria-label=""..."">...</div>
-</div>
-", "IButton", 0)] // button toolbar
-// ", "IButton", 3)] // button toolbar
-        [InlineData(@"
-<div class=""btn-toolbar"" role=""toolbar"" aria-label=""..."">
-<div class=""btn-group"" role=""group"" aria-label=""..."">...</div>
-<div class=""btn-group"" role=""group"" aria-label=""..."">...</div>
-<div class=""btn-group"" role=""group"" aria-label=""...""><button type=""button"" class=""btn btn-default"">Button1</button></div>
-</div>
-", "IButton", 0)] // button toolbar
-// ", "IButton", 4)] // button toolbar
-        [InlineData(@"
-<div class=""btn-group btn-group-lg"" role=""group"" aria-label=""...""><button type=""button"" class=""btn btn-default"">Button1</button></div>
-", "IButton", 0)] // sizing
-// ", "IButton", 1)] // sizing
-        [InlineData(@"
-<div class=""btn-group"" role=""group"" aria-label=""...""><button type=""button"" class=""btn btn-default"">Button1</button></div>
-", "IButton", 0)] // sizing
-// ", "IButton", 1)] // sizing
-        [InlineData(@"
-<div class=""btn-group btn-group-sm"" role=""group"" aria-label=""...""><button type=""button"" class=""btn btn-default"">Button1</button></div>
-", "IButton", 0)] // sizing
-// ", "IButton", 1)] // sizing
-        [InlineData(@"
-<div class=""btn-group btn-group-xs"" role=""group"" aria-label=""...""><button type=""button"" class=""btn btn-default"">Button1</button></div>
-", "IButton", 0)] // sizing
-// ", "IButton", 1)] // sizing
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonDefault.txt", "IButton", 0)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonDefaultLarge.txt", "IButton", 0)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\Alert.txt", "IText", 0)] // alert
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonDefaultNavBar.txt", "IButton", 0)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\NavBarText.txt", "IText", 0)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\NavBarTextNavBarRight.txt", "IText", 0)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\LabelDefaultHeading.txt", "ILabel", 0)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\LabelDefault.txt", "ILabel", 0)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\LabelPrimary.txt", "ILabel", 0)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\LabelSuccess.txt", "ILabel", 0)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\LabelInfo.txt", "ILabel", 0)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\LabelWarning.txt", "ILabel", 0)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\LabelDanger.txt", "ILabel", 0)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\Badge.txt", "ILink", 0)] // Badges
+        [InlineData(@"..\Data\Bootstrap3\Simple\TabList.txt", "ITabs", 0)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\Jumbotron.txt", "IText", 0)] // Jumbotron
+        [InlineData(@"..\Data\Bootstrap3\Simple\Jumbotron2.txt", "IText", 0)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\PageHeader.txt", "IText", 0)] // Page header
+        [InlineData(@"..\Data\Bootstrap3\Simple\AlertSuccess.txt", "IText", 0)] // Alerts
+        [InlineData(@"..\Data\Bootstrap3\Simple\AlertInfo.txt", "IText", 0)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\AlertWarning.txt", "IText", 0)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\AlertDanger.txt", "IText", 0)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\AlertDismissible.txt", "IText", 0)] // Dismissible alerts
+        [InlineData(@"..\Data\Bootstrap3\Simple\AlertSuccessLink.txt", "ILink", 1)] // Links in alerts
+        [InlineData(@"..\Data\Bootstrap3\Simple\AlertInfoLink.txt", "ILink", 1)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\AlertWarningLink.txt", "ILink", 1)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\AlertDangerLink.txt", "ILink", 1)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\Well.txt", "IText", 0)] // Wells // Default well
+        [InlineData(@"..\Data\Bootstrap3\Simple\WellLarge.txt", "IText", 0)] // Optional classes
+        [InlineData(@"..\Data\Bootstrap3\Simple\WellSmall.txt", "IText", 0)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroup0.txt", "IButton", 0)] // button groups
+                  // ", "IButton", 1)] // button groups
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroup1.txt", "IButton", 1)] // button groups
+                  // ", "IButton", 2)] // button groups
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroup2.txt", "IButton", 2)] // button groups
+                  // ", "IButton", 3)] // button groups
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonToolbar0.txt", "IButton", 0)] // button toolbar
+                  // ", "IButton", 2)] // button toolbar
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonToolbar1.txt", "IButton", 0)] // button toolbar
+                  // ", "IButton", 3)] // button toolbar
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonToolbar2.txt", "IButton", 0)] // button toolbar
+                  // ", "IButton", 4)] // button toolbar
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing0.txt", "IButton", 0)] // sizing
+                  // ", "IButton", 1)] // sizing
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing1.txt", "IButton", 0)] // sizing
+                  // ", "IButton", 1)] // sizing
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing2.txt", "IButton", 0)] // sizing
+                  // ", "IButton", 1)] // sizing
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing3.txt", "IButton", 0)] // sizing
+                  // ", "IButton", 1)] // sizing
         #region commented
         /*
         [InlineData(@"
@@ -555,60 +384,561 @@
         ", "")]
         */
         #endregion
-        [InlineData(@"
-<div class=""input-group"">
-<span class=""input-group-addon"" id=""basic-addon1"">@</span>
-<input type = ""text"" class=""form-control"" placeholder=""Username"" aria-describedby=""basic-addon1"">
-</div>
-", "ITextField", 0)]
-// ", "ITextField", 2)]
-        [InlineData(@"
-<div class=""input-group"">
-<input type = ""text"" class=""form-control"" placeholder=""Recipient's username"" aria-describedby=""basic-addon2"">
-<span class=""input-group-addon"" id=""basic-addon2"">@example.com</span>
-</div>
-", "ITextField", 0)]
-// ", "ITextField", 1)]
-        [InlineData(@"
-< div class=""input-group"">
-<span class=""input-group-addon"">$</span>
-<input type = ""text"" class=""form-control"" aria-label=""Amount(to the nearest dollar)"">
-<span class=""input-group-addon"">.00</span>
-</div>
-", "ITextField", 0)]
-// ", "ITextField", 2)]
-        [InlineData(@"
-<label for=""basic-url"">Your vanity URL</label>
-<div class=""input-group"">
-<span class=""input-group-addon"" id=""basic-addon3"">https://example.com/users/</span>
-<input type = ""text"" class=""form-control"" id=""basic-url"" aria-describedby=""basic-addon3"">
-</div>
-", "ITextField", 1)]
-// ", "ITextField", 3)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\InputGroupAddon0.txt", "ITextField", 0)]
+        // ", "ITextField", 2)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\InputGroupAddon1.txt", "ITextField", 0)]
+        // ", "ITextField", 1)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\InputGroupAddon2.txt", "ITextField", 0)]
+        // ", "ITextField", 2)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\TextField.txt", "ITextField", 1)]
+        // ", "ITextField", 3)]
 
-        [InlineData(@"
-<form class=""navbar-form navbar-left"" role=""search"">
-    <div class=""row"">
-    <div class=""col-lg-6"">
-    <div class=""input-group"">
-      <span class=""input-group-addon"">
-        <input type=""checkbox"" aria-label=""..."">
-      </span>
-      <input type=""text"" class=""form-control"" aria-label=""..."">
-    </div><!-- /input-group -->
-    </div><!-- /.col-lg-6 -->
-    <div class=""col-lg-6"">
-    <div class=""input-group"">
-      <span class=""input-group-addon"">
-        <input type=""radio"" aria-label=""..."">
-      </span>
-      <input type=""text"" class=""form-control"" aria-label=""..."">
-    </div><!-- /input-group -->
-    </div><!-- /.col-lg-6 -->
-    </div><!-- /.row -->
-</form>
-", "ICheckBox", 1)] // Checkboxes and radio addons
-// ", "ICheckBox", 5)] // Checkboxes and radio addons
+        [InlineData(@"..\Data\Bootstrap3\Simple\CheckboxesAndRadioAddons.txt", "ICheckBox", 1)] // Checkboxes and radio addons
+                    // ", "ICheckBox", 5)] // Checkboxes and radio addons
+                    //        [InlineData(@"
+                    //<form class=""navbar-form navbar-left"" role=""search"">
+                    //    <div class=""row"">
+                    //    <div class=""col-lg-6"">
+                    //    <div class=""input-group"">
+                    //      <span class=""input-group-addon"">
+                    //        <input type=""checkbox"" aria-label=""..."">
+                    //      </span>
+                    //      <input type=""text"" class=""form-control"" aria-label=""..."">
+                    //    </div><!-- /input-group -->
+                    //    </div><!-- /.col-lg-6 -->
+                    //    <div class=""col-lg-6"">
+                    //    <div class=""input-group"">
+                    //      <span class=""input-group-addon"">
+                    //        <input type=""radio"" aria-label=""..."">
+                    //      </span>
+                    //      <input type=""text"" class=""form-control"" aria-label=""..."">
+                    //    </div><!-- /input-group -->
+                    //    </div><!-- /.col-lg-6 -->
+                    //    </div><!-- /.row -->
+                    //</form>
+                    //", "IRadioButtons", 10)] // Checkboxes and radio addons
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonAddons.txt", "IButton", 4)] // Button addons
+                  // ", "IButton", 11)] // Button addons
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonsWithDropdowns.txt", "IButton", 1)] // Buttons with dropdowns
+        [Trait("Category", "NEW Bootstrap 3, single element")]
+        public void ParseBootstrap3ForSingleElement_New(string input, string expected, int elementPosition)
+        {
+            // GivenHtml(input);
+            GivenHtml_NewHtmlInFiles(input);
+            WhenParsing(elementPosition);
+            ThenThereIsElementOfType(expected);
+        }
+
+        //[Theory]
+        #region with HTML in code
+//        [InlineData(@"
+//<button type=""button"" class=""btn btn-default"" aria-label=""Left Align"">
+//  <span class=""glyphicon glyphicon-align-left"" aria-hidden=""true""></span>
+//</button>
+//", "IButton", 0)]
+
+//        [InlineData(@"
+//<button type=""button"" class=""btn btn-default btn-lg"">
+//  <span class=""glyphicon glyphicon-star"" aria-hidden=""true""></span> Star
+//</button>
+//", "IButton", 0)]
+//        [InlineData(@"
+//<div class=""alert alert-danger"" role=""alert"">
+//  <span class=""glyphicon glyphicon-exclamation-sign"" aria-hidden=""true""></span>
+//  <span class=""sr-only"">Error:</span>
+//  Enter a valid email address
+//</div>
+//", "IText", 0)] // alert
+//        [InlineData(@"
+//<button type=""button"" class=""btn btn-default navbar-btn"">Sign in</button>
+//", "IButton", 0)]
+//        [InlineData(@"
+//<p class=""navbar-text"">Signed in as Mark Otto</p>
+//", "IText", 0)]
+//        [InlineData(@"
+//<p class=""navbar-text navbar-right"">Signed in as <a href=""#"" class=""navbar-link"">Mark Otto</a></p>
+//", "IText", 0)]
+//        [InlineData(@"
+//<h3>Example heading <span class=""label label-default"">New</span></h3>
+//", "ILabel", 0)]
+//        [InlineData(@"
+//<span class=""label label-default"">Default</span>
+//", "ILabel", 0)]
+//        [InlineData(@"
+//<span class=""label label-primary"">Primary</span>
+//", "ILabel", 0)]
+//        [InlineData(@"
+//<span class=""label label-success"">Success</span>
+//", "ILabel", 0)]
+//        [InlineData(@"
+//<span class=""label label-info"">Info</span>
+//", "ILabel", 0)]
+//        [InlineData(@"
+//<span class=""label label-warning"">Warning</span>
+//", "ILabel", 0)]
+//        [InlineData(@"
+//<span class=""label label-danger"">Danger</span>
+//", "ILabel", 0)]
+//        [InlineData(@"
+//<a href=""#"">Inbox <span class=""badge"">42</span></a>
+
+//<button class=""btn btn-primary"" type=""button"">
+//  Messages <span class=""badge"">4</span>
+//</button>
+//", "ILink", 0)] // Badges
+//        [InlineData(@"
+//<ul class=""nav nav-pills"" role=""tablist"">
+//  <li role=""presentation"" class=""active""><a href=""#"">Home <span class=""badge"">42</span></a></li>
+//  <li role=""presentation""><a href=""#"">Profile</a></li>
+//  <li role=""presentation""><a href=""#"">Messages <span class=""badge"">3</span></a></li>
+//</ul>
+//", "ITabs", 0)]
+// 20160610
+// ", "ILink", 2)]
+//        [InlineData(@"
+//<div class=""jumbotron"">
+//  <h1>Hello, world!</h1>
+//  <p>...</p>
+//  <p><a class=""btn btn-primary btn-lg"" href=""#"" role=""button"">Learn more</a></p>
+//</div>
+//", "IText", 0)] // Jumbotron
+
+//           [InlineData(@"
+//<div class=""jumbotron"">
+//  <div class=""container"">
+//    ...
+//  </div>
+//</div>
+//", "IText", 0)]
+
+//        [InlineData(@"
+//<div class=""page-header"">
+//  <h1>Example page header <small>Subtext for header</small></h1>
+//</div>
+//", "IText", 0)] // Page header
+//        [InlineData(@"
+//<div class=""alert alert-success"" role=""alert"">...</div>
+//", "IText", 0)] // Alerts
+//        [InlineData(@"
+//<div class=""alert alert-info"" role=""alert"">...</div>
+//", "IText", 0)]
+//        [InlineData(@"
+//<div class=""alert alert-warning"" role=""alert"">...</div>
+//", "IText", 0)]
+//        [InlineData(@"
+//<div class=""alert alert-danger"" role=""alert"">...</div>
+//", "IText", 0)]
+        
+//[InlineData(@"
+//<div class=""alert alert-warning alert-dismissible"" role=""alert"">
+//  <button type=""button"" class=""close"" data-dismiss=""alert"" aria-label=""Close""><span aria-hidden=""true"">&times;</span></button>
+//  <strong>Warning!</strong> Better check yourself, you're not looking too good.
+//</div>
+//", "IText", 0)] // Dismissible alerts
+//[InlineData(@"
+//<div class=""alert alert-success"" role=""alert"">
+//  <a href=""#"" class=""alert-link"">...</a>
+//</div>
+//", "ILink", 1)] // Links in alerts
+//        [InlineData(@"
+//<div class=""alert alert-info"" role=""alert"">
+//  <a href=""#"" class=""alert-link"">...</a>
+//</div>
+//", "ILink", 1)]
+//[InlineData(@"
+//<div class=""alert alert-warning"" role=""alert"">
+//  <a href=""#"" class=""alert-link"">...</a>
+//</div>
+//", "ILink", 1)]
+//[InlineData(@"
+//<div class=""alert alert-danger"" role=""alert"">
+//  <a href=""#"" class=""alert-link"">...</a>
+//</div>
+//", "ILink", 1)]
+//        [InlineData(@"
+//<div class=""well"">...</div>
+//", "IText", 0)] // Wells // Default well
+//        [InlineData(@"
+//<div class=""well well - lg"">...</div>
+//", "IText", 0)] // Optional classes
+//        [InlineData(@"
+//<div class=""well well - sm"">...</div>
+//", "IText", 0)]
+
+//        [InlineData(@"
+//<div class=""btn-group"" role=""group"" aria-label=""..."">
+//<button type=""button"" class=""btn btn-default"">Left</button>
+//<button type=""button"" class=""btn btn-default"">Middle</button>
+//<button type=""button"" class=""btn btn-default"">Right</button>
+//</div>
+//", "IButton", 0)] // button groups
+//// ", "IButton", 1)] // button groups
+//        [InlineData(@"
+//<div class=""btn-group"" role=""group"" aria-label=""..."">
+//<button type=""button"" class=""btn btn-default"">Left</button>
+//<button type=""button"" class=""btn btn-default"">Middle</button>
+//<button type=""button"" class=""btn btn-default"">Right</button>
+//</div>
+//", "IButton", 1)] // button groups
+//// ", "IButton", 2)] // button groups
+//        [InlineData(@"
+//<div class=""btn-group"" role=""group"" aria-label=""..."">
+//<button type=""button"" class=""btn btn-default"">Left</button>
+//<button type=""button"" class=""btn btn-default"">Middle</button>
+//<button type=""button"" class=""btn btn-default"">Right</button>
+//</div>
+//", "IButton", 2)] // button groups
+//// ", "IButton", 3)] // button groups
+//        [InlineData(@"
+//<div class=""btn-toolbar"" role=""toolbar"" aria-label=""..."">
+//<div class=""btn-group"" role=""group"" aria-label=""...""><button type=""button"" class=""btn btn-default"">Button1</button></div>
+//<div class=""btn-group"" role=""group"" aria-label=""..."">...</div>
+//<div class=""btn-group"" role=""group"" aria-label=""..."">...</div>
+//</div>
+//", "IButton", 0)] // button toolbar
+//// ", "IButton", 2)] // button toolbar
+//        [InlineData(@"
+//<div class=""btn-toolbar"" role=""toolbar"" aria-label=""..."">
+//<div class=""btn-group"" role=""group"" aria-label=""..."">...</div>
+//<div class=""btn-group"" role=""group"" aria-label=""...""><button type=""button"" class=""btn btn-default"">Button1</button></div>
+//<div class=""btn-group"" role=""group"" aria-label=""..."">...</div>
+//</div>
+//", "IButton", 0)] // button toolbar
+//// ", "IButton", 3)] // button toolbar
+//        [InlineData(@"
+//<div class=""btn-toolbar"" role=""toolbar"" aria-label=""..."">
+//<div class=""btn-group"" role=""group"" aria-label=""..."">...</div>
+//<div class=""btn-group"" role=""group"" aria-label=""..."">...</div>
+//<div class=""btn-group"" role=""group"" aria-label=""...""><button type=""button"" class=""btn btn-default"">Button1</button></div>
+//</div>
+//", "IButton", 0)] // button toolbar
+//// ", "IButton", 4)] // button toolbar
+//        [InlineData(@"
+//<div class=""btn-group btn-group-lg"" role=""group"" aria-label=""...""><button type=""button"" class=""btn btn-default"">Button1</button></div>
+//", "IButton", 0)] // sizing
+//// ", "IButton", 1)] // sizing
+//        [InlineData(@"
+//<div class=""btn-group"" role=""group"" aria-label=""...""><button type=""button"" class=""btn btn-default"">Button1</button></div>
+//", "IButton", 0)] // sizing
+//// ", "IButton", 1)] // sizing
+//        [InlineData(@"
+//<div class=""btn-group btn-group-sm"" role=""group"" aria-label=""...""><button type=""button"" class=""btn btn-default"">Button1</button></div>
+//", "IButton", 0)] // sizing
+//// ", "IButton", 1)] // sizing
+//        [InlineData(@"
+//<div class=""btn-group btn-group-xs"" role=""group"" aria-label=""...""><button type=""button"" class=""btn btn-default"">Button1</button></div>
+//", "IButton", 0)] // sizing
+//// ", "IButton", 1)] // sizing
+//        #region commented
+//        /*
+//        [InlineData(@"
+
+//        ", "")]
+
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        [InlineData(@"
+
+//        ", "")]
+//        */
+//        #endregion
+//        [InlineData(@"
+//<div class=""input-group"">
+//<span class=""input-group-addon"" id=""basic-addon1"">@</span>
+//<input type = ""text"" class=""form-control"" placeholder=""Username"" aria-describedby=""basic-addon1"">
+//</div>
+//", "ITextField", 0)]
+//// ", "ITextField", 2)]
+//        [InlineData(@"
+//<div class=""input-group"">
+//<input type = ""text"" class=""form-control"" placeholder=""Recipient's username"" aria-describedby=""basic-addon2"">
+//<span class=""input-group-addon"" id=""basic-addon2"">@example.com</span>
+//</div>
+//", "ITextField", 0)]
+//// ", "ITextField", 1)]
+//        [InlineData(@"
+//< div class=""input-group"">
+//<span class=""input-group-addon"">$</span>
+//<input type = ""text"" class=""form-control"" aria-label=""Amount(to the nearest dollar)"">
+//<span class=""input-group-addon"">.00</span>
+//</div>
+//", "ITextField", 0)]
+//// ", "ITextField", 2)]
+//        [InlineData(@"
+//<label for=""basic-url"">Your vanity URL</label>
+//<div class=""input-group"">
+//<span class=""input-group-addon"" id=""basic-addon3"">https://example.com/users/</span>
+//<input type = ""text"" class=""form-control"" id=""basic-url"" aria-describedby=""basic-addon3"">
+//</div>
+//", "ITextField", 1)]
+//// ", "ITextField", 3)]
+
 //        [InlineData(@"
 //<form class=""navbar-form navbar-left"" role=""search"">
 //    <div class=""row"">
@@ -630,74 +960,98 @@
 //    </div><!-- /.col-lg-6 -->
 //    </div><!-- /.row -->
 //</form>
-//", "IRadioButtons", 10)] // Checkboxes and radio addons
-        [InlineData(@"
-<form class=""navbar-form navbar-left"" role=""search"">
-    <div class=""row"">
-    <div class=""col-lg-6"">
-    <div class=""input-group"">
-      <span class=""input-group-btn"">
-        <button class=""btn btn-default"" type=""button"">Go!</button>
-      </span>
-      <input type=""text"" class=""form-control"" placeholder=""Search for..."">
-    </div><!-- /input-group -->
-    </div><!-- /.col-lg-6 -->
-    <div class=""col-lg-6"">
-    <div class=""input-group"">
-      <input type=""text"" class=""form-control"" placeholder=""Search for..."">
-      <span class=""input-group-btn"">
-        <button class=""btn btn-default"" type=""button"">Go!</button>
-      </span>
-    </div><!-- /input-group -->
-    </div><!-- /.col-lg-6 -->
-    </div><!-- /.row -->
-</form>
-", "IButton", 4)] // Button addons
-// ", "IButton", 11)] // Button addons
-        [InlineData(@"
-<form class=""navbar-form navbar-left"" role=""search"">
-    <div class=""row"">
-    <div class=""col-lg-6"">
-    <div class=""input-group"">
-      <div class=""input-group-btn"">
-        <button type=""button"" class=""btn btn-default dropdown-toggle"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">Action <span class=""caret""></span></button>
-        <ul class=""dropdown-menu"">
-          <li><a href=""#"">Action</a></li>
-          <li><a href=""#"">Another action</a></li>
-          <li><a href=""#"">Something else here</a></li>
-          <li role=""separator"" class=""divider""></li>
-          <li><a href=""#"">Separated link</a></li>
-        </ul>
-      </div><!-- /btn-group -->
-      <input type=""text"" class=""form-control"" aria-label=""..."">
-    </div><!-- /input-group -->
-    </div><!-- /.col-lg-6 -->
-    <div class=""col-lg-6"">
-    <div class=""input-group"">
-      <input type=""text"" class=""form-control"" aria-label=""..."">
-      <div class=""input-group-btn"">
-        <button type=""button"" class=""btn btn-default dropdown-toggle"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">Action <span class=""caret""></span></button>
-        <ul class=""dropdown-menu dropdown-menu-right"">
-          <li><a href=""#"">Action</a></li>
-          <li><a href=""#"">Another action</a></li>
-          <li><a href=""#"">Something else here</a></li>
-          <li role=""separator"" class=""divider""></li>
-          <li><a href=""#"">Separated link</a></li>
-        </ul>
-      </div><!-- /btn-group -->
-    </div><!-- /input-group -->
-    </div><!-- /.col-lg-6 -->
-    </div><!-- /.row -->
-</form>
-", "IButton", 1)] // Buttons with dropdowns
+//", "ICheckBox", 1)] // Checkboxes and radio addons
+//// ", "ICheckBox", 5)] // Checkboxes and radio addons
+////        [InlineData(@"
+////<form class=""navbar-form navbar-left"" role=""search"">
+////    <div class=""row"">
+////    <div class=""col-lg-6"">
+////    <div class=""input-group"">
+////      <span class=""input-group-addon"">
+////        <input type=""checkbox"" aria-label=""..."">
+////      </span>
+////      <input type=""text"" class=""form-control"" aria-label=""..."">
+////    </div><!-- /input-group -->
+////    </div><!-- /.col-lg-6 -->
+////    <div class=""col-lg-6"">
+////    <div class=""input-group"">
+////      <span class=""input-group-addon"">
+////        <input type=""radio"" aria-label=""..."">
+////      </span>
+////      <input type=""text"" class=""form-control"" aria-label=""..."">
+////    </div><!-- /input-group -->
+////    </div><!-- /.col-lg-6 -->
+////    </div><!-- /.row -->
+////</form>
+////", "IRadioButtons", 10)] // Checkboxes and radio addons
+//        [InlineData(@"
+//<form class=""navbar-form navbar-left"" role=""search"">
+//    <div class=""row"">
+//    <div class=""col-lg-6"">
+//    <div class=""input-group"">
+//      <span class=""input-group-btn"">
+//        <button class=""btn btn-default"" type=""button"">Go!</button>
+//      </span>
+//      <input type=""text"" class=""form-control"" placeholder=""Search for..."">
+//    </div><!-- /input-group -->
+//    </div><!-- /.col-lg-6 -->
+//    <div class=""col-lg-6"">
+//    <div class=""input-group"">
+//      <input type=""text"" class=""form-control"" placeholder=""Search for..."">
+//      <span class=""input-group-btn"">
+//        <button class=""btn btn-default"" type=""button"">Go!</button>
+//      </span>
+//    </div><!-- /input-group -->
+//    </div><!-- /.col-lg-6 -->
+//    </div><!-- /.row -->
+//</form>
+//", "IButton", 4)] // Button addons
+//// ", "IButton", 11)] // Button addons
+//        [InlineData(@"
+//<form class=""navbar-form navbar-left"" role=""search"">
+//    <div class=""row"">
+//    <div class=""col-lg-6"">
+//    <div class=""input-group"">
+//      <div class=""input-group-btn"">
+//        <button type=""button"" class=""btn btn-default dropdown-toggle"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">Action <span class=""caret""></span></button>
+//        <ul class=""dropdown-menu"">
+//          <li><a href=""#"">Action</a></li>
+//          <li><a href=""#"">Another action</a></li>
+//          <li><a href=""#"">Something else here</a></li>
+//          <li role=""separator"" class=""divider""></li>
+//          <li><a href=""#"">Separated link</a></li>
+//        </ul>
+//      </div><!-- /btn-group -->
+//      <input type=""text"" class=""form-control"" aria-label=""..."">
+//    </div><!-- /input-group -->
+//    </div><!-- /.col-lg-6 -->
+//    <div class=""col-lg-6"">
+//    <div class=""input-group"">
+//      <input type=""text"" class=""form-control"" aria-label=""..."">
+//      <div class=""input-group-btn"">
+//        <button type=""button"" class=""btn btn-default dropdown-toggle"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">Action <span class=""caret""></span></button>
+//        <ul class=""dropdown-menu dropdown-menu-right"">
+//          <li><a href=""#"">Action</a></li>
+//          <li><a href=""#"">Another action</a></li>
+//          <li><a href=""#"">Something else here</a></li>
+//          <li role=""separator"" class=""divider""></li>
+//          <li><a href=""#"">Separated link</a></li>
+//        </ul>
+//      </div><!-- /btn-group -->
+//    </div><!-- /input-group -->
+//    </div><!-- /.col-lg-6 -->
+//    </div><!-- /.row -->
+//</form>
+//", "IButton", 1)] // Buttons with dropdowns
 // ", "IButton", 5)] // Buttons with dropdowns
-        [Trait("Category", "Bootstrap 3, single element")]
-        public void ParseBootstrap3ForSingleElement(string input, string expected, int elementPosition)
-        {
-            GivenHtml_OriginalForHtmlInCode(input);
-            WhenParsing(elementPosition);
-            ThenThereIsElementOfType(expected);
-        }
+        #endregion
+        //[Trait("Category", "Bootstrap 3, single element")]
+        //public void ParseBootstrap3ForSingleElement(string input, string expected, int elementPosition)
+        //{
+        //    GivenHtml_OriginalForHtmlInCode(input);
+        //    WhenParsing(elementPosition);
+        //    ThenThereIsElementOfType(expected);
+        //}
         
         [Theory]
         [InlineData(@"

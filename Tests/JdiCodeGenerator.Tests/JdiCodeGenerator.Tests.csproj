@@ -142,6 +142,7 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Data\Bootstrap3\Complex\" />
     <Folder Include="Example\" />
   </ItemGroup>
   <ItemGroup>
@@ -155,37 +156,145 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\Bootstrap3\Alert.txt">
+    <Content Include="Data\Bootstrap3\Simple\Alert.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Bootstrap3\ButtonDefault.txt">
+    <Content Include="Data\Bootstrap3\Simple\AlertDanger.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Bootstrap3\ButtonDefaultLarge.txt">
+    <Content Include="Data\Bootstrap3\Simple\AlertDangerLink.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Bootstrap3\ButtonDefaultNavBar.txt">
+    <Content Include="Data\Bootstrap3\Simple\AlertDismissible.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Bootstrap3\LabelDefault.txt">
+    <Content Include="Data\Bootstrap3\Simple\AlertInfo.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Bootstrap3\LabelDefaultHeading.txt">
+    <Content Include="Data\Bootstrap3\Simple\AlertInfoLink.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Bootstrap3\LabelInfo.txt">
+    <Content Include="Data\Bootstrap3\Simple\AlertSuccess.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Bootstrap3\LabelPrimary.txt">
+    <Content Include="Data\Bootstrap3\Simple\AlertSuccessLink.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Bootstrap3\LabelSuccess.txt">
+    <Content Include="Data\Bootstrap3\Simple\AlertWarning.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Bootstrap3\NavBarText.txt">
+    <Content Include="Data\Bootstrap3\Simple\AlertWarningLink.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Bootstrap3\NavBarTextNavBarRight.txt">
+    <Content Include="Data\Bootstrap3\Simple\Badge.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\ButtonAddons.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\ButtonDefault.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\ButtonDefaultLarge.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\ButtonDefaultNavBar.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\ButtonGroup0.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\ButtonGroup1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\ButtonGroup2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\ButtonGroupSizing0.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\ButtonGroupSizing1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\ButtonGroupSizing2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\ButtonGroupSizing3.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\ButtonsWithDropdowns.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\ButtonToolbar0.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\ButtonToolbar1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\ButtonToolbar2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\CheckboxesAndRadioAddons.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\InputGroupAddon0.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\InputGroupAddon1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\InputGroupAddon2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\Jumbotron.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\Jumbotron2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\LabelDanger.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\LabelDefault.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\LabelDefaultHeading.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\LabelInfo.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\LabelPrimary.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\LabelSuccess.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\LabelWarning.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\NavBarText.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\NavBarTextNavBarRight.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\PageHeader.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\TabList.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\TextField.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\Well.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\WellLarge.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\WellSmall.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="PageForFormatting.html" />
