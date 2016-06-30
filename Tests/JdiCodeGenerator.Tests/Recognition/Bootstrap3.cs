@@ -9,12 +9,13 @@
     using Internals;
     using Xunit;
     using Web.Helpers;
+    using Web.ObjectModel.Abstract;
 
     public class Bootstrap3
     {
-        CodeEntry _entry;
+        CodeEntry<HtmlElementTypes> _entry;
         HtmlDocument _doc;
-        readonly List<ICodeEntry> _entries;
+        readonly List<ICodeEntry<HtmlElementTypes>> _entries;
 
         const string HtmlFirstPart = @"
 <!DOCTYPE html>
@@ -51,7 +52,7 @@
         {
             _entry = null;
             _doc = null;
-            _entries = new List<ICodeEntry>();
+            _entries = new List<ICodeEntry<HtmlElementTypes>>();
         }
 
         [Theory]
@@ -1029,8 +1030,8 @@ Panel content
         void WhenParsing(int elementPosition)
         {
             var pageLoader = new PageLoader();
-            _entries.AddRange(pageLoader.GetCodeEntriesFromNode(_doc.DocumentNode, TestFactory.ExcludeList));
-            _entry = _entries.Cast<CodeEntry>().ToArray()[elementPosition];
+            _entries.AddRange(pageLoader.GetCodeEntriesFromNode<HtmlElementTypes>(_doc.DocumentNode, TestFactory.ExcludeList));
+            _entry = _entries.Cast<CodeEntry<HtmlElementTypes>>().ToArray()[elementPosition];
         }
 
         void ThenThereIsElementOfType(string expected)

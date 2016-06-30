@@ -11,14 +11,14 @@
     using ObjectModel.Abstract;
     using ObjectModel.Plugins;
 
-    public class HtmlElementToCodeEntryConvertor<T>
+    public class HtmlElementToCodeEntryConvertor//<T>
     {
-        public ICodeEntry<T> ConvertToCodeEntry<T>(HtmlNode node)
+        public ICodeEntry<HtmlElementTypes> ConvertToCodeEntry(HtmlNode node)
         {
             // refactoring
             // 20160630
             // var codeEntry = new CodeEntry<T> { HtmlMemberType = new General().Analyze(node.OriginalName) };
-            var codeEntry = new CodeEntry<T> { SourceMemberType = new SourceElementTypeCollection<T> { Types = new List<T> { new General().Analyze(node.OriginalName) } } };
+            var codeEntry = new CodeEntry<HtmlElementTypes> { SourceMemberType = new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { (new General()).Analyze(node.OriginalName) } } };
 
             codeEntry.Locators.AddRange(
                 new List<LocatorDefinition>
@@ -65,11 +65,11 @@
 
             var processChildren = rootNode.OriginalName == WebNames.ElementTypeBody
                 ? true
-                : ConvertToCodeEntry<HtmlElementTypes>(rootNode).ProcessChildren;
+                : ConvertToCodeEntry(rootNode).ProcessChildren;
 
             var resultList = new List<ICodeEntry<HtmlElementTypes>>();
             if (rootNode.OriginalName != WebNames.ElementTypeBody)
-                resultList.Add(ConvertToCodeEntry<HtmlElementTypes>(rootNode));
+                resultList.Add(ConvertToCodeEntry(rootNode));
 
             if (processChildren)
                 resultList.AddRange(

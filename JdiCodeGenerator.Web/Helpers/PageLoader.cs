@@ -175,7 +175,7 @@
 
         internal IEnumerable<ICodeEntry<T>> GetCodeEntriesFromNode<T>(HtmlNode docNode, IEnumerable<string> excludeList)
         {
-            var convertor = new HtmlElementToCodeEntryConvertor<HtmlElementTypes>();
+            var convertor = new HtmlElementToCodeEntryConvertor();
 
             var rootNode = docNode.Descendants().FirstOrDefault(bodyNode => bodyNode.OriginalName.ToLower() == WebNames.ElementTypeBody);
             if (null == rootNode)

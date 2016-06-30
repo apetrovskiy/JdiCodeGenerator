@@ -9,12 +9,14 @@
     using HtmlAgilityPack;
     using Mocks;
     using NSubstitute;
+    using Web.Helpers;
+    using Web.ObjectModel;
     using Web.ObjectModel.Abstract;
     using Xunit;
 
     public class CodeEntryTests
     {
-        ICodeEntry _entry;
+        ICodeEntry<HtmlElementTypes> _entry;
         string _code;
 
         public CodeEntryTests()
@@ -76,10 +78,11 @@
 
         void GivenCodeEntry(IEnumerable<LocatorDefinition> locatorDefinitions, string jdiMemberType, string memberType)
         {
-            _entry = new CodeEntry
+            _entry = new CodeEntry<HtmlElementTypes>
             {
                 Locators = locatorDefinitions.ToList(),
-                HtmlMemberType = Enum.GetValues(typeof(HtmlElementTypes)).Cast<HtmlElementTypes>().FirstOrDefault(val => 0 == string.Compare(val.ToString().ToLower(), memberType, StringComparison.Ordinal)),
+                // HtmlMemberType = Enum.GetValues(typeof(HtmlElementTypes)).Cast<HtmlElementTypes>().FirstOrDefault(val => 0 == string.Compare(val.ToString().ToLower(), memberType, StringComparison.Ordinal)),
+                SourceMemberType = new SourceElementTypeCollection<HtmlElementTypes> {  Types = new List<HtmlElementTypes> { Enum.GetValues(typeof(HtmlElementTypes)).Cast<HtmlElementTypes>().FirstOrDefault(val => 0 == string.Compare(val.ToString().ToLower(), memberType, StringComparison.Ordinal)) } },
                 JdiMemberType = Enum.GetValues(typeof(JdiElementTypes)).Cast<JdiElementTypes>().FirstOrDefault(val => 0 == string.Compare(val.ToString().ToLower(), jdiMemberType, StringComparison.Ordinal)),
                 MemberType = memberType
             };
@@ -96,7 +99,8 @@
             node.OriginalName.Returns(_entry.MemberType);
 
             // var bootstrapAnalyzer = new Bootstrap3();
-            _entry.JdiMemberType = _entry.HtmlMemberType.ConvertHtmlTypeToJdiType();
+            // _entry.JdiMemberType = _entry.HtmlMemberType.ConvertHtmlTypeToJdiType();
+            _entry.JdiMemberType = _entry.SourceMemberType.Types[0].ConvertHtmlTypeToJdiType();
 
             _code = _entry.GenerateCodeForEntry(SupportedLanguages.Java);
         }

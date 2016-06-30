@@ -11,6 +11,7 @@
         // refactoring
         // 20160630
         // HtmlElementTypes HtmlMemberType { get; set; }
+        ISourceElementTypeCollection<T> SourceMemberType { get; set; }
         JdiElementTypes JdiMemberType { get; set; }
         string MemberType { get; set; }
         string GenerateCodeForEntry(SupportedLanguages language);

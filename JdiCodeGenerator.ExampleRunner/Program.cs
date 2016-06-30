@@ -7,6 +7,7 @@
     using Core.ImportExport;
     using Core.ObjectModel.Abstract;
     using Web.Helpers;
+    using Web.ObjectModel.Abstract;
 
     class Program
     {
@@ -99,8 +100,8 @@
                 Console.WriteLine("===============================================================================");
                 Console.WriteLine("================{0}================", url);
                 Console.WriteLine("===============================================================================");
-                var codeEntries = loader.GetCodeEntries(url, listNotToDisplay);
-                var entries = codeEntries as IList<ICodeEntry> ?? codeEntries.ToList();
+                var codeEntries = loader.GetCodeEntries<HtmlElementTypes>(url, listNotToDisplay);
+                var entries = codeEntries as IList<ICodeEntry<HtmlElementTypes>> ?? codeEntries.ToList();
                 using (var writer = new StreamWriter(folderForExportFiles + @"\" + (300 + fileNumber)))
                 {
                     writer.WriteLine(@"// {0}", url);
@@ -157,7 +158,7 @@
                 */
 
                 exporter.WriteToFile(entries, folderForExportFiles + @"\" + (100 + ++fileNumber));
-                var importedEntries = importer.LoadFromFile(folderForExportFiles + @"\" + (100 + fileNumber));
+                var importedEntries = importer.LoadFromFile<HtmlElementTypes>(folderForExportFiles + @"\" + (100 + fileNumber));
                 exporter.WriteToFile(importedEntries, folderForExportFiles + @"\" + (200 + fileNumber));
 
             });

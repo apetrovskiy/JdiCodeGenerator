@@ -9,6 +9,7 @@
     using TechTalk.SpecFlow;
     using Tests.Recognition.Internals;
     using Web.Helpers;
+    using Web.ObjectModel.Abstract;
     using Xunit;
 
     [Binding]
@@ -16,8 +17,8 @@
     {
         string _html;
         HtmlDocument _doc;
-        CodeEntry _entry;
-        readonly List<ICodeEntry> _entries;
+        CodeEntry<HtmlElementTypes> _entry;
+        readonly List<ICodeEntry<HtmlElementTypes>> _entries;
         const string HtmlFirstPart = @"
 <!DOCTYPE html>
 <html lang=""en"">
@@ -51,7 +52,7 @@
 
         public ParsePageSteps()
         {
-            _entries = new List<ICodeEntry>();
+            _entries = new List<ICodeEntry<HtmlElementTypes>>();
         }
 
         [Given(@"I have a web page with a button")]
@@ -76,8 +77,8 @@
         {
             // ScenarioContext.Current.Pending();
             var pageLoader = new PageLoader();
-            _entries.AddRange(pageLoader.GetCodeEntriesFromNode(_doc.DocumentNode, TestFactory.ExcludeList));
-            _entry = _entries.Cast<CodeEntry>().ToArray()[0];
+            _entries.AddRange(pageLoader.GetCodeEntriesFromNode<HtmlElementTypes>(_doc.DocumentNode, TestFactory.ExcludeList));
+            _entry = _entries.Cast<CodeEntry<HtmlElementTypes>>().ToArray()[0];
         }
         
         [Then(@"the result should be an element of type ""(.*)""")]
