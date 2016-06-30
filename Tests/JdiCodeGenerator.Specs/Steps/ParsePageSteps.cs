@@ -1,4 +1,4 @@
-﻿namespace JdiCodeGenerator.Specs
+﻿namespace JdiCodeGenerator.Specs.Steps
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -9,7 +9,6 @@
     using Tests.Recognition.Internals;
     using Web.Helpers;
     using Web.ObjectModel.Abstract;
-    using Xunit;
 
     [Binding]
     public class ParsePageSteps
@@ -58,7 +57,7 @@
         public void GivenIHaveAWebPageWithAButton()
         {
             // ScenarioContext.Current.Pending();
-            // [Theory]
+            // [Xunit.Theory]
             // [InlineData(@"
             var _html = @"
 <button type=""button"" class=""btn btn-default"" aria-label=""Left Align"">
@@ -84,7 +83,7 @@
         public void ThenTheResultShouldBeAnElementOfType(string p0)
         {
             // ScenarioContext.Current.Pending();
-            Assert.True(_entry.GenerateCodeForEntry(SupportedLanguages.Java).Contains(p0));
+            Xunit.Assert.True(_entry.GenerateCodeForEntry(SupportedLanguages.Java).Contains(p0));
         }
     }
 }

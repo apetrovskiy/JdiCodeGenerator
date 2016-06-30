@@ -12,7 +12,7 @@
             _doc = null;
         }
 
-        [Theory]
+        [Xunit.Theory]
         [InlineData(@"
 
 ", "")]
@@ -54,7 +54,7 @@
             ThenThereIsElementOfType(expected);
         }
 
-        [Theory]
+        [Xunit.Theory]
         [InlineData(@"
 
 ", "")]
@@ -110,12 +110,12 @@
 
         void ThenThereIsElementOfType(string expected)
         {
-            Assert.True(_entry.GenerateCodeForEntry(SupportedLanguages.Java).Contains(expected));
+            Xunit.Assert.True(_entry.GenerateCodeForEntry(SupportedLanguages.Java).Contains(expected));
         }
 
         void ThenThereIsCollectionOfElementsOfType(string expected)
         {
-            Assert.True(_entry.GenerateCodeForEntry(SupportedLanguages.Java).Contains(expected));
+            Xunit.Assert.True(_entry.GenerateCodeForEntry(SupportedLanguages.Java).Contains(expected));
         }
         */
     }

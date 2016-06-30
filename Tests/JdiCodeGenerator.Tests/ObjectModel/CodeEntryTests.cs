@@ -9,6 +9,7 @@
     using HtmlAgilityPack;
     using Mocks;
     using NSubstitute;
+    using NUnit.Framework;
     using Web.Helpers;
     using Web.ObjectModel.Abstract;
     using Xunit;
@@ -35,7 +36,7 @@
         string Type { get; set; }
         */
 
-        [Theory]
+        [Xunit.Theory]
         [InlineData(new[] { "id", "" }, "", "element", "elementNoName")]
         [InlineData(new[] { "id", "" }, "input", "textfield", "textFieldNoName")]
         [InlineData(new[] { "id", "id" }, "input", "textfield", "textFieldId")]
@@ -48,6 +49,18 @@
         [InlineData(new[] { "tagName", "ttt" }, "input", "textfield", "textFieldTtt")]
         [InlineData(new[] { "tagName", "ttt" }, "?xml", "element", "elementTtt")]
         [Trait("Category", "EntryTitle")]
+
+        [TestCase(new[] { "id", "" }, "", "element", "elementNoName")]
+        [TestCase(new[] { "id", "" }, "input", "textfield", "textFieldNoName")]
+        [TestCase(new[] { "id", "id" }, "input", "textfield", "textFieldId")]
+        [TestCase(new[] { "name", "some name" }, "input", "textfield", "textFieldSomeName")]
+        [TestCase(new[] { "css", ".a .ul" }, "input", "textfield", "textFieldNoName")] // ??
+        [TestCase(new[] { "css", "[name='a']" }, "input", "textfield", "textFieldNoName")] // ??
+        [TestCase(new[] { "className", ".a .ul" }, "input", "textfield", "textFieldAUl")]
+        [TestCase(new[] { "xpath", "//*[class=test]" }, "input", "textfield", "textFieldNoName")] // ??
+        [TestCase(new[] { "linkText", "/aa/bb/cc" }, "input", "textfield", "textFieldAaBbCc")]
+        [TestCase(new[] { "tagName", "ttt" }, "input", "textfield", "textFieldTtt")]
+        [TestCase(new[] { "tagName", "ttt" }, "?xml", "element", "elementTtt")]
         public void GeneratesEntryTitle(string[] stringLocatorDefinitions, string memberType, string jdiMemberType, string expectedTitle)
         {
             var locatorDefinitions = ConvertStringArrayToLocatorDefinitions(stringLocatorDefinitions);
@@ -56,7 +69,7 @@
             ThenTitleIs(expectedTitle);
         }
 
-        [Theory]
+        [Xunit.Theory]
         [InlineData(new[] { "id", "id" }, "", "element", "IElement")]
         [InlineData(new[] { "id", "id" }, "input", "textfield", "ITextField")]
         [InlineData(new[] { "id", "id" }, "label", "label", "ILabel")]
@@ -67,6 +80,14 @@
         // [InlineData(new[] { "id", "id" }, "textarea", "textarea", "ITextArea")]
         // [InlineData(new[] { "id", "id" }, "label", "label", "ILabel")]
         [Trait("Category", "EntryJdiType")]
+
+        [TestCase(new[] { "id", "id" }, "", "element", "IElement")]
+        [TestCase(new[] { "id", "id" }, "input", "textfield", "ITextField")]
+        [TestCase(new[] { "id", "id" }, "label", "label", "ILabel")]
+        [TestCase(new[] { "id", "id" }, "button", "button", "IButton")]
+        [TestCase(new[] { "id", "id" }, "select", "checkbox", "ICheckBox")]
+        [TestCase(new[] { "id", "id" }, "a", "link", "ILink")]
+        [TestCase(new[] { "id", "id" }, "img", "image", "IImage")]
         public void GenerateCodeEntryWithBestLocator(string[] stringLocatorDefinitions, string memberType, string jdiMemberType, string expectedJdiType)
         {
             var locatorDefinitions = ConvertStringArrayToLocatorDefinitions(stringLocatorDefinitions);
@@ -106,12 +127,12 @@
 
         void ThenTitleIs(string expectedTitle)
         {
-            Assert.Equal(expectedTitle, _entry.MemberName);
+            Xunit.Assert.Equal(expectedTitle, _entry.MemberName);
         }
 
         void ThenCodeContains(string expectedJdiType)
         {
-            Assert.True(_code.Contains(expectedJdiType));
+            Xunit.Assert.True(_code.Contains(expectedJdiType));
         }
 
         SearchTypePreferences ConvertStringToSearchTypePreference(string stringTypePreference)

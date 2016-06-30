@@ -1,4 +1,4 @@
-﻿namespace JdiCodeGenerator.Specs
+﻿namespace JdiCodeGenerator.Specs.Features
 {
     public class FeatureBase
     {

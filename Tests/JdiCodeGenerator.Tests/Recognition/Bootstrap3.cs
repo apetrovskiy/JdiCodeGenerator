@@ -7,6 +7,7 @@
     using Core.ObjectModel.Abstract;
     using HtmlAgilityPack;
     using Internals;
+    using NUnit.Framework;
     using Xunit;
     using Web.Helpers;
     using Web.ObjectModel.Abstract;
@@ -55,7 +56,7 @@
             _entries = new List<ICodeEntry<HtmlElementTypes>>();
         }
 
-        [Theory]
+        [Xunit.Theory]
         [InlineData(@"..\Data\Bootstrap3\Simple\ButtonDefault.txt", "IButton", 0)]
         [InlineData(@"..\Data\Bootstrap3\Simple\ButtonDefaultLarge.txt", "IButton", 0)]
         [InlineData(@"..\Data\Bootstrap3\Simple\Alert.txt", "IText", 0)] // alert
@@ -111,278 +112,6 @@
         [InlineData(@"
 
         ", "")]
-
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
-        [InlineData(@"
-
-        ", "")]
         */
         #endregion
         [InlineData(@"..\Data\Bootstrap3\Simple\InputGroupAddon0.txt", "ITextField", 0)]
@@ -402,6 +131,80 @@
                   // ", "IButton", 11)] // Button addons
         [InlineData(@"..\Data\Bootstrap3\Simple\ButtonsWithDropdowns.txt", "IButton", 1)] // Buttons with dropdowns
         [Trait("Category", "Bootstrap 3, single element")]
+
+        [TestCase(@"..\Data\Bootstrap3\Simple\ButtonDefault.txt", "IButton", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\ButtonDefaultLarge.txt", "IButton", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\Alert.txt", "IText", 0)] // alert
+        [TestCase(@"..\Data\Bootstrap3\Simple\ButtonDefaultNavBar.txt", "IButton", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\NavBarText.txt", "IText", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\NavBarTextNavBarRight.txt", "IText", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\LabelDefaultHeading.txt", "ILabel", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\LabelDefault.txt", "ILabel", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\LabelPrimary.txt", "ILabel", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\LabelSuccess.txt", "ILabel", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\LabelInfo.txt", "ILabel", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\LabelWarning.txt", "ILabel", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\LabelDanger.txt", "ILabel", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\Badge.txt", "ILink", 0)] // Badges
+        [TestCase(@"..\Data\Bootstrap3\Simple\TabList.txt", "ITabs", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\Jumbotron.txt", "IText", 0)] // Jumbotron
+        [TestCase(@"..\Data\Bootstrap3\Simple\Jumbotron2.txt", "IText", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\PageHeader.txt", "IText", 0)] // Page header
+        [TestCase(@"..\Data\Bootstrap3\Simple\AlertSuccess.txt", "IText", 0)] // Alerts
+        [TestCase(@"..\Data\Bootstrap3\Simple\AlertInfo.txt", "IText", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\AlertWarning.txt", "IText", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\AlertDanger.txt", "IText", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\AlertDismissible.txt", "IText", 0)] // Dismissible alerts
+        [TestCase(@"..\Data\Bootstrap3\Simple\AlertSuccessLink.txt", "ILink", 1)] // Links in alerts
+        [TestCase(@"..\Data\Bootstrap3\Simple\AlertInfoLink.txt", "ILink", 1)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\AlertWarningLink.txt", "ILink", 1)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\AlertDangerLink.txt", "ILink", 1)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\Well.txt", "IText", 0)] // Wells // Default well
+        [TestCase(@"..\Data\Bootstrap3\Simple\WellLarge.txt", "IText", 0)] // Optional classes
+        [TestCase(@"..\Data\Bootstrap3\Simple\WellSmall.txt", "IText", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\ButtonGroup0.txt", "IButton", 0)] // button groups
+                                                                                  // ", "IButton", 1)] // button groups
+        [TestCase(@"..\Data\Bootstrap3\Simple\ButtonGroup1.txt", "IButton", 1)] // button groups
+                                                                                  // ", "IButton", 2)] // button groups
+        [TestCase(@"..\Data\Bootstrap3\Simple\ButtonGroup2.txt", "IButton", 2)] // button groups
+                                                                                  // ", "IButton", 3)] // button groups
+        [TestCase(@"..\Data\Bootstrap3\Simple\ButtonToolbar0.txt", "IButton", 0)] // button toolbar
+                                                                                    // ", "IButton", 2)] // button toolbar
+        [TestCase(@"..\Data\Bootstrap3\Simple\ButtonToolbar1.txt", "IButton", 0)] // button toolbar
+                                                                                    // ", "IButton", 3)] // button toolbar
+        [TestCase(@"..\Data\Bootstrap3\Simple\ButtonToolbar2.txt", "IButton", 0)] // button toolbar
+                                                                                    // ", "IButton", 4)] // button toolbar
+        [TestCase(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing0.txt", "IButton", 0)] // sizing
+                                                                                        // ", "IButton", 1)] // sizing
+        [TestCase(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing1.txt", "IButton", 0)] // sizing
+                                                                                        // ", "IButton", 1)] // sizing
+        [TestCase(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing2.txt", "IButton", 0)] // sizing
+                                                                                        // ", "IButton", 1)] // sizing
+        [TestCase(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing3.txt", "IButton", 0)] // sizing
+                                                                                        // ", "IButton", 1)] // sizing
+        #region commented
+        /*
+        [TestCase(@"
+
+        ", "")]
+        */
+        #endregion
+        [TestCase(@"..\Data\Bootstrap3\Simple\InputGroupAddon0.txt", "ITextField", 0)]
+        // ", "ITextField", 2)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\InputGroupAddon1.txt", "ITextField", 0)]
+        // ", "ITextField", 1)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\InputGroupAddon2.txt", "ITextField", 0)]
+        // ", "ITextField", 2)]
+        [TestCase(@"..\Data\Bootstrap3\Simple\TextField.txt", "ITextField", 1)]
+        // ", "ITextField", 3)]
+
+        [TestCase(@"..\Data\Bootstrap3\Simple\CheckboxesAndRadioAddons0.txt", "ICheckBox", 1)] // Checkboxes and radio addons
+                                                                                                 // ", "ICheckBox", 5)] // Checkboxes and radio addons
+                                                                                                 // [TestCase(@"..\Data\Bootstrap3\Simple\CheckboxesAndRadioAddons1.txt", "IRadioButtons", 10)] // Checkboxes and radio addons
+        [TestCase(@"..\Data\Bootstrap3\Simple\CheckboxesAndRadioAddons1.txt", "IRadioButtons", 3)] // Checkboxes and radio addons
+        [TestCase(@"..\Data\Bootstrap3\Simple\ButtonAddons.txt", "IButton", 4)] // Button addons
+                                                                                  // ", "IButton", 11)] // Button addons
+        [TestCase(@"..\Data\Bootstrap3\Simple\ButtonsWithDropdowns.txt", "IButton", 1)] // Buttons with dropdowns
         public void ParseBootstrap3ForSingleElementNew(string input, string expected, int elementPosition)
         {
             GivenHtml_NewHtmlInFiles(input);
@@ -409,7 +212,7 @@
             ThenThereIsElementOfType(expected);
         }
 
-        //[Theory]
+        //[Xunit.Theory]
         //[Trait("Category", "OLD Bootstrap 3, single element")]
         //public void ParseBootstrap3ForSingleElementOld(string input, string expected, int elementPosition)
         //{
@@ -418,7 +221,7 @@
         //    ThenThereIsElementOfType(expected);
         //}
 
-        [Theory]
+        [Xunit.Theory]
         [InlineData(@"..\Data\Bootstrap3\Complex\DropDown.txt", "IDropDown<SomeEnum>", 0)]
         [InlineData(@"..\Data\Bootstrap3\Complex\DropUp.txt", "IDropDown<SomeEnum>", 0)]
         [InlineData(@"..\Data\Bootstrap3\Complex\DropDownAlignment.txt", "IDropDown<SomeEnum>", 0)] // alignment
@@ -991,7 +794,7 @@ Panel content
             ThenThereIsCollectionOfElementsOfType(expected);
         }
 
-        //[Theory]
+        //[Xunit.Theory]
         //[Trait("Category", "OLD Bootstrap 3, collection")]
         //public void ParseBootstrap3ForCollectionOld(string input, string expected, int elementPosition)
         //{
@@ -1034,7 +837,7 @@ Panel content
 
         void ThenThereIsElementOfType(string expected)
         {
-            Assert.True(_entry.GenerateCodeForEntry(SupportedLanguages.Java).Contains(expected));
+            Xunit.Assert.True(_entry.GenerateCodeForEntry(SupportedLanguages.Java).Contains(expected));
         }
 
         void ThenThereIsCollectionOfElementsOfType(string expected)
@@ -1042,7 +845,7 @@ Panel content
             //Console.WriteLine("================================================================================================");
             //Console.WriteLine(_entry.GenerateCodeForEntry(SupportedLanguages.Java));
 
-            Assert.True(_entry.GenerateCodeForEntry(SupportedLanguages.Java).Contains(expected));
+            Xunit.Assert.True(_entry.GenerateCodeForEntry(SupportedLanguages.Java).Contains(expected));
         }
     }
 }
