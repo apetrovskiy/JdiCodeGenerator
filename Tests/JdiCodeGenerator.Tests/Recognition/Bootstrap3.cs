@@ -1010,7 +1010,6 @@ Panel content
 
         void GivenHtml_NewHtmlInFiles(string path)
         {
-            // var fullHtml = @"<html><head></head><body>" + input + "</body></html>";
             var fullHtml = string.Empty;
 #if DEBUG
             path = @"Debug\" + path;
@@ -1022,7 +1021,6 @@ Panel content
                 fullHtml = HtmlFirstPart + reader.ReadToEnd() + HtmlLastPart;
                 reader.Close();
             }
-            // var fullHtml = HtmlFirstPart + path + HtmlLastPart;
             _doc = new HtmlDocument();
             _doc.LoadHtml(fullHtml);
         }

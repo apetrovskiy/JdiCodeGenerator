@@ -10,7 +10,6 @@
     using Mocks;
     using NSubstitute;
     using Web.Helpers;
-    using Web.ObjectModel;
     using Web.ObjectModel.Abstract;
     using Xunit;
 

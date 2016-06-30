@@ -2,7 +2,6 @@
 {
     using Abstract;
     using HtmlAgilityPack;
-    using Core.ObjectModel.Abstract;
 
     public class Pure // : IFrameworkAlingmentAnalysisPlugin
     {

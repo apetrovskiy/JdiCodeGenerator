@@ -110,7 +110,6 @@
     <Compile Include="ObjectModel\Abstract\ICodeEntry.cs" />
     <Compile Include="ObjectModel\Abstract\IRule.cs" />
     <Compile Include="ObjectModel\Abstract\IRuleCondition.cs" />
-    <Compile Include="ObjectModel\Abstract\ISourceElementTypeCollection.cs" />
     <Compile Include="ObjectModel\Abstract\JdiElementTypes.cs" />
     <Compile Include="ObjectModel\Abstract\Markers.cs" />
     <Compile Include="ObjectModel\Abstract\NamingPreferences.cs" />
@@ -121,6 +120,7 @@
     <Compile Include="ObjectModel\LocatorDefinition.cs" />
     <Compile Include="ObjectModel\Rule.cs" />
     <Compile Include="ObjectModel\RuleCondition.cs" />
+    <Compile Include="ObjectModel\SourceElementTypeCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,10 +11,7 @@
         public Guid Id { get; set; }
         public List<LocatorDefinition> Locators { get; set; }
         public string MemberName { get; set; }
-        // refactoring
-        // 20160630
-        // public HtmlElementTypes HtmlMemberType { get; set; }
-        public ISourceElementTypeCollection<T> SourceMemberType { get; set; }
+        public SourceElementTypeCollection<T> SourceMemberType { get; set; }
         public JdiElementTypes JdiMemberType { get; set; }
         // for debugging purposes
         // public string MemberType { get; set; }
@@ -221,9 +218,7 @@
                 case JdiElementTypes.Popup:
                     break;
                 case JdiElementTypes.RadioButtons:
-                    // 20160630
                     return true;
-                    // break;
                 case JdiElementTypes.Search:
                     break;
                 case JdiElementTypes.Selector:

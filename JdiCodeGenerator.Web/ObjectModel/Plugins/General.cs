@@ -3,7 +3,6 @@
     using System;
     using System.Linq;
     using Abstract;
-    using Core.ObjectModel.Abstract;
 
     public class General // : IFrameworkAlingmentAnalysisPlugin
     {

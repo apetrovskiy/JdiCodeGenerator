@@ -7,7 +7,6 @@
     using Core.Helpers;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
-    using ObjectModel;
     using ObjectModel.Abstract;
     using ObjectModel.Plugins;
 
@@ -15,9 +14,6 @@
     {
         public ICodeEntry<HtmlElementTypes> ConvertToCodeEntry(HtmlNode node)
         {
-            // refactoring
-            // 20160630
-            // var codeEntry = new CodeEntry<T> { HtmlMemberType = new General().Analyze(node.OriginalName) };
             var codeEntry = new CodeEntry<HtmlElementTypes> { SourceMemberType = new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { (new General()).Analyze(node.OriginalName) } } };
 
             codeEntry.Locators.AddRange(
@@ -41,9 +37,6 @@
             codeEntry.RuleThatWon = null != ExtensionMethodsForNodes.AnalyzerThatWon && null != ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon ? ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon.GetType().Name : string.Empty;
 
             if (JdiElementTypes.Element == codeEntry.JdiMemberType)
-                // refactoring
-                // 20160630
-                // codeEntry.JdiMemberType = codeEntry.HtmlMemberType.ConvertHtmlTypeToJdiType();
                 codeEntry.JdiMemberType = codeEntry.SourceMemberType.Types[0].ConvertHtmlTypeToJdiType();
 
             // temporarily!
@@ -57,15 +50,7 @@
 
         public IEnumerable<ICodeEntry<HtmlElementTypes>> ConvertToCodeEntries(HtmlNode rootNode)
         {
-            //var codeEntry = ConvertToCodeEntry(rootNode);
-            //return codeEntry.ProcessChildren ? rootNode.ChildNodes
-            //    .Where(node => node.NodeType == HtmlNodeType.Element)
-            //    .SelectMany(ConvertToCodeEntries).ToList() :
-            //new List<ICodeEntry> {codeEntry};
-
-            var processChildren = rootNode.OriginalName == WebNames.ElementTypeBody
-                ? true
-                : ConvertToCodeEntry(rootNode).ProcessChildren;
+            var processChildren = rootNode.OriginalName == WebNames.ElementTypeBody || ConvertToCodeEntry(rootNode).ProcessChildren;
 
             var resultList = new List<ICodeEntry<HtmlElementTypes>>();
             if (rootNode.OriginalName != WebNames.ElementTypeBody)

@@ -9,7 +9,6 @@
     using Core;
     using Core.Helpers;
     using Core.ObjectModel.Abstract;
-    using ObjectModel.Abstract;
 
     //using CefSharp;
     //using CefSharp.OffScreen;

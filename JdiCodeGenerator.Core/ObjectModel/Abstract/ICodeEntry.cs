@@ -8,10 +8,7 @@
         Guid Id { get; set; }
         List<LocatorDefinition> Locators { get; set; }
         string MemberName { get; set; }
-        // refactoring
-        // 20160630
-        // HtmlElementTypes HtmlMemberType { get; set; }
-        ISourceElementTypeCollection<T> SourceMemberType { get; set; }
+        SourceElementTypeCollection<T> SourceMemberType { get; set; }
         JdiElementTypes JdiMemberType { get; set; }
         string MemberType { get; set; }
         string GenerateCodeForEntry(SupportedLanguages language);

@@ -199,9 +199,6 @@
             return forCondition.Any(probeNode => NodeMatchesTheCondition(probeNode, condition.Marker, condition.MarkerValues));
         }
 
-        // refactoring
-        // 20160630
-        // public static bool ResolveRuleToJdiType(this IRule rule, HtmlNode node)
         public static bool ResolveRuleToJdiType(this IRule<HtmlElementTypes> rule, HtmlNode node)
         {
             return (!rule.OrConditions.Any() || rule.OrConditions.Any(condition => CheckCondition(node, condition))) &&
@@ -214,15 +211,9 @@
             return markerValues.Any(markerValue => attributeValue.Contains(markerValue));
         }
 
-        // refactoring
-        // 20160630
-        // public static bool IsMatch(this IRule rule, HtmlNode node)
         public static bool IsMatch(this IRule<HtmlElementTypes> rule, HtmlNode node)
         {
             var elementType = new General().Analyze(node.OriginalName);
-            // refactoring
-            // 20160630
-            // if (!rule.SourceTypes.Contains(elementType))
             if (!rule.SourceTypes.SelectMany(type => type.Types).Contains(elementType))
                 return false;
 

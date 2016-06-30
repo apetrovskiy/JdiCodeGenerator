@@ -96,7 +96,6 @@
     <Compile Include="ObjectModel\Plugins\BootstrapAndCompetitors\Zimit.cs" />
     <Compile Include="ObjectModel\Plugins\General.cs" />
     <Compile Include="ObjectModel\Plugins\ReactJs.cs" />
-    <Compile Include="ObjectModel\SourceElementTypeCollection.cs" />
     <Compile Include="Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
