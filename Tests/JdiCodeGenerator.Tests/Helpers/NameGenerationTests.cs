@@ -169,7 +169,7 @@
         [TestCase("file¬(0)", "File0")]
         [TestCase("file±(0)", "File0")]
         [TestCase("file§(0)", "File0")]
-        public void EmptyString(string input, string expected)
+        public void ConvertStringToPascalCase(string input, string expected)
         {
             GivenSourceName(input);
             WhenPrepatingName();

@@ -787,6 +787,120 @@ Panel content
 */
         #endregion
         [Trait("Category", "Bootstrap 3, collection")]
+        
+        
+        [TestCase(@"..\Data\Bootstrap3\Complex\DropDown.txt", "IDropDown<SomeEnum>", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Complex\DropUp.txt", "IDropDown<SomeEnum>", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Complex\DropDownAlignment.txt", "IDropDown<SomeEnum>", 0)] // alignment
+        [TestCase(@"..\Data\Bootstrap3\Complex\DropDownHeaders.txt", "IDropDown<SomeEnum>", 0)] // headers
+        [TestCase(@"..\Data\Bootstrap3\Complex\DropDownDivider.txt", "IMenuItem", 0)] // divider
+                    // ", "IElement", 2)] // divider
+        [TestCase(@"..\Data\Bootstrap3\Complex\DropDownDisabledMenuItems.txt", "ILink", 3)] // disabled menu items
+        [TestCase(@"..\Data\Bootstrap3\Complex\ButtonGroupNesting.txt", "IDropDown<SomeEnum>", 0)] // nesting
+                              // 20160610
+                              // ", "IDropDown<SomeEnum>", 3)] // nesting
+        [TestCase(@"..\Data\Bootstrap3\Complex\ButtonGroupVerticalVariation.txt", "IDropDown<SomeEnum>", 0)] // vertical variation
+                              // 20160610
+                              // ", "IDropDown<SomeEnum>", 4)] // vertical variation
+
+        [TestCase(@"..\Data\Bootstrap3\Complex\JustifiedButtonGroup.txt", "IDropDown<SomeEnum>", 3)] // justified button groups
+                              // 20160610
+                              // ", "IDropDown<SomeEnum>", 8)] // justified button groups
+
+        //    [TestCase(@"
+        //<div class="btn-group btn-group-justified" role="group" aria-label="...">
+        //<div class="btn-group" role="group">
+        //<button type="button" class="btn btn-default">Left</button>
+        //</div>
+        //<div class="btn-group" role="group">
+        //<button type="button" class="btn btn-default">Middle</button>
+        //</div>
+        //<div class="btn-group" role="group">
+        //<button type="button" class="btn btn-default">Right</button>
+        //</div>
+        //</div>
+        //", "")]
+        [TestCase(@"..\Data\Bootstrap3\Complex\ButtonDropDown.txt", "IDropDown<SomeEnum>", 0)] // button dropdowns
+        [TestCase(@"..\Data\Bootstrap3\Complex\SplitButtonDropDown.txt", "IDropDown<SomeEnum>", 0)] // split button dropdowns
+        [TestCase(@"..\Data\Bootstrap3\Complex\DropDownMenuLargeButtonGroup.txt", "IDropDown<SomeEnum>", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Complex\DropDownMenuSmallButtonGroup.txt", "IDropDown<SomeEnum>", 0)]
+        [TestCase(@"..\Data\Bootstrap3\Complex\DropDownMenuExtraSmallButtonGroup.txt", "IDropDown<SomeEnum>", 0)] // sizing x3
+        [TestCase(@"..\Data\Bootstrap3\Complex\DropUpVariation.txt", "IDropDown<SomeEnum>", 0)] // dropup variation
+        [TestCase(@"..\Data\Bootstrap3\Complex\InputGroups.txt", "IForm<SomeEnum>", 0)] // input groups
+        [TestCase(@"..\Data\Bootstrap3\Complex\NavBarFormSizing.txt", "IForm<SomeEnum>", 0)] // sizing
+        [TestCase(@"..\Data\Bootstrap3\Complex\NavBarFormCheckboxesAndRadioButtons.txt", "IForm<SomeEnum>", 0)] // Checkboxes and radio addons
+        [TestCase(@"..\Data\Bootstrap3\Complex\NavBarFormButtonAddons.txt", "IForm<SomeEnum>", 0)] // Button addons
+        [TestCase(@"..\Data\Bootstrap3\Complex\NavBarFormButtonsWithDropDowns.txt", "IForm<SomeEnum>", 0)] // Buttons with dropdowns
+        [TestCase(@"..\Data\Bootstrap3\Complex\NavBarFormSegmentedButtons.txt", "IForm<SomeEnum>", 0)] // Segmented buttons
+        [TestCase(@"..\Data\Bootstrap3\Complex\NavBarFormMultipleButtons.txt", "IForm<SomeEnum>", 0)] // Multiple buttons
+        #region commented
+        /*
+    [TestCase(@"
+<ul class="nav nav-tabs">
+<li role="presentation" class="active"><a href="#">Home</a></li>
+<li role="presentation"><a href="#">Profile</a></li>
+<li role="presentation"><a href="#">Messages</a></li>
+</ul>
+", "")] // Tabs
+    [TestCase(@"
+<ul class="nav nav-pills">
+<li role="presentation" class="active"><a href="#">Home</a></li>
+<li role="presentation"><a href="#">Profile</a></li>
+<li role="presentation"><a href="#">Messages</a></li>
+</ul>
+", "")] // Pills
+    [TestCase(@"
+<ul class="nav nav-pills nav-stacked">
+...
+</ul>
+", "")]
+    [TestCase(@"
+<ul class="nav nav-tabs nav-justified">
+...
+</ul>
+<ul class="nav nav-pills nav-justified">
+...
+</ul>
+", "")] // Justified
+    [TestCase(@"
+<ul class="nav nav-pills">
+...
+<li role="presentation" class="disabled"><a href="#">Disabled link</a></li>
+...
+</ul>
+", "")] // Disabled links
+    [TestCase(@"
+<ul class="nav nav-tabs">
+...
+<li role="presentation" class="dropdown">
+<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+  Dropdown <span class="caret"></span>
+</a>
+<ul class="dropdown-menu">
+  ...
+</ul>
+</li>
+...
+</ul>
+", "")] // Using dropdowns
+    [TestCase(@"
+<ul class="nav nav-pills">
+...
+<li role="presentation" class="dropdown">
+<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+  Dropdown <span class="caret"></span>
+</a>
+<ul class="dropdown-menu">
+  ...
+</ul>
+</li>
+...
+</ul>
+", "")] // Pills with dropdowns
+*/
+        #endregion
+        [TestCase(@"..\Data\Bootstrap3\Complex\DefaultNavBar.txt", "INavBar", 0)] // Default NavBar
+        
         public void ParseBootstrap3ForCollectionNew(string input, string expected, int elementPosition)
         {
             GivenHtml_NewHtmlInFiles(input);
@@ -837,7 +951,12 @@ Panel content
 
         void ThenThereIsElementOfType(string expected)
         {
+//        	try {
             Xunit.Assert.True(_entry.GenerateCodeForEntry(SupportedLanguages.Java).Contains(expected));
+//        	}
+//        	catch {
+//        		int i = 1;
+//        	}
         }
 
         void ThenThereIsCollectionOfElementsOfType(string expected)
