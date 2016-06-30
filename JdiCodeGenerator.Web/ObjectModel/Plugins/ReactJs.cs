@@ -1,8 +1,9 @@
-﻿using HtmlAgilityPack;
-using JdiCodeGenerator.Core.ObjectModel.Abstract;
-
-namespace JdiCodeGenerator.Web.ObjectModel.Plugins
+﻿namespace JdiCodeGenerator.Web.ObjectModel.Plugins
 {
+    using Abstract;
+    using HtmlAgilityPack;
+    using Core.ObjectModel.Abstract;
+
     public class ReactJs // : IFrameworkAlingmentAnalysisPlugin
     {
         public HtmlElementTypes Analyze(HtmlNode node)

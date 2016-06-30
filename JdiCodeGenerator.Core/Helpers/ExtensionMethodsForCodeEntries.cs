@@ -68,17 +68,17 @@
             return wronglyFormattedString;
         }
 
-        public static IEnumerable<ICodeEntry> SetBestChoice(this IEnumerable<ICodeEntry> codeEntries)
+        public static IEnumerable<ICodeEntry<T>> SetBestChoice<T>(this IEnumerable<ICodeEntry<T>> codeEntries)
         {
-            var entries = codeEntries as ICodeEntry[] ?? codeEntries.ToArray();
+            var entries = codeEntries as ICodeEntry<T>[] ?? codeEntries.ToArray();
             entries.ToList().ForEach(codeEntry => codeEntry.Locators.ForEach(locator => locator.IsBestChoice = false));
             entries.ToList().ForEach(codeEntry => codeEntry.Locators.OrderBy(locator => (int)locator.SearchTypePreference).First().IsBestChoice = true);
             return entries;
         }
 
-        public static IEnumerable<ICodeEntry> SetDistinguishNamesForMembers(this IEnumerable<ICodeEntry> codeEntries)
+        public static IEnumerable<ICodeEntry<T>> SetDistinguishNamesForMembers<T>(this IEnumerable<ICodeEntry<T>> codeEntries)
         {
-            var distinguishNamesForMembers = codeEntries as ICodeEntry[] ?? codeEntries.ToArray();
+            var distinguishNamesForMembers = codeEntries as ICodeEntry<T>[] ?? codeEntries.ToArray();
             distinguishNamesForMembers.ToList().ForEach(codeEntry => codeEntry.MemberName = codeEntry.GenerateNameBasedOnNamingPreferences());
             distinguishNamesForMembers
                 .GroupBy(codeEntryName => codeEntryName.MemberName)
@@ -102,7 +102,7 @@
         */
 
         internal const string NoName = "NoName";
-        internal static string GenerateNameBasedOnNamingPreferences(this ICodeEntry codeEntry)
+        internal static string GenerateNameBasedOnNamingPreferences<T>(this ICodeEntry<T> codeEntry)
         {
             var prefix = codeEntry.JdiMemberType.ToString().Substring(0, 1).ToLower() + codeEntry.JdiMemberType.ToString().Substring(1);
             if (!codeEntry.Locators.Any())

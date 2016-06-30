@@ -64,7 +64,7 @@
         }
 
         // experimental
-        public static IFrameworkAlingmentAnalysisPlugin AnalyzerThatWon { get; set; }
+        public static IFrameworkAlingmentAnalysisPlugin<HtmlElementTypes> AnalyzerThatWon { get; set; }
 
         public static JdiElementTypes ApplyApplicableAnalyzers(this HtmlNode node)
         {
@@ -80,7 +80,7 @@
             // var typesOfAnalyzers = AppDomain.CurrentDomain.GetAssemblies().Where(assm => assm.FullName.Contains("JdiCodeGenerator.Core")).SelectMany(assm => assm.GetTypes()).Where(type => type.GetInterfaces().Contains(typeof(IFrameworkAlingmentAnalysisPlugin)));
             // var typesOfAnalyzers = AppDomain.CurrentDomain.GetAssemblies().Where(assm => assm.FullName.Contains("JdiCodeGenerator.Web")).SelectMany(assm => assm.GetTypes()).Where(type => type.GetInterfaces().Contains(typeof(IFrameworkAlingmentAnalysisPlugin)));
             var currentAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
-            var typesOfAnalyzers = AppDomain.CurrentDomain.GetAssemblies().Where(assm => assm.FullName.Contains(currentAssemblyName)).SelectMany(assm => assm.GetTypes()).Where(type => type.GetInterfaces().Contains(typeof(IFrameworkAlingmentAnalysisPlugin)));
+            var typesOfAnalyzers = AppDomain.CurrentDomain.GetAssemblies().Where(assm => assm.FullName.Contains(currentAssemblyName)).SelectMany(assm => assm.GetTypes()).Where(type => type.GetInterfaces().Contains(typeof(IFrameworkAlingmentAnalysisPlugin<HtmlElementTypes>)));
 
             typesOfAnalyzers.ToList().ForEach(type => { result = (JdiElementTypes) type.GetMethod("Analyze").Invoke(Activator.CreateInstance(type), new object[] {node}); });
 
@@ -192,8 +192,6 @@
 
         public static bool CheckCondition(this HtmlNode node, IRuleCondition condition)
         {
-            // refactoring
-            // 20160628
             var nodesForCondition = GetNodesThatMatchTheCondition(node, condition.Relationship, condition.Marker);
             var forCondition = nodesForCondition as HtmlNode[] ?? nodesForCondition.ToArray();
             if (!forCondition.Any())
@@ -202,13 +200,9 @@
         }
 
         // refactoring
-        // 20160628
-        //public static bool ResolveRuleToJdiType(this HtmlNode node)
-        //{
-        //    return (!OrConditions.Any() || OrConditions.Any(condition => CheckCondition(node, condition))) &&
-        //    (!AndConditions.Any() || AndConditions.All(condition => CheckCondition(node, condition)));
-        //}
-        public static bool ResolveRuleToJdiType(this IRule rule, HtmlNode node)
+        // 20160630
+        // public static bool ResolveRuleToJdiType(this IRule rule, HtmlNode node)
+        public static bool ResolveRuleToJdiType(this IRule<HtmlElementTypes> rule, HtmlNode node)
         {
             return (!rule.OrConditions.Any() || rule.OrConditions.Any(condition => CheckCondition(node, condition))) &&
             (!rule.AndConditions.Any() || rule.AndConditions.All(condition => CheckCondition(node, condition)));
@@ -221,19 +215,15 @@
         }
 
         // refactoring
-        // 20160628
-        //public static bool IsMatch(this HtmlNode node)
-        //{
-        //    var elementType = new General().Analyze(node.OriginalName);
-        //    if (!SourceTypes.Contains(elementType))
-        //        return false;
-
-        //    return ResolveRuleToJdiType(node);
-        //}
-        public static bool IsMatch(this IRule rule, HtmlNode node)
+        // 20160630
+        // public static bool IsMatch(this IRule rule, HtmlNode node)
+        public static bool IsMatch(this IRule<HtmlElementTypes> rule, HtmlNode node)
         {
             var elementType = new General().Analyze(node.OriginalName);
-            if (!rule.SourceTypes.Contains(elementType))
+            // refactoring
+            // 20160630
+            // if (!rule.SourceTypes.Contains(elementType))
+            if (!rule.SourceTypes.SelectMany(type => type.Types).Contains(elementType))
                 return false;
 
             return rule.ResolveRuleToJdiType(node);

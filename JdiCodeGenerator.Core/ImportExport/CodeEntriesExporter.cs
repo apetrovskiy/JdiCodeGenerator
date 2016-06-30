@@ -8,7 +8,7 @@
 
     public class CodeEntriesExporter
     {
-        public void WriteToFile(IEnumerable<ICodeEntry> codeEntries, string path)
+        public void WriteToFile<T>(IEnumerable<ICodeEntry<T>> codeEntries, string path)
         {
             using (var writer = new StreamWriter(path))
             {

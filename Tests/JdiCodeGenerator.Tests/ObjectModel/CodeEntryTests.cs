@@ -9,6 +9,7 @@
     using HtmlAgilityPack;
     using Mocks;
     using NSubstitute;
+    using Web.ObjectModel.Abstract;
     using Xunit;
 
     public class CodeEntryTests

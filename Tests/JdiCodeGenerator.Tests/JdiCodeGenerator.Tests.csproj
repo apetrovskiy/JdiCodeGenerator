@@ -71,7 +71,7 @@
     <OutputPath>bin\x86\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>Full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -142,7 +142,8 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\Bootstrap3\Complex\" />
+    <Folder Include="Data\Html5\Complex\" />
+    <Folder Include="Data\Html5\Simple\" />
     <Folder Include="Example\" />
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +157,75 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\Bootstrap3\Complex\ButtonDropDown.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\ButtonGroupNesting.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\ButtonGroupVerticalVariation.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\DefaultNavBar.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\DropDown.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\DropDownAlignment.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\DropDownDisabledMenuItems.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\DropDownDivider.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\DropDownHeaders.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\DropDownMenuExtraSmallButtonGroup.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\DropDownMenuLargeButtonGroup.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\DropDownMenuSmallButtonGroup.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\DropUp.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\DropUpVariation.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\InputGroups.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\JustifiedButtonGroup.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\NavBarFormButtonAddons.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\NavBarFormButtonsWithDropDowns.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\NavBarFormCheckboxesAndRadioButtons.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\NavBarFormMultipleButtons.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\NavBarFormSegmentedButtons.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\NavBarFormSizing.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Complex\SplitButtonDropDown.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\Bootstrap3\Simple\Alert.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -234,7 +304,7 @@
     <Content Include="Data\Bootstrap3\Simple\ButtonToolbar2.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Bootstrap3\Simple\CheckboxesAndRadioAddons.txt">
+    <Content Include="Data\Bootstrap3\Simple\CheckboxesAndRadioAddons0.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Bootstrap3\Simple\InputGroupAddon0.txt">
@@ -271,6 +341,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Bootstrap3\Simple\LabelWarning.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bootstrap3\Simple\CheckboxesAndRadioAddons1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Bootstrap3\Simple\NavBarText.txt">

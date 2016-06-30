@@ -1,9 +1,10 @@
-﻿using System;
-using System.Linq;
-using JdiCodeGenerator.Core.ObjectModel.Abstract;
-
-namespace JdiCodeGenerator.Web.ObjectModel.Plugins
+﻿namespace JdiCodeGenerator.Web.ObjectModel.Plugins
 {
+    using System;
+    using System.Linq;
+    using Abstract;
+    using Core.ObjectModel.Abstract;
+
     public class General // : IFrameworkAlingmentAnalysisPlugin
     {
         // public HtmlElementTypes Analyze(HtmlNode node)

@@ -9,6 +9,8 @@
     using Core;
     using Core.Helpers;
     using Core.ObjectModel.Abstract;
+    using ObjectModel.Abstract;
+
     //using CefSharp;
     //using CefSharp.OffScreen;
 
@@ -165,40 +167,28 @@
         }
         #endregion
 
-        public IEnumerable<ICodeEntry> GetCodeEntries(string url, IEnumerable<string> excludeList)
+        public IEnumerable<ICodeEntry<T>> GetCodeEntries<T>(string url, IEnumerable<string> excludeList)
         {
             LoadPage(url);
-            return GetCodeEntriesFromNode(_docNode, excludeList);
+            return GetCodeEntriesFromNode<T>(_docNode, excludeList);
         }
 
-        // internal IEnumerable<ICodeEntry> GetCodeEntriesFromNode(HtmlNode docNode, IEnumerable<string> excludeList)
-        // public IEnumerable<ICodeEntry> GetCodeEntriesFromNode(HtmlNode docNode, IEnumerable<string> excludeList)
-        internal IEnumerable<ICodeEntry> GetCodeEntriesFromNode(HtmlNode docNode, IEnumerable<string> excludeList)
+        internal IEnumerable<ICodeEntry<T>> GetCodeEntriesFromNode<T>(HtmlNode docNode, IEnumerable<string> excludeList)
         {
-            var convertor = new HtmlElementToCodeEntryConvertor();
-            //return docNode.Descendants()
-            //    .FirstOrDefault(bodyNode => bodyNode.OriginalName.ToLower() == "body")
-            //    .Descendants()
-            //    .Where(node => node.NodeType == HtmlNodeType.Element)
-            //    .Select(node => convertor.ConvertToCodeEntry(node))
-            //    .Where(codeEntry => !excludeList.Contains(codeEntry.Type))
-            //    .SetBestChoice()
-            //    .SetDistinguishNamesForMembers();
+            var convertor = new HtmlElementToCodeEntryConvertor<HtmlElementTypes>();
 
             var rootNode = docNode.Descendants().FirstOrDefault(bodyNode => bodyNode.OriginalName.ToLower() == WebNames.ElementTypeBody);
             if (null == rootNode)
-                return new List<ICodeEntry>();
+                return new List<ICodeEntry<T>>();
 
-            //var codeEntries = rootNode.ChildNodes
-            //    // .Where(node => node.NodeType == HtmlNodeType.Element)
-            //    .SelectMany(node => convertor.ConvertToCodeEntries(node));
             var codeEntries = convertor.ConvertToCodeEntries(rootNode);
 
             // experimental
             return
                 codeEntries.Where(codeEntry => codeEntry.JdiMemberType != JdiElementTypes.Element)
                     .SetBestChoice()
-                    .SetDistinguishNamesForMembers();
+                    .SetDistinguishNamesForMembers()
+                    .Cast<ICodeEntry<T>>();
 
             // return codeEntries.SetBestChoice().SetDistinguishNamesForMembers();
         }

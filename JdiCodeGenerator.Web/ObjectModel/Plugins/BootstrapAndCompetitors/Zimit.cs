@@ -1,8 +1,9 @@
-﻿using HtmlAgilityPack;
-using JdiCodeGenerator.Core.ObjectModel.Abstract;
-
-namespace JdiCodeGenerator.Web.ObjectModel.Plugins.BootstrapAndCompetitors
+﻿namespace JdiCodeGenerator.Web.ObjectModel.Plugins.BootstrapAndCompetitors
 {
+    using Abstract;
+    using HtmlAgilityPack;
+    using Core.ObjectModel.Abstract;
+
     public class Zimit // : IFrameworkAlingmentAnalysisPlugin
     {
         // http://modernweb.com/2014/02/17/8-bootstrap-alternatives/

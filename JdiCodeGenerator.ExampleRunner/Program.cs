@@ -6,7 +6,7 @@
     using System.Linq;
     using Core.ImportExport;
     using Core.ObjectModel.Abstract;
-    using JdiCodeGenerator.Web.Helpers;
+    using Web.Helpers;
 
     class Program
     {

@@ -4,11 +4,11 @@
     using HtmlAgilityPack;
     using Core.ObjectModel.Abstract;
 
-    public interface IFrameworkAlingmentAnalysisPlugin
+    public interface IFrameworkAlingmentAnalysisPlugin<T>
     {
         JdiElementTypes Analyze(HtmlNode node);
-        IEnumerable<IRule> Rules { get; set; }
+        IEnumerable<IRule<T>> Rules { get; set; }
         IEnumerable<string> ExcludeList { get; set; }
-        IRule RuleThatWon { get; set; }
+        IRule<T> RuleThatWon { get; set; }
     }
 }

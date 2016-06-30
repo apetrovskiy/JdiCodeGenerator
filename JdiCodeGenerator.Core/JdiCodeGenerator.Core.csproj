@@ -106,11 +106,11 @@
     <Compile Include="ImportExport\CodeEntriesExporter.cs" />
     <Compile Include="ImportExport\CodeEntriesImporter.cs" />
     <Compile Include="ImportExport\DtoJsonConverter.cs" />
-    <Compile Include="ObjectModel\Abstract\HtmlElementTypes.cs" />
     <Compile Include="ObjectModel\Abstract\FindTypes.cs" />
     <Compile Include="ObjectModel\Abstract\ICodeEntry.cs" />
     <Compile Include="ObjectModel\Abstract\IRule.cs" />
     <Compile Include="ObjectModel\Abstract\IRuleCondition.cs" />
+    <Compile Include="ObjectModel\Abstract\ISourceElementTypeCollection.cs" />
     <Compile Include="ObjectModel\Abstract\JdiElementTypes.cs" />
     <Compile Include="ObjectModel\Abstract\Markers.cs" />
     <Compile Include="ObjectModel\Abstract\NamingPreferences.cs" />

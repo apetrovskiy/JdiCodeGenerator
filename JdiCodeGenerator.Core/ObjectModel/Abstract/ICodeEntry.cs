@@ -3,12 +3,14 @@
     using System;
     using System.Collections.Generic;
 
-    public interface ICodeEntry
+    public interface ICodeEntry<T>
     {
         Guid Id { get; set; }
         List<LocatorDefinition> Locators { get; set; }
         string MemberName { get; set; }
-        HtmlElementTypes HtmlMemberType { get; set; }
+        // refactoring
+        // 20160630
+        // HtmlElementTypes HtmlMemberType { get; set; }
         JdiElementTypes JdiMemberType { get; set; }
         string MemberType { get; set; }
         string GenerateCodeForEntry(SupportedLanguages language);

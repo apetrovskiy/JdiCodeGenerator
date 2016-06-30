@@ -6,7 +6,6 @@
     {
         NodeRelationships Relationship { get; set; }
         Markers Marker { get; set; }
-        // string MarkerValues { get; set; }
         List<string> MarkerValues { get; set; }
     }
 }

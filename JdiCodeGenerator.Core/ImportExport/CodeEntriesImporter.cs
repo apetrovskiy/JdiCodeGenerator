@@ -7,7 +7,7 @@
 
     public class CodeEntriesImporter
     {
-        public IEnumerable<ICodeEntry> LoadFromFile(string path)
+        public IEnumerable<ICodeEntry<T>> LoadFromFile<T>(string path)
         {
             var serializedCodeEntries = new List<string>();
             using (var reader = new StreamReader(path))
@@ -15,7 +15,7 @@
                 while (!reader.EndOfStream)
                     serializedCodeEntries.Add(reader.ReadLine());
             }
-            return serializedCodeEntries.ImportCodeEntriesFromJson();
+            return serializedCodeEntries.ImportCodeEntriesFromJson<T>();
         }
     }
 }
