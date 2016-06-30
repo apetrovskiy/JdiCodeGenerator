@@ -1,0 +1,9 @@
+﻿<!-- Extra small button group -->
+<div class="btn-group">
+<button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Extra small button <span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+...
+</ul>
+</div>

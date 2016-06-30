@@ -1,0 +1,16 @@
+﻿<form class="navbar-form navbar-left" role="search">
+    <div class="input-group path-group-lg">
+    <span class="input-group-addon" id="sizing-addon1">@</span>
+    <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+    </div>
+
+    <div class="input-group">
+    <span class="input-group-addon" id="sizing-addon2">@</span>
+    <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2">
+    </div>
+
+    <div class="input-group path-group-sm">
+    <span class="input-group-addon" id="sizing-addon3">@</span>
+    <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon3">
+    </div>
+</form>

@@ -1,0 +1,7 @@
+﻿<div class="dropdown">
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+    ...
+    <li role="separator" class="divider"></li>
+    ...
+    </ul>
+</div>
