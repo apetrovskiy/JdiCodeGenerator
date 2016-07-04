@@ -1,0 +1,2 @@
+﻿<label for="basic-url">Your vanity URL</label>
+<input type = "text" id="basic-url" aria-describedby="basic-addon3">
