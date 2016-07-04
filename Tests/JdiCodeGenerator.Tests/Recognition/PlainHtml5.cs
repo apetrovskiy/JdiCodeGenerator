@@ -1,122 +1,69 @@
 ﻿namespace JdiCodeGenerator.Tests.Recognition
 {
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using Core.ObjectModel;
+    using Core.ObjectModel.Abstract;
+    using HtmlAgilityPack;
+    using Internals;
+    using NUnit.Framework;
+    using Web.Helpers;
+    using Web.ObjectModel.Abstract;
+    using Xunit;
+
     public class PlainHtml5
     {
-        /*
-        CodeEntry _entry;
+        CodeEntry<HtmlElementTypes> _entry;
         HtmlDocument _doc;
+        readonly List<ICodeEntry<HtmlElementTypes>> _entries;
 
         public PlainHtml5()
         {
             _entry = null;
             _doc = null;
+            _entries = new List<ICodeEntry<HtmlElementTypes>>();
         }
 
         [Xunit.Theory]
-        [InlineData(@"
+        [InlineData(@"..\Data\PlainHtml5\Simple\TextField.txt", "ITextField", 1)]
+        [InlineData(@"..\Data\PlainHtml5\Simple\Button.txt", "IButton", 0)]
 
-", "")]
-        [InlineData(@"
+        [InlineData(@"..\Data\PlainHtml5\Simple\TextArea.txt", "ITextArea", 0)]
+        [InlineData(@"..\Data\PlainHtml5\Simple\Link.txt", "ILink", 0)]
+        [InlineData(@"..\Data\PlainHtml5\Simple\Label.txt", "ILabel", 0)]
+        [InlineData(@"..\Data\PlainHtml5\Simple\Hyperlink.txt", "ILink", 0)]
 
-", "")]
-        [InlineData(@"
+        [Trait("Category", "HTML 5, single element")]
 
-", "")]
-        [InlineData(@"
-
-", "")]
-        [InlineData(@"
-
-", "")]
-        [InlineData(@"
-
-", "")]
-        [InlineData(@"
-
-", "")]
-        [InlineData(@"
-
-", "")]
-        [InlineData(@"
-
-", "")]
-        [InlineData(@"
-
-", "")]
-        [InlineData(@"
-
-", "")]
-        [Trait("Category", "Plain HTML5, single element")]
-        public void ParsePlainHtml5ForSingleElement(string input, string expected)
+        public void ParsePlainHtml5ForSingleElementNew(string input, string expected, int elementPosition)
         {
-            GivenHtml(input);
-            WhenParsing();
+            GivenHtml_NewHtmlInFiles(input);
+            WhenParsing(elementPosition);
             ThenThereIsElementOfType(expected);
         }
 
-        [Xunit.Theory]
-        [InlineData(@"
-
-", "")]
-        [InlineData(@"
-
-", "")]
-        [InlineData(@"
-
-", "")]
-        [InlineData(@"
-
-", "")]
-        [InlineData(@"
-
-", "")]
-        [InlineData(@"
-
-", "")]
-        [InlineData(@"
-
-", "")]
-        [InlineData(@"
-
-", "")]
-        [InlineData(@"
-
-", "")]
-        [InlineData(@"
-
-", "")]
-        [InlineData(@"
-
-", "")]
-        [Trait("Category", "Plain HTML5, collection")]
-        public void ParsePlainHtml5ForCollection(string input, string expected)
+        void GivenHtml_NewHtmlInFiles(string path)
         {
-            GivenHtml(input);
-            WhenParsing();
-            ThenThereIsCollectionOfElementsOfType(expected);
-        }
-
-        void GivenHtml(string input)
-        {
-            var fullHtml = @"<html><head></head><body>" + input + "</body></html>";
             _doc = new HtmlDocument();
-            _doc.LoadHtml(fullHtml);
+            _doc.LoadHtml(TestFactory.GetPlainHtml5Page(path));
         }
 
-        void WhenParsing()
+        void WhenParsing(int elementPosition)
         {
-
+            var pageLoader = new PageLoader();
+            _entries.AddRange(pageLoader.GetCodeEntriesFromNode<HtmlElementTypes>(_doc.DocumentNode, TestFactory.ExcludeList));
+            _entry = _entries.Cast<CodeEntry<HtmlElementTypes>>().ToArray()[elementPosition];
         }
 
         void ThenThereIsElementOfType(string expected)
         {
+            //        	try {
             Xunit.Assert.True(_entry.GenerateCodeForEntry(SupportedLanguages.Java).Contains(expected));
+            //        	}
+            //        	catch {
+            //        		int i = 1;
+            //        	}
         }
-
-        void ThenThereIsCollectionOfElementsOfType(string expected)
-        {
-            Xunit.Assert.True(_entry.GenerateCodeForEntry(SupportedLanguages.Java).Contains(expected));
-        }
-        */
     }
 }

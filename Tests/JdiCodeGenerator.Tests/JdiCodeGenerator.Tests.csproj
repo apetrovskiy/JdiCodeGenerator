@@ -144,8 +144,7 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\Html5\Complex\" />
-    <Folder Include="Data\Html5\Simple\" />
+    <Folder Include="Data\PlainHtml5\Complex\" />
     <Folder Include="Example\" />
   </ItemGroup>
   <ItemGroup>
@@ -370,6 +369,24 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Bootstrap3\Simple\WellSmall.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\PlainHtml5\Simple\Button.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\PlainHtml5\Simple\Hyperlink.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\PlainHtml5\Simple\Label.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\PlainHtml5\Simple\Link.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\PlainHtml5\Simple\TextArea.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\PlainHtml5\Simple\TextField.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="PageForFormatting.html" />
