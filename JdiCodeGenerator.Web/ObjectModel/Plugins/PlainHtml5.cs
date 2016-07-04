@@ -68,6 +68,37 @@
                     TargetType = JdiElementTypes.Button,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "hzhz" } } }
+                },
+                /*
+<select>
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select>
+                */
+                new Rule<HtmlElementTypes>
+                {
+                    Description = "DropDownList",
+                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> {  Types = new List<HtmlElementTypes> { HtmlElementTypes.Select } } },
+                    TargetType = JdiElementTypes.DropDown,
+                    OrConditions = new List<IRuleCondition>
+                    { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "select" } } }
+                },
+                /*
+<form action="demo_form.asp" method="get">
+  First name: <input type="text" name="fname"><br>
+  Last name: <input type="text" name="lname"><br>
+  <input type="submit" value="Submit">
+</form>
+                */
+                new Rule<HtmlElementTypes>
+                {
+                    Description = "Form",
+                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> {  Types = new List<HtmlElementTypes> { HtmlElementTypes.Form } } },
+                    TargetType = JdiElementTypes.Form,
+                    OrConditions = new List<IRuleCondition>
+                    { new RuleCondition {Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "form" } } }
                 }
             };
         }

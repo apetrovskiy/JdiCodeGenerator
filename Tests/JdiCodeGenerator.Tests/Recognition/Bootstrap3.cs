@@ -142,9 +142,9 @@
         [TestCase(@"..\Data\Bootstrap3\Simple\CheckboxesAndRadioAddons1.txt", "IRadioButtons", 3)] // Checkboxes and radio addons
         [TestCase(@"..\Data\Bootstrap3\Simple\ButtonAddons.txt", "IButton", 4)] // Button addons
         [TestCase(@"..\Data\Bootstrap3\Simple\ButtonsWithDropdowns.txt", "IButton", 1)] // Buttons with dropdowns
-        public void ParseBootstrap3ForSingleElementNew(string input, string expected, int elementPosition)
+        public void ParseBootstrap3ForSingleElement(string input, string expected, int elementPosition)
         {
-            GivenHtml_NewHtmlInFiles(input);
+            GivenHtmlFromFile(input);
             WhenParsing(elementPosition);
             ThenThereIsElementOfType(expected);
         }
@@ -815,14 +815,14 @@ Panel content
         #endregion
         [TestCase(@"..\Data\Bootstrap3\Complex\DefaultNavBar.txt", "INavBar", 0)] // Default NavBar
         
-        public void ParseBootstrap3ForCollectionNew(string input, string expected, int elementPosition)
+        public void ParseBootstrap3ForCollection(string input, string expected, int elementPosition)
         {
-            GivenHtml_NewHtmlInFiles(input);
+            GivenHtmlFromFile(input);
             WhenParsing(elementPosition);
             ThenThereIsCollectionOfElementsOfType(expected);
         }
 
-        void GivenHtml_NewHtmlInFiles(string path)
+        void GivenHtmlFromFile(string path)
         {
             _doc = new HtmlDocument();
             _doc.LoadHtml(TestFactory.GetBootstrap3Page(path));
