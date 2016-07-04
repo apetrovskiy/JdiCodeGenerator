@@ -117,13 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Bootstrap3_DropDown_list" xml:space="preserve">
+  <data name="Jdi_DropDown_list" xml:space="preserve">
     <value>list</value>
   </data>
-  <data name="Bootstrap3_DropDown_root" xml:space="preserve">
+  <data name="Jdi_DropDown_root" xml:space="preserve">
     <value>root</value>
   </data>
-  <data name="Bootstrap3_DropDown_value" xml:space="preserve">
+  <data name="Jdi_DropDown_value" xml:space="preserve">
     <value>value</value>
   </data>
 </root>

@@ -305,5 +305,93 @@
         //    }
         //    return result;
         //}
+
+        public static bool IsComplexControl(this JdiElementTypes jdiElementType)
+        {
+            switch (jdiElementType)
+            {
+                case JdiElementTypes.Element:
+                case JdiElementTypes.Button:
+                    return false;
+                case JdiElementTypes.CheckBox:
+                    break;
+                case JdiElementTypes.DatePicker:
+                case JdiElementTypes.FileInput:
+                case JdiElementTypes.Image:
+                case JdiElementTypes.Label:
+                case JdiElementTypes.Link:
+                case JdiElementTypes.Text:
+                case JdiElementTypes.TextArea:
+                case JdiElementTypes.TextField:
+                    return false;
+                case JdiElementTypes.MenuItem:
+                    break;
+                case JdiElementTypes.TabItem:
+                    break;
+                case JdiElementTypes.NavBar:
+                    break;
+                case JdiElementTypes.Pager:
+                    break;
+                case JdiElementTypes.Progress:
+                    break;
+                case JdiElementTypes.List:
+                    break;
+                case JdiElementTypes.ListItem:
+                    break;
+                case JdiElementTypes.Popover:
+                    break;
+                case JdiElementTypes.Carousel:
+                    break;
+                case JdiElementTypes.CheckList:
+                case JdiElementTypes.ComboBox:
+                case JdiElementTypes.DropDown:
+                case JdiElementTypes.DropList:
+                case JdiElementTypes.Form:
+                    return true;
+                case JdiElementTypes.Group:
+                    break;
+                case JdiElementTypes.Menu:
+                    break;
+                case JdiElementTypes.Page:
+                    break;
+                case JdiElementTypes.Pagination:
+                    break;
+                case JdiElementTypes.Popup:
+                    break;
+                case JdiElementTypes.RadioButtons:
+                    return true;
+                case JdiElementTypes.Search:
+                    break;
+                case JdiElementTypes.Selector:
+                    break;
+                case JdiElementTypes.Tabs:
+                    break;
+                case JdiElementTypes.TextList:
+                    break;
+                case JdiElementTypes.Table:
+                    break;
+                case JdiElementTypes.Cell:
+                    break;
+                case JdiElementTypes.Column:
+                    break;
+                case JdiElementTypes.Coulmns:
+                    break;
+                case JdiElementTypes.DynamicTable:
+                    break;
+                case JdiElementTypes.ElementIndexType:
+                    break;
+                case JdiElementTypes.Row:
+                    break;
+                case JdiElementTypes.RowColumn:
+                    break;
+                case JdiElementTypes.Rows:
+                    break;
+                case JdiElementTypes.TableLine:
+                    break;
+                default:
+                    return false;
+            }
+            return false;
+        }
     }
 }

@@ -15,16 +15,18 @@
 
         public JdiElementTypes Analyze(HtmlNode node)
         {
-            if (null == node)
-                return JdiElementTypes.StopProcessing;
+            var firstRule = Rules.FirstOrDefault(rule => rule.IsMatch(node));
 
-            // 20160704
-            // return GetJdiTypeOfElementByUsingRules(node);
-            var jdiType = GetJdiTypeOfElementByUsingRules(node);
-            if (JdiElementTypes.Element != jdiType)
-                node = null;
+            // experimental
+            RuleThatWon = firstRule;
+            ExtensionMethodsForNodes.AnalyzerThatWon = this;
 
-            return jdiType;
+            // children collection for complex elements
+            if (null != firstRule && null != firstRule.InternalElements && firstRule.InternalElements.Any())
+                WorkOutInternalElements(node);
+
+            // return firstRule?.TargetType ?? JdiElementTypes.Element;
+            return null == firstRule ? JdiElementTypes.Element : firstRule.TargetType;
         }
 
         public IEnumerable<IRule<HtmlElementTypes>> Rules { get; set; }
@@ -32,16 +34,15 @@
         public IRule<HtmlElementTypes> RuleThatWon { get; set; }
         public int Priority { get; set; }
 
-        JdiElementTypes GetJdiTypeOfElementByUsingRules(HtmlNode node)
+        // TODO: children collection of complex elements
+        void WorkOutInternalElements(HtmlNode node)
         {
-            var firstRule = Rules.FirstOrDefault(rule => rule.IsMatch(node));
+            // TODO: the root element
 
-            // experimental
-            RuleThatWon = firstRule;
-            ExtensionMethodsForNodes.AnalyzerThatWon = this;
+            // TODO: the value element
 
-            // return firstRule?.TargetType ?? JdiElementTypes.Element;
-            return null == firstRule ? JdiElementTypes.Element : firstRule.TargetType;
+            // TODO: the list collection
+
         }
     }
 }

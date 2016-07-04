@@ -9,6 +9,9 @@
 //------------------------------------------------------------------------------
 
 namespace JdiCodeGenerator.Web {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -60,27 +63,27 @@ namespace JdiCodeGenerator.Web {
         /// <summary>
         ///   Looks up a localized string similar to list.
         /// </summary>
-        internal static string Bootstrap3_DropDown_list {
+        internal static string Jdi_DropDown_list {
             get {
-                return ResourceManager.GetString("Bootstrap3_DropDown_list", resourceCulture);
+                return ResourceManager.GetString("Jdi_DropDown_list", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to root.
         /// </summary>
-        internal static string Bootstrap3_DropDown_root {
+        internal static string Jdi_DropDown_root {
             get {
-                return ResourceManager.GetString("Bootstrap3_DropDown_root", resourceCulture);
+                return ResourceManager.GetString("Jdi_DropDown_root", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to value.
         /// </summary>
-        internal static string Bootstrap3_DropDown_value {
+        internal static string Jdi_DropDown_value {
             get {
-                return ResourceManager.GetString("Bootstrap3_DropDown_value", resourceCulture);
+                return ResourceManager.GetString("Jdi_DropDown_value", resourceCulture);
             }
         }
     }

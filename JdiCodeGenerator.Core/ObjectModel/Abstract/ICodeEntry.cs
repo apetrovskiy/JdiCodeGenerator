@@ -24,5 +24,13 @@
         string Type { get; set; }
         // bool ProcessChildren { get; set; }
         bool ProcessChildren { get; }
+
+        /*
+@JDropdown(root = @FindBy(css = "dropdown"), value = @FindBy(id = "dropdownMenu1"), list = @FindBy(tagName = "li"))
+IDropDown<JobCategories> category;
+        */
+        LocatorDefinition Root { get; set; }
+        LocatorDefinition Value { get; set; }
+        LocatorDefinition List { get; set; }
     }
 }
