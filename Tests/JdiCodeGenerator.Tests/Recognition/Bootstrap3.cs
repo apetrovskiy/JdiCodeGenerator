@@ -88,25 +88,15 @@
         [InlineData(@"..\Data\Bootstrap3\Simple\WellLarge.txt", "IText", 0)] // Optional classes
         [InlineData(@"..\Data\Bootstrap3\Simple\WellSmall.txt", "IText", 0)]
         [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroup0.txt", "IButton", 0)] // button groups
-                  // ", "IButton", 1)] // button groups
         [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroup1.txt", "IButton", 1)] // button groups
-                  // ", "IButton", 2)] // button groups
         [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroup2.txt", "IButton", 2)] // button groups
-                  // ", "IButton", 3)] // button groups
         [InlineData(@"..\Data\Bootstrap3\Simple\ButtonToolbar0.txt", "IButton", 0)] // button toolbar
-                  // ", "IButton", 2)] // button toolbar
         [InlineData(@"..\Data\Bootstrap3\Simple\ButtonToolbar1.txt", "IButton", 0)] // button toolbar
-                  // ", "IButton", 3)] // button toolbar
         [InlineData(@"..\Data\Bootstrap3\Simple\ButtonToolbar2.txt", "IButton", 0)] // button toolbar
-                  // ", "IButton", 4)] // button toolbar
         [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing0.txt", "IButton", 0)] // sizing
-                  // ", "IButton", 1)] // sizing
         [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing1.txt", "IButton", 0)] // sizing
-                  // ", "IButton", 1)] // sizing
         [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing2.txt", "IButton", 0)] // sizing
-                  // ", "IButton", 1)] // sizing
         [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing3.txt", "IButton", 0)] // sizing
-                  // ", "IButton", 1)] // sizing
         #region commented
         /*
         [InlineData(@"
@@ -115,20 +105,14 @@
         */
         #endregion
         [InlineData(@"..\Data\Bootstrap3\Simple\InputGroupAddon0.txt", "ITextField", 0)]
-        // ", "ITextField", 2)]
         [InlineData(@"..\Data\Bootstrap3\Simple\InputGroupAddon1.txt", "ITextField", 0)]
-        // ", "ITextField", 1)]
         [InlineData(@"..\Data\Bootstrap3\Simple\InputGroupAddon2.txt", "ITextField", 0)]
-        // ", "ITextField", 2)]
         [InlineData(@"..\Data\Bootstrap3\Simple\TextField.txt", "ITextField", 1)]
-        // ", "ITextField", 3)]
 
         [InlineData(@"..\Data\Bootstrap3\Simple\CheckboxesAndRadioAddons0.txt", "ICheckBox", 1)] // Checkboxes and radio addons
-                    // ", "ICheckBox", 5)] // Checkboxes and radio addons
         // [InlineData(@"..\Data\Bootstrap3\Simple\CheckboxesAndRadioAddons1.txt", "IRadioButtons", 10)] // Checkboxes and radio addons
         [InlineData(@"..\Data\Bootstrap3\Simple\CheckboxesAndRadioAddons1.txt", "IRadioButtons", 3)] // Checkboxes and radio addons
         [InlineData(@"..\Data\Bootstrap3\Simple\ButtonAddons.txt", "IButton", 4)] // Button addons
-                  // ", "IButton", 11)] // Button addons
         [InlineData(@"..\Data\Bootstrap3\Simple\ButtonsWithDropdowns.txt", "IButton", 1)] // Buttons with dropdowns
         [Trait("Category", "Bootstrap 3, single element")]
 
@@ -163,25 +147,15 @@
         [TestCase(@"..\Data\Bootstrap3\Simple\WellLarge.txt", "IText", 0)] // Optional classes
         [TestCase(@"..\Data\Bootstrap3\Simple\WellSmall.txt", "IText", 0)]
         [TestCase(@"..\Data\Bootstrap3\Simple\ButtonGroup0.txt", "IButton", 0)] // button groups
-                                                                                  // ", "IButton", 1)] // button groups
         [TestCase(@"..\Data\Bootstrap3\Simple\ButtonGroup1.txt", "IButton", 1)] // button groups
-                                                                                  // ", "IButton", 2)] // button groups
         [TestCase(@"..\Data\Bootstrap3\Simple\ButtonGroup2.txt", "IButton", 2)] // button groups
-                                                                                  // ", "IButton", 3)] // button groups
         [TestCase(@"..\Data\Bootstrap3\Simple\ButtonToolbar0.txt", "IButton", 0)] // button toolbar
-                                                                                    // ", "IButton", 2)] // button toolbar
         [TestCase(@"..\Data\Bootstrap3\Simple\ButtonToolbar1.txt", "IButton", 0)] // button toolbar
-                                                                                    // ", "IButton", 3)] // button toolbar
         [TestCase(@"..\Data\Bootstrap3\Simple\ButtonToolbar2.txt", "IButton", 0)] // button toolbar
-                                                                                    // ", "IButton", 4)] // button toolbar
         [TestCase(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing0.txt", "IButton", 0)] // sizing
-                                                                                        // ", "IButton", 1)] // sizing
         [TestCase(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing1.txt", "IButton", 0)] // sizing
-                                                                                        // ", "IButton", 1)] // sizing
         [TestCase(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing2.txt", "IButton", 0)] // sizing
-                                                                                        // ", "IButton", 1)] // sizing
         [TestCase(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing3.txt", "IButton", 0)] // sizing
-                                                                                        // ", "IButton", 1)] // sizing
         #region commented
         /*
         [TestCase(@"
@@ -190,20 +164,14 @@
         */
         #endregion
         [TestCase(@"..\Data\Bootstrap3\Simple\InputGroupAddon0.txt", "ITextField", 0)]
-        // ", "ITextField", 2)]
         [TestCase(@"..\Data\Bootstrap3\Simple\InputGroupAddon1.txt", "ITextField", 0)]
-        // ", "ITextField", 1)]
         [TestCase(@"..\Data\Bootstrap3\Simple\InputGroupAddon2.txt", "ITextField", 0)]
-        // ", "ITextField", 2)]
         [TestCase(@"..\Data\Bootstrap3\Simple\TextField.txt", "ITextField", 1)]
-        // ", "ITextField", 3)]
 
         [TestCase(@"..\Data\Bootstrap3\Simple\CheckboxesAndRadioAddons0.txt", "ICheckBox", 1)] // Checkboxes and radio addons
-                                                                                                 // ", "ICheckBox", 5)] // Checkboxes and radio addons
                                                                                                  // [TestCase(@"..\Data\Bootstrap3\Simple\CheckboxesAndRadioAddons1.txt", "IRadioButtons", 10)] // Checkboxes and radio addons
         [TestCase(@"..\Data\Bootstrap3\Simple\CheckboxesAndRadioAddons1.txt", "IRadioButtons", 3)] // Checkboxes and radio addons
         [TestCase(@"..\Data\Bootstrap3\Simple\ButtonAddons.txt", "IButton", 4)] // Button addons
-                                                                                  // ", "IButton", 11)] // Button addons
         [TestCase(@"..\Data\Bootstrap3\Simple\ButtonsWithDropdowns.txt", "IButton", 1)] // Buttons with dropdowns
         public void ParseBootstrap3ForSingleElementNew(string input, string expected, int elementPosition)
         {
@@ -212,33 +180,17 @@
             ThenThereIsElementOfType(expected);
         }
 
-        //[Xunit.Theory]
-        //[Trait("Category", "OLD Bootstrap 3, single element")]
-        //public void ParseBootstrap3ForSingleElementOld(string input, string expected, int elementPosition)
-        //{
-        //    GivenHtml_OriginalForHtmlInCode(input);
-        //    WhenParsing(elementPosition);
-        //    ThenThereIsElementOfType(expected);
-        //}
-
         [Xunit.Theory]
         [InlineData(@"..\Data\Bootstrap3\Complex\DropDown.txt", "IDropDown<SomeEnum>", 0)]
         [InlineData(@"..\Data\Bootstrap3\Complex\DropUp.txt", "IDropDown<SomeEnum>", 0)]
         [InlineData(@"..\Data\Bootstrap3\Complex\DropDownAlignment.txt", "IDropDown<SomeEnum>", 0)] // alignment
         [InlineData(@"..\Data\Bootstrap3\Complex\DropDownHeaders.txt", "IDropDown<SomeEnum>", 0)] // headers
         [InlineData(@"..\Data\Bootstrap3\Complex\DropDownDivider.txt", "IMenuItem", 0)] // divider
-                    // ", "IElement", 2)] // divider
         [InlineData(@"..\Data\Bootstrap3\Complex\DropDownDisabledMenuItems.txt", "ILink", 3)] // disabled menu items
         [InlineData(@"..\Data\Bootstrap3\Complex\ButtonGroupNesting.txt", "IDropDown<SomeEnum>", 0)] // nesting
-                              // 20160610
-                              // ", "IDropDown<SomeEnum>", 3)] // nesting
         [InlineData(@"..\Data\Bootstrap3\Complex\ButtonGroupVerticalVariation.txt", "IDropDown<SomeEnum>", 0)] // vertical variation
-                              // 20160610
-                              // ", "IDropDown<SomeEnum>", 4)] // vertical variation
 
         [InlineData(@"..\Data\Bootstrap3\Complex\JustifiedButtonGroup.txt", "IDropDown<SomeEnum>", 3)] // justified button groups
-                              // 20160610
-                              // ", "IDropDown<SomeEnum>", 8)] // justified button groups
 
         //    [InlineData(@"
         //<div class="btn-group btn-group-justified" role="group" aria-label="...">
@@ -794,18 +746,11 @@ Panel content
         [TestCase(@"..\Data\Bootstrap3\Complex\DropDownAlignment.txt", "IDropDown<SomeEnum>", 0)] // alignment
         [TestCase(@"..\Data\Bootstrap3\Complex\DropDownHeaders.txt", "IDropDown<SomeEnum>", 0)] // headers
         [TestCase(@"..\Data\Bootstrap3\Complex\DropDownDivider.txt", "IMenuItem", 0)] // divider
-                    // ", "IElement", 2)] // divider
         [TestCase(@"..\Data\Bootstrap3\Complex\DropDownDisabledMenuItems.txt", "ILink", 3)] // disabled menu items
         [TestCase(@"..\Data\Bootstrap3\Complex\ButtonGroupNesting.txt", "IDropDown<SomeEnum>", 0)] // nesting
-                              // 20160610
-                              // ", "IDropDown<SomeEnum>", 3)] // nesting
         [TestCase(@"..\Data\Bootstrap3\Complex\ButtonGroupVerticalVariation.txt", "IDropDown<SomeEnum>", 0)] // vertical variation
-                              // 20160610
-                              // ", "IDropDown<SomeEnum>", 4)] // vertical variation
 
         [TestCase(@"..\Data\Bootstrap3\Complex\JustifiedButtonGroup.txt", "IDropDown<SomeEnum>", 3)] // justified button groups
-                              // 20160610
-                              // ", "IDropDown<SomeEnum>", 8)] // justified button groups
 
         //    [TestCase(@"
         //<div class="btn-group btn-group-justified" role="group" aria-label="...">
@@ -907,23 +852,6 @@ Panel content
             WhenParsing(elementPosition);
             ThenThereIsCollectionOfElementsOfType(expected);
         }
-
-        //[Xunit.Theory]
-        //[Trait("Category", "OLD Bootstrap 3, collection")]
-        //public void ParseBootstrap3ForCollectionOld(string input, string expected, int elementPosition)
-        //{
-        //    GivenHtml_OriginalForHtmlInCode(input);
-        //    WhenParsing(elementPosition);
-        //    ThenThereIsCollectionOfElementsOfType(expected);
-        //}
-        
-        //void GivenHtml_OriginalForHtmlInCode(string input)
-        //{
-        //    // var fullHtml = @"<html><head></head><body>" + input + "</body></html>";
-        //    var fullHtml = HtmlFirstPart + input + HtmlLastPart;
-        //    _doc = new HtmlDocument();
-        //    _doc.LoadHtml(fullHtml);
-        //}
 
         void GivenHtml_NewHtmlInFiles(string path)
         {

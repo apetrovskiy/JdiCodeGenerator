@@ -10,5 +10,6 @@
         IEnumerable<IRule<T>> Rules { get; set; }
         IEnumerable<string> ExcludeList { get; set; }
         IRule<T> RuleThatWon { get; set; }
+        int Priority { get; set; }
     }
 }

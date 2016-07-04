@@ -6,7 +6,6 @@
     using System.Threading;
     using Awesomium.Core;
     using HtmlAgilityPack;
-    using Core;
     using Core.Helpers;
     using Core.ObjectModel.Abstract;
 

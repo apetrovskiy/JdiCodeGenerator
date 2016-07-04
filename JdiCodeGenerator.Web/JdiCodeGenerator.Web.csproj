@@ -82,6 +82,7 @@
     <Compile Include="Helpers\ExtensionMethodsForNodes.cs" />
     <Compile Include="Helpers\HtmlElementToCodeEntryConvertor.cs" />
     <Compile Include="Helpers\PageLoader.cs" />
+    <Compile Include="ObjectModel\Abstract\FrameworkAlignmentAnalysisPlugin.cs" />
     <Compile Include="ObjectModel\Abstract\HtmlElementTypes.cs" />
     <Compile Include="ObjectModel\Abstract\IFrameworkAlingmentAnalysisPlugin.cs" />
     <Compile Include="ObjectModel\Plugins\AngularJs.cs" />
@@ -94,7 +95,7 @@
     <Compile Include="ObjectModel\Plugins\BootstrapAndCompetitors\Pure.cs" />
     <Compile Include="ObjectModel\Plugins\BootstrapAndCompetitors\Yui.cs" />
     <Compile Include="ObjectModel\Plugins\BootstrapAndCompetitors\Zimit.cs" />
-    <Compile Include="ObjectModel\Plugins\General.cs" />
+    <Compile Include="ObjectModel\Plugins\PlainHtml5.cs" />
     <Compile Include="ObjectModel\Plugins\ReactJs.cs" />
     <Compile Include="Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>

@@ -5,11 +5,9 @@
     using System.Linq;
     using System.Reflection;
     using HtmlAgilityPack;
-    using Core;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
     using ObjectModel.Abstract;
-    using ObjectModel.Plugins;
 
     public static class ExtensionMethodsForNodes
     {
@@ -76,13 +74,17 @@
             // apply all applicable
             // TODO: use the selection the user provided
             // refactoring
-            // 20160629
-            // var typesOfAnalyzers = AppDomain.CurrentDomain.GetAssemblies().Where(assm => assm.FullName.Contains("JdiCodeGenerator.Core")).SelectMany(assm => assm.GetTypes()).Where(type => type.GetInterfaces().Contains(typeof(IFrameworkAlingmentAnalysisPlugin)));
-            // var typesOfAnalyzers = AppDomain.CurrentDomain.GetAssemblies().Where(assm => assm.FullName.Contains("JdiCodeGenerator.Web")).SelectMany(assm => assm.GetTypes()).Where(type => type.GetInterfaces().Contains(typeof(IFrameworkAlingmentAnalysisPlugin)));
             var currentAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
-            var typesOfAnalyzers = AppDomain.CurrentDomain.GetAssemblies().Where(assm => assm.FullName.Contains(currentAssemblyName)).SelectMany(assm => assm.GetTypes()).Where(type => type.GetInterfaces().Contains(typeof(IFrameworkAlingmentAnalysisPlugin<HtmlElementTypes>)));
+            var typesOfAnalyzers = AppDomain.CurrentDomain.GetAssemblies().Where(assm => assm.FullName.Contains(currentAssemblyName)).SelectMany(assm => assm.GetTypes()).Where(type => type.GetInterfaces().Contains(typeof(IFrameworkAlingmentAnalysisPlugin<HtmlElementTypes>)) && !type.IsAbstract);
 
-            typesOfAnalyzers.ToList().ForEach(type => { result = (JdiElementTypes) type.GetMethod("Analyze").Invoke(Activator.CreateInstance(type), new object[] {node}); });
+            typesOfAnalyzers.OrderByDescending(type => (int) type.GetProperty("Priority").GetValue(Activator.CreateInstance(type)))
+                .ToList()
+                .ForEach(type =>
+                {
+                    var preliminaryResult = (JdiElementTypes)type.GetMethod("Analyze").Invoke(Activator.CreateInstance(type), new object[] { node });
+                    if (JdiElementTypes.Element != preliminaryResult)
+                        result = preliminaryResult;
+                });
 
             return result;
         }
@@ -213,7 +215,7 @@
 
         public static bool IsMatch(this IRule<HtmlElementTypes> rule, HtmlNode node)
         {
-            var elementType = new General().Analyze(node.OriginalName);
+            var elementType = node.OriginalName.ConvertOriginalHtmlElementNameIntoHtmlElementType();
             if (!rule.SourceTypes.SelectMany(type => type.Types).Contains(elementType))
                 return false;
 

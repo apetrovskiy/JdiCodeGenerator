@@ -3,18 +3,16 @@
     using System.Collections.Generic;
     using System.Linq;
     using HtmlAgilityPack;
-    using Core;
     using Core.Helpers;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
     using ObjectModel.Abstract;
-    using ObjectModel.Plugins;
 
     public class HtmlElementToCodeEntryConvertor//<T>
     {
         public ICodeEntry<HtmlElementTypes> ConvertToCodeEntry(HtmlNode node)
         {
-            var codeEntry = new CodeEntry<HtmlElementTypes> { SourceMemberType = new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { (new General()).Analyze(node.OriginalName) } } };
+            var codeEntry = new CodeEntry<HtmlElementTypes> { SourceMemberType = new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { node.OriginalName.ConvertOriginalHtmlElementNameIntoHtmlElementType() } } };
 
             codeEntry.Locators.AddRange(
                 new List<LocatorDefinition>

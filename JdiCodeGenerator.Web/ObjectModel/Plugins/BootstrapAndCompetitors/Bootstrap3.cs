@@ -1,22 +1,17 @@
 ﻿namespace JdiCodeGenerator.Web.ObjectModel.Plugins.BootstrapAndCompetitors
 {
     using System.Collections.Generic;
-    using System.Linq;
-    using HtmlAgilityPack;
-    using Core;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
-    using Helpers;
     using Abstract;
 
-    public class Bootstrap3 : IFrameworkAlingmentAnalysisPlugin<HtmlElementTypes>
+    public class Bootstrap3 : FrameworkAlignmentAnalysisPlugin
     {
-        public IEnumerable<IRule<HtmlElementTypes>> Rules { get; set; }
-        public IEnumerable<string> ExcludeList { get; set; }
-        public IRule<HtmlElementTypes> RuleThatWon { get; set; }
-
         public Bootstrap3()
         {
+            // TODO: set priority depending on the user's choice
+            Priority = 100;
+
             ExcludeList = new List<string> { "aaa", "bbb", "ccc" };
             Rules = new List<IRule<HtmlElementTypes>>
             {
@@ -329,23 +324,6 @@ IDropDown<JobCategories> category;
                     }
                 }
             };
-        }
-
-        public JdiElementTypes Analyze(HtmlNode node)
-        {
-            return GetJdiTypeOfElementByUsingRules(node);
-        }
-
-        JdiElementTypes GetJdiTypeOfElementByUsingRules(HtmlNode node)
-        {
-            var firstRule = Rules.FirstOrDefault(rule => rule.IsMatch(node));
-
-            // experimental
-            RuleThatWon = firstRule;
-            ExtensionMethodsForNodes.AnalyzerThatWon = this;
-
-            // return firstRule?.TargetType ?? JdiElementTypes.Element;
-            return null == firstRule ? JdiElementTypes.Element : firstRule.TargetType;
         }
     }
 }

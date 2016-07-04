@@ -1,8 +1,8 @@
 ﻿namespace JdiCodeGenerator.Web.Helpers
 {
+    using System;
     using System.Linq;
     using HtmlAgilityPack;
-    using Core;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
     using ObjectModel.Abstract;
@@ -333,6 +333,26 @@
                     result = JdiElementTypes.Element;
                     break;
             }
+            return result;
+        }
+
+        public static HtmlElementTypes ConvertOriginalHtmlElementNameIntoHtmlElementType(this string originalName)
+        {
+            var result = HtmlElementTypes.Unknown;
+
+            Enum.GetValues(typeof(HtmlElementTypes))
+                .Cast<HtmlElementTypes>()
+                .ToList()
+                .ForEach(htmlElementType =>
+                {
+                    // if (null != node.OriginalName && string.CompareOrdinal(htmlElementType.ToString(), node.OriginalName) != 0)
+                    if (!string.IsNullOrEmpty(originalName) && string.CompareOrdinal(htmlElementType.ToString().ToLower(), originalName) == 0)
+                    {
+                        result = htmlElementType;
+                        return;
+                    }
+                });
+
             return result;
         }
     }
