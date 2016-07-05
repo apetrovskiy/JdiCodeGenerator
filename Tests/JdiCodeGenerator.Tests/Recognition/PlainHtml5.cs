@@ -1,13 +1,11 @@
 ﻿namespace JdiCodeGenerator.Tests.Recognition
 {
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
     using HtmlAgilityPack;
     using Internals;
-    using NUnit.Framework;
     using Web.Helpers;
     using Web.ObjectModel.Abstract;
     using Xunit;
@@ -25,7 +23,7 @@
             _entries = new List<ICodeEntry<HtmlElementTypes>>();
         }
 
-        [Xunit.Theory]
+        [Theory]
         [InlineData(@"..\Data\PlainHtml5\Simple\TextField.txt", "ITextField", 1)]
         [InlineData(@"..\Data\PlainHtml5\Simple\Button.txt", "IButton", 0)]
 
@@ -43,14 +41,19 @@
             ThenThereIsElementOfType(expected);
         }
 
-        [Xunit.Theory]
-        [InlineData(@"..\Data\PlainHtml5\Complex\DropDownList.txt", "IDropDown<SomeEnum>", 0)]
-        [InlineData(@"..\Data\PlainHtml5\Complex\Form.txt", "IForm<SomeEnum>", 0)]
+        [Theory]
+        //[InlineData(@"..\Data\PlainHtml5\Complex\DropDownList.txt", "IDropDown<SomeEnum>", 0)]
+        //[InlineData(@"..\Data\PlainHtml5\Complex\Form.txt", "IForm<SomeEnum>", 0)]
+        // [InlineData(@"..\Data\PlainHtml5\Complex\DropDownList.txt", "IDropDown<", 0)]
+        [InlineData(@"..\Data\PlainHtml5\Complex\ComboBox.txt", "IComboBox<", 0)]
+        [InlineData(@"..\Data\PlainHtml5\Complex\Form.txt", "IForm<", 0)]
         // [InlineData(@"..\Data\PlainHtml5\Complex\Menu.txt", "IMenu<SomeEnum>", 0)]
         // [InlineData(@"..\Data\PlainHtml5\Complex\MenuItem.txt", "IMenu<SomeEnum>", 0)]
         // [InlineData(@"..\Data\PlainHtml5\Complex\Table.txt", "ITable<SomeEnum>", 0)]
-        
-        [Trait("Category", "Bootstrap 3, collection")]
+
+        [InlineData(@"..\Data\PlainHtml5\Complex\FifaDropDown.txt", "IComboBox<", 0)]
+
+        [Trait("Category", "HTML 5, collection")]
 
 
         public void ParsePlainHtml5ForCollection(string input, string expected, int elementPosition)
@@ -76,7 +79,7 @@
         void ThenThereIsElementOfType(string expected)
         {
             //        	try {
-            Xunit.Assert.True(_entry.GenerateCodeForEntry(SupportedLanguages.Java).Contains(expected));
+            Assert.True(_entry.GenerateCodeForEntry(SupportedLanguages.Java).Contains(expected));
             //        	}
             //        	catch {
             //        		int i = 1;
@@ -88,7 +91,7 @@
             //Console.WriteLine("================================================================================================");
             //Console.WriteLine(_entry.GenerateCodeForEntry(SupportedLanguages.Java));
 
-            Xunit.Assert.True(_entry.GenerateCodeForEntry(SupportedLanguages.Java).Contains(expected));
+            Assert.True(_entry.GenerateCodeForEntry(SupportedLanguages.Java).Contains(expected));
         }
     }
 }

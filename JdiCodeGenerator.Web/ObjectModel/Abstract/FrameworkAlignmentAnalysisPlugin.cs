@@ -21,10 +21,6 @@
             RuleThatWon = firstRule;
             ExtensionMethodsForNodes.AnalyzerThatWon = this;
 
-            // children collection for complex elements
-            if (null != firstRule && null != firstRule.InternalElements && firstRule.InternalElements.Any())
-                WorkOutInternalElements(node);
-
             // return firstRule?.TargetType ?? JdiElementTypes.Element;
             return null == firstRule ? JdiElementTypes.Element : firstRule.TargetType;
         }
@@ -33,16 +29,5 @@
         public IEnumerable<string> ExcludeList { get; set; }
         public IRule<HtmlElementTypes> RuleThatWon { get; set; }
         public int Priority { get; set; }
-
-        // TODO: children collection of complex elements
-        void WorkOutInternalElements(HtmlNode node)
-        {
-            // TODO: the root element
-
-            // TODO: the value element
-
-            // TODO: the list collection
-
-        }
     }
 }

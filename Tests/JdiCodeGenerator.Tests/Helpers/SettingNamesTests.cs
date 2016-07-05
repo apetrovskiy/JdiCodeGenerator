@@ -7,7 +7,6 @@
     using Core.ObjectModel.Abstract;
     using Web.ObjectModel.Abstract;
     using Xunit;
-    using NUnit.Framework;
 
     public class SettingNamesTests
     {
@@ -20,18 +19,13 @@
             _expectedCodeEntries = null;
         }
 
-        [Xunit.Theory]
+        [Theory]
         [InlineData(new[] { "a", "b", "c" }, new[] { "buttonA", "buttonB", "buttonC" })]
         [InlineData(new[] { "a", "a", "b", "c" }, new[] { "buttonA", "buttonA1", "buttonB", "buttonC" })]
         [InlineData(new[] { "a", "a", "b", "b", "c" }, new[] { "buttonA", "buttonA1", "buttonB", "buttonB1", "buttonC" })]
         [InlineData(new[] { "a", "a", "a", "b", "c" }, new[] { "buttonA", "buttonA1", "buttonA2", "buttonB", "buttonC" })]
         [InlineData(new[] { "a", "b", "c", "a", "c" }, new[] { "buttonA", "buttonB", "buttonC", "buttonA1", "buttonC1" })]
         [Trait("Category", "SettingNames")]
-        [TestCase(new[] { "a", "b", "c" }, new[] { "buttonA", "buttonB", "buttonC" })]
-        [TestCase(new[] { "a", "a", "b", "c" }, new[] { "buttonA", "buttonA1", "buttonB", "buttonC" })]
-        [TestCase(new[] { "a", "a", "b", "b", "c" }, new[] { "buttonA", "buttonA1", "buttonB", "buttonB1", "buttonC" })]
-        [TestCase(new[] { "a", "a", "a", "b", "c" }, new[] { "buttonA", "buttonA1", "buttonA2", "buttonB", "buttonC" })]
-        [TestCase(new[] { "a", "b", "c", "a", "c" }, new[] { "buttonA", "buttonB", "buttonC", "buttonA1", "buttonC1" })]
         public void SetsDistinctNames(string[] originalSequence, string[] expectedSequence)
         {
             GivenCodeEntries(originalSequence);
@@ -57,7 +51,7 @@
             _expectedCodeEntries = new List<ICodeEntry<HtmlElementTypes>>();
             var expectedNames = expectedSequence.ToList();
             var actualNames = _codeEntries.Select(entry1 => entry1.MemberName).ToList();
-            Xunit.Assert.Equal(expectedNames, actualNames);
+            Assert.Equal(expectedNames, actualNames);
         }
     }
 }

@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using Core;
     using HtmlAgilityPack;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
@@ -77,11 +78,11 @@
             var currentAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
             var typesOfAnalyzers = AppDomain.CurrentDomain.GetAssemblies().Where(assm => assm.FullName.Contains(currentAssemblyName)).SelectMany(assm => assm.GetTypes()).Where(type => type.GetInterfaces().Contains(typeof(IFrameworkAlingmentAnalysisPlugin<HtmlElementTypes>)) && !type.IsAbstract);
 
-            typesOfAnalyzers.OrderByDescending(type => (int) type.GetProperty("Priority").GetValue(Activator.CreateInstance(type)))
+            typesOfAnalyzers.OrderByDescending(type => (int)type.GetProperty(Resources.RuleMember_Priority).GetValue(Activator.CreateInstance(type)))
                 .ToList()
                 .ForEach(type =>
                 {
-                    var preliminaryResult = (JdiElementTypes)type.GetMethod("Analyze").Invoke(Activator.CreateInstance(type), new object[] { node });
+                    var preliminaryResult = (JdiElementTypes)type.GetMethod(Resources.RuleMember_Analyze).Invoke(Activator.CreateInstance(type), new object[] { node });
                     if (JdiElementTypes.Element != preliminaryResult)
                         result = preliminaryResult;
                 });
@@ -220,6 +221,33 @@
                 return false;
 
             return rule.ResolveRuleToJdiType(node);
+        }
+
+        public static ICodeEntry<HtmlElementTypes> ConvertToCodeEntry(this HtmlNode node)
+        {
+            var codeEntry = new CodeEntry<HtmlElementTypes> { SourceMemberType = new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { node.OriginalName.ConvertOriginalHtmlElementNameIntoHtmlElementType() } } };
+
+            codeEntry.Locators.AddRange(
+                new List<LocatorDefinition>
+                {
+                    node.CreateIdLocator(),
+                    node.CreateNameLocator(),
+                    node.CreateClassLocator(),
+                    node.CreateTagLocator(),
+                    node.CreateLinkTextLocator(),
+                    node.CreateCssLocator(),
+                    node.CreateXpathLocator()
+                });
+            codeEntry.Locators.RemoveAll(locator => null == locator || locator.SearchString == string.Empty);
+
+            // TODO: write the code behind // ??
+            codeEntry.JdiMemberType = node.ApplyApplicableAnalyzers();
+
+            // experimental
+            codeEntry.AnalyzerThatWon = null != AnalyzerThatWon ? AnalyzerThatWon.GetType().Name : string.Empty;
+            codeEntry.RuleThatWon = null != AnalyzerThatWon && null != AnalyzerThatWon.RuleThatWon ? AnalyzerThatWon.RuleThatWon.GetType().Name : string.Empty;
+
+            return codeEntry;
         }
     }
 }

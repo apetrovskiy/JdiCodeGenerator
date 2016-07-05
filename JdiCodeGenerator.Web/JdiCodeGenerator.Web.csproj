@@ -97,11 +97,6 @@
     <Compile Include="ObjectModel\Plugins\BootstrapAndCompetitors\Zimit.cs" />
     <Compile Include="ObjectModel\Plugins\PlainHtml5.cs" />
     <Compile Include="ObjectModel\Plugins\ReactJs.cs" />
-    <Compile Include="Resources.Designer.cs">
-      <DependentUpon>Resources.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="WebNames.Designer.cs">
       <DependentUpon>WebNames.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -109,10 +104,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="WebNames.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>WebNames.Designer.cs</LastGenOutput>

@@ -51,7 +51,8 @@
         static Regex UppercaseTheNextCharacter = new Regex("[^0-9a-zA-Z]+(?<letter>[a-z])", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Multiline);
         static Regex JustRemoveWrongCharacter = new Regex("[^0-9a-zA-Z]+", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
-        internal static string ToPascalCase(this string wronglyFormattedString)
+        // internal static string ToPascalCase(this string wronglyFormattedString)
+        public static string ToPascalCase(this string wronglyFormattedString)
         {
             if (string.IsNullOrEmpty(wronglyFormattedString))
                 return NoName;

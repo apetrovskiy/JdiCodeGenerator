@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Abstract;
+    using Core;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
 
@@ -77,13 +78,27 @@
   <option value="audi">Audi</option>
 </select>
                 */
+                //new Rule<HtmlElementTypes>
+                //{
+                //    Description = "DropDown",
+                //    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> {  Types = new List<HtmlElementTypes> { HtmlElementTypes.Select } } },
+                //    TargetType = JdiElementTypes.DropDown,
+                //    OrConditions = new List<IRuleCondition>
+                //    { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "select" } } },
+                //},
                 new Rule<HtmlElementTypes>
                 {
-                    Description = "DropDownList",
+                    Description = "ComboBox",
                     SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> {  Types = new List<HtmlElementTypes> { HtmlElementTypes.Select } } },
-                    TargetType = JdiElementTypes.DropDown,
+                    TargetType = JdiElementTypes.ComboBox,
                     OrConditions = new List<IRuleCondition>
-                    { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "select" } } }
+                    { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "select" } } },
+                    InternalElements = new Dictionary<string, IRule<HtmlElementTypes>>
+                    {
+                        { Resources.Jdi_DropDown_root, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Div } } }, TargetType = JdiElementTypes.DropDown, OrConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "select" } } } } },
+                        { Resources.Jdi_DropDown_value, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Div } } }, TargetType = JdiElementTypes.DropDown, OrConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "select" } } } } },
+                        { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Li } } }, TargetType = JdiElementTypes.ListItem, OrConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Tag, MarkerValues = new List<string> { "option" } } } } }
+                    }
                 },
                 /*
 <form action="demo_form.asp" method="get">
@@ -100,6 +115,20 @@
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition {Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "form" } } }
                 }
+//                ,
+//                /*
+//<div class="ma-data-wrap">
+//	<select class="ma-ddl">
+//		<option value="afg">Afghanistan</option>
+//                */
+//                new Rule<HtmlElementTypes>
+//                {
+//                    Description = "DropDown with options",
+//                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> {  Types = new List<HtmlElementTypes> { HtmlElementTypes.Select } } },
+//                    TargetType = JdiElementTypes.DropDown,
+//                    OrConditions = new List<IRuleCondition>
+//                    { new RuleCondition {Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "form" } } }
+//                }
             };
         }
     }

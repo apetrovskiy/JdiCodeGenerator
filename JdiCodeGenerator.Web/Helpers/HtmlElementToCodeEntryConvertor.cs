@@ -2,37 +2,45 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using Core;
     using HtmlAgilityPack;
     using Core.Helpers;
-    using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
     using ObjectModel.Abstract;
 
-    public class HtmlElementToCodeEntryConvertor//<T>
+    public class HtmlElementToCodeEntryConvertor // <T>
     {
         public ICodeEntry<HtmlElementTypes> ConvertToCodeEntry(HtmlNode node)
         {
-            var codeEntry = new CodeEntry<HtmlElementTypes> { SourceMemberType = new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { node.OriginalName.ConvertOriginalHtmlElementNameIntoHtmlElementType() } } };
+            //var codeEntry = new CodeEntry<HtmlElementTypes> { SourceMemberType = new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { node.OriginalName.ConvertOriginalHtmlElementNameIntoHtmlElementType() } } };
 
-            codeEntry.Locators.AddRange(
-                new List<LocatorDefinition>
-                {
-                    node.CreateIdLocator(),
-                    node.CreateNameLocator(),
-                    node.CreateClassLocator(),
-                    node.CreateTagLocator(),
-                    node.CreateLinkTextLocator(),
-                    node.CreateCssLocator(),
-                    node.CreateXpathLocator()
-                });
-            codeEntry.Locators.RemoveAll(locator => null == locator || locator.SearchString == string.Empty);
+            //codeEntry.Locators.AddRange(
+            //    new List<LocatorDefinition>
+            //    {
+            //        node.CreateIdLocator(),
+            //        node.CreateNameLocator(),
+            //        node.CreateClassLocator(),
+            //        node.CreateTagLocator(),
+            //        node.CreateLinkTextLocator(),
+            //        node.CreateCssLocator(),
+            //        node.CreateXpathLocator()
+            //    });
+            //codeEntry.Locators.RemoveAll(locator => null == locator || locator.SearchString == string.Empty);
 
-            // TODO: write the code behind // ??
-            codeEntry.JdiMemberType = node.ApplyApplicableAnalyzers();
+            //// TODO: write the code behind // ??
+            //codeEntry.JdiMemberType = node.ApplyApplicableAnalyzers();
 
-            // experimental
-            codeEntry.AnalyzerThatWon = null != ExtensionMethodsForNodes.AnalyzerThatWon ? ExtensionMethodsForNodes.AnalyzerThatWon.GetType().Name : string.Empty;
-            codeEntry.RuleThatWon = null != ExtensionMethodsForNodes.AnalyzerThatWon && null != ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon ? ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon.GetType().Name : string.Empty;
+            //// experimental
+            //codeEntry.AnalyzerThatWon = null != ExtensionMethodsForNodes.AnalyzerThatWon ? ExtensionMethodsForNodes.AnalyzerThatWon.GetType().Name : string.Empty;
+            //codeEntry.RuleThatWon = null != ExtensionMethodsForNodes.AnalyzerThatWon && null != ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon ? ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon.GetType().Name : string.Empty;
+
+            var codeEntry = node.ConvertToCodeEntry();
+
+            // if there're rules for internal elements, get the internal
+            // children collection for complex elements
+            if (!string.IsNullOrEmpty(codeEntry.RuleThatWon))
+                // if (null != ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon.InternalElements && ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon.InternalElements.Any())
+                WorkOutInternalElements(ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon, codeEntry, node);
 
             if (JdiElementTypes.Element == codeEntry.JdiMemberType)
                 codeEntry.JdiMemberType = codeEntry.SourceMemberType.Types[0].ConvertHtmlTypeToJdiType();
@@ -61,6 +69,67 @@
                     .SelectMany(ConvertToCodeEntries).ToList()
                     );
 
+            return resultList;
+        }
+
+        // TODO: children collection of complex elements
+        void WorkOutInternalElements(IRule<HtmlElementTypes> rule, ICodeEntry<HtmlElementTypes> codeEntry, HtmlNode node)
+        {
+            if (null == rule.InternalElements || !rule.InternalElements.Any())
+                return;
+            //// TODO: the root element
+            //codeEntry.Root = GetNodeByRule(node, Resources.Jdi_DropDown_root).;
+            // codeEntry.Root = GetNodeByRule(node, Resources.Jdi_DropDown_root).ConvertToCodeEntry().Locators.First(locator => locator.IsBestChoice);
+            if (rule.InternalElements.Any(subRule => Resources.Jdi_DropDown_root == subRule.Key))
+            {
+                var rootNode = GetNodeByRule(node, Resources.Jdi_DropDown_root);
+                if (null != rootNode)
+                    codeEntry.Root = rootNode.ConvertToCodeEntry().Locators.First(locator => locator.IsBestChoice);
+            }
+            //// TODO: the value element
+            //codeEntry.Value = GetNodeByRule(node, Resources.Jdi_DropDown_value);
+            // codeEntry.Value = GetNodeByRule(node, Resources.Jdi_DropDown_value).ConvertToCodeEntry().Locators.First(locator => locator.IsBestChoice);
+            if (rule.InternalElements.Any(subRule => Resources.Jdi_DropDown_value == subRule.Key))
+            {
+                var valueNode = GetNodeByRule(node, Resources.Jdi_DropDown_value);
+                if (null != valueNode)
+                    codeEntry.Value = valueNode.ConvertToCodeEntry().Locators.First(locator => locator.IsBestChoice);
+            }
+            //// TODO: the list collection
+            //codeEntry.List = GetNodeListByRule(node);
+            // codeEntry.List = GetNodeListByRule(node).First().ConvertToCodeEntry().Locators.First(locator => locator.IsBestChoice);
+            // codeEntry.ListMemberNames.AddRange(GetNodeListByRule(node).Select(listNode => listNode.InnerText.ToPascalCase()));
+            if (rule.InternalElements.Any(subRule => Resources.Jdi_DropDown_list == subRule.Key))
+            {
+                var listNodes = GetNodeListByRule(node);
+                if (null != listNodes && listNodes.Any())
+                {
+                    codeEntry.List =
+                        listNodes.First().ConvertToCodeEntry().Locators.First(locator => locator.IsBestChoice);
+                    codeEntry.ListMemberNames.AddRange(listNodes.Select(listNode => listNode.InnerText.ToPascalCase()));
+                }
+            }
+        }
+
+        HtmlNode GetNodeByRule(HtmlNode upperNode, string ruleKey)
+        {
+            HtmlNode nodeInQuestion = null;
+            upperNode.DescendantsAndSelf()
+                .ToList()
+                .ForEach(potentialNodeInQuestion =>
+                {
+                    if (ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon.InternalElements.First(ruleByKey => ruleKey == ruleByKey.Key).Value.IsMatch(potentialNodeInQuestion))
+                        nodeInQuestion = potentialNodeInQuestion;
+                });
+            return nodeInQuestion;
+        }
+
+        IEnumerable<HtmlNode> GetNodeListByRule(HtmlNode upperNode)
+        {
+            var resultList = new List<HtmlNode>();
+            resultList.AddRange(upperNode.Descendants()
+                .Where(someNode => ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon.InternalElements.First(listRule => Resources.Jdi_DropDown_list == listRule.Key).Value.IsMatch(someNode))
+                .ToList());
             return resultList;
         }
     }

@@ -106,6 +106,7 @@
         public LocatorDefinition Root { get; set; }
         public LocatorDefinition Value { get; set; }
         public LocatorDefinition List { get; set; }
+        public List<string> ListMemberNames { get; set; }
 
         SupportedLanguages _language;
 
@@ -113,6 +114,7 @@
         {
             Id = Guid.NewGuid();
             Locators = new List<LocatorDefinition>();
+            ListMemberNames = new List<string>();
         }
 
         public string GenerateCodeForEntry(SupportedLanguages language)
@@ -182,23 +184,24 @@
 
         string GetDropDownRootLocator()
         {
-            return string.Empty;
+            return null != Root ? Root.SearchString : string.Empty;
         }
 
         string GetDropDownValueLocator()
         {
-            return string.Empty;
+            return null != Value ? Value.SearchString : string.Empty;
         }
 
         string GetDropDownListLocator()
         {
-            return string.Empty;
+            return null != List ? List.SearchString : string.Empty;
         }
 
         string GenerateEnumerationTypeName()
         {
             // TODO: write code
-            return "SomeEnum";
+            // return "SomeEnum";
+            return MemberName.Substring(0, 1).ToUpper() + MemberName.Substring(1);
         }
     }
 }

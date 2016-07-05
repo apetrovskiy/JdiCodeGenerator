@@ -32,5 +32,6 @@ IDropDown<JobCategories> category;
         LocatorDefinition Root { get; set; }
         LocatorDefinition Value { get; set; }
         LocatorDefinition List { get; set; }
+        List<string> ListMemberNames { get; set; }
     }
 }

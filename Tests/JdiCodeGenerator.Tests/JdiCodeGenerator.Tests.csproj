@@ -93,9 +93,6 @@
       <HintPath>..\..\packages\NSubstitute.1.10.0.0\lib\net45\NSubstitute.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\..\packages\NUnit.3.4.0\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -370,7 +367,10 @@
     <Content Include="Data\Bootstrap3\Simple\WellSmall.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\PlainHtml5\Complex\DropDownList.txt">
+    <Content Include="Data\PlainHtml5\Complex\ComboBox.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\PlainHtml5\Complex\FifaDropDown.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\PlainHtml5\Complex\Form.txt">

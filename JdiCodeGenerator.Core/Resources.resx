@@ -126,4 +126,10 @@
   <data name="Jdi_DropDown_value" xml:space="preserve">
     <value>value</value>
   </data>
+  <data name="RuleMember_Analyze" xml:space="preserve">
+    <value>Analyze</value>
+  </data>
+  <data name="RuleMember_Priority" xml:space="preserve">
+    <value>Priority</value>
+  </data>
 </root>
