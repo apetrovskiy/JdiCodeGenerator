@@ -79,7 +79,7 @@
             // codeEntry.ListMemberNames.AddRange(GetNodeListByRule(node).Select(listNode => listNode.InnerText.ToPascalCase()));
             if (rule.InternalElements.Any(subRule => Resources.Jdi_DropDown_list == subRule.Key))
             {
-                var listNodes = GetNodeListByRule(node);
+                var listNodes = GetNodeListByRule(rule, node);
                 if (null != listNodes && listNodes.Any())
                 {
                     codeEntry.List =
@@ -102,11 +102,13 @@
             return nodeInQuestion;
         }
 
-        IEnumerable<HtmlNode> GetNodeListByRule(HtmlNode upperNode)
+        IEnumerable<HtmlNode> GetNodeListByRule(IRule<HtmlElementTypes> rule, HtmlNode upperNode)
         {
             var resultList = new List<HtmlNode>();
+            if (!rule.InternalElements.Any())
+                return resultList;
             resultList.AddRange(upperNode.Descendants()
-                .Where(someNode => ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon.InternalElements.First(listRule => Resources.Jdi_DropDown_list == listRule.Key).Value.IsMatch(someNode))
+                .Where(someNode => rule.InternalElements.First(listRule => Resources.Jdi_DropDown_list == listRule.Key).Value.IsMatch(someNode))
                 .ToList());
             return resultList;
         }
