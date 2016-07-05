@@ -12,28 +12,6 @@
     {
         public ICodeEntry<HtmlElementTypes> ConvertToCodeEntry(HtmlNode node)
         {
-            //var codeEntry = new CodeEntry<HtmlElementTypes> { SourceMemberType = new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { node.OriginalName.ConvertOriginalHtmlElementNameIntoHtmlElementType() } } };
-
-            //codeEntry.Locators.AddRange(
-            //    new List<LocatorDefinition>
-            //    {
-            //        node.CreateIdLocator(),
-            //        node.CreateNameLocator(),
-            //        node.CreateClassLocator(),
-            //        node.CreateTagLocator(),
-            //        node.CreateLinkTextLocator(),
-            //        node.CreateCssLocator(),
-            //        node.CreateXpathLocator()
-            //    });
-            //codeEntry.Locators.RemoveAll(locator => null == locator || locator.SearchString == string.Empty);
-
-            //// TODO: write the code behind // ??
-            //codeEntry.JdiMemberType = node.ApplyApplicableAnalyzers();
-
-            //// experimental
-            //codeEntry.AnalyzerThatWon = null != ExtensionMethodsForNodes.AnalyzerThatWon ? ExtensionMethodsForNodes.AnalyzerThatWon.GetType().Name : string.Empty;
-            //codeEntry.RuleThatWon = null != ExtensionMethodsForNodes.AnalyzerThatWon && null != ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon ? ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon.GetType().Name : string.Empty;
-
             var codeEntry = node.ConvertToCodeEntry();
 
             // if there're rules for internal elements, get the internal
@@ -82,7 +60,7 @@
             // codeEntry.Root = GetNodeByRule(node, Resources.Jdi_DropDown_root).ConvertToCodeEntry().Locators.First(locator => locator.IsBestChoice);
             if (rule.InternalElements.Any(subRule => Resources.Jdi_DropDown_root == subRule.Key))
             {
-                var rootNode = GetNodeByRule(node, Resources.Jdi_DropDown_root);
+                var rootNode = GetNodeByRule(rule, node, Resources.Jdi_DropDown_root);
                 if (null != rootNode)
                     codeEntry.Root = rootNode.ConvertToCodeEntry().Locators.First(locator => locator.IsBestChoice);
             }
@@ -91,7 +69,7 @@
             // codeEntry.Value = GetNodeByRule(node, Resources.Jdi_DropDown_value).ConvertToCodeEntry().Locators.First(locator => locator.IsBestChoice);
             if (rule.InternalElements.Any(subRule => Resources.Jdi_DropDown_value == subRule.Key))
             {
-                var valueNode = GetNodeByRule(node, Resources.Jdi_DropDown_value);
+                var valueNode = GetNodeByRule(rule, node, Resources.Jdi_DropDown_value);
                 if (null != valueNode)
                     codeEntry.Value = valueNode.ConvertToCodeEntry().Locators.First(locator => locator.IsBestChoice);
             }
@@ -111,14 +89,14 @@
             }
         }
 
-        HtmlNode GetNodeByRule(HtmlNode upperNode, string ruleKey)
+        HtmlNode GetNodeByRule(IRule<HtmlElementTypes> rule, HtmlNode upperNode, string ruleKey)
         {
             HtmlNode nodeInQuestion = null;
             upperNode.DescendantsAndSelf()
                 .ToList()
                 .ForEach(potentialNodeInQuestion =>
                 {
-                    if (ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon.InternalElements.First(ruleByKey => ruleKey == ruleByKey.Key).Value.IsMatch(potentialNodeInQuestion))
+                    if (rule.InternalElements.First(ruleByKey => ruleKey == ruleByKey.Key).Value.IsMatch(potentialNodeInQuestion))
                         nodeInQuestion = potentialNodeInQuestion;
                 });
             return nodeInQuestion;

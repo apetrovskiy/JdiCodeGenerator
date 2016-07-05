@@ -245,7 +245,8 @@
 
             // experimental
             codeEntry.AnalyzerThatWon = null != AnalyzerThatWon ? AnalyzerThatWon.GetType().Name : string.Empty;
-            codeEntry.RuleThatWon = null != AnalyzerThatWon && null != AnalyzerThatWon.RuleThatWon ? AnalyzerThatWon.RuleThatWon.GetType().Name : string.Empty;
+            // codeEntry.RuleThatWon = null != AnalyzerThatWon && null != AnalyzerThatWon.RuleThatWon ? AnalyzerThatWon.RuleThatWon.GetType().Name : string.Empty;
+            codeEntry.RuleThatWon = null != AnalyzerThatWon && null != AnalyzerThatWon.RuleThatWon ? AnalyzerThatWon.RuleThatWon.Description : string.Empty;
 
             return codeEntry;
         }
