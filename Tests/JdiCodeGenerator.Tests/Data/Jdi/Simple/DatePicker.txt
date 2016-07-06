@@ -1,0 +1,9 @@
+﻿<div class="clearfix">
+	<label class="label-date">Period</label>
+	<div id="datepicker" class="date uui-datepicker date-button small">
+		<input type="text" class="uui-form-element small" jdi-type="IDatePicker" jdi-parent="contactForm" jdi-name="date">
+		<span class="input-group-addon uui-button small">
+			<i class="fa fa-calendar"></i>
+		</span>
+	</div>
+</div>
