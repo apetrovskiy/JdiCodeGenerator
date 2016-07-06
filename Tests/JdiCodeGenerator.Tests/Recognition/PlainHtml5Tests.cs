@@ -57,7 +57,6 @@
 
         [Trait("Category", "HTML 5, collection")]
 
-
         public void ParsePlainHtml5ForCollection(string input, string expected, string rootSearchString, string valueSearchString, string listSearchString, int elementPosition)
         {
             GivenHtmlFromFile(input);
@@ -89,7 +88,6 @@
             //        	}
         }
 
-        // void ThenThereIsCollectionOfElementsOfType(string expected)
         void ThenThereIsCollectionOfElementsOfType(string expected, string rootSearchString, string valueSearchString, string listSearchString)
         {
             // Assert.True(_entry.GenerateCodeForEntry(SupportedLanguages.Java).Contains(expected));

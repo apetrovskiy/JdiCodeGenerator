@@ -20,7 +20,7 @@
 
         public static bool HasAttribute(this HtmlNode node, Markers marker)
         {
-            return HasAttribute(node, ConvertMarkerToStringNameOfAttribute(marker));
+            return Markers.OtherAttribute == marker ? node.HasAttributes : HasAttribute(node, ConvertMarkerToStringNameOfAttribute(marker));
         }
 
         static string ConvertMarkerToStringNameOfAttribute(this Markers marker)
@@ -46,6 +46,18 @@
             return NodeWithAttributes(node) ? node.Attributes.First(attribute => attribute.Name.ToLower() == ConvertMarkerToStringNameOfAttribute(marker)).Value : string.Empty;
         }
 
+        public static string GetAttributeValue(this HtmlNode node, Markers marker, string attributeValue)
+        {
+            if (null == node)
+                return string.Empty;
+            if (Markers.Tag == marker)
+                return node.OriginalName;
+            // return NodeWithAttributes(node) ? node.Attributes.First(attribute => attribute.Name.ToLower() == ConvertMarkerToStringNameOfAttribute(marker)).Value : string.Empty;
+            if (Markers.OtherAttribute != marker)
+                return string.Empty;
+            return NodeWithAttributes(node) ? node.Attributes.First(attribute => attributeValue == attribute.Value).Value : string.Empty;
+        }
+
         static bool NodeWithAttributes(HtmlNode node)
         {
             return null != node && null != node.Attributes && node.Attributes.Any();
@@ -54,11 +66,6 @@
         public static bool HasAttributeValue(this HtmlNode node, string attributeName, string attributeValue)
         {
             return node.Attributes.First(attribute => attribute.Name.ToLower() == attributeName).Value == attributeValue;
-        }
-
-        public static bool HasAttributeValue(this HtmlNode node, Markers marker, string attributeValue)
-        {
-            return node.Attributes.First(attribute => attribute.Name.ToLower() == ConvertMarkerToStringNameOfAttribute(marker)).Value == attributeValue;
         }
 
         // experimental
@@ -210,6 +217,17 @@
 
         public static bool NodeMatchesTheCondition(this HtmlNode nodeForCondition, Markers marker, List<string> markerValues)
         {
+            // 20160708
+            //var attributeValue = nodeForCondition.GetAttributeValue(marker);
+            //return markerValues.Any(markerValue => attributeValue.Contains(markerValue));
+
+            if (null == nodeForCondition)
+                return false;
+
+            if (Markers.OtherAttribute == marker)
+                // attributeValue = nodeForCondition.GetAttributeValue(marker, )
+                return markerValues.Any(markerValue => nodeForCondition.Attributes.Any(attribute => markerValue == attribute.Value));
+
             var attributeValue = nodeForCondition.GetAttributeValue(marker);
             return markerValues.Any(markerValue => attributeValue.Contains(markerValue));
         }

@@ -20,7 +20,7 @@
                 //// "file:///C:/1/bootstrap.html",
                 //"http://localhost:1234/bootstrap/users",
                 //"http://localhost:1234/bootstrap/users/user",
-                "http://localhost:1234/bootstrap",
+                //"http://localhost:1234/bootstrap",
                 //// "http://localhost:1234/",
 
 
@@ -79,7 +79,7 @@
                 //"https://www.glaz-displayschutz.de/"
 
                 //,
-                //"http://localhost/1/page4.htm"
+                "http://localhost/1/page4.htm"
                 //,
                 //"http://yuntolovo-spb.ru/",
                 //"http://yuntolovo-spb.ru/gallery/building-progress/2-ya-ochered/2016/may/"

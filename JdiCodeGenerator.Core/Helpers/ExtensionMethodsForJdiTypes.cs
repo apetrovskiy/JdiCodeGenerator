@@ -12,6 +12,7 @@
                 case JdiElementTypes.Button:
                 case JdiElementTypes.CheckBox:
                 case JdiElementTypes.DatePicker:
+                case JdiElementTypes.TimePicker:
                 case JdiElementTypes.FileInput:
                 case JdiElementTypes.Image:
                 case JdiElementTypes.Label:
@@ -316,6 +317,7 @@
                 case JdiElementTypes.CheckBox:
                     break;
                 case JdiElementTypes.DatePicker:
+                case JdiElementTypes.TimePicker:
                 case JdiElementTypes.FileInput:
                 case JdiElementTypes.Image:
                 case JdiElementTypes.Label:

@@ -77,10 +77,8 @@
             return new LocatorDefinition
             {
                 Attribute = FindTypes.FindBy,
-                // SearchTypePreference = SearchTypePreferences.linkText,
                 SearchTypePreference = fullLinkTextParts.Any() ? SearchTypePreferences.partialLinkText : SearchTypePreferences.linkText,
-                // SearchString = node.InnerText
-                SearchString = fullLinkTextParts.Any() ? fullLinkTextParts.OrderByDescending(part => part.Length).First() : fullLinkText
+                SearchString = fullLinkTextParts.Any() ? fullLinkTextParts.OrderByDescending(part => part.Length).First().Trim() : fullLinkText
             };
         }
 

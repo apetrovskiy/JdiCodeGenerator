@@ -131,6 +131,7 @@
     <Compile Include="Plugins\BootstrapTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recognition\Bootstrap3Tests.cs" />
+    <Compile Include="Recognition\JdiTests.cs" />
     <Compile Include="Recognition\Internals\TestFactory.cs" />
     <Compile Include="Recognition\PlainHtml5Tests.cs" />
   </ItemGroup>
@@ -365,6 +366,21 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Bootstrap3\Simple\WellSmall.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Jdi\Complex\Pagination.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Jdi\Simple\Button.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Jdi\Simple\DatePicker.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Jdi\Simple\TextField.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Jdi\Simple\TimePicker.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\PlainHtml5\Complex\ComboBox.txt">

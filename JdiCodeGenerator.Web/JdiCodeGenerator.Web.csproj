@@ -95,6 +95,7 @@
     <Compile Include="ObjectModel\Plugins\BootstrapAndCompetitors\Pure.cs" />
     <Compile Include="ObjectModel\Plugins\BootstrapAndCompetitors\Yui.cs" />
     <Compile Include="ObjectModel\Plugins\BootstrapAndCompetitors\Zimit.cs" />
+    <Compile Include="ObjectModel\Plugins\Jdi.cs" />
     <Compile Include="ObjectModel\Plugins\PlainHtml5.cs" />
     <Compile Include="ObjectModel\Plugins\ReactJs.cs" />
     <Compile Include="WebNames.Designer.cs">
