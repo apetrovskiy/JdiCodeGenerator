@@ -1,5 +1,6 @@
 ﻿namespace JdiCodeGenerator.Core.Helpers
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
@@ -69,6 +70,7 @@
             return wronglyFormattedString;
         }
 
+        [Obsolete("Currently this is set in the code entry itself and there's a question about this method")]
         public static IEnumerable<ICodeEntry<T>> SetBestChoice<T>(this IEnumerable<ICodeEntry<T>> codeEntries)
         {
             var entries = codeEntries as ICodeEntry<T>[] ?? codeEntries.ToArray();

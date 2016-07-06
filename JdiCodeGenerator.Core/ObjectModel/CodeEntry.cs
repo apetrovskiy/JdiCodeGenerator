@@ -160,7 +160,7 @@
             IDropDown<JobCategories> category;
             */
             if (JdiMemberType.IsComplexControl())
-                result += GenerateAnnotationForComplexType();
+                result += GenerateAnnotationForComplexType(_language);
 
             var overallResult = string.Empty;
 
@@ -171,10 +171,10 @@
             return overallResult;
         }
 
-        string GenerateAnnotationForComplexType()
+        string GenerateAnnotationForComplexType(SupportedLanguages supportedLanguage)
         {
             EnumerationTypeName = GenerateEnumerationTypeName();
-            return string.Format(@"@J{0}(root = {1}, value = {2}, list = {3})", GetNormalizedLocatorName(), GetDropDownRootLocator(), GetDropDownValueLocator(), GetDropDownListLocator());
+            return string.Format("\r\n@J{0}({1}, {2}, {3})", GetNormalizedLocatorName(), GetDropDownRootLocator(supportedLanguage), GetDropDownValueLocator(supportedLanguage), GetDropDownListLocator(supportedLanguage));
         }
 
         string GetNormalizedLocatorName()
@@ -182,19 +182,29 @@
             return JdiMemberType.ToString().Substring(0, 1).ToUpper() + JdiMemberType.ToString().Substring(1).ToLower();
         }
 
-        string GetDropDownRootLocator()
+        string GetDropDownRootLocator(SupportedLanguages supportedLanguage)
         {
-            return null != Root ? Root.SearchString : string.Empty;
+            // return null != Root ? Root.SearchString : string.Empty;
+            return null != Root ? GetLocatorText(Root, "root", supportedLanguage) : string.Empty;
         }
 
-        string GetDropDownValueLocator()
+        string GetDropDownValueLocator(SupportedLanguages supportedLanguage)
         {
-            return null != Value ? Value.SearchString : string.Empty;
+            return null != Value ? GetLocatorText(Value, "value", supportedLanguage) : string.Empty;
         }
 
-        string GetDropDownListLocator()
+        string GetDropDownListLocator(SupportedLanguages supportedLanguage)
         {
-            return null != List ? List.SearchString : string.Empty;
+            return null != List ? GetLocatorText(List, "list", supportedLanguage) : string.Empty;
+        }
+
+        string GetLocatorText(LocatorDefinition locator, string locatorName, SupportedLanguages supportedLanguage)
+        {
+            if (SupportedLanguages.Java == supportedLanguage)
+                return string.Format("{0} = @{1}({2}=\"{3}\")", locatorName, locator.Attribute, locator.SearchTypePreference, locator.SearchString);
+            if (SupportedLanguages.CSharp == supportedLanguage)
+                return string.Format("{0} = [{1}({2}=\"{3}\")]", locatorName, locator.Attribute, locator.SearchTypePreference, locator.SearchString);
+            return string.Empty;
         }
 
         string GenerateEnumerationTypeName()

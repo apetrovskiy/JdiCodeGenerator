@@ -75,7 +75,8 @@
         {
             // ScenarioContext.Current.Pending();
             var pageLoader = new PageLoader();
-            _entries.AddRange(pageLoader.GetCodeEntriesFromNode<HtmlElementTypes>(_doc.DocumentNode, TestFactory.ExcludeList));
+            var applicableAnalyzers = new[] { typeof(Web.ObjectModel.Plugins.PlainHtml5) };
+            _entries.AddRange(pageLoader.GetCodeEntriesFromNode<HtmlElementTypes>(_doc.DocumentNode, TestFactory.ExcludeList, applicableAnalyzers));
             _entry = _entries.Cast<CodeEntry<HtmlElementTypes>>().ToArray()[0];
         }
         

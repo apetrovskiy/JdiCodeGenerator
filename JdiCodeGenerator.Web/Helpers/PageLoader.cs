@@ -165,13 +165,19 @@
         }
         #endregion
 
-        public IEnumerable<ICodeEntry<T>> GetCodeEntries<T>(string url, IEnumerable<string> excludeList)
+        // 20160708
+        // public IEnumerable<ICodeEntry<T>> GetCodeEntries<T>(string url, IEnumerable<string> excludeList)
+        public IEnumerable<ICodeEntry<T>> GetCodeEntries<T>(string url, IEnumerable<string> excludeList, Type[] analyzers)
         {
             LoadPage(url);
-            return GetCodeEntriesFromNode<T>(_docNode, excludeList);
+            // 20160708
+            // return GetCodeEntriesFromNode<T>(_docNode, excludeList);
+            return GetCodeEntriesFromNode<T>(_docNode, excludeList, analyzers);
         }
 
-        internal IEnumerable<ICodeEntry<T>> GetCodeEntriesFromNode<T>(HtmlNode docNode, IEnumerable<string> excludeList)
+        // 20160708
+        // internal IEnumerable<ICodeEntry<T>> GetCodeEntriesFromNode<T>(HtmlNode docNode, IEnumerable<string> excludeList)
+        internal IEnumerable<ICodeEntry<T>> GetCodeEntriesFromNode<T>(HtmlNode docNode, IEnumerable<string> excludeList, Type[] analyzers)
         {
             var convertor = new HtmlElementToCodeEntryConvertor();
 
@@ -179,7 +185,10 @@
             if (null == rootNode)
                 return new List<ICodeEntry<T>>();
 
-            var codeEntries = convertor.ConvertToCodeEntries(rootNode);
+            // 20160708
+            // var codeEntries = convertor.ConvertToCodeEntries(rootNode);
+            // var applicableAnalyzers = new[] { typeof(Bootstrap3), typeof(PlainHtml5) };
+            var codeEntries = convertor.ConvertToCodeEntries(rootNode, analyzers);
 
             // experimental
             return

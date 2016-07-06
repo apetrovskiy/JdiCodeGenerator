@@ -8,6 +8,8 @@
     using Core.ObjectModel.Abstract;
     using Web.Helpers;
     using Web.ObjectModel.Abstract;
+    using Web.ObjectModel.Plugins;
+    using Web.ObjectModel.Plugins.BootstrapAndCompetitors;
 
     class Program
     {
@@ -18,7 +20,7 @@
                 //// "file:///C:/1/bootstrap.html",
                 //"http://localhost:1234/bootstrap/users",
                 //"http://localhost:1234/bootstrap/users/user",
-                //"http://localhost:1234/bootstrap",
+                "http://localhost:1234/bootstrap",
                 //// "http://localhost:1234/",
 
 
@@ -26,7 +28,7 @@
                 //// "http://www.crit-research.it/",
                 //"http://www.blackbox.cool/",
                 // "http://indicius.com/",
-                //"http://www.spotify-thedrop.com/#/",
+                // "http://www.spotify-thedrop.com/#/",
                 //"https://trakt.tv/",
                 //"http://www.jdcdesignstudio.com/",
                 //"http://www.europarc-deutschland.de/marktplatz-natur/",
@@ -44,7 +46,7 @@
                 //"http://liveramp.com/",
                 // "https://www.aceandtate.com/",
                 // "http://www.washington.edu/",
-                "http://www.fifa.com/",
+                // "http://www.fifa.com/",
                 //"http://www.placemeter.com/",
                 //"http://www.littlehj.com/",
                 //"http://thefounderspledge.org/",
@@ -100,7 +102,10 @@
                 Console.WriteLine("===============================================================================");
                 Console.WriteLine("================{0}================", url);
                 Console.WriteLine("===============================================================================");
-                var codeEntries = loader.GetCodeEntries<HtmlElementTypes>(url, listNotToDisplay);
+                // 20160708
+                var applicableAnalyzers = new[] { typeof(Bootstrap3), typeof(PlainHtml5) };
+                // var codeEntries = loader.GetCodeEntries<HtmlElementTypes>(url, listNotToDisplay);
+                var codeEntries = loader.GetCodeEntries<HtmlElementTypes>(url, listNotToDisplay, applicableAnalyzers);
                 var entries = codeEntries as IList<ICodeEntry<HtmlElementTypes>> ?? codeEntries.ToList();
                 using (var writer = new StreamWriter(folderForExportFiles + @"\" + (300 + fileNumber)))
                 {

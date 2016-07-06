@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Reflection;
     using Core;
     using HtmlAgilityPack;
     using Core.ObjectModel;
@@ -65,7 +64,7 @@
         // experimental
         public static IFrameworkAlingmentAnalysisPlugin<HtmlElementTypes> AnalyzerThatWon { get; set; }
 
-        public static JdiElementTypes ApplyApplicableAnalyzers(this HtmlNode node)
+        public static JdiElementTypes ApplyApplicableAnalyzers(this HtmlNode node, Type[] analyzers)
         {
             var result = JdiElementTypes.Element;
 
@@ -75,10 +74,11 @@
             // apply all applicable
             // TODO: use the selection the user provided
             // refactoring
-            var currentAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
-            var typesOfAnalyzers = AppDomain.CurrentDomain.GetAssemblies().Where(assm => assm.FullName.Contains(currentAssemblyName)).SelectMany(assm => assm.GetTypes()).Where(type => type.GetInterfaces().Contains(typeof(IFrameworkAlingmentAnalysisPlugin<HtmlElementTypes>)) && !type.IsAbstract);
-
-            typesOfAnalyzers.OrderByDescending(type => (int)type.GetProperty(Resources.RuleMember_Priority).GetValue(Activator.CreateInstance(type)))
+            // 20160708
+            // var currentAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+            // var typesOfAnalyzers = AppDomain.CurrentDomain.GetAssemblies().Where(assm => assm.FullName.Contains(currentAssemblyName)).SelectMany(assm => assm.GetTypes()).Where(type => type.GetInterfaces().Contains(typeof(IFrameworkAlingmentAnalysisPlugin<HtmlElementTypes>)) && !type.IsAbstract);
+            // typesOfAnalyzers.OrderByDescending(type => (int)type.GetProperty(Resources.RuleMember_Priority).GetValue(Activator.CreateInstance(type)))
+            analyzers.OrderByDescending(type => (int)type.GetProperty(Resources.RuleMember_Priority).GetValue(Activator.CreateInstance(type)))
                 .ToList()
                 .ForEach(type =>
                 {
@@ -202,7 +202,7 @@
             return forCondition.Any(probeNode => NodeMatchesTheCondition(probeNode, condition.Marker, condition.MarkerValues));
         }
 
-        public static bool ResolveRuleToJdiType(this IRule<HtmlElementTypes> rule, HtmlNode node)
+        public static bool IsRuleResolvableToJdiType(this IRule<HtmlElementTypes> rule, HtmlNode node)
         {
             return (!rule.OrConditions.Any() || rule.OrConditions.Any(condition => CheckCondition(node, condition))) &&
             (!rule.AndConditions.Any() || rule.AndConditions.All(condition => CheckCondition(node, condition)));
@@ -220,7 +220,7 @@
             if (!rule.SourceTypes.SelectMany(type => type.Types).Contains(elementType))
                 return false;
 
-            return rule.ResolveRuleToJdiType(node);
+            return rule.IsRuleResolvableToJdiType(node);
         }
 
         public static ICodeEntry<HtmlElementTypes> ConvertToCodeEntry(this HtmlNode node)
@@ -240,13 +240,20 @@
                 });
             codeEntry.Locators.RemoveAll(locator => null == locator || locator.SearchString == string.Empty);
 
-            // TODO: write the code behind // ??
-            codeEntry.JdiMemberType = node.ApplyApplicableAnalyzers();
+            // 20160708
+            // set the initial best choice
+            codeEntry.Locators.ForEach(locator => locator.IsBestChoice = false);
+            codeEntry.Locators.OrderBy(locator => (int)locator.SearchTypePreference).First().IsBestChoice = true;
 
-            // experimental
-            codeEntry.AnalyzerThatWon = null != AnalyzerThatWon ? AnalyzerThatWon.GetType().Name : string.Empty;
-            // codeEntry.RuleThatWon = null != AnalyzerThatWon && null != AnalyzerThatWon.RuleThatWon ? AnalyzerThatWon.RuleThatWon.GetType().Name : string.Empty;
-            codeEntry.RuleThatWon = null != AnalyzerThatWon && null != AnalyzerThatWon.RuleThatWon ? AnalyzerThatWon.RuleThatWon.Description : string.Empty;
+            //// TODO: write the code behind // ??
+            //// 20160708
+            //// codeEntry.JdiMemberType = node.ApplyApplicableAnalyzers();
+            //codeEntry.JdiMemberType = node.ApplyApplicableAnalyzers(analyzers);
+
+            //// experimental
+            //codeEntry.AnalyzerThatWon = null != AnalyzerThatWon ? AnalyzerThatWon.GetType().Name : string.Empty;
+            //// codeEntry.RuleThatWon = null != AnalyzerThatWon && null != AnalyzerThatWon.RuleThatWon ? AnalyzerThatWon.RuleThatWon.GetType().Name : string.Empty;
+            //codeEntry.RuleThatWon = null != AnalyzerThatWon && null != AnalyzerThatWon.RuleThatWon ? AnalyzerThatWon.RuleThatWon.Description : string.Empty;
 
             return codeEntry;
         }
