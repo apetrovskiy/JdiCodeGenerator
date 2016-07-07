@@ -9,6 +9,8 @@
     using Tests.Recognition.Internals;
     using Web.Helpers;
     using Web.ObjectModel.Abstract;
+    using Web.ObjectModel.Plugins;
+    using Web.ObjectModel.Plugins.BootstrapAndCompetitors;
 
     [Binding]
     public class ParsePageSteps
@@ -75,7 +77,8 @@
         {
             // ScenarioContext.Current.Pending();
             var pageLoader = new PageLoader();
-            var applicableAnalyzers = new[] { typeof(Web.ObjectModel.Plugins.PlainHtml5) };
+            // var applicableAnalyzers = new[] { typeof(Web.ObjectModel.Plugins.PlainHtml5) };
+            var applicableAnalyzers = new[] { typeof(Bootstrap3), typeof(PlainHtml5) };
             _entries.AddRange(pageLoader.GetCodeEntriesFromNode<HtmlElementTypes>(_doc.DocumentNode, TestFactory.ExcludeList, applicableAnalyzers));
             _entry = _entries.Cast<CodeEntry<HtmlElementTypes>>().ToArray()[0];
         }
