@@ -47,13 +47,13 @@
         //[InlineData(@"..\Data\PlainHtml5\Complex\DropDownList.txt", "IDropDown<SomeEnum>", 0)]
         //[InlineData(@"..\Data\PlainHtml5\Complex\Form.txt", "IForm<SomeEnum>", 0)]
         // [InlineData(@"..\Data\PlainHtml5\Complex\DropDownList.txt", "IDropDown<", 0)]
-        [InlineData(@"..\Data\PlainHtml5\Complex\ComboBox.txt", "IComboBox<", "//select", "//select", "//option", 0)]
+        [InlineData(@"..\Data\PlainHtml5\Complex\ComboBox.txt", "IComboBox<", "//select", "//select", "//select", 0)]
         [InlineData(@"..\Data\PlainHtml5\Complex\Form.txt", "IForm<", "", "", "", 0)]
         // [InlineData(@"..\Data\PlainHtml5\Complex\Menu.txt", "IMenu<SomeEnum>", 0)]
         // [InlineData(@"..\Data\PlainHtml5\Complex\MenuItem.txt", "IMenu<SomeEnum>", 0)]
         // [InlineData(@"..\Data\PlainHtml5\Complex\Table.txt", "ITable<SomeEnum>", 0)]
 
-        [InlineData(@"..\Data\PlainHtml5\Complex\FifaDropDown.txt", "IComboBox<", "//select", "//select", "//option", 0)]
+        [InlineData(@"..\Data\PlainHtml5\Complex\FifaDropDown.txt", "IComboBox<", "//select", "//select", "//select", 0)]
 
         [Trait("Category", "HTML 5, collection")]
 

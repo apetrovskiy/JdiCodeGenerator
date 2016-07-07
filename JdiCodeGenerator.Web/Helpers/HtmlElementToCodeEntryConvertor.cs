@@ -106,15 +106,25 @@
 
                 var listNodesPreEnumerated = listNodes as IList<HtmlNode> ?? listNodes.ToList();
 
-                // 20160708
                 if (!listNodesPreEnumerated.Any())
+                {
+                    _codeEntry.List = new LocatorDefinition
+                    {
+                        Attribute = FindTypes.FindBy,
+                        SearchTypePreference = SearchTypePreferences.xpath,
+                        SearchString = string.Empty,
+                        IsBestChoice = true
+                    };
                     return;
+                }
 
                 if (null != listNodes && listNodesPreEnumerated.Any())
                 {
-                    _codeEntry.List =
-                        listNodesPreEnumerated.First().ConvertToCodeEntry().Locators.First(locator => locator.IsBestChoice);
-                    _codeEntry.ListMemberNames.AddRange(listNodesPreEnumerated.Select(listNode => listNode.InnerText.ToPascalCase()));
+                    // 20160707
+                    // a dubious fix
+                    _codeEntry.List = listNodesPreEnumerated.First().ConvertToCodeEntry().Locators.First(locator => locator.IsBestChoice);
+                    if (listNodesPreEnumerated.Any())
+                        _codeEntry.ListMemberNames.AddRange(listNodesPreEnumerated.Select(listNode => listNode.InnerText.ToPascalCase()));
                 }
             }
         }
