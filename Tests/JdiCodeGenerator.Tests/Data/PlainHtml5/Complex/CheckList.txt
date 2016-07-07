@@ -1,0 +1,18 @@
+﻿<section class="vertical-group" id="elements-checklist">
+	<p class="checkbox">
+		<input type="checkbox" id="g1" class="uui-form-element blue">
+		<label for="g1">Water</label>
+	</p>
+	<p class="checkbox">
+		<input type="checkbox" id="g2" class="uui-form-element dark-blue">
+		<label for="g2">Earth</label>
+	</p>
+	<p class="checkbox">
+		<input type="checkbox" id="g3" class="uui-form-element red">
+		<label for="g3">Wind</label>
+	</p>
+	<p class="checkbox">
+		<input type="checkbox" id="g4" class="uui-form-element red">
+		<label for="g4">Fire</label>
+	</p>
+</section>
