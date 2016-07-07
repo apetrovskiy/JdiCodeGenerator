@@ -24,8 +24,8 @@
                 //// "http://localhost:1234/",
 
 
-                //"http://presentation.creative-tim.com/",
-                //// "http://www.crit-research.it/",
+                // "http://www.creative-tim.com/product/buy/bundle", // "http://www.creative-tim.com/", // "http://presentation.creative-tim.com/",
+                "http://www.crit-research.it/events/", // "http://www.crit-research.it/",
                 //"http://www.blackbox.cool/",
                 // "http://indicius.com/",
                 // "http://www.spotify-thedrop.com/#/",
@@ -46,7 +46,7 @@
                 //"http://liveramp.com/",
                 // "https://www.aceandtate.com/",
                 // "http://www.washington.edu/",
-                "http://www.fifa.com/",
+                // "http://www.fifa.com/",
                 //"http://www.placemeter.com/",
                 //"http://www.littlehj.com/",
                 //"http://thefounderspledge.org/",

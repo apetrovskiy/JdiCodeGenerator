@@ -34,6 +34,8 @@
         [InlineData(@"..\Data\PlainHtml5\Simple\Label.txt", "ILabel", 1)]
         [InlineData(@"..\Data\PlainHtml5\Simple\Hyperlink.txt", "ILink", 0)]
 
+        [InlineData(@"..\Data\Complex\MetalsColors.txt", "IButton", 33)]
+
         [Trait("Category", "HTML 5, single element")]
 
         public void ParsePlainHtml5ForSingleElement(string input, string expected, int elementPosition)
@@ -53,7 +55,30 @@
         // [InlineData(@"..\Data\PlainHtml5\Complex\MenuItem.txt", "IMenu<SomeEnum>", 0)]
         // [InlineData(@"..\Data\PlainHtml5\Complex\Table.txt", "ITable<SomeEnum>", 0)]
 
+        /*
+    public IComboBox<Metals> comboBox =
+            new ComboBox<Metals>(By.cssSelector(".metals .caret"), By.cssSelector(".metals li span"), By.cssSelector(".metals input")) {
+                @Override
+                protected String getTextAction() {
+                    return new Text(By.cssSelector(".metals .filter-option")).getText();
+                }
+            };
+        */
         [InlineData(@"..\Data\PlainHtml5\Complex\FifaDropDown.txt", "IComboBox<", "//select", "//select", "//select", 0)]
+
+        /*
+    @FindBy(css = "#elements-checklist label")
+    public ICheckList<Nature> nature;
+
+    @FindBy(xpath = "//*[@id='elements-checklist']//*[label[text()='%s']]/label")
+    public ICheckList<Nature> natureTemplate;
+        */
+        [InlineData(@"..\Data\PlainHtml5\Complex\CheckList.txt", "ICheckList<", "", "", "//label", 0)]
+
+
+        [InlineData(@"..\Data\Complex\MetalsColors.txt", "IRadioButtons<", "", "", "//label", 1)]
+        [InlineData(@"..\Data\Complex\MetalsColors.txt", "ICheckList<", "", "", "//label", 4)] // 26)]
+        
 
         [Trait("Category", "HTML 5, collection")]
 

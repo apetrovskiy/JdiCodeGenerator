@@ -196,12 +196,27 @@
             return null != List ? GetLocatorText(List, "list", supportedLanguage) : string.Empty;
         }
 
+        /*
+    @JDropdown(
+        root = @FindBy(className = "country-selection"),
+        value = @FindBy(css = ".country-wrapper .arrow"),
+        elementByName = @FindBy(xpath = "*root*//*[contains(@id,'select-box-applicantCountry')]//li[.='%s']"))
+    IDropDown country;
+
+    @JDropdown(
+            root = @FindBy(className = "city-selection"),
+            expand = @FindBy(css = ".city-wrapper .arrow"),
+            list = @FindBy(xpath = "*root*//*[contains(@id,'select-box-applicantCity')]//li")
+    )
+    IDropDown city;
+        */
+
         string GetLocatorText(LocatorDefinition locator, string locatorName, SupportedLanguages supportedLanguage)
         {
             if (SupportedLanguages.Java == supportedLanguage)
-                return string.Format("{0} = @{1}({2}=\"{3}\")", locatorName, locator.Attribute, locator.SearchTypePreference, locator.SearchString);
+                return string.Format("\r\n{0} = @{1}({2}=\"{3}\")", locatorName, locator.Attribute, locator.SearchTypePreference, locator.SearchString);
             if (SupportedLanguages.CSharp == supportedLanguage)
-                return string.Format("{0} = [{1}({2}=\"{3}\")]", locatorName, locator.Attribute, locator.SearchTypePreference, locator.SearchString);
+                return string.Format("\r\n{0} = [{1}({2}=\"{3}\")]", locatorName, locator.Attribute, locator.SearchTypePreference, locator.SearchString);
             return string.Empty;
         }
 

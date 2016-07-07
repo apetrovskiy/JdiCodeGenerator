@@ -133,6 +133,7 @@
     <Compile Include="Recognition\Bootstrap3Tests.cs" />
     <Compile Include="Recognition\JdiTests.cs" />
     <Compile Include="Recognition\Internals\TestFactory.cs" />
+    <Compile Include="Recognition\JqueryBootstrapSelectTests.cs" />
     <Compile Include="Recognition\PlainHtml5Tests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -381,6 +382,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Jdi\Simple\TimePicker.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Complex\MetalsColors.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\JqueryBootstrapSelect\Select.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\PlainHtml5\Complex\CheckList.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\PlainHtml5\Complex\ComboBox.txt">

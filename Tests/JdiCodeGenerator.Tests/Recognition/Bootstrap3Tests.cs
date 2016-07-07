@@ -101,6 +101,20 @@
         //[InlineData(@"..\Data\Bootstrap3\Complex\DropUp.txt", "IDropDown<", 0)]
         //[InlineData(@"..\Data\Bootstrap3\Complex\DropDownAlignment.txt", "IDropDown<", 0)] // alignment
         //[InlineData(@"..\Data\Bootstrap3\Complex\DropDownHeaders.txt", "IDropDown<", 0)] // headers
+        /*
+    @JDropdown(
+        root = @FindBy(className = "country-selection"),
+        value = @FindBy(css = ".country-wrapper .arrow"),
+        elementByName = @FindBy(xpath = "*root*//*[contains(@id,'select-box-applicantCountry')]//li[.='%s']"))
+    IDropDown country;
+
+    @JDropdown(
+            root = @FindBy(className = "city-selection"),
+            expand = @FindBy(css = ".city-wrapper .arrow"),
+            list = @FindBy(xpath = "*root*//*[contains(@id,'select-box-applicantCity')]//li")
+    )
+    IDropDown city;
+        */
         [InlineData(@"..\Data\Bootstrap3\Complex\DropDown.txt", "IDropDown<", "dropdown", "dropdown-toggle", "dropdown-menu", 0)]
         [InlineData(@"..\Data\Bootstrap3\Complex\DropUp.txt", "IDropDown<", "dropup", "dropdown-toggle", "dropdown-menu", 0)]
         [InlineData(@"..\Data\Bootstrap3\Complex\DropDownAlignment.txt", "IDropDown<", "dropdown", "dropdown-toggle", "dropdown-menu", 0)] // alignment
@@ -697,6 +711,9 @@ Panel content
 ", "")] // Responsive embed
 */
         #endregion
+
+        // [InlineData(@"..\Data\Complex\MetalsColors.txt", "ICheckList<", "", "", "//label", 1)]
+
         [Trait("Category", "Bootstrap 3, collection")]
 
         // public void ParseBootstrap3ForCollection(string input, string expected, int elementPosition)
@@ -704,7 +721,6 @@ Panel content
         {
             GivenHtmlFromFile(input);
             WhenParsing(elementPosition);
-            // ThenThereIsCollectionOfElementsOfType(expected);
             ThenThereIsCollectionOfElementsOfType(expected, rootSearchString, valueSearchString, listSearchString);
         }
 
