@@ -14,9 +14,6 @@
         string GenerateCodeForEntry(SupportedLanguages language);
         string EnumerationTypeName { get; set; }
 
-        // experimental
-        //IFrameworkAlingmentAnalysisPlugin AnalyzerThatWon { get; set; }
-        //IRule RuleThatWon { get; set; }
         string AnalyzerThatWon { get; set; }
         string RuleThatWon { get; set; }
 

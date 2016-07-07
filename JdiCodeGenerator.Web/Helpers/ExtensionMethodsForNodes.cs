@@ -81,7 +81,7 @@
             // apply all applicable
             // TODO: use the selection the user provided
             // refactoring
-            // 20160708
+            // 20160706
             // var currentAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
             // var typesOfAnalyzers = AppDomain.CurrentDomain.GetAssemblies().Where(assm => assm.FullName.Contains(currentAssemblyName)).SelectMany(assm => assm.GetTypes()).Where(type => type.GetInterfaces().Contains(typeof(IFrameworkAlingmentAnalysisPlugin<HtmlElementTypes>)) && !type.IsAbstract);
             // typesOfAnalyzers.OrderByDescending(type => (int)type.GetProperty(Resources.RuleMember_Priority).GetValue(Activator.CreateInstance(type)))
@@ -217,15 +217,10 @@
 
         public static bool NodeMatchesTheCondition(this HtmlNode nodeForCondition, Markers marker, List<string> markerValues)
         {
-            // 20160708
-            //var attributeValue = nodeForCondition.GetAttributeValue(marker);
-            //return markerValues.Any(markerValue => attributeValue.Contains(markerValue));
-
             if (null == nodeForCondition)
                 return false;
 
             if (Markers.OtherAttribute == marker)
-                // attributeValue = nodeForCondition.GetAttributeValue(marker, )
                 return markerValues.Any(markerValue => nodeForCondition.Attributes.Any(attribute => markerValue == attribute.Value));
 
             var attributeValue = nodeForCondition.GetAttributeValue(marker);
@@ -258,20 +253,8 @@
                 });
             codeEntry.Locators.RemoveAll(locator => null == locator || locator.SearchString == string.Empty);
 
-            // 20160708
-            // set the initial best choice
             codeEntry.Locators.ForEach(locator => locator.IsBestChoice = false);
             codeEntry.Locators.OrderBy(locator => (int)locator.SearchTypePreference).First().IsBestChoice = true;
-
-            //// TODO: write the code behind // ??
-            //// 20160708
-            //// codeEntry.JdiMemberType = node.ApplyApplicableAnalyzers();
-            //codeEntry.JdiMemberType = node.ApplyApplicableAnalyzers(analyzers);
-
-            //// experimental
-            //codeEntry.AnalyzerThatWon = null != AnalyzerThatWon ? AnalyzerThatWon.GetType().Name : string.Empty;
-            //// codeEntry.RuleThatWon = null != AnalyzerThatWon && null != AnalyzerThatWon.RuleThatWon ? AnalyzerThatWon.RuleThatWon.GetType().Name : string.Empty;
-            //codeEntry.RuleThatWon = null != AnalyzerThatWon && null != AnalyzerThatWon.RuleThatWon ? AnalyzerThatWon.RuleThatWon.Description : string.Empty;
 
             return codeEntry;
         }

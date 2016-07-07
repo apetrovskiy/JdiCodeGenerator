@@ -22,9 +22,6 @@
             set { _memberType = value.CleanUpFromWrongCharacters(); }
         }
 
-        // temporarily!
-        //public IFrameworkAlingmentAnalysisPlugin AnalyzerThatWon { get; set; }
-        //public IRule RuleThatWon { get; set; }
         public string RuleThatWon { get; set; }
         public string Type { get; set; }
 

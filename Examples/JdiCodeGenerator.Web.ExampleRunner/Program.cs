@@ -46,7 +46,7 @@
                 //"http://liveramp.com/",
                 // "https://www.aceandtate.com/",
                 // "http://www.washington.edu/",
-                // "http://www.fifa.com/",
+                "http://www.fifa.com/",
                 //"http://www.placemeter.com/",
                 //"http://www.littlehj.com/",
                 //"http://thefounderspledge.org/",
@@ -79,7 +79,7 @@
                 //"https://www.glaz-displayschutz.de/"
 
                 //,
-                "http://localhost/1/page4.htm"
+                // "http://localhost/1/page4.htm"
                 //,
                 //"http://yuntolovo-spb.ru/",
                 //"http://yuntolovo-spb.ru/gallery/building-progress/2-ya-ochered/2016/may/"
@@ -102,8 +102,9 @@
                 Console.WriteLine("===============================================================================");
                 Console.WriteLine("================{0}================", url);
                 Console.WriteLine("===============================================================================");
-                // 20160708
-                var applicableAnalyzers = new[] { typeof(Bootstrap3), typeof(PlainHtml5) };
+                // 20160706
+                // var applicableAnalyzers = new[] { typeof(Bootstrap3), typeof(PlainHtml5) };
+                var applicableAnalyzers = new[] { typeof(Bootstrap3), typeof(PlainHtml5), typeof(Jdi) };
                 // var codeEntries = loader.GetCodeEntries<HtmlElementTypes>(url, listNotToDisplay);
                 var codeEntries = loader.GetCodeEntries<HtmlElementTypes>(url, listNotToDisplay, applicableAnalyzers);
                 var entries = codeEntries as IList<ICodeEntry<HtmlElementTypes>> ?? codeEntries.ToList();
