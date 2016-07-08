@@ -34,7 +34,8 @@ namespace JdiCodeGenerator.Specs
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ParsePage", "\tIn order to convert a web page into a collection of code entries\r\n\tAs a user\r\n\tI" +
-                    " want to run code conversion", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    " want to run code conversion", ProgrammingLanguage.CSharp, new string[] {
+                        "ignore"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,14 +81,32 @@ namespace JdiCodeGenerator.Specs
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get one simple element", new string[] {
                         "parsePage"});
-#line 7
-this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("I have a web page with a button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 9
- testRunner.When("I start the parser app", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("I have a web page with a button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
+ testRunner.When("I start the parser app", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 11
  testRunner.Then("the result should be an element of type \"IButton\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute(DisplayName="Get another element")]
+        [Xunit.TraitAttribute("FeatureTitle", "ParsePage")]
+        [Xunit.TraitAttribute("Description", "Get another element")]
+        public virtual void GetAnotherElement()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get another element", ((string[])(null)));
+#line 13
+this.ScenarioSetup(scenarioInfo);
+#line 14
+ testRunner.Given("I have a page with a text field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 15
+ testRunner.When("I start the parser app", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 16
+ testRunner.Then("the result should be an element of type \"ITextField\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

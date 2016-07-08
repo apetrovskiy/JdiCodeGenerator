@@ -28,7 +28,11 @@
                 new Rule<HtmlElementTypes>
                 {
                     Description = "Button",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Button } } },
+                    // 20160708
+                    // experimental
+                    // for Sharepoint
+                    // SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Button } } },
+                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Button, HtmlElementTypes.Input } } },
                     TargetType = JdiElementTypes.Button,
                     OrConditions = new List<IRuleCondition>
                     // { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "button" } } }
