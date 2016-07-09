@@ -6,11 +6,11 @@ Feature: ParsePage
 	
 @parsePage
 Scenario: Get one simple element
-	Given I have a web page with a button
+	Given I have a Bootstrap web page "..\Data\Bootstrap3\Simple\ButtonDefault.txt"
 	When I start the parser app
 	Then the result should be an element of type "IButton"
 
 Scenario: Get another element
-	Given I have a page with a text field
+	Given I have a Bootstrap web page "..\Data\Bootstrap3\Simple\InputGroupAddon0.txt"
 	When I start the parser app
 	Then the result should be an element of type "ITextField"

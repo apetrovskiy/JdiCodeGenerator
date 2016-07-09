@@ -84,7 +84,7 @@ namespace JdiCodeGenerator.Specs
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
- testRunner.Given("I have a web page with a button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have a Bootstrap web page \"..\\Data\\Bootstrap3\\Simple\\ButtonDefault.txt\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
  testRunner.When("I start the parser app", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
@@ -102,7 +102,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line 14
- testRunner.Given("I have a page with a text field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have a Bootstrap web page \"..\\Data\\Bootstrap3\\Simple\\InputGroupAddon0.txt\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 15
  testRunner.When("I start the parser app", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 16
