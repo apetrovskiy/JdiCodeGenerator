@@ -19,7 +19,7 @@
                 new Rule<HtmlElementTypes>
                 {
                     Description = "Form input",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Input } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Input },
                     TargetType = JdiElementTypes.TextField,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "form-control" } } }
@@ -27,7 +27,7 @@
                 new Rule<HtmlElementTypes>
                 {
                     Description = "Button",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Button, HtmlElementTypes.A, HtmlElementTypes.Input } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Button, HtmlElementTypes.A, HtmlElementTypes.Input },
                     TargetType = JdiElementTypes.Button,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "btn" } } }
@@ -35,7 +35,7 @@
                 new Rule<HtmlElementTypes>
                 {
                     Description = "Dropdown",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Div } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Div },
                     TargetType = JdiElementTypes.DropDown,
                     // OrConditions = new List<IRuleCondition>
                     AndConditions = new List<IRuleCondition>
@@ -50,11 +50,11 @@ IDropDown<JobCategories> category;
                     */
                     InternalElements = new Dictionary<string, IRule<HtmlElementTypes>>
                     {
-                        { Resources.Jdi_DropDown_root, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Div } } }, TargetType = JdiElementTypes.DropDown, OrConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "dropdown", "dropup" } } } } },
-                        { Resources.Jdi_DropDown_value, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Button } } }, TargetType = JdiElementTypes.Button, OrConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "dropdown-toggle" } } } } },
+                        { Resources.Jdi_DropDown_root, new Rule<HtmlElementTypes> { SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Div }, TargetType = JdiElementTypes.DropDown, OrConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "dropdown", "dropup" } } } } },
+                        { Resources.Jdi_DropDown_value, new Rule<HtmlElementTypes> { SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Button }, TargetType = JdiElementTypes.Button, OrConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "dropdown-toggle" } } } } },
                         // ??
-                        // { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Li } } }, TargetType = JdiElementTypes.ListItem, OrConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Tag, MarkerValues = new List<string> { "li" } } } } }
-                        { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Ul } } }, TargetType = JdiElementTypes.ListItem, OrConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "dropdown-menu" } } } } }
+                        // { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Li } } }, TargetType = JdiElementTypes.ListItem, OrConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Tag, MarkerValues = new List<string> { "li" } } } } }
+                        { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Ul }, TargetType = JdiElementTypes.ListItem, OrConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "dropdown-menu" } } } } }
                     }
                 },
                 new Rule<HtmlElementTypes>
@@ -79,7 +79,7 @@ IDropDown<JobCategories> category;
                     */
                     #endregion
                     Description = "Dropdown in a button of the button group",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Div } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Div },
                     TargetType = JdiElementTypes.DropDown,
                     AndConditions = new List<IRuleCondition>
                     {
@@ -91,15 +91,15 @@ IDropDown<JobCategories> category;
                     // 20160706
                     InternalElements = new Dictionary<string, IRule<HtmlElementTypes>>
                     {
-                        { Resources.Jdi_DropDown_root, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Div } } }, TargetType = JdiElementTypes.DropDown, AndConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "btn-group" } } } } },
-                        { Resources.Jdi_DropDown_value, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Button, HtmlElementTypes.A } } }, TargetType = JdiElementTypes.Button, AndConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "dropdown-toggle" } } } } },
-                        { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Ul } } }, TargetType = JdiElementTypes.ListItem, OrConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "dropdown-menu" } } } } }
+                        { Resources.Jdi_DropDown_root, new Rule<HtmlElementTypes> { SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Div }, TargetType = JdiElementTypes.DropDown, AndConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "btn-group" } } } } },
+                        { Resources.Jdi_DropDown_value, new Rule<HtmlElementTypes> { SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Button, HtmlElementTypes.A }, TargetType = JdiElementTypes.Button, AndConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "dropdown-toggle" } } } } },
+                        { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Ul }, TargetType = JdiElementTypes.ListItem, OrConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "dropdown-menu" } } } } }
                     }
                 },
                 new Rule<HtmlElementTypes>
                 {
                     Description = "Menu item",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Ul } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Ul },
                     TargetType = JdiElementTypes.MenuItem,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "dropdown-menu" } } }
@@ -107,7 +107,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "CheckBox",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Input } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Input },
                     TargetType = JdiElementTypes.CheckBox,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Type, MarkerValues = new List<string> { "checkbox" } } }
@@ -116,7 +116,7 @@ IDropDown<JobCategories> category;
                 {
                     Description = "Tabs",
                     // see also http://getbootstrap.com/javascript/#markup
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Ul } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Ul },
                     TargetType = JdiElementTypes.Tabs,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "nav-tabs", "nav-pills" } } }
@@ -124,7 +124,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "TabItem",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Li } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Li },
                     TargetType = JdiElementTypes.TabItem,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Role, MarkerValues = new List<string> { "presentation" } } }
@@ -132,7 +132,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "NavBar",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Nav } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Nav },
                     TargetType = JdiElementTypes.NavBar,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "navbar" } } }
@@ -140,7 +140,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "NavBar Form",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Form } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Form },
                     TargetType = JdiElementTypes.Form,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "navbar-form" } } }
@@ -148,7 +148,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "Pagination",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Ul } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Ul },
                     TargetType = JdiElementTypes.Pagination,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "pagination" } } }
@@ -156,7 +156,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "Pager",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Ul } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Ul },
                     TargetType = JdiElementTypes.Pager,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "pager" } } }
@@ -164,7 +164,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "Label",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Label } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Label },
                     TargetType = JdiElementTypes.Label,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Child, Marker = Markers.Class, MarkerValues = new List<string> { "label" } } }
@@ -172,7 +172,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "Progress",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Div } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Div },
                     TargetType = JdiElementTypes.Progress,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "progress" } } }
@@ -180,7 +180,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "List",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Ul } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Ul },
                     TargetType = JdiElementTypes.List,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "list-group" } } }
@@ -188,7 +188,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "ListItem",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Li } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Li },
                     TargetType = JdiElementTypes.ListItem,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "list-group-item" } } }
@@ -196,7 +196,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "ListItem alt",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.A } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.A },
                     TargetType = JdiElementTypes.ListItem,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "list-group-item" } } }
@@ -204,7 +204,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "ListItem alt 2",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Button } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Button },
                     TargetType = JdiElementTypes.ListItem,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "list-group-item" } } }
@@ -212,7 +212,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "Table",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Table } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Table },
                     TargetType = JdiElementTypes.Table,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "table" } } }
@@ -237,7 +237,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "Form inline, group",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Form } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Form },
                     TargetType = JdiElementTypes.Form,
                     OrConditions = new List<IRuleCondition>
                     {
@@ -254,7 +254,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "Table alt",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>>(),
+                    SourceTypes = new List<HtmlElementTypes>(),
                     TargetType = JdiElementTypes.Table,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "table" } } }
@@ -262,7 +262,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "Modal",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Div } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Div },
                     TargetType = JdiElementTypes.Popup,
                     AndConditions = new List<IRuleCondition>
                     {
@@ -276,7 +276,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "Carousel",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Div } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Div },
                     TargetType = JdiElementTypes.Carousel,
                     AndConditions = new List<IRuleCondition>
                     {
@@ -290,7 +290,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "Label",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Span } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Span },
                     TargetType = JdiElementTypes.Label,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "label" } } }
@@ -298,7 +298,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "Jumbo, alert, well",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Div } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Div },
                     TargetType = JdiElementTypes.Text,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "jumbotron", "page-header", "alert", "well" } } }
@@ -306,7 +306,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "navbar-text",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.P } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.P },
                     TargetType = JdiElementTypes.Text,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "navbar-text" } } }
@@ -314,7 +314,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "RadioButtons",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Input } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Input },
                     TargetType = JdiElementTypes.RadioButtons,
                     OrConditions = new List<IRuleCondition>
                     { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Type, MarkerValues = new List<string> { "radio" } } }
@@ -323,7 +323,7 @@ IDropDown<JobCategories> category;
                 new Rule<HtmlElementTypes>
                 {
                     Description = "experimental: Menu",
-                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Ul } } },
+                    SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Ul },
                     TargetType = JdiElementTypes.Menu,
                     AndConditions = new List<IRuleCondition>
                     {

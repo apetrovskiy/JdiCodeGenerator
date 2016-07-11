@@ -120,7 +120,6 @@
     <Compile Include="ObjectModel\LocatorDefinition.cs" />
     <Compile Include="ObjectModel\Rule.cs" />
     <Compile Include="ObjectModel\RuleCondition.cs" />
-    <Compile Include="ObjectModel\SourceElementTypeCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>

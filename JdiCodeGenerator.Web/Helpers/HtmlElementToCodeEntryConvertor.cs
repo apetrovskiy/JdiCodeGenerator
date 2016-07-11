@@ -30,7 +30,7 @@
                 WorkOutInternalElements(ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon, node);
 
             if (JdiElementTypes.Element == _codeEntry.JdiMemberType)
-                _codeEntry.JdiMemberType = _codeEntry.SourceMemberType.Types[0].ConvertHtmlTypeToJdiType();
+                _codeEntry.JdiMemberType = _codeEntry.SourceMemberType[0].ConvertHtmlTypeToJdiType();
 
             // temporarily!
             _codeEntry.Type = node.GetOriginalNameOfElement().CleanUpFromWrongCharacters();

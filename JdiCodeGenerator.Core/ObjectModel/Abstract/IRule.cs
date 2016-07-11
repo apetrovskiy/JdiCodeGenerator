@@ -4,7 +4,7 @@
 
     public interface IRule<T>
     {
-        List<SourceElementTypeCollection<T>> SourceTypes { get; set; }
+        List<T> SourceTypes { get; set; }
         JdiElementTypes TargetType { get; set; }
         IEnumerable<IRuleCondition> OrConditions { get; set; }
         IEnumerable<IRuleCondition> AndConditions { get; set; }

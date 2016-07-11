@@ -11,7 +11,7 @@
         public Guid Id { get; set; }
         public List<LocatorDefinition> Locators { get; set; }
         public string MemberName { get; set; }
-        public SourceElementTypeCollection<T> SourceMemberType { get; set; }
+        public List<T> SourceMemberType { get; set; }
         public JdiElementTypes JdiMemberType { get; set; }
         // for debugging purposes
         // public string MemberType { get; set; }

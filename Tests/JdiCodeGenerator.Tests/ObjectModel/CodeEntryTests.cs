@@ -80,8 +80,7 @@
             _entry = new CodeEntry<HtmlElementTypes>
             {
                 Locators = locatorDefinitions.ToList(),
-                // HtmlMemberType = Enum.GetValues(typeof(HtmlElementTypes)).Cast<HtmlElementTypes>().FirstOrDefault(val => 0 == string.Compare(val.ToString().ToLower(), memberType, StringComparison.Ordinal)),
-                SourceMemberType = new SourceElementTypeCollection<HtmlElementTypes> {  Types = new List<HtmlElementTypes> { Enum.GetValues(typeof(HtmlElementTypes)).Cast<HtmlElementTypes>().FirstOrDefault(val => 0 == string.Compare(val.ToString().ToLower(), memberType, StringComparison.Ordinal)) } },
+                SourceMemberType = new List<HtmlElementTypes> { Enum.GetValues(typeof(HtmlElementTypes)).Cast<HtmlElementTypes>().FirstOrDefault(val => 0 == string.Compare(val.ToString().ToLower(), memberType, StringComparison.Ordinal)) },
                 JdiMemberType = Enum.GetValues(typeof(JdiElementTypes)).Cast<JdiElementTypes>().FirstOrDefault(val => 0 == string.Compare(val.ToString().ToLower(), jdiMemberType, StringComparison.Ordinal)),
                 MemberType = memberType
             };
@@ -97,9 +96,7 @@
             var node = Substitute.For<HtmlNodeMock>(HtmlNodeType.Element, new HtmlDocument(), 1);
             node.OriginalName.Returns(_entry.MemberType);
 
-            // var bootstrapAnalyzer = new Bootstrap3();
-            // _entry.JdiMemberType = _entry.HtmlMemberType.ConvertHtmlTypeToJdiType();
-            _entry.JdiMemberType = _entry.SourceMemberType.Types[0].ConvertHtmlTypeToJdiType();
+            _entry.JdiMemberType = _entry.SourceMemberType[0].ConvertHtmlTypeToJdiType();
 
             _code = _entry.GenerateCodeForEntry(SupportedLanguages.Java);
         }

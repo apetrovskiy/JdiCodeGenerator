@@ -11,10 +11,20 @@
     using Web.ObjectModel.Plugins;
     using Web.ObjectModel.Plugins.BootstrapAndCompetitors;
 
+    
+
     class Program
     {
+        static bool fromUrl = true;
+        const string pathToExamplePage = @"SharepointSample.txt";
+
         static void Main(string[] args)
         {
+            //var list1 = new List<HtmlElementTypes>();
+            //list1.AddRange(new [] { HtmlElementTypes.Html, HtmlElementTypes.A, HtmlElementTypes.Abbr, });
+
+
+            var pageSource = string.Empty;
             var list = new List<string>
             {
                 //// "file:///C:/1/bootstrap.html",
@@ -85,6 +95,9 @@
                 //"http://yuntolovo-spb.ru/gallery/building-progress/2-ya-ochered/2016/may/"
 
             };
+
+            pageSource = LoadPageFromFile();
+
             // var listNotToDisplay = new[] { "html", "head", "body", "#comment", "#text", "div", "meta", "p", "h1", "h2", "h3", "h4", "h5", "h6", "small", "font", "script", "i", "br", "hr", "strong", "style", "title", "li", "ul", "img", "span", "noscript" };
             var listNotToDisplay = new[] { "html", "head", "body", "#comment", "#text", "meta", "h1", "h2", "h3", "h4", "h5", "h6", "small", "font", "script", "i", "br", "hr", "strong", "style", "title", "img", "noscript" };
             // const string FolderForExportFiles = ".";
@@ -105,8 +118,10 @@
                 // 20160706
                 // var applicableAnalyzers = new[] { typeof(Bootstrap3), typeof(PlainHtml5) };
                 var applicableAnalyzers = new[] { typeof(Bootstrap3), typeof(PlainHtml5), typeof(Jdi) };
-                // var codeEntries = loader.GetCodeEntries<HtmlElementTypes>(url, listNotToDisplay);
-                var codeEntries = loader.GetCodeEntries<HtmlElementTypes>(url, listNotToDisplay, applicableAnalyzers);
+                // var codeEntries = loader.GetCodeEntriesFromUrl<HtmlElementTypes>(url, listNotToDisplay);
+                var codeEntries = fromUrl
+                    ? loader.GetCodeEntriesFromUrl<HtmlElementTypes>(url, listNotToDisplay, applicableAnalyzers)
+                    : loader.GetCodeEntriesFromPageSource<HtmlElementTypes>(pageSource, listNotToDisplay, applicableAnalyzers);
                 var entries = codeEntries as IList<ICodeEntry<HtmlElementTypes>> ?? codeEntries.ToList();
                 using (var writer = new StreamWriter(folderForExportFiles + @"\" + (300 + fileNumber)))
                 {
@@ -171,6 +186,22 @@
 
             Console.WriteLine("Completed!");
             Console.ReadKey();
+        }
+
+        static string LoadPageFromFile()
+        {
+#if DEBUG
+            var path = @"..\Debug\Data\" + pathToExamplePage;
+#else
+            var path = @"..\Release\Data\" + pathToExamplePage;
+#endif
+            var result = string.Empty;
+            using (var reader = new StreamReader(path))
+            {
+                result = reader.ReadToEnd();
+                reader.Close();
+            }
+            return result;
         }
     }
 }

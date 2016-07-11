@@ -230,7 +230,7 @@
         public static bool IsMatch(this IRule<HtmlElementTypes> rule, HtmlNode node)
         {
             var elementType = node.OriginalName.ConvertOriginalHtmlElementNameIntoHtmlElementType();
-            if (!rule.SourceTypes.SelectMany(type => type.Types).Contains(elementType))
+            if (!rule.SourceTypes.Contains(elementType))
                 return false;
 
             return rule.IsRuleResolvableToJdiType(node);
@@ -238,7 +238,7 @@
 
         public static ICodeEntry<HtmlElementTypes> ConvertToCodeEntry(this HtmlNode node)
         {
-            var codeEntry = new CodeEntry<HtmlElementTypes> { SourceMemberType = new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { node.OriginalName.ConvertOriginalHtmlElementNameIntoHtmlElementType() } } };
+            var codeEntry = new CodeEntry<HtmlElementTypes> { SourceMemberType = new List<HtmlElementTypes> { node.OriginalName.ConvertOriginalHtmlElementNameIntoHtmlElementType() } };
 
             codeEntry.Locators.AddRange(
                 new List<LocatorDefinition>

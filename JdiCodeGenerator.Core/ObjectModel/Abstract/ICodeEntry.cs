@@ -8,7 +8,7 @@
         Guid Id { get; set; }
         List<LocatorDefinition> Locators { get; set; }
         string MemberName { get; set; }
-        SourceElementTypeCollection<T> SourceMemberType { get; set; }
+        List<T> SourceMemberType { get; set; }
         JdiElementTypes JdiMemberType { get; set; }
         string MemberType { get; set; }
         string GenerateCodeForEntry(SupportedLanguages language);

@@ -23,7 +23,7 @@
         //}
 
 #region this version is for CefSharp
-        //void LoadPage(string url)
+        //void LoadPageByUrl(string url)
         //{
         //    var settings = new CefSettings();
         //    // Disable GPU in WPF and Offscreen examples until #1634 has been resolved
@@ -117,20 +117,30 @@
         */
         #endregion
         #region classic with HTML Agility Pack
-        //void LoadPage(string url)
+        //void LoadPageByUrl(string url)
         //{
         //    var web = new HtmlWeb();
         //    _docNode = web.Load(url).DocumentNode;
         //}
         #endregion
         #region Awesomium
-        void LoadPage(string url)
+        void LoadPageByUrl(string url)
         {
             var htmlAsString = GetPageFromAwesomium(url);
             //var web = new HtmlWeb();
             //_docNode = web.Load(url).DocumentNode;
+            /*
             var doc = new HtmlDocument();
             doc.LoadHtml(htmlAsString);
+            _docNode = doc.DocumentNode;
+            */
+            LoadPageAsSource(htmlAsString);
+        }
+
+        void LoadPageAsSource(string pageSource)
+        {
+            var doc = new HtmlDocument();
+            doc.LoadHtml(pageSource);
             _docNode = doc.DocumentNode;
         }
 
@@ -165,9 +175,15 @@
         }
         #endregion
 
-        public IEnumerable<ICodeEntry<T>> GetCodeEntries<T>(string url, IEnumerable<string> excludeList, Type[] analyzers)
+        public IEnumerable<ICodeEntry<T>> GetCodeEntriesFromUrl<T>(string url, IEnumerable<string> excludeList, Type[] analyzers)
         {
-            LoadPage(url);
+            LoadPageByUrl(url);
+            return GetCodeEntriesFromNode<T>(_docNode, excludeList, analyzers);
+        }
+
+        public IEnumerable<ICodeEntry<T>> GetCodeEntriesFromPageSource<T>(string pageSource, IEnumerable<string> excludeList, Type[] analyzers)
+        {
+            LoadPageAsSource(pageSource);
             return GetCodeEntriesFromNode<T>(_docNode, excludeList, analyzers);
         }
 
