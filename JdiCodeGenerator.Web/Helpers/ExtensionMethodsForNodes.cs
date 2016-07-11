@@ -108,9 +108,9 @@
                 return null;
             var attributeValue = node.Attributes[attributeName].Value;
             // fixing multi-line strings
-            if (Enumerable.Contains(attributeValue, '\r'))
+            if (attributeValue.Contains('\r'))
                 attributeValue = attributeValue.Replace("\r", string.Empty);
-            if (Enumerable.Contains(attributeValue, '\n'))
+            if (attributeValue.Contains('\n'))
                 attributeValue = attributeValue.Replace("\n", string.Empty);
 
             return new LocatorDefinition
@@ -121,7 +121,7 @@
 
         public static LocatorDefinition CreateCssLocator(this HtmlNode node)
         {
-            var searchString = ExtensionMethodsForHtmlElements.GenerateElementCss(node);
+            var searchString = node.GenerateElementCss();
             if (string.IsNullOrEmpty(searchString))
                 return null;
             return new LocatorDefinition

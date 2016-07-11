@@ -1,4 +1,4 @@
-﻿namespace JdiCodeGenerator.ExampleRunner
+﻿namespace JdiCodeGenerator.Web.ExampleRunner
 {
     using System;
     using System.Collections.Generic;
@@ -6,17 +6,15 @@
     using System.Linq;
     using Core.ImportExport;
     using Core.ObjectModel.Abstract;
-    using Web.Helpers;
-    using Web.ObjectModel.Abstract;
-    using Web.ObjectModel.Plugins;
-    using Web.ObjectModel.Plugins.BootstrapAndCompetitors;
-
-    
+    using Helpers;
+    using ObjectModel.Abstract;
+    using ObjectModel.Plugins;
+    using ObjectModel.Plugins.BootstrapAndCompetitors;
 
     class Program
     {
         static bool fromUrl = true;
-        const string pathToExamplePage = @"SharepointSample.txt";
+        const string PathToExamplePage = @"SharepointSample.txt";
 
         static void Main(string[] args)
         {
@@ -191,7 +189,7 @@
         static string LoadPageFromFile()
         {
 #if DEBUG
-            var path = @"..\Debug\Data\" + pathToExamplePage;
+            var path = @"..\Debug\Data\" + PathToExamplePage;
 #else
             var path = @"..\Release\Data\" + pathToExamplePage;
 #endif

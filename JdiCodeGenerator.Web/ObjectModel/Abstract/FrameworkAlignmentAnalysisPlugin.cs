@@ -8,7 +8,7 @@
 
     public abstract class FrameworkAlignmentAnalysisPlugin : IFrameworkAlingmentAnalysisPlugin<HtmlElementTypes>
     {
-        public FrameworkAlignmentAnalysisPlugin()
+        protected FrameworkAlignmentAnalysisPlugin()
         {
             Rules = new List<IRule<HtmlElementTypes>>();
         }

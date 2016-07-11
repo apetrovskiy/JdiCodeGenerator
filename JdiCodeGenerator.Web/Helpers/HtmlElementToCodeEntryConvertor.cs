@@ -115,7 +115,8 @@
         {
             var resultList = new List<HtmlNode>();
             var descendants = upperNode.DescendantsAndSelf();
-            var descendantsThatMatch = descendants.Where(child => rule.IsMatch(child));
+            // var descendantsThatMatch = descendants.Where(child => rule.IsMatch(child));
+            var descendantsThatMatch = descendants.Where(rule.IsMatch);
             if (null != descendantsThatMatch && descendantsThatMatch.Any())
                 resultList.AddRange(descendantsThatMatch);
             return resultList;

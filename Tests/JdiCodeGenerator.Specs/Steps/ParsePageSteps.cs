@@ -15,7 +15,7 @@
     [Binding]
     public class ParsePageSteps
     {
-        string _html;
+        // string _html;
         HtmlDocument _doc;
         CodeEntry<HtmlElementTypes> _entry;
         readonly List<ICodeEntry<HtmlElementTypes>> _entries;

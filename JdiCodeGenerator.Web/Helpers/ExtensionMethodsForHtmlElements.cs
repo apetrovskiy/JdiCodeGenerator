@@ -11,7 +11,7 @@
     {
         public static string GenerateElementCss(this HtmlNode node)
         {
-            var originalName = ExtensionMethodsForNodes.GetOriginalNameOfElement(node);
+            var originalName = node.GetOriginalNameOfElement();
 
             if (Enumerable.Contains(new[]
             {
@@ -29,36 +29,36 @@
             if (!string.IsNullOrEmpty(node.Id))
                 result += string.Format((string) @"[id='{0}']", (object) node.Id);
             // [name='createUser']
-            if (ExtensionMethodsForNodes.HasAttribute(node, (string) WebNames.AttributeNameName))
-                result += string.Format(@"[name='{0}']", ExtensionMethodsForNodes.GetAttributeValue(node, (string) WebNames.AttributeNameName));
+            if (node.HasAttribute((string) WebNames.AttributeNameName))
+                result += string.Format(@"[name='{0}']", node.GetAttributeValue((string) WebNames.AttributeNameName));
 
             // [title*='Hello beautiful']
             // [title='Hello beautiful']
-            if (ExtensionMethodsForNodes.HasAttribute(node, "title"))
+            if (node.HasAttribute("title"))
                 result += string.Format(@"[title='{0}']",
-                    ExtensionMethodsForNodes.GetAttributeValue(node, "title"));
+                    node.GetAttributeValue("title"));
 
             return result;
         }
 
         public static LocatorDefinition CreateClassLocator(this HtmlNode node)
         {
-            return ExtensionMethodsForNodes.CreateDomLocatorByAttribute(node, WebNames.AttributeNameClass, SearchTypePreferences.className);
+            return node.CreateDomLocatorByAttribute(WebNames.AttributeNameClass, SearchTypePreferences.className);
         }
 
         public static LocatorDefinition CreateTagLocator(this HtmlNode node)
         {
-            return ExtensionMethodsForNodes.CreateDomLocatorByAttribute(node, WebNames.AttributeNameTag, SearchTypePreferences.tagName);
+            return node.CreateDomLocatorByAttribute(WebNames.AttributeNameTag, SearchTypePreferences.tagName);
         }
 
         public static LocatorDefinition CreateIdLocator(this HtmlNode node)
         {
-            return ExtensionMethodsForNodes.CreateDomLocatorByAttribute(node, WebNames.AttributeNameId, SearchTypePreferences.id);
+            return node.CreateDomLocatorByAttribute(WebNames.AttributeNameId, SearchTypePreferences.id);
         }
 
         public static LocatorDefinition CreateNameLocator(this HtmlNode node)
         {
-            return ExtensionMethodsForNodes.CreateDomLocatorByAttribute(node, WebNames.AttributeNameName, SearchTypePreferences.name);
+            return node.CreateDomLocatorByAttribute(WebNames.AttributeNameName, SearchTypePreferences.name);
         }
 
         public static LocatorDefinition CreateLinkTextLocator(this HtmlNode node)
