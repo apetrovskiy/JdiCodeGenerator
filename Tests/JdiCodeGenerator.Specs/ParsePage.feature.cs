@@ -34,8 +34,7 @@ namespace JdiCodeGenerator.Specs
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ParsePage", "\tIn order to convert a web page into a collection of code entries\r\n\tAs a user\r\n\tI" +
-                    " want to run code conversion", ProgrammingLanguage.CSharp, new string[] {
-                        "ignore"});
+                    " want to run code conversion", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,18 +75,16 @@ namespace JdiCodeGenerator.Specs
         [Xunit.FactAttribute(DisplayName="Get one simple element")]
         [Xunit.TraitAttribute("FeatureTitle", "ParsePage")]
         [Xunit.TraitAttribute("Description", "Get one simple element")]
-        [Xunit.TraitAttribute("Category", "parsePage")]
         public virtual void GetOneSimpleElement()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get one simple element", new string[] {
-                        "parsePage"});
-#line 8
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get one simple element", ((string[])(null)));
+#line 7
 this.ScenarioSetup(scenarioInfo);
-#line 9
+#line 8
  testRunner.Given("I have a Bootstrap web page \"..\\Data\\Bootstrap3\\Simple\\ButtonDefault.txt\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 10
+#line 9
  testRunner.When("I start the parser app", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
+#line 10
  testRunner.Then("the result should be an element of type \"IButton\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

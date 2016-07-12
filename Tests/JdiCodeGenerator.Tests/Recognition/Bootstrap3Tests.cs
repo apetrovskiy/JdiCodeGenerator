@@ -1,14 +1,11 @@
 ﻿namespace JdiCodeGenerator.Tests.Recognition
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using Core.Helpers;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
     using HtmlAgilityPack;
     using Internals;
     using Xunit;
-    using Web.Helpers;
     using Web.ObjectModel.Abstract;
     using Web.ObjectModel.Plugins.BootstrapAndCompetitors;
 
@@ -16,56 +13,51 @@
     {
         CodeEntry<HtmlElementTypes> _entry;
         HtmlDocument _doc;
-        readonly List<ICodeEntry<HtmlElementTypes>> _entries;
 
         public Bootstrap3Tests()
         {
             _entry = null;
             _doc = null;
-            _entries = new List<ICodeEntry<HtmlElementTypes>>();
         }
 
         [Theory]
-        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonDefault.txt", "IButton", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonDefaultLarge.txt", "IButton", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\Alert.txt", "IText", 0)] // alert
-        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonDefaultNavBar.txt", "IButton", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\NavBarText.txt", "IText", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\NavBarTextNavBarRight.txt", "IText", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\LabelDefaultHeading.txt", "ILabel", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\LabelDefault.txt", "ILabel", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\LabelPrimary.txt", "ILabel", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\LabelSuccess.txt", "ILabel", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\LabelInfo.txt", "ILabel", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\LabelWarning.txt", "ILabel", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\LabelDanger.txt", "ILabel", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\Badge.txt", "ILink", 0)] // Badges
-        [InlineData(@"..\Data\Bootstrap3\Simple\TabList.txt", "ITabs", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\Jumbotron.txt", "IText", 0)] // Jumbotron
-        [InlineData(@"..\Data\Bootstrap3\Simple\Jumbotron2.txt", "IText", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\PageHeader.txt", "IText", 0)] // Page header
-        [InlineData(@"..\Data\Bootstrap3\Simple\AlertSuccess.txt", "IText", 0)] // Alerts
-        [InlineData(@"..\Data\Bootstrap3\Simple\AlertInfo.txt", "IText", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\AlertWarning.txt", "IText", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\AlertDanger.txt", "IText", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\AlertDismissible.txt", "IText", 0)] // Dismissible alerts
-        [InlineData(@"..\Data\Bootstrap3\Simple\AlertSuccessLink.txt", "ILink", 1)] // Links in alerts
-        [InlineData(@"..\Data\Bootstrap3\Simple\AlertInfoLink.txt", "ILink", 1)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\AlertWarningLink.txt", "ILink", 1)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\AlertDangerLink.txt", "ILink", 1)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\Well.txt", "IText", 0)] // Wells // Default well
-        [InlineData(@"..\Data\Bootstrap3\Simple\WellLarge.txt", "IText", 0)] // Optional classes
-        [InlineData(@"..\Data\Bootstrap3\Simple\WellSmall.txt", "IText", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroup0.txt", "IButton", 0)] // button groups
-        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroup1.txt", "IButton", 1)] // button groups
-        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroup2.txt", "IButton", 2)] // button groups
-        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonToolbar0.txt", "IButton", 0)] // button toolbar
-        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonToolbar1.txt", "IButton", 0)] // button toolbar
-        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonToolbar2.txt", "IButton", 0)] // button toolbar
-        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing0.txt", "IButton", 0)] // sizing
-        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing1.txt", "IButton", 0)] // sizing
-        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing2.txt", "IButton", 0)] // sizing
-        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing3.txt", "IButton", 0)] // sizing
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonDefault.txt", "IButton")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonDefaultLarge.txt", "IButton")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\Alert.txt", "IText")] // alert
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonDefaultNavBar.txt", "IButton")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\NavBarText.txt", "IText")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\NavBarTextNavBarRight.txt", "IText")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\LabelDefaultHeading.txt", "ILabel")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\LabelDefault.txt", "ILabel")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\LabelPrimary.txt", "ILabel")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\LabelSuccess.txt", "ILabel")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\LabelInfo.txt", "ILabel")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\LabelWarning.txt", "ILabel")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\LabelDanger.txt", "ILabel")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\Badge.txt", "ILink")] // Badges
+        [InlineData(@"..\Data\Bootstrap3\Simple\TabList.txt", "ITabs")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\Jumbotron.txt", "IText")] // Jumbotron
+        [InlineData(@"..\Data\Bootstrap3\Simple\Jumbotron2.txt", "IText")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\PageHeader.txt", "IText")] // Page header
+        [InlineData(@"..\Data\Bootstrap3\Simple\AlertSuccess.txt", "IText")] // Alerts
+        [InlineData(@"..\Data\Bootstrap3\Simple\AlertInfo.txt", "IText")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\AlertWarning.txt", "IText")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\AlertDanger.txt", "IText")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\AlertDismissible.txt", "IText")] // Dismissible alerts
+        [InlineData(@"..\Data\Bootstrap3\Simple\AlertSuccessLink.txt", "ILink")] // Links in alerts
+        [InlineData(@"..\Data\Bootstrap3\Simple\AlertInfoLink.txt", "ILink")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\AlertWarningLink.txt", "ILink")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\AlertDangerLink.txt", "ILink")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\Well.txt", "IText")] // Wells // Default well
+        [InlineData(@"..\Data\Bootstrap3\Simple\WellLarge.txt", "IText")] // Optional classes
+        [InlineData(@"..\Data\Bootstrap3\Simple\WellSmall.txt", "IText")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonToolbar0.txt", "IButton")] // button toolbar
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonToolbar1.txt", "IButton")] // button toolbar
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonToolbar2.txt", "IButton")] // button toolbar
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing0.txt", "IButton")] // sizing
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing1.txt", "IButton")] // sizing
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing2.txt", "IButton")] // sizing
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroupSizing3.txt", "IButton")] // sizing
         #region commented
         /*
         [InlineData(@"
@@ -73,34 +65,37 @@
         ", "")]
         */
         #endregion
-        [InlineData(@"..\Data\Bootstrap3\Simple\InputGroupAddon0.txt", "ITextField", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\InputGroupAddon1.txt", "ITextField", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\InputGroupAddon2.txt", "ITextField", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Simple\TextField.txt", "ITextField", 1)]
+        [InlineData(@"..\Data\Bootstrap3\Simple\InputGroupAddon0.txt", "ITextField")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\InputGroupAddon1.txt", "ITextField")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\InputGroupAddon2.txt", "ITextField")]
+        [InlineData(@"..\Data\Bootstrap3\Simple\TextField.txt", "ITextField")]
 
-        [InlineData(@"..\Data\Bootstrap3\Simple\CheckboxesAndRadioAddons0.txt", "ICheckBox", 1)] // Checkboxes and radio addons
-        // [InlineData(@"..\Data\Bootstrap3\Simple\CheckboxesAndRadioAddons1.txt", "IRadioButtons", 10)] // Checkboxes and radio addons
-        [InlineData(@"..\Data\Bootstrap3\Simple\CheckboxesAndRadioAddons1.txt", "IRadioButtons", 3)] // Checkboxes and radio addons
-        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonAddons.txt", "IButton", 4)] // Button addons
-        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonsWithDropdowns.txt", "IButton", 1)] // Buttons with dropdowns
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonAddons.txt", "IButton")] // Button addons
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonsWithDropdowns.txt", "IButton")] // Buttons with dropdowns
         [Trait("Category", "Bootstrap 3, single element")]
-        public void ParseBootstrap3ForSingleElement(string input, string expected, int elementPosition)
+        public void ParseBootstrap3ForSingleElement(string input, string expectedType)
         {
             GivenHtmlFromFile(input);
-            WhenParsing(elementPosition);
-            ThenThereIsElementOfType(expected);
+            WhenParsing(expectedType);
+            ThenThereIsElementOfType(expectedType);
         }
 
         [Theory]
-        // [InlineData(@"..\Data\Bootstrap3\Complex\DropDown.txt", "IDropDown<SomeEnum>", 0)]
-        // [InlineData(@"..\Data\Bootstrap3\Complex\DropUp.txt", "IDropDown<SomeEnum>", 0)]
-        // [InlineData(@"..\Data\Bootstrap3\Complex\DropDownAlignment.txt", "IDropDown<SomeEnum>", 0)] // alignment
-        // [InlineData(@"..\Data\Bootstrap3\Complex\DropDownHeaders.txt", "IDropDown<SomeEnum>", 0)] // headers
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroup0.txt", "IButton", 0)] // button groups
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroup1.txt", "IButton", 1)] // button groups
+        [InlineData(@"..\Data\Bootstrap3\Simple\ButtonGroup2.txt", "IButton", 2)] // button groups
+        [InlineData(@"..\Data\Bootstrap3\Simple\CheckboxesAndRadioAddons0.txt", "ICheckBox", 1)] // Checkboxes and radio addons
+        // [InlineData(@"..\Data\Bootstrap3\Simple\CheckboxesAndRadioAddons1.txt", "IRadioButtons", 10)] // Checkboxes and radio addons
+        [InlineData(@"..\Data\Bootstrap3\Simple\CheckboxesAndRadioAddons1.txt", "IRadioButtons", 3)] // Checkboxes and radio addons
+        [Trait("Category", "Bootstrap 3, single element, positional")]
+        public void ParseBootstrap3ForSingleElementWithPosition(string input, string expectedType, int elementPosition)
+        {
+            GivenHtmlFromFile(input);
+            WhenParsing(elementPosition);
+            ThenThereIsElementOfType(expectedType);
+        }
 
-        //[InlineData(@"..\Data\Bootstrap3\Complex\DropDown.txt", "IDropDown<", 0)]
-        //[InlineData(@"..\Data\Bootstrap3\Complex\DropUp.txt", "IDropDown<", 0)]
-        //[InlineData(@"..\Data\Bootstrap3\Complex\DropDownAlignment.txt", "IDropDown<", 0)] // alignment
-        //[InlineData(@"..\Data\Bootstrap3\Complex\DropDownHeaders.txt", "IDropDown<", 0)] // headers
+        [Theory]
         /*
     @JDropdown(
         root = @FindBy(className = "country-selection"),
@@ -115,27 +110,20 @@
     )
     IDropDown city;
         */
-        [InlineData(@"..\Data\Bootstrap3\Complex\DropDown.txt", "IDropDown<", "dropdown", "dropdown-toggle", "dropdown-menu", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Complex\DropUp.txt", "IDropDown<", "dropup", "dropdown-toggle", "dropdown-menu", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Complex\DropDownAlignment.txt", "IDropDown<", "dropdown", "dropdown-toggle", "dropdown-menu", 0)] // alignment
+        [InlineData(@"..\Data\Bootstrap3\Complex\DropDown.txt", "IDropDown<", "dropdown", "dropdown-toggle", "dropdown-menu")]
+        [InlineData(@"..\Data\Bootstrap3\Complex\DropUp.txt", "IDropDown<", "dropup", "dropdown-toggle", "dropdown-menu")]
+        [InlineData(@"..\Data\Bootstrap3\Complex\DropDownAlignment.txt", "IDropDown<", "dropdown", "dropdown-toggle", "dropdown-menu")] // alignment
         // TODO: try to use headers?
-        [InlineData(@"..\Data\Bootstrap3\Complex\DropDownHeaders.txt", "IDropDown<", "dropdown", "dropdown-toggle", "dropdown-menu", 0)] // headers
+        [InlineData(@"..\Data\Bootstrap3\Complex\DropDownHeaders.txt", "IDropDown<", "dropdown", "dropdown-toggle", "dropdown-menu")] // headers
 
-        [InlineData(@"..\Data\Bootstrap3\Complex\DropDownDivider.txt", "IMenuItem", "", "", "", 0)] // divider
-        [InlineData(@"..\Data\Bootstrap3\Complex\DropDownDisabledMenuItems.txt", "ILink", "", "", "", 3)] // disabled menu items
-        // [InlineData(@"..\Data\Bootstrap3\Complex\ButtonGroupNesting.txt", "IDropDown<SomeEnum>", 0)] // nesting
-        // [InlineData(@"..\Data\Bootstrap3\Complex\ButtonGroupVerticalVariation.txt", "IDropDown<SomeEnum>", 0)] // vertical variation
-        //[InlineData(@"..\Data\Bootstrap3\Complex\ButtonGroupNesting.txt", "IDropDown<", 0)] // nesting
-        //[InlineData(@"..\Data\Bootstrap3\Complex\ButtonGroupVerticalVariation.txt", "IDropDown<", 0)] // vertical variation
-        [InlineData(@"..\Data\Bootstrap3\Complex\ButtonGroupNesting.txt", "IDropDown<", "btn-group", "dropdown-toggle", "dropdown-menu", 0)] // nesting
+        [InlineData(@"..\Data\Bootstrap3\Complex\DropDownDivider.txt", "IMenuItem", "", "", "")] // divider
+        // [InlineData(@"..\Data\Bootstrap3\Complex\DropDownDisabledMenuItems.txt", "ILink", "", "", "", 3)] // disabled menu items
+        [InlineData(@"..\Data\Bootstrap3\Complex\ButtonGroupNesting.txt", "IDropDown<", "btn-group", "dropdown-toggle", "dropdown-menu")] // nesting
         // TODO: try to use vertical?
-        [InlineData(@"..\Data\Bootstrap3\Complex\ButtonGroupVerticalVariation.txt", "IDropDown<", "btn-group", "dropdown-toggle", "dropdown-menu", 0)] // vertical variation
+        [InlineData(@"..\Data\Bootstrap3\Complex\ButtonGroupVerticalVariation.txt", "IDropDown<", "btn-group", "dropdown-toggle", "dropdown-menu")] // vertical variation
 
-        // [InlineData(@"..\Data\Bootstrap3\Complex\JustifiedButtonGroup.txt", "IDropDown<SomeEnum>", 3)] // justified button groups
-        //[InlineData(@"..\Data\Bootstrap3\Complex\JustifiedButtonGroup.txt", "IDropDown<", 3)] // justified button groups
         // TODO: remove commenting in the html file back!
-        //[InlineData(@"..\Data\Bootstrap3\Complex\JustifiedButtonGroup.txt", "IDropDown<", "btn-group", "dropdown-toggle", "dropdown-menu", 3)] // justified button groups
-        [InlineData(@"..\Data\Bootstrap3\Complex\JustifiedButtonGroup.txt", "IDropDown<", "btn-group", "dropdown-toggle", "dropdown-menu", 0)] // justified button groups
+        [InlineData(@"..\Data\Bootstrap3\Complex\JustifiedButtonGroup.txt", "IDropDown<", "btn-group", "dropdown-toggle", "dropdown-menu")] // justified button groups
 
         //    [InlineData(@"
         //<div class="btn-group btn-group-justified" role="group" aria-label="...">
@@ -150,46 +138,19 @@
         //</div>
         //</div>
         //", "")]
-        //[InlineData(@"..\Data\Bootstrap3\Complex\ButtonDropDown.txt", "IDropDown<SomeEnum>", 0)] // button dropdowns
-        //[InlineData(@"..\Data\Bootstrap3\Complex\SplitButtonDropDown.txt", "IDropDown<SomeEnum>", 0)] // split button dropdowns
-        //[InlineData(@"..\Data\Bootstrap3\Complex\DropDownMenuLargeButtonGroup.txt", "IDropDown<SomeEnum>", 0)]
-        //[InlineData(@"..\Data\Bootstrap3\Complex\DropDownMenuSmallButtonGroup.txt", "IDropDown<SomeEnum>", 0)]
-        //[InlineData(@"..\Data\Bootstrap3\Complex\DropDownMenuExtraSmallButtonGroup.txt", "IDropDown<SomeEnum>", 0)] // sizing x3
-        //[InlineData(@"..\Data\Bootstrap3\Complex\DropUpVariation.txt", "IDropDown<SomeEnum>", 0)] // dropup variation
-        //[InlineData(@"..\Data\Bootstrap3\Complex\InputGroups.txt", "IForm<SomeEnum>", 0)] // input groups
-        //[InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormSizing.txt", "IForm<SomeEnum>", 0)] // sizing
-        //[InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormCheckboxesAndRadioButtons.txt", "IForm<SomeEnum>", 0)] // Checkboxes and radio addons
-        //[InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormButtonAddons.txt", "IForm<SomeEnum>", 0)] // Button addons
-        //[InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormButtonsWithDropDowns.txt", "IForm<SomeEnum>", 0)] // Buttons with dropdowns
-        //[InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormSegmentedButtons.txt", "IForm<SomeEnum>", 0)] // Segmented buttons
-        //[InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormMultipleButtons.txt", "IForm<SomeEnum>", 0)] // Multiple buttons
-
-        //[InlineData(@"..\Data\Bootstrap3\Complex\ButtonDropDown.txt", "IDropDown<", 0)] // button dropdowns
-        //[InlineData(@"..\Data\Bootstrap3\Complex\SplitButtonDropDown.txt", "IDropDown<", 0)] // split button dropdowns
-        //[InlineData(@"..\Data\Bootstrap3\Complex\DropDownMenuLargeButtonGroup.txt", "IDropDown<", 0)]
-        //[InlineData(@"..\Data\Bootstrap3\Complex\DropDownMenuSmallButtonGroup.txt", "IDropDown<", 0)]
-        //[InlineData(@"..\Data\Bootstrap3\Complex\DropDownMenuExtraSmallButtonGroup.txt", "IDropDown<", 0)] // sizing x3
-        //[InlineData(@"..\Data\Bootstrap3\Complex\DropUpVariation.txt", "IDropDown<", 0)] // dropup variation
-        //[InlineData(@"..\Data\Bootstrap3\Complex\InputGroups.txt", "IForm<", 0)] // input groups
-        //[InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormSizing.txt", "IForm<", 0)] // sizing
-        //[InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormCheckboxesAndRadioButtons.txt", "IForm<", 0)] // Checkboxes and radio addons
-        //[InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormButtonAddons.txt", "IForm<", 0)] // Button addons
-        //[InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormButtonsWithDropDowns.txt", "IForm<", 0)] // Buttons with dropdowns
-        //[InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormSegmentedButtons.txt", "IForm<", 0)] // Segmented buttons
-        //[InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormMultipleButtons.txt", "IForm<", 0)] // Multiple buttons
-        [InlineData(@"..\Data\Bootstrap3\Complex\ButtonDropDown.txt", "IDropDown<", "btn-group", "dropdown-toggle", "dropdown-menu", 0)] // button dropdowns
-        [InlineData(@"..\Data\Bootstrap3\Complex\SplitButtonDropDown.txt", "IDropDown<", "btn-group", "dropdown-toggle", "dropdown-menu", 0)] // split button dropdowns
-        [InlineData(@"..\Data\Bootstrap3\Complex\DropDownMenuLargeButtonGroup.txt", "IDropDown<", "btn-group", "dropdown-toggle", "dropdown-menu", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Complex\DropDownMenuSmallButtonGroup.txt", "IDropDown<", "btn-group", "dropdown-toggle", "dropdown-menu", 0)]
-        [InlineData(@"..\Data\Bootstrap3\Complex\DropDownMenuExtraSmallButtonGroup.txt", "IDropDown<", "btn-group", "dropdown-toggle", "dropdown-menu", 0)] // sizing x3
-        [InlineData(@"..\Data\Bootstrap3\Complex\DropUpVariation.txt", "IDropDown<", "btn-group", "dropdown-toggle", "dropdown-menu", 0)] // dropup variation
-        [InlineData(@"..\Data\Bootstrap3\Complex\InputGroups.txt", "IForm<", "", "", "", 0)] // input groups
-        [InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormSizing.txt", "IForm<", "", "", "", 0)] // sizing
-        [InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormCheckboxesAndRadioButtons.txt", "IForm<", "", "", "", 0)] // Checkboxes and radio addons
-        [InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormButtonAddons.txt", "IForm<", "", "", "", 0)] // Button addons
-        [InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormButtonsWithDropDowns.txt", "IForm<", "", "", "", 0)] // Buttons with dropdowns
-        [InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormSegmentedButtons.txt", "IForm<", "", "", "", 0)] // Segmented buttons
-        [InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormMultipleButtons.txt", "IForm<", "", "", "", 0)] // Multiple buttons
+        [InlineData(@"..\Data\Bootstrap3\Complex\ButtonDropDown.txt", "IDropDown<", "btn-group", "dropdown-toggle", "dropdown-menu")] // button dropdowns
+        [InlineData(@"..\Data\Bootstrap3\Complex\SplitButtonDropDown.txt", "IDropDown<", "btn-group", "dropdown-toggle", "dropdown-menu")] // split button dropdowns
+        [InlineData(@"..\Data\Bootstrap3\Complex\DropDownMenuLargeButtonGroup.txt", "IDropDown<", "btn-group", "dropdown-toggle", "dropdown-menu")]
+        [InlineData(@"..\Data\Bootstrap3\Complex\DropDownMenuSmallButtonGroup.txt", "IDropDown<", "btn-group", "dropdown-toggle", "dropdown-menu")]
+        [InlineData(@"..\Data\Bootstrap3\Complex\DropDownMenuExtraSmallButtonGroup.txt", "IDropDown<", "btn-group", "dropdown-toggle", "dropdown-menu")] // sizing x3
+        [InlineData(@"..\Data\Bootstrap3\Complex\DropUpVariation.txt", "IDropDown<", "btn-group", "dropdown-toggle", "dropdown-menu")] // dropup variation
+        [InlineData(@"..\Data\Bootstrap3\Complex\InputGroups.txt", "IForm<", "", "", "")] // input groups
+        [InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormSizing.txt", "IForm<", "", "", "")] // sizing
+        [InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormCheckboxesAndRadioButtons.txt", "IForm<", "", "", "")] // Checkboxes and radio addons
+        [InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormButtonAddons.txt", "IForm<", "", "", "")] // Button addons
+        [InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormButtonsWithDropDowns.txt", "IForm<", "", "", "")] // Buttons with dropdowns
+        [InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormSegmentedButtons.txt", "IForm<", "", "", "")] // Segmented buttons
+        [InlineData(@"..\Data\Bootstrap3\Complex\NavBarFormMultipleButtons.txt", "IForm<", "", "", "")] // Multiple buttons
         #region commented
         /*
     [InlineData(@"
@@ -256,8 +217,7 @@
 ", "")] // Pills with dropdowns
 */
         #endregion
-        //[InlineData(@"..\Data\Bootstrap3\Complex\DefaultNavBar.txt", "INavBar", 0)] // Default NavBar
-        [InlineData(@"..\Data\Bootstrap3\Complex\DefaultNavBar.txt", "INavBar", "", "", "", 0)] // Default NavBar
+        [InlineData(@"..\Data\Bootstrap3\Complex\DefaultNavBar.txt", "INavBar", "", "", "")] // Default NavBar
         #region commented
         /*
 [InlineData(@"
@@ -716,36 +676,42 @@ Panel content
 
         [Trait("Category", "Bootstrap 3, collection")]
 
-        // public void ParseBootstrap3ForCollection(string input, string expected, int elementPosition)
-        public void ParseBootstrap3ForCollection(string input, string expected, string rootSearchString, string valueSearchString, string listSearchString, int elementPosition)
+        public void ParseBootstrap3ForCollection(string input, string expectedTypeName, string rootSearchString, string valueSearchString, string listSearchString)
+        {
+            GivenHtmlFromFile(input);
+            WhenParsing(expectedTypeName);
+            ThenThereIsCollectionOfElementsOfType(expectedTypeName, rootSearchString, valueSearchString, listSearchString);
+        }
+
+        [Theory]
+        [InlineData(@"..\Data\Bootstrap3\Complex\DropDownDisabledMenuItems.txt", "ILink", "", "", "", 3)] // disabled menu items
+        [Trait("Category", "Bootstrap 3, collection, positional")]
+        public void ParseBootstrap3ForCollectionWithPosition(string input, string expectedTypeName, string rootSearchString, string valueSearchString, string listSearchString, int elementPosition)
         {
             GivenHtmlFromFile(input);
             WhenParsing(elementPosition);
-            ThenThereIsCollectionOfElementsOfType(expected, rootSearchString, valueSearchString, listSearchString);
+            ThenThereIsCollectionOfElementsOfType(expectedTypeName, rootSearchString, valueSearchString, listSearchString);
         }
 
         void GivenHtmlFromFile(string path)
         {
             _doc = new HtmlDocument();
-            _doc.LoadHtml(TestFactory.GetBootstrap3Page(path));
+            _doc.LoadHtml(TestFactory.Instance.GetBootstrap3Page(path));
+        }
+
+        void WhenParsing(string expectedTypeName)
+        {
+            _entry = TestFactory.Instance.GetEntryExpected(_doc, new[] { typeof(Bootstrap3) }, expectedTypeName);
         }
 
         void WhenParsing(int elementPosition)
         {
-            var pageLoader = new PageLoader();
-            var applicableAnalyzers = new[] { typeof(Bootstrap3) };
-            _entries.AddRange(pageLoader.GetCodeEntriesFromNode<HtmlElementTypes>(_doc.DocumentNode, TestFactory.ExcludeList, applicableAnalyzers));
-            _entry = _entries.Cast<CodeEntry<HtmlElementTypes>>().ToArray()[elementPosition];
+            _entry = TestFactory.Instance.GetEntryExpected(_doc, new[] { typeof(Bootstrap3) }, elementPosition);
         }
 
         void ThenThereIsElementOfType(string expected)
         {
-//        	try {
             Assert.True(_entry.GenerateCodeForEntry(SupportedLanguages.Java).Contains(expected));
-//        	}
-//        	catch {
-//        		int i = 1;
-//        	}
         }
 
         void ThenThereIsCollectionOfElementsOfType(string expected, string rootSearchString, string valueSearchString, string listSearchString)

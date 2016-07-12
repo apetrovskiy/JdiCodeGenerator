@@ -1,23 +1,53 @@
 ﻿namespace JdiCodeGenerator.Tests.Recognition.Internals
 {
+    using System;
+    using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
+    using Core.ObjectModel;
+    using Core.ObjectModel.Abstract;
+    using HtmlAgilityPack;
+    using Web.Helpers;
+    using Web.ObjectModel.Abstract;
 
     public class TestFactory
     {
         // public static string[] ExcludeList = new[] { "html", "head", "body", "#comment", "#text", "div", "meta", "p", "h1", "h2", "h3", "h4", "h5", "h6", "small", "font", "script", "i", "br", "hr", "strong", "style", "title", "li", "ul", "img", "span", "noscript" };
         public static string[] ExcludeList = { "html", "head", "body", "#comment", "#text", "meta", "h1", "h2", "h3", "h4", "h5", "h6", "small", "font", "script", "i", "br", "hr", "strong", "style", "title", "img", "noscript" };
 
-        public static string GetBootstrap3Page(string path)
+        private static volatile TestFactory _instance;
+        private static object syncRoot = new object();
+
+        private TestFactory() { }
+
+        public static TestFactory Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (syncRoot)
+                    {
+                        if (_instance == null)
+                            _instance = new TestFactory();
+                    }
+                }
+
+                return _instance;
+            }
+        }
+
+        public string GetBootstrap3Page(string path)
         {
             return GetHtml(Bootstrap3FirstPart, path, Bootstrap3LastPart);
         }
 
-        public static string GetPlainHtml5Page(string path)
+        public string GetPlainHtml5Page(string path)
         {
             return GetHtml(PlainHtml5FirstPart, path, PlainHtml5LastPart);
         }
 
-        static string GetHtml(string firstPart, string path, string lastPart)
+        string GetHtml(string firstPart, string path, string lastPart)
         {
             var fullHtml = string.Empty;
 #if DEBUG
@@ -81,5 +111,24 @@
   </body>
 </html>
 ";
+
+        public CodeEntry<HtmlElementTypes> GetEntryExpected(HtmlDocument document, Type[] applicableAnalyzers, string expectedTypeName)
+        {
+            var pageLoader = new PageLoader();
+            var entries = new List<ICodeEntry<HtmlElementTypes>>();
+            entries.AddRange(pageLoader.GetCodeEntriesFromNode<HtmlElementTypes>(document.DocumentNode, ExcludeList, applicableAnalyzers));
+            // TODO: IndexOf '<'
+            if (expectedTypeName.Substring(expectedTypeName.Length - 1) == "<")
+                expectedTypeName = expectedTypeName.Substring(0, expectedTypeName.Length - 1);
+            return entries.Cast<CodeEntry<HtmlElementTypes>>().First(entry => entry.JdiMemberType == Enum.GetValues(typeof(JdiElementTypes)).Cast<JdiElementTypes>().First(item => "I" + item.ToString() == expectedTypeName));
+        }
+
+        public CodeEntry<HtmlElementTypes> GetEntryExpected(HtmlDocument document, Type[] applicableAnalyzers, int elementPosition)
+        {
+            var pageLoader = new PageLoader();
+            var entries = new List<ICodeEntry<HtmlElementTypes>>();
+            entries.AddRange(pageLoader.GetCodeEntriesFromNode<HtmlElementTypes>(document.DocumentNode, ExcludeList, applicableAnalyzers));
+            return entries.Cast<CodeEntry<HtmlElementTypes>>().ToArray()[elementPosition];
+        }
     }
 }
