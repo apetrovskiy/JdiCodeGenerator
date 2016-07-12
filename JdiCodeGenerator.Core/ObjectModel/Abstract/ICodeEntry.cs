@@ -1,17 +1,16 @@
 ﻿namespace JdiCodeGenerator.Core.ObjectModel.Abstract
 {
-    using System;
     using System.Collections.Generic;
 
-    public interface ICodeEntry<T>
+    public interface ICodeEntry<T> : IPieceOfCode
     {
-        Guid Id { get; set; }
+        // Guid Id { get; set; }
         List<LocatorDefinition> Locators { get; set; }
         string MemberName { get; set; }
         List<T> SourceMemberType { get; set; }
         JdiElementTypes JdiMemberType { get; set; }
         string MemberType { get; set; }
-        string GenerateCodeForEntry(SupportedLanguages language);
+        // string GenerateCodeForEntry(SupportedLanguages language);
         string EnumerationTypeName { get; set; }
 
         string AnalyzerThatWon { get; set; }
@@ -30,5 +29,6 @@ IDropDown<JobCategories> category;
         LocatorDefinition Value { get; set; }
         LocatorDefinition List { get; set; }
         List<string> ListMemberNames { get; set; }
+        // Guid DependsOn { get; set; }
     }
 }

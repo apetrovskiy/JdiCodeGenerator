@@ -1,12 +1,11 @@
-﻿namespace JdiCodeGenerator.Tests.Recognition
+﻿namespace JdiCodeGenerator.Tests.Plugins.JavaScript
 {
     using Core.Helpers;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
     using HtmlAgilityPack;
-    using Internals;
     using Web.ObjectModel.Abstract;
-    using Web.ObjectModel.Plugins;
+    using Web.ObjectModel.Plugins.JavaScript;
     using Xunit;
 
     public class JqueryBootstrapSelectTests

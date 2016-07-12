@@ -1,9 +1,9 @@
-﻿namespace JdiCodeGenerator.Web.ObjectModel.Plugins
+﻿namespace JdiCodeGenerator.Web.ObjectModel.Plugins.JavaScript
 {
     using Abstract;
     using HtmlAgilityPack;
 
-    public class ReactJs // : IFrameworkAlingmentAnalysisPlugin
+    public class AngularJs // : IFrameworkAlingmentAnalysisPlugin
     {
         public HtmlElementTypes Analyze(HtmlNode node)
         {

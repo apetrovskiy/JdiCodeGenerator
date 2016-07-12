@@ -108,6 +108,8 @@
     <Compile Include="ImportExport\DtoJsonConverter.cs" />
     <Compile Include="ObjectModel\Abstract\FindTypes.cs" />
     <Compile Include="ObjectModel\Abstract\ICodeEntry.cs" />
+    <Compile Include="ObjectModel\Abstract\ICodeUnit.cs" />
+    <Compile Include="ObjectModel\Abstract\IPieceOfCode.cs" />
     <Compile Include="ObjectModel\Abstract\IRule.cs" />
     <Compile Include="ObjectModel\Abstract\IRuleCondition.cs" />
     <Compile Include="ObjectModel\Abstract\JdiElementTypes.cs" />
@@ -117,6 +119,7 @@
     <Compile Include="ObjectModel\Abstract\SearchTypePreferences.cs" />
     <Compile Include="ObjectModel\Abstract\SupportedLanguages.cs" />
     <Compile Include="ObjectModel\CodeEntry.cs" />
+    <Compile Include="ObjectModel\CodeUnit.cs" />
     <Compile Include="ObjectModel\LocatorDefinition.cs" />
     <Compile Include="ObjectModel\Rule.cs" />
     <Compile Include="ObjectModel\RuleCondition.cs" />

@@ -127,14 +127,12 @@
     <Compile Include="Helpers\SettingNamesTests.cs" />
     <Compile Include="Mocks\HtmlNodeMock.cs" />
     <Compile Include="ObjectModel\CodeEntryTests.cs" />
-    <Compile Include="Plugins\BoilerplateTests.cs" />
-    <Compile Include="Plugins\BootstrapTests.cs" />
+    <Compile Include="Plugins\TestFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Recognition\Bootstrap3Tests.cs" />
-    <Compile Include="Recognition\JdiTests.cs" />
-    <Compile Include="Recognition\Internals\TestFactory.cs" />
-    <Compile Include="Recognition\JqueryBootstrapSelectTests.cs" />
-    <Compile Include="Recognition\PlainHtml5Tests.cs" />
+    <Compile Include="Plugins\BootstrapAndCompetitors\Bootstrap3Tests.cs" />
+    <Compile Include="Plugins\Plain\JdiTests.cs" />
+    <Compile Include="Plugins\JavaScript\JqueryBootstrapSelectTests.cs" />
+    <Compile Include="Plugins\Plain\PlainHtml5Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

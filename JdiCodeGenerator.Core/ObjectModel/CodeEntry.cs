@@ -105,6 +105,7 @@
         public LocatorDefinition Value { get; set; }
         public LocatorDefinition List { get; set; }
         public List<string> ListMemberNames { get; set; }
+        public Guid DependsOn { get; set; }
 
         SupportedLanguages _language;
 

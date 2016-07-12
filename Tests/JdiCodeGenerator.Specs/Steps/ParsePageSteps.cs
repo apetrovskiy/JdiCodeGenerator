@@ -4,10 +4,10 @@
     using Core.ObjectModel.Abstract;
     using HtmlAgilityPack;
     using TechTalk.SpecFlow;
-    using Tests.Recognition.Internals;
+    using Tests.Plugins;
     using Web.ObjectModel.Abstract;
-    using Web.ObjectModel.Plugins;
     using Web.ObjectModel.Plugins.BootstrapAndCompetitors;
+    using Web.ObjectModel.Plugins.Plain;
 
     [Binding]
     public class ParsePageSteps

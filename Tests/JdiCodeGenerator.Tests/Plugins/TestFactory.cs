@@ -1,4 +1,4 @@
-﻿namespace JdiCodeGenerator.Tests.Recognition.Internals
+﻿namespace JdiCodeGenerator.Tests.Plugins
 {
     using System;
     using System.Collections.Generic;

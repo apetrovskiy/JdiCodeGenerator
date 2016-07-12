@@ -8,8 +8,8 @@
     using Core.ObjectModel.Abstract;
     using Helpers;
     using ObjectModel.Abstract;
-    using ObjectModel.Plugins;
     using ObjectModel.Plugins.BootstrapAndCompetitors;
+    using ObjectModel.Plugins.Plain;
 
     class Program
     {

@@ -1,4 +1,4 @@
-﻿namespace JdiCodeGenerator.Web.ObjectModel.Plugins
+﻿namespace JdiCodeGenerator.Web.ObjectModel.Plugins.Plain
 {
     using System.Collections.Generic;
     using Abstract;

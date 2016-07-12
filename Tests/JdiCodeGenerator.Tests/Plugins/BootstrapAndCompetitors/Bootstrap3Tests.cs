@@ -1,13 +1,12 @@
-﻿namespace JdiCodeGenerator.Tests.Recognition
+﻿namespace JdiCodeGenerator.Tests.Plugins.BootstrapAndCompetitors
 {
     using Core.Helpers;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
     using HtmlAgilityPack;
-    using Internals;
-    using Xunit;
     using Web.ObjectModel.Abstract;
     using Web.ObjectModel.Plugins.BootstrapAndCompetitors;
+    using Xunit;
 
     public class Bootstrap3Tests
     {

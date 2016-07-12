@@ -89,7 +89,7 @@
     <Compile Include="ObjectModel\Abstract\FrameworkAlignmentAnalysisPlugin.cs" />
     <Compile Include="ObjectModel\Abstract\HtmlElementTypes.cs" />
     <Compile Include="ObjectModel\Abstract\IFrameworkAlingmentAnalysisPlugin.cs" />
-    <Compile Include="ObjectModel\Plugins\AngularJs.cs" />
+    <Compile Include="ObjectModel\Plugins\JavaScript\AngularJs.cs" />
     <Compile Include="ObjectModel\Plugins\BootstrapAndCompetitors\Boilerplate.cs" />
     <Compile Include="ObjectModel\Plugins\BootstrapAndCompetitors\Bootstrap3.cs" />
     <Compile Include="ObjectModel\Plugins\BootstrapAndCompetitors\Foundation.cs" />
@@ -99,10 +99,10 @@
     <Compile Include="ObjectModel\Plugins\BootstrapAndCompetitors\Pure.cs" />
     <Compile Include="ObjectModel\Plugins\BootstrapAndCompetitors\Yui.cs" />
     <Compile Include="ObjectModel\Plugins\BootstrapAndCompetitors\Zimit.cs" />
-    <Compile Include="ObjectModel\Plugins\Jdi.cs" />
-    <Compile Include="ObjectModel\Plugins\JqueryBootstrapSelect.cs" />
-    <Compile Include="ObjectModel\Plugins\PlainHtml5.cs" />
-    <Compile Include="ObjectModel\Plugins\ReactJs.cs" />
+    <Compile Include="ObjectModel\Plugins\Plain\Jdi.cs" />
+    <Compile Include="ObjectModel\Plugins\JavaScript\JqueryBootstrapSelect.cs" />
+    <Compile Include="ObjectModel\Plugins\Plain\PlainHtml5.cs" />
+    <Compile Include="ObjectModel\Plugins\JavaScript\ReactJs.cs" />
     <Compile Include="WebNames.Designer.cs">
       <DependentUpon>WebNames.resx</DependentUpon>
       <AutoGen>True</AutoGen>

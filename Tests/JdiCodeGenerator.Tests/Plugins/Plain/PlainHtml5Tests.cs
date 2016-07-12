@@ -1,12 +1,11 @@
-﻿namespace JdiCodeGenerator.Tests.Recognition
+﻿namespace JdiCodeGenerator.Tests.Plugins.Plain
 {
     using Core.Helpers;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
     using HtmlAgilityPack;
-    using Internals;
     using Web.ObjectModel.Abstract;
-    using Web.ObjectModel.Plugins;
+    using Web.ObjectModel.Plugins.Plain;
     using Xunit;
 
     public class PlainHtml5Tests
