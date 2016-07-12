@@ -91,19 +91,28 @@
   <ItemGroup>
     <Compile Include="Features\FeatureBase.cs" />
     <Compile Include="Features\ParsePageFeature.cs" />
+    <Compile Include="FindElement.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FindElement.feature</DependentUpon>
+    </Compile>
     <Compile Include="ParsePage.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ParsePage.feature</DependentUpon>
     </Compile>
-    <Compile Include="ParsePageSteps2.cs" />
-    <Compile Include="Steps\ParsePageSteps.cs" />
+    <Compile Include="Steps\FindElementSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\CommonSteps.cs" />
+    <Compile Include="Steps\ParsePageSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="FindElement.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>FindElement.feature.cs</LastGenOutput>
+    </None>
     <None Include="ParsePage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ParsePage.feature.cs</LastGenOutput>
@@ -125,6 +134,14 @@
       <Project>{7b96a8ce-d149-4911-a31d-484ba31cad53}</Project>
       <Name>JdiCodeGenerator.Tests</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\LentaRu.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WashingtonEdu.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,6 +2,7 @@
 {
     using System;
     using Abstract;
+
     public class CodeUnit<T> : ICodeUnit<T>
     {
         public Guid Id { get; set; }

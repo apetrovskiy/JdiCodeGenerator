@@ -4,7 +4,6 @@
 
     public interface ICodeEntry<T> : IPieceOfCode
     {
-        // Guid Id { get; set; }
         List<LocatorDefinition> Locators { get; set; }
         string MemberName { get; set; }
         List<T> SourceMemberType { get; set; }
@@ -18,7 +17,6 @@
 
         // temporarily!
         string Type { get; set; }
-        // bool ProcessChildren { get; set; }
         bool ProcessChildren { get; }
 
         /*
@@ -29,6 +27,5 @@ IDropDown<JobCategories> category;
         LocatorDefinition Value { get; set; }
         LocatorDefinition List { get; set; }
         List<string> ListMemberNames { get; set; }
-        // Guid DependsOn { get; set; }
     }
 }

@@ -4,13 +4,13 @@
 	I want to run code conversion
 	
 # @ignore @parsePage
-Scenario: Get one simple element
-	Given I have a Bootstrap web page "..\Data\Bootstrap3\Simple\ButtonDefault.txt"
+Scenario: Process a Bootstrap3 page
+	Given I have a Bootstrap web page "..\Data\WashingtonEdu.txt"
 	When I start the parser app
-	Then the result should be an element of type "IButton"
+	Then the result should be a collection of elements
 
 # @ignore
-Scenario: Get another element
-	Given I have a Bootstrap web page "..\Data\Bootstrap3\Simple\InputGroupAddon0.txt"
+Scenario: Process a HTML5 page
+	Given I have a Bootstrap web page "..\Data\LentaRu.txt"
 	When I start the parser app
-	Then the result should be an element of type "ITextField"
+	Then the result should be a collection of elements
