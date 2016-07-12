@@ -6,6 +6,8 @@
         string MemberType { get; set; }
 
         // temporarily!
-        string Type { get; set; }
+        // string Type { get; set; }
+
+        CodeUnitTypes Type { get; set; }
     }
 }

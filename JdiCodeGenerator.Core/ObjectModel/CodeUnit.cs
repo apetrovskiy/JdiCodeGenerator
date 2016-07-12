@@ -15,6 +15,14 @@
         public Guid DependsOn { get; set; }
         public string MemberName { get; set; }
         public string MemberType { get; set; }
-        public string Type { get; set; }
+        // public string Type { get; set; }
+
+        //CodeUnitTypes ICodeUnit<T>.Type
+        //{
+        //    get { throw new NotImplementedException(); }
+        //    set { throw new NotImplementedException(); }
+        //}
+
+        public CodeUnitTypes Type { get; set; }
     }
 }
