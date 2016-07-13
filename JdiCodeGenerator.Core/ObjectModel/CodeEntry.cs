@@ -23,7 +23,73 @@
         }
 
         public string RuleThatWon { get; set; }
-        public string Type { get; set; }
+        // public string Type { get; set; }
+        public CodeEntryTypes Type
+        {
+            get
+            {
+                switch (JdiMemberType)
+                {
+                    case JdiElementTypes.Element:
+                    case JdiElementTypes.Button:
+                    case JdiElementTypes.CheckBox:
+                    case JdiElementTypes.DatePicker:
+                    case JdiElementTypes.TimePicker:
+                    case JdiElementTypes.FileInput:
+                    case JdiElementTypes.Image:
+                    case JdiElementTypes.Label:
+                    case JdiElementTypes.Link:
+                    case JdiElementTypes.Text:
+                    case JdiElementTypes.TextArea:
+                    case JdiElementTypes.TextField:
+                    case JdiElementTypes.MenuItem:
+                    case JdiElementTypes.TabItem:
+                        return CodeEntryTypes.Simple;
+                    case JdiElementTypes.NavBar:
+                    case JdiElementTypes.Pager:
+                    case JdiElementTypes.Progress:
+                    case JdiElementTypes.List:
+                    case JdiElementTypes.ListItem:
+                    case JdiElementTypes.Popover:
+                    case JdiElementTypes.Carousel:
+                    case JdiElementTypes.CheckList:
+                        return CodeEntryTypes.Unknown;
+                    case JdiElementTypes.ComboBox:
+                        return CodeEntryTypes.ComplexWithConstructor;
+                    case JdiElementTypes.DropDown:
+                        return CodeEntryTypes.ComplexWithAnnotations;
+                    case JdiElementTypes.DropList:
+                    case JdiElementTypes.Form:
+                    case JdiElementTypes.Group:
+                    case JdiElementTypes.Menu:
+                    case JdiElementTypes.Page:
+                    case JdiElementTypes.Pagination:
+                    case JdiElementTypes.Popup:
+                    case JdiElementTypes.RadioButtons:
+                    case JdiElementTypes.Search:
+                    case JdiElementTypes.Selector:
+                    case JdiElementTypes.Tabs:
+                    case JdiElementTypes.TextList:
+                        return CodeEntryTypes.ComplexWithConstructor;
+                    case JdiElementTypes.Table:
+                        return CodeEntryTypes.ComplexWithConstructor;
+                    case JdiElementTypes.Cell:
+                    case JdiElementTypes.Column:
+                    case JdiElementTypes.Coulmns:
+                    case JdiElementTypes.DynamicTable:
+                    case JdiElementTypes.ElementIndexType:
+                    case JdiElementTypes.Row:
+                    case JdiElementTypes.RowColumn:
+                    case JdiElementTypes.Rows:
+                    case JdiElementTypes.TableLine:
+                        return CodeEntryTypes.Unknown;
+                    //case JdiElementTypes.StopProcessing:
+                    //    break;
+                    default:
+                        return CodeEntryTypes.Simple;
+                }
+            }
+        }
 
         public bool ProcessChildren
         {
@@ -201,13 +267,13 @@
     @JDropdown(
         root = @FindBy(className = "country-selection"),
         value = @FindBy(css = ".country-wrapper .arrow"),
-        elementByName = @FindBy(xpath = "*root*//*[contains(@id,'select-box-applicantCountry')]//li[.='%s']"))
+        elementByName = @FindBy(xpath = "*root*/ /*[contains(@id,'select-box-applicantCountry')]//li[.='%s']"))
     IDropDown country;
 
     @JDropdown(
             root = @FindBy(className = "city-selection"),
             expand = @FindBy(css = ".city-wrapper .arrow"),
-            list = @FindBy(xpath = "*root*//*[contains(@id,'select-box-applicantCity')]//li")
+            list = @FindBy(xpath = "*root*/ /*[contains(@id,'select-box-applicantCity')]//li")
     )
     IDropDown city;
         */

@@ -33,7 +33,7 @@
                 _codeEntry.JdiMemberType = _codeEntry.SourceMemberType[0].ConvertHtmlTypeToJdiType();
 
             // temporarily!
-            _codeEntry.Type = node.GetOriginalNameOfElement().CleanUpFromWrongCharacters();
+            // _codeEntry.Type = node.GetOriginalNameOfElement().CleanUpFromWrongCharacters();
 
             // temporarily!
             _codeEntry.MemberType = node.GetOriginalNameOfElement().CleanUpFromWrongCharacters();

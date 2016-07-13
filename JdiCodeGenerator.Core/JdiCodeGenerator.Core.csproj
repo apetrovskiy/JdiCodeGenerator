@@ -106,6 +106,7 @@
     <Compile Include="ImportExport\CodeEntriesExporter.cs" />
     <Compile Include="ImportExport\CodeEntriesImporter.cs" />
     <Compile Include="ImportExport\DtoJsonConverter.cs" />
+    <Compile Include="ObjectModel\Abstract\CodeEntryTypes.cs" />
     <Compile Include="ObjectModel\Abstract\CodeUnitTypes.cs" />
     <Compile Include="ObjectModel\Abstract\FindTypes.cs" />
     <Compile Include="ObjectModel\Abstract\ICodeEntry.cs" />

@@ -16,7 +16,7 @@
         string RuleThatWon { get; set; }
 
         // temporarily!
-        string Type { get; set; }
+        // string Type { get; set; }
         bool ProcessChildren { get; }
 
         /*
@@ -27,5 +27,6 @@ IDropDown<JobCategories> category;
         LocatorDefinition Value { get; set; }
         LocatorDefinition List { get; set; }
         List<string> ListMemberNames { get; set; }
+        CodeEntryTypes Type { get; }
     }
 }
