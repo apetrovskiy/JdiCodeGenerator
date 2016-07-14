@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using Abstract;
+    using Enums;
 
     public class ElementMemberCodeEntry<T> : IElementMemberCodeEntry<T>
     {
@@ -13,10 +14,12 @@
             return string.Empty;
         }
 
-        public Guid DependsOn { get; set; }
+        // public Guid DependsOn { get; set; }
         public string MemberLogicalName { get; set; }
         public List<T> SourceMemberType { get; set; }
         public JdiElementTypes JdiMemberType { get; set; }
         public ElementMemberCodeEntryTypes MemberType { get; set; }
+        public Guid ParentId { get; set; }
+        public Guid UsesId { get; set; }
     }
 }

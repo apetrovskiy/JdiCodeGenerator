@@ -8,6 +8,7 @@
     using HtmlAgilityPack;
     using Core.Helpers;
     using Core.ObjectModel.Abstract;
+    using Core.ObjectModel.Enums;
 
     //using CefSharp;
     //using CefSharp.OffScreen;
@@ -189,7 +190,7 @@
 
         internal IEnumerable<IPageMemberCodeEntry<T>> GetCodeEntriesFromNode<T>(HtmlNode docNode, IEnumerable<string> excludeList, Type[] analyzers)
         {
-            var convertor = new HtmlElementToCodeEntryConvertor();
+            var convertor = new HtmlElementToElementMemberCodeEntryConvertor();
 
             var rootNode = docNode.Descendants().FirstOrDefault(bodyNode => bodyNode.OriginalName.ToLower() == WebNames.ElementTypeBody);
             if (null == rootNode)

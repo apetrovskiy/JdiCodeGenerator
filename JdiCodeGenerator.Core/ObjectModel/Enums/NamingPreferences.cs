@@ -1,4 +1,4 @@
-﻿namespace JdiCodeGenerator.Core.ObjectModel.Abstract
+﻿namespace JdiCodeGenerator.Core.ObjectModel.Enums
 {
     // TODO: convert to a rule for every generator
     public enum NamingPreferences

@@ -5,6 +5,7 @@
     using Core.ObjectModel.Abstract;
     using Abstract;
     using Core;
+    using Core.ObjectModel.Enums;
 
     public class Bootstrap3 : FrameworkAlignmentAnalysisPlugin
     {

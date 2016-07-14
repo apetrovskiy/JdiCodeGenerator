@@ -6,6 +6,7 @@
     using Core.Helpers;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
+    using Core.ObjectModel.Enums;
     using HtmlAgilityPack;
     using Mocks;
     using NSubstitute;

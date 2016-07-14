@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Abstract;
+    using Enums;
     using Helpers;
 
     public class PageMemberCodeEntry<T> : IPageMemberCodeEntry<T>
@@ -171,7 +172,7 @@
         public LocatorDefinition Value { get; set; }
         public LocatorDefinition List { get; set; }
         public List<string> ListMemberNames { get; set; }
-        public Guid DependsOn { get; set; }
+        // public Guid DependsOn { get; set; }
 
         SupportedLanguages _language;
 
@@ -294,5 +295,7 @@
             // return "SomeEnum";
             return MemberName.Substring(0, 1).ToUpper() + MemberName.Substring(1);
         }
+
+        public Guid ParentId { get; set; }
     }
 }

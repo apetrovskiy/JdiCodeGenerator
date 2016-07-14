@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Core.ObjectModel.Abstract;
+    using Core.ObjectModel.Enums;
     using Helpers;
     using HtmlAgilityPack;
 
@@ -19,7 +20,7 @@
 
             // experimental
             RuleThatWon = firstRule;
-            ExtensionMethodsForNodes.AnalyzerThatWon = this;
+            HtmlNodesExtensions.AnalyzerThatWon = this;
 
             // return firstRule?.TargetType ?? JdiElementTypes.Element;
             return null == firstRule ? JdiElementTypes.Element : firstRule.TargetType;

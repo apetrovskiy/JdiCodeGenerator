@@ -7,9 +7,10 @@
     using HtmlAgilityPack;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
+    using Core.ObjectModel.Enums;
     using ObjectModel.Abstract;
 
-    public static class ExtensionMethodsForNodes
+    public static class HtmlNodesExtensions
     {
         public static bool HasAttribute(this HtmlNode node, string attributeName)
         {

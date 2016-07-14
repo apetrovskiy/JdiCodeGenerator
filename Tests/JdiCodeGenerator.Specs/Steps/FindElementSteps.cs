@@ -2,6 +2,7 @@
 {
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
+    using Core.ObjectModel.Enums;
     using HtmlAgilityPack;
     using TechTalk.SpecFlow;
     using Tests.Plugins;

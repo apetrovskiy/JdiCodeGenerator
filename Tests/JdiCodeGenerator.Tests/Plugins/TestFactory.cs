@@ -6,6 +6,7 @@
     using System.Linq;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
+    using Core.ObjectModel.Enums;
     using HtmlAgilityPack;
     using Web.Helpers;
     using Web.ObjectModel.Abstract;

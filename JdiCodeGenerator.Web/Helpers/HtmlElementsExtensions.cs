@@ -5,9 +5,10 @@
     using HtmlAgilityPack;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
+    using Core.ObjectModel.Enums;
     using ObjectModel.Abstract;
 
-    public static class ExtensionMethodsForHtmlElements
+    public static class HtmlElementsExtensions
     {
         public static string GenerateElementCss(this HtmlNode node)
         {

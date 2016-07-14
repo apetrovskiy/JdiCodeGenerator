@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using HtmlAgilityPack;
     using Core.ObjectModel.Abstract;
+    using Core.ObjectModel.Enums;
 
     public interface IFrameworkAlingmentAnalysisPlugin<T>
     {

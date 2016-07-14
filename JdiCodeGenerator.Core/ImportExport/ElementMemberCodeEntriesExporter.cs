@@ -6,7 +6,7 @@
     using Helpers;
     using ObjectModel.Abstract;
 
-    public class CodeEntriesExporter
+    public class ElementMemberCodeEntriesExporter
     {
         public void WriteToFile<T>(IEnumerable<IPageMemberCodeEntry<T>> codeEntries, string path)
         {

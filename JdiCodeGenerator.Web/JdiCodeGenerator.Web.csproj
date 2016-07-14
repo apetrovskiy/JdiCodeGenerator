@@ -82,9 +82,9 @@
     <Compile Include="..\JdiCodeGenerator.Core\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Helpers\ExtensionMethodsForHtmlElements.cs" />
-    <Compile Include="Helpers\ExtensionMethodsForNodes.cs" />
-    <Compile Include="Helpers\HtmlElementToCodeEntryConvertor.cs" />
+    <Compile Include="Helpers\HtmlElementsExtensions.cs" />
+    <Compile Include="Helpers\HtmlNodesExtensions.cs" />
+    <Compile Include="Helpers\HtmlElementToElementMemberCodeEntryConvertor.cs" />
     <Compile Include="Helpers\PageLoader.cs" />
     <Compile Include="ObjectModel\Abstract\FrameworkAlignmentAnalysisPlugin.cs" />
     <Compile Include="ObjectModel\Abstract\HtmlElementTypes.cs" />

@@ -1,8 +1,9 @@
 ﻿namespace JdiCodeGenerator.Core.Helpers
 {
     using ObjectModel.Abstract;
+    using ObjectModel.Enums;
 
-    public static class ExtensionMethodsForJdiTypes
+    public static class JdiTypesExtensions
     {
         public static string ConvertToTypeString(this JdiElementTypes jdiType, string typeName = "")
         {

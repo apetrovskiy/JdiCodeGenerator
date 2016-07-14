@@ -6,7 +6,7 @@
     using ObjectModel;
     using ObjectModel.Abstract;
 
-    public static class ExtensionMethodsForImportExport
+    public static class ImportExportExtensions
     {
         public static IEnumerable<string> ExportCodeEntriesToJson<T>(this IEnumerable<IPageMemberCodeEntry<T>> codeEntries)
         {

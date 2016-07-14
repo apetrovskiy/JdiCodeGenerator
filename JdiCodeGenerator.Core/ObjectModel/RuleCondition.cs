@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Abstract;
+    using Enums;
 
     public class RuleCondition : IRuleCondition
     {

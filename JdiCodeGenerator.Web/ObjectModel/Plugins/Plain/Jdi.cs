@@ -5,6 +5,7 @@
     using Core;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
+    using Core.ObjectModel.Enums;
 
     public class Jdi : FrameworkAlignmentAnalysisPlugin
     {

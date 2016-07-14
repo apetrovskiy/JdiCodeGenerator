@@ -5,7 +5,7 @@
     using Helpers;
     using ObjectModel.Abstract;
 
-    public class CodeEntriesImporter
+    public class ElementMemberCodeEntriesImporter
     {
         public IEnumerable<IPageMemberCodeEntry<T>> LoadFromFile<T>(string path)
         {

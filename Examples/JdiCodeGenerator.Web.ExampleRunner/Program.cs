@@ -6,6 +6,7 @@
     using System.Linq;
     using Core.ImportExport;
     using Core.ObjectModel.Abstract;
+    using Core.ObjectModel.Enums;
     using Helpers;
     using ObjectModel.Abstract;
     using ObjectModel.Plugins.BootstrapAndCompetitors;
@@ -105,8 +106,8 @@
             if (!Directory.Exists(folderForExportFiles))
                 Directory.CreateDirectory(folderForExportFiles);
             var loader = new PageLoader();
-            var exporter = new CodeEntriesExporter();
-            var importer = new CodeEntriesImporter();
+            var exporter = new ElementMemberCodeEntriesExporter();
+            var importer = new ElementMemberCodeEntriesImporter();
             var fileNumber = 0;
             list.ForEach(url =>
             {

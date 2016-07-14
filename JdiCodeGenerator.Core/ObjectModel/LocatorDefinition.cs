@@ -1,6 +1,7 @@
 ﻿namespace JdiCodeGenerator.Core.ObjectModel
 {
     using Abstract;
+    using Enums;
 
     public class LocatorDefinition
     {

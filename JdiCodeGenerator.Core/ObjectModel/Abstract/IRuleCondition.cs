@@ -1,6 +1,7 @@
 ﻿namespace JdiCodeGenerator.Core.ObjectModel.Abstract
 {
     using System.Collections.Generic;
+    using Enums;
 
     public interface IRuleCondition
     {

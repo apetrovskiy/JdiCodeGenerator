@@ -5,6 +5,7 @@
     using Core.Helpers;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
+    using Core.ObjectModel.Enums;
     using Web.ObjectModel.Abstract;
     using Xunit;
 

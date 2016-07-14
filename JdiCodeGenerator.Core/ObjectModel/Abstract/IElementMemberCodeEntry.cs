@@ -1,8 +1,10 @@
 ﻿namespace JdiCodeGenerator.Core.ObjectModel.Abstract
 {
+    using System;
     using System.Collections.Generic;
+    using Enums;
 
-    public interface IElementMemberCodeEntry<T> : IPieceOfCode
+    public interface IElementMemberCodeEntry<T> : ICodeEntry // IPieceOfCode
     {
         // List<LocatorDefinition> Locators { get; set; }
         // string MemberName { get; set; }
@@ -30,5 +32,8 @@ IDropDown<JobCategories> category;
         //LocatorDefinition List { get; set; }
         //List<string> ListMemberNames { get; set; }
         //PageMemberCodeEntryTypes Type { get; }
+
+        // Guid ParentId { get; set; }
+        Guid UsesId { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 {
     using System;
     using Abstract;
+    using Enums;
 
     public class CodeUnit<T> : ICodeUnit<T>
     {
@@ -12,7 +13,7 @@
             return string.Empty;
         }
 
-        public Guid DependsOn { get; set; }
+        public Guid DependsOnId { get; set; }
         public string MemberName { get; set; }
         public string MemberType { get; set; }
         // public string Type { get; set; }

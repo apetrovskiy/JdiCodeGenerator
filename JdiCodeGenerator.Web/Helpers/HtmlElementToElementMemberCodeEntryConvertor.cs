@@ -8,9 +8,10 @@
     using Core.Helpers;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
+    using Core.ObjectModel.Enums;
     using ObjectModel.Abstract;
 
-    public class HtmlElementToCodeEntryConvertor // <T>
+    public class HtmlElementToElementMemberCodeEntryConvertor
     {
         Type[] _analyzers;
         IPageMemberCodeEntry<HtmlElementTypes> _pageMemberCodeEntry;
@@ -21,13 +22,13 @@
             _pageMemberCodeEntry.JdiMemberType = node.ApplyApplicableAnalyzers(analyzers);
 
             // experimental
-            _pageMemberCodeEntry.AnalyzerThatWon = null != ExtensionMethodsForNodes.AnalyzerThatWon ? ExtensionMethodsForNodes.AnalyzerThatWon.GetType().Name : string.Empty;
-            _pageMemberCodeEntry.RuleThatWon = null != ExtensionMethodsForNodes.AnalyzerThatWon && null != ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon ? ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon.Description : string.Empty;
+            _pageMemberCodeEntry.AnalyzerThatWon = null != HtmlNodesExtensions.AnalyzerThatWon ? HtmlNodesExtensions.AnalyzerThatWon.GetType().Name : string.Empty;
+            _pageMemberCodeEntry.RuleThatWon = null != HtmlNodesExtensions.AnalyzerThatWon && null != HtmlNodesExtensions.AnalyzerThatWon.RuleThatWon ? HtmlNodesExtensions.AnalyzerThatWon.RuleThatWon.Description : string.Empty;
 
             // if there're rules for internal elements, get the internal
             // children collection for complex elements
             if (!string.IsNullOrEmpty(_pageMemberCodeEntry.RuleThatWon))
-                WorkOutInternalElements(ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon, node);
+                WorkOutInternalElements(HtmlNodesExtensions.AnalyzerThatWon.RuleThatWon, node);
 
             if (JdiElementTypes.Element == _pageMemberCodeEntry.JdiMemberType)
                 _pageMemberCodeEntry.JdiMemberType = _pageMemberCodeEntry.SourceMemberType[0].ConvertHtmlTypeToJdiType();

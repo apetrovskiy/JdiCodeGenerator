@@ -5,8 +5,9 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using ObjectModel.Abstract;
+    using ObjectModel.Enums;
 
-    public static class ExtensionMethodsForCodeEntries
+    public static class ElementMemberCodeEntriesExtensions
     {
         static readonly List<char> WrongCharactersSmallList = new List<char> {
             // ' ',
