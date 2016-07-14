@@ -10,7 +10,7 @@
 
     public class Bootstrap3Tests
     {
-        CodeEntry<HtmlElementTypes> _entry;
+        PageMemberCodeEntry<HtmlElementTypes> _entry;
         HtmlDocument _doc;
 
         public Bootstrap3Tests()

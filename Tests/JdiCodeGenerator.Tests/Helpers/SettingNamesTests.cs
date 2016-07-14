@@ -10,8 +10,8 @@
 
     public class SettingNamesTests
     {
-        List<ICodeEntry<HtmlElementTypes>> _codeEntries;
-        List<ICodeEntry<HtmlElementTypes>> _expectedCodeEntries;
+        List<IPageMemberCodeEntry<HtmlElementTypes>> _codeEntries;
+        List<IPageMemberCodeEntry<HtmlElementTypes>> _expectedCodeEntries;
 
         public SettingNamesTests()
         {
@@ -35,8 +35,8 @@
 
         void GivenCodeEntries(string[] originalSequence)
         {
-            _codeEntries = new List<ICodeEntry<HtmlElementTypes>>();
-            originalSequence.ToList().ForEach(item => _codeEntries.Add(new CodeEntry<HtmlElementTypes> { MemberName = item, MemberType = "button", JdiMemberType = JdiElementTypes.Button, Locators = new List<LocatorDefinition> { new LocatorDefinition { IsBestChoice = true, SearchString = item, Attribute = FindTypes.FindBy, SearchTypePreference = SearchTypePreferences.id } } }));
+            _codeEntries = new List<IPageMemberCodeEntry<HtmlElementTypes>>();
+            originalSequence.ToList().ForEach(item => _codeEntries.Add(new PageMemberCodeEntry<HtmlElementTypes> { MemberName = item, MemberType = "button", JdiMemberType = JdiElementTypes.Button, Locators = new List<LocatorDefinition> { new LocatorDefinition { IsBestChoice = true, SearchString = item, Attribute = FindTypes.FindBy, SearchTypePreference = SearchTypePreferences.id } } }));
             for (int i = 0; i < originalSequence.Length; i++)
                 _codeEntries[i].MemberName = originalSequence[i];
         }
@@ -48,7 +48,7 @@
 
         void ThenTheResultIs(string[] expectedSequence)
         {
-            _expectedCodeEntries = new List<ICodeEntry<HtmlElementTypes>>();
+            _expectedCodeEntries = new List<IPageMemberCodeEntry<HtmlElementTypes>>();
             var expectedNames = expectedSequence.ToList();
             var actualNames = _codeEntries.Select(entry1 => entry1.MemberName).ToList();
             Assert.Equal(expectedNames, actualNames);

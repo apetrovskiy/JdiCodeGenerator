@@ -10,7 +10,7 @@
 
     public class JqueryBootstrapSelectTests
     {
-        CodeEntry<HtmlElementTypes> _entry;
+        PageMemberCodeEntry<HtmlElementTypes> _entry;
         HtmlDocument _doc;
 
         public JqueryBootstrapSelectTests()

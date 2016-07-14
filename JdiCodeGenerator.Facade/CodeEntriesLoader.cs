@@ -6,19 +6,19 @@
 
     public class CodeEntriesLoader
     {
-        public IEnumerable<ICodeEntry<HtmlElementTypes>> LoadWeb(string[] addresses)
+        public IEnumerable<IPageMemberCodeEntry<HtmlElementTypes>> LoadWeb(string[] addresses)
         {
             return Load<HtmlElementTypes>(addresses);
         }
 
-        //public IEnumerable<ICodeEntry<WinElementTypes>> LoadWinUi(string pathToApp)
+        //public IEnumerable<IPageMemberCodeEntry<WinElementTypes>> LoadWinUi(string pathToApp)
         //{
         //    return Load<WinElementTypes>(pathToApp);
         //}
 
-        IEnumerable<ICodeEntry<T>> Load<T>(string[] addresses)
+        IEnumerable<IPageMemberCodeEntry<T>> Load<T>(string[] addresses)
         {
-            var result = new List<ICodeEntry<T>>();
+            var result = new List<IPageMemberCodeEntry<T>>();
 
             return result;
         }

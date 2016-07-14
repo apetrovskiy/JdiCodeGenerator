@@ -10,7 +10,7 @@
 
     public class PlainHtml5Tests
     {
-        CodeEntry<HtmlElementTypes> _entry;
+        PageMemberCodeEntry<HtmlElementTypes> _entry;
         HtmlDocument _doc;
 
         public PlainHtml5Tests()

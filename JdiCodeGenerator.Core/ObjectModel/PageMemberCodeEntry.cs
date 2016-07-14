@@ -6,7 +6,7 @@
     using Abstract;
     using Helpers;
 
-    public class CodeEntry<T> : ICodeEntry<T>
+    public class PageMemberCodeEntry<T> : IPageMemberCodeEntry<T>
     {
         public Guid Id { get; set; }
         public List<LocatorDefinition> Locators { get; set; }
@@ -24,7 +24,7 @@
 
         public string RuleThatWon { get; set; }
         // public string Type { get; set; }
-        public CodeEntryTypes Type
+        public PageMemberCodeEntryTypes Type
         {
             get
             {
@@ -44,7 +44,7 @@
                     case JdiElementTypes.TextField:
                     case JdiElementTypes.MenuItem:
                     case JdiElementTypes.TabItem:
-                        return CodeEntryTypes.Simple;
+                        return PageMemberCodeEntryTypes.Simple;
                     case JdiElementTypes.NavBar:
                     case JdiElementTypes.Pager:
                     case JdiElementTypes.Progress:
@@ -53,11 +53,11 @@
                     case JdiElementTypes.Popover:
                     case JdiElementTypes.Carousel:
                     case JdiElementTypes.CheckList:
-                        return CodeEntryTypes.Unknown;
+                        return PageMemberCodeEntryTypes.Unknown;
                     case JdiElementTypes.ComboBox:
-                        return CodeEntryTypes.ComplexWithConstructor;
+                        return PageMemberCodeEntryTypes.ComplexWithConstructor;
                     case JdiElementTypes.DropDown:
-                        return CodeEntryTypes.ComplexWithAnnotations;
+                        return PageMemberCodeEntryTypes.ComplexWithAnnotations;
                     case JdiElementTypes.DropList:
                     case JdiElementTypes.Form:
                     case JdiElementTypes.Group:
@@ -70,9 +70,9 @@
                     case JdiElementTypes.Selector:
                     case JdiElementTypes.Tabs:
                     case JdiElementTypes.TextList:
-                        return CodeEntryTypes.ComplexWithConstructor;
+                        return PageMemberCodeEntryTypes.ComplexWithConstructor;
                     case JdiElementTypes.Table:
-                        return CodeEntryTypes.ComplexWithConstructor;
+                        return PageMemberCodeEntryTypes.ComplexWithConstructor;
                     case JdiElementTypes.Cell:
                     case JdiElementTypes.Column:
                     case JdiElementTypes.Coulmns:
@@ -82,11 +82,11 @@
                     case JdiElementTypes.RowColumn:
                     case JdiElementTypes.Rows:
                     case JdiElementTypes.TableLine:
-                        return CodeEntryTypes.Unknown;
+                        return PageMemberCodeEntryTypes.Unknown;
                     //case JdiElementTypes.StopProcessing:
                     //    break;
                     default:
-                        return CodeEntryTypes.Simple;
+                        return PageMemberCodeEntryTypes.Simple;
                 }
             }
         }
@@ -175,7 +175,7 @@
 
         SupportedLanguages _language;
 
-        public CodeEntry()
+        public PageMemberCodeEntry()
         {
             Id = Guid.NewGuid();
             Locators = new List<LocatorDefinition>();
@@ -236,6 +236,7 @@
             return overallResult;
         }
 
+        // TODO: get enumeration type name via Id that is bound, probably
         string GenerateAnnotationForComplexType(SupportedLanguages supportedLanguage)
         {
             EnumerationTypeName = GenerateEnumerationTypeName();

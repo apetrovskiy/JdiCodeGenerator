@@ -1,6 +1,6 @@
 ﻿namespace JdiCodeGenerator.Core.ObjectModel.Abstract
 {
-    public enum CodeEntryTypes
+    public enum PageMemberCodeEntryTypes
     {
         Simple,
         ComplexWithAnnotations,

@@ -8,7 +8,7 @@
         public Guid Id { get; set; }
         public string GenerateCodeForEntry(SupportedLanguages language)
         {
-            // throw new NotImplementedException();
+            // TODO: write code
             return string.Empty;
         }
 

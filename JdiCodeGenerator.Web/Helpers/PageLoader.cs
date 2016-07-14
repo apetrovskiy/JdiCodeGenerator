@@ -175,25 +175,25 @@
         }
         #endregion
 
-        public IEnumerable<ICodeEntry<T>> GetCodeEntriesFromUrl<T>(string url, IEnumerable<string> excludeList, Type[] analyzers)
+        public IEnumerable<IPageMemberCodeEntry<T>> GetCodeEntriesFromUrl<T>(string url, IEnumerable<string> excludeList, Type[] analyzers)
         {
             LoadPageByUrl(url);
             return GetCodeEntriesFromNode<T>(_docNode, excludeList, analyzers);
         }
 
-        public IEnumerable<ICodeEntry<T>> GetCodeEntriesFromPageSource<T>(string pageSource, IEnumerable<string> excludeList, Type[] analyzers)
+        public IEnumerable<IPageMemberCodeEntry<T>> GetCodeEntriesFromPageSource<T>(string pageSource, IEnumerable<string> excludeList, Type[] analyzers)
         {
             LoadPageAsSource(pageSource);
             return GetCodeEntriesFromNode<T>(_docNode, excludeList, analyzers);
         }
 
-        internal IEnumerable<ICodeEntry<T>> GetCodeEntriesFromNode<T>(HtmlNode docNode, IEnumerable<string> excludeList, Type[] analyzers)
+        internal IEnumerable<IPageMemberCodeEntry<T>> GetCodeEntriesFromNode<T>(HtmlNode docNode, IEnumerable<string> excludeList, Type[] analyzers)
         {
             var convertor = new HtmlElementToCodeEntryConvertor();
 
             var rootNode = docNode.Descendants().FirstOrDefault(bodyNode => bodyNode.OriginalName.ToLower() == WebNames.ElementTypeBody);
             if (null == rootNode)
-                return new List<ICodeEntry<T>>();
+                return new List<IPageMemberCodeEntry<T>>();
 
             var codeEntries = convertor.ConvertToCodeEntries(rootNode, analyzers);
 
@@ -202,7 +202,7 @@
                 codeEntries.Where(codeEntry => codeEntry.JdiMemberType != JdiElementTypes.Element)
                     .SetBestChoice()
                     .SetDistinguishNamesForMembers()
-                    .Cast<ICodeEntry<T>>();
+                    .Cast<IPageMemberCodeEntry<T>>();
 
             // return codeEntries.SetBestChoice().SetDistinguishNamesForMembers();
         }

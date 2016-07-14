@@ -13,7 +13,7 @@
     public class FindElementSteps
     {
         HtmlDocument _doc;
-        CodeEntry<HtmlElementTypes> _entry;
+        PageMemberCodeEntry<HtmlElementTypes> _entry;
 
         [Given(@"I have a Bootstrap web page ""(.*)""")]
         public void GivenIHaveABootstrapPage(string path)

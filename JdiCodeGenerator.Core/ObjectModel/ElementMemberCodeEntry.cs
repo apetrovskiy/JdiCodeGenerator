@@ -1,0 +1,22 @@
+﻿namespace JdiCodeGenerator.Core.ObjectModel
+{
+    using System;
+    using System.Collections.Generic;
+    using Abstract;
+
+    public class ElementMemberCodeEntry<T> : IElementMemberCodeEntry<T>
+    {
+        public Guid Id { get; set; }
+        public string GenerateCodeForEntry(SupportedLanguages language)
+        {
+            // TODO: write code
+            return string.Empty;
+        }
+
+        public Guid DependsOn { get; set; }
+        public string MemberLogicalName { get; set; }
+        public List<T> SourceMemberType { get; set; }
+        public JdiElementTypes JdiMemberType { get; set; }
+        public ElementMemberCodeEntryTypes MemberType { get; set; }
+    }
+}

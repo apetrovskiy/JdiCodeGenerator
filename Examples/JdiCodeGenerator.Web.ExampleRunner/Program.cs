@@ -120,7 +120,7 @@
                 var codeEntries = fromUrl
                     ? loader.GetCodeEntriesFromUrl<HtmlElementTypes>(url, listNotToDisplay, applicableAnalyzers)
                     : loader.GetCodeEntriesFromPageSource<HtmlElementTypes>(pageSource, listNotToDisplay, applicableAnalyzers);
-                var entries = codeEntries as IList<ICodeEntry<HtmlElementTypes>> ?? codeEntries.ToList();
+                var entries = codeEntries as IList<IPageMemberCodeEntry<HtmlElementTypes>> ?? codeEntries.ToList();
                 using (var writer = new StreamWriter(folderForExportFiles + @"\" + (300 + fileNumber)))
                 {
                     writer.WriteLine(@"// {0}", url);

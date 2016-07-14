@@ -112,23 +112,23 @@
 </html>
 ";
 
-        public CodeEntry<HtmlElementTypes> GetEntryExpected(HtmlDocument document, Type[] applicableAnalyzers, string expectedTypeName)
+        public PageMemberCodeEntry<HtmlElementTypes> GetEntryExpected(HtmlDocument document, Type[] applicableAnalyzers, string expectedTypeName)
         {
             var pageLoader = new PageLoader();
-            var entries = new List<ICodeEntry<HtmlElementTypes>>();
+            var entries = new List<IPageMemberCodeEntry<HtmlElementTypes>>();
             entries.AddRange(pageLoader.GetCodeEntriesFromNode<HtmlElementTypes>(document.DocumentNode, ExcludeList, applicableAnalyzers));
             // TODO: IndexOf '<'
             if (expectedTypeName.Substring(expectedTypeName.Length - 1) == "<")
                 expectedTypeName = expectedTypeName.Substring(0, expectedTypeName.Length - 1);
-            return entries.Cast<CodeEntry<HtmlElementTypes>>().First(entry => entry.JdiMemberType == Enum.GetValues(typeof(JdiElementTypes)).Cast<JdiElementTypes>().First(item => "I" + item.ToString() == expectedTypeName));
+            return entries.Cast<PageMemberCodeEntry<HtmlElementTypes>>().First(entry => entry.JdiMemberType == Enum.GetValues(typeof(JdiElementTypes)).Cast<JdiElementTypes>().First(item => "I" + item.ToString() == expectedTypeName));
         }
 
-        public CodeEntry<HtmlElementTypes> GetEntryExpected(HtmlDocument document, Type[] applicableAnalyzers, int elementPosition)
+        public PageMemberCodeEntry<HtmlElementTypes> GetEntryExpected(HtmlDocument document, Type[] applicableAnalyzers, int elementPosition)
         {
             var pageLoader = new PageLoader();
-            var entries = new List<ICodeEntry<HtmlElementTypes>>();
+            var entries = new List<IPageMemberCodeEntry<HtmlElementTypes>>();
             entries.AddRange(pageLoader.GetCodeEntriesFromNode<HtmlElementTypes>(document.DocumentNode, ExcludeList, applicableAnalyzers));
-            return entries.Cast<CodeEntry<HtmlElementTypes>>().ToArray()[elementPosition];
+            return entries.Cast<PageMemberCodeEntry<HtmlElementTypes>>().ToArray()[elementPosition];
         }
     }
 }

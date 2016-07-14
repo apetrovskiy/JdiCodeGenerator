@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public interface ICodeEntry<T> : IPieceOfCode
+    public interface IPageMemberCodeEntry<T> : IPieceOfCode
     {
         List<LocatorDefinition> Locators { get; set; }
         string MemberName { get; set; }
@@ -27,6 +27,6 @@ IDropDown<JobCategories> category;
         LocatorDefinition Value { get; set; }
         LocatorDefinition List { get; set; }
         List<string> ListMemberNames { get; set; }
-        CodeEntryTypes Type { get; }
+        PageMemberCodeEntryTypes Type { get; }
     }
 }

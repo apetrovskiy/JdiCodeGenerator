@@ -13,41 +13,41 @@
     public class HtmlElementToCodeEntryConvertor // <T>
     {
         Type[] _analyzers;
-        ICodeEntry<HtmlElementTypes> _codeEntry;
+        IPageMemberCodeEntry<HtmlElementTypes> _pageMemberCodeEntry;
 
-        public ICodeEntry<HtmlElementTypes> ConvertToCodeEntry(HtmlNode node, Type[] analyzers)
+        public IPageMemberCodeEntry<HtmlElementTypes> ConvertToCodeEntry(HtmlNode node, Type[] analyzers)
         {
-            _codeEntry = node.ConvertToCodeEntry();
-            _codeEntry.JdiMemberType = node.ApplyApplicableAnalyzers(analyzers);
+            _pageMemberCodeEntry = node.ConvertToCodeEntry();
+            _pageMemberCodeEntry.JdiMemberType = node.ApplyApplicableAnalyzers(analyzers);
 
             // experimental
-            _codeEntry.AnalyzerThatWon = null != ExtensionMethodsForNodes.AnalyzerThatWon ? ExtensionMethodsForNodes.AnalyzerThatWon.GetType().Name : string.Empty;
-            _codeEntry.RuleThatWon = null != ExtensionMethodsForNodes.AnalyzerThatWon && null != ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon ? ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon.Description : string.Empty;
+            _pageMemberCodeEntry.AnalyzerThatWon = null != ExtensionMethodsForNodes.AnalyzerThatWon ? ExtensionMethodsForNodes.AnalyzerThatWon.GetType().Name : string.Empty;
+            _pageMemberCodeEntry.RuleThatWon = null != ExtensionMethodsForNodes.AnalyzerThatWon && null != ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon ? ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon.Description : string.Empty;
 
             // if there're rules for internal elements, get the internal
             // children collection for complex elements
-            if (!string.IsNullOrEmpty(_codeEntry.RuleThatWon))
+            if (!string.IsNullOrEmpty(_pageMemberCodeEntry.RuleThatWon))
                 WorkOutInternalElements(ExtensionMethodsForNodes.AnalyzerThatWon.RuleThatWon, node);
 
-            if (JdiElementTypes.Element == _codeEntry.JdiMemberType)
-                _codeEntry.JdiMemberType = _codeEntry.SourceMemberType[0].ConvertHtmlTypeToJdiType();
+            if (JdiElementTypes.Element == _pageMemberCodeEntry.JdiMemberType)
+                _pageMemberCodeEntry.JdiMemberType = _pageMemberCodeEntry.SourceMemberType[0].ConvertHtmlTypeToJdiType();
 
             // temporarily!
-            // _codeEntry.Type = node.GetOriginalNameOfElement().CleanUpFromWrongCharacters();
+            // _pageMemberCodeEntry.Type = node.GetOriginalNameOfElement().CleanUpFromWrongCharacters();
 
             // temporarily!
-            _codeEntry.MemberType = node.GetOriginalNameOfElement().CleanUpFromWrongCharacters();
+            _pageMemberCodeEntry.MemberType = node.GetOriginalNameOfElement().CleanUpFromWrongCharacters();
 
-            return _codeEntry;
+            return _pageMemberCodeEntry;
         }
 
-        public IEnumerable<ICodeEntry<HtmlElementTypes>> ConvertToCodeEntries(HtmlNode rootNode, Type[] analyzers)
+        public IEnumerable<IPageMemberCodeEntry<HtmlElementTypes>> ConvertToCodeEntries(HtmlNode rootNode, Type[] analyzers)
         {
             _analyzers = analyzers;
 
             var processChildren = rootNode.OriginalName == WebNames.ElementTypeBody || ConvertToCodeEntry(rootNode, _analyzers).ProcessChildren;
 
-            var resultList = new List<ICodeEntry<HtmlElementTypes>>();
+            var resultList = new List<IPageMemberCodeEntry<HtmlElementTypes>>();
             if (rootNode.OriginalName != WebNames.ElementTypeBody)
                 resultList.Add(ConvertToCodeEntry(rootNode, _analyzers));
 
@@ -65,8 +65,8 @@
         {
             if (null == rule.InternalElements || !rule.InternalElements.Any())
                 return;
-            _codeEntry.Root = GetLocatorByRule(rule, node, Resources.Jdi_DropDown_root);
-            _codeEntry.Value = GetLocatorByRule(rule, node, Resources.Jdi_DropDown_value);
+            _pageMemberCodeEntry.Root = GetLocatorByRule(rule, node, Resources.Jdi_DropDown_root);
+            _pageMemberCodeEntry.Value = GetLocatorByRule(rule, node, Resources.Jdi_DropDown_value);
             // the list collection
             if (rule.InternalElements.Any(subRule => Resources.Jdi_DropDown_list == subRule.Key))
             {
@@ -75,7 +75,7 @@
 
                 if (!listNodesPreEnumerated.Any())
                 {
-                    _codeEntry.List = new LocatorDefinition
+                    _pageMemberCodeEntry.List = new LocatorDefinition
                     {
                         Attribute = FindTypes.FindBy,
                         SearchTypePreference = SearchTypePreferences.xpath,
@@ -87,9 +87,9 @@
 
                 if (null != listNodes && listNodesPreEnumerated.Any())
                 {
-                    _codeEntry.List = listNodesPreEnumerated.First().ConvertToCodeEntry().Locators.First(locator => locator.IsBestChoice);
+                    _pageMemberCodeEntry.List = listNodesPreEnumerated.First().ConvertToCodeEntry().Locators.First(locator => locator.IsBestChoice);
                     if (listNodesPreEnumerated.Any())
-                        _codeEntry.ListMemberNames.AddRange(listNodesPreEnumerated.Select(listNode => listNode.InnerText.ToPascalCase()));
+                        _pageMemberCodeEntry.ListMemberNames.AddRange(listNodesPreEnumerated.Select(listNode => listNode.InnerText.ToPascalCase()));
                 }
             }
         }

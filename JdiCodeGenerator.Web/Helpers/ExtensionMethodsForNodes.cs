@@ -236,9 +236,9 @@
             return rule.IsRuleResolvableToJdiType(node);
         }
 
-        public static ICodeEntry<HtmlElementTypes> ConvertToCodeEntry(this HtmlNode node)
+        public static IPageMemberCodeEntry<HtmlElementTypes> ConvertToCodeEntry(this HtmlNode node)
         {
-            var codeEntry = new CodeEntry<HtmlElementTypes> { SourceMemberType = new List<HtmlElementTypes> { node.OriginalName.ConvertOriginalHtmlElementNameIntoHtmlElementType() } };
+            var codeEntry = new PageMemberCodeEntry<HtmlElementTypes> { SourceMemberType = new List<HtmlElementTypes> { node.OriginalName.ConvertOriginalHtmlElementNameIntoHtmlElementType() } };
 
             codeEntry.Locators.AddRange(
                 new List<LocatorDefinition>

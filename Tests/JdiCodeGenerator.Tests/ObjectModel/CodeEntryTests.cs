@@ -15,7 +15,7 @@
 
     public class CodeEntryTests
     {
-        ICodeEntry<HtmlElementTypes> _entry;
+        IPageMemberCodeEntry<HtmlElementTypes> _entry;
         string _code;
 
         public CodeEntryTests()
@@ -77,7 +77,7 @@
 
         void GivenCodeEntry(IEnumerable<LocatorDefinition> locatorDefinitions, string jdiMemberType, string memberType)
         {
-            _entry = new CodeEntry<HtmlElementTypes>
+            _entry = new PageMemberCodeEntry<HtmlElementTypes>
             {
                 Locators = locatorDefinitions.ToList(),
                 SourceMemberType = new List<HtmlElementTypes> { Enum.GetValues(typeof(HtmlElementTypes)).Cast<HtmlElementTypes>().FirstOrDefault(val => 0 == string.Compare(val.ToString().ToLower(), memberType, StringComparison.Ordinal)) },
