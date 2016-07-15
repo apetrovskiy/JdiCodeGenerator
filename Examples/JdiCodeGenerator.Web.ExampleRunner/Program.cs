@@ -99,9 +99,7 @@
 
             pageSource = LoadPageFromFile();
 
-            // var listNotToDisplay = new[] { "html", "head", "body", "#comment", "#text", "div", "meta", "p", "h1", "h2", "h3", "h4", "h5", "h6", "small", "font", "script", "i", "br", "hr", "strong", "style", "title", "li", "ul", "img", "span", "noscript" };
             var listNotToDisplay = new[] { "html", "head", "body", "#comment", "#text", "meta", "h1", "h2", "h3", "h4", "h5", "h6", "small", "font", "script", "i", "br", "hr", "strong", "style", "title", "img", "noscript" };
-            // const string FolderForExportFiles = ".";
             var folderForExportFiles = @"D:\333";
             if (null != args && args.Any() && !string.IsNullOrEmpty(args[0]))
                 folderForExportFiles = args[0];
@@ -113,10 +111,12 @@
             var fileNumber = 0;
             // 20160715
             // TODO: create common collection of code entries and units
-            var wholeSiteCollection = new List<IPieceOfCode<HtmlElementTypes>>();
-            // 20160715
-            // TODO: create a site code unit
-            wholeSiteCollection.Add(CodeUnit<HtmlElementTypes>.NewSite("project name"));
+            var wholeSiteCollection = new List<IPieceOfCode<HtmlElementTypes>>
+            {
+                // 20160715
+                // TODO: create a site code unit
+                CodeUnit<HtmlElementTypes>.NewSite("project name")
+            };
 
             list.ForEach(url =>
             {
@@ -130,12 +130,18 @@
                 // var codeEntries = loader.GetCodeEntriesFromUrl<HtmlElementTypes>(url, listNotToDisplay);
                 // 20160715
                 // TODO: add code entries and code units to the existing collection
+                /*
                 var codeEntries = fromUrl
                     ? loader.GetCodeEntriesFromUrl<HtmlElementTypes>(url, listNotToDisplay, applicableAnalyzers)
                     : loader.GetCodeEntriesFromPageSource<HtmlElementTypes>(pageSource, listNotToDisplay, applicableAnalyzers);
-                // 20160714
-                var entries = codeEntries as IList<IPageMemberCodeEntry<HtmlElementTypes>> ?? codeEntries.ToList();
-                // var entries = codeEntries as IList<IPieceOfCode<HtmlElementTypes>> ?? codeEntries.ToList();
+                */
+                wholeSiteCollection.AddRange(fromUrl
+                    ? loader.GetCodeEntriesFromUrl<HtmlElementTypes>(url, listNotToDisplay, applicableAnalyzers)
+                    : loader.GetCodeEntriesFromPageSource<HtmlElementTypes>(pageSource, listNotToDisplay, applicableAnalyzers));
+
+                // 20160715
+                // var entries = codeEntries as IList<IPageMemberCodeEntry<HtmlElementTypes>> ?? codeEntries.ToList();
+                var entries = wholeSiteCollection.ToList();
                 using (var writer = new StreamWriter(folderForExportFiles + @"\" + (300 + fileNumber)))
                 {
                     writer.WriteLine(@"// {0}", url);
@@ -160,14 +166,22 @@
         // driver.findElement(By.partialLinkText())
         // driver.findElement(By.tagName())
                 */
+
+                // 20160715
+                var onlyPageMembers = entries
+                    .Where(entry => PiecesOfCodeClasses.PageMember == entry.CodeClass)
+                    .Cast<IPageMemberCodeEntry<HtmlElementTypes>>()
+                    .ToList();
+
                 using (var tempWriter = new StreamWriter(folderForExportFiles + @"\" + (400 + fileNumber)))
                 {
-                    // tempWriter.WriteLine("tag;css;name;id;class");
-                    // displayedElementsNumber++;
-                    // entries.ToList().ForEach(eltDef => tempWriter.WriteLine("try {{ allElementsNumber++; WebElement element = driver.findElement(By.{0}(\"{1}\")); foundElementsNumber++; if (element.isDisplayed()) displayedElementsNumber++; }} catch (Exception e) {{ System.out.println(\"failed: {1}\"); }}",
                     // this worked
                     // entries.ToList().ForEach(eltDef => tempWriter.WriteLine("try {{ elementFound = \"0\"; elementDisplayed = \"0\"; allElementsNumber++; WebElement element = driver.findElement(By.{0}(\"{1}\")); foundElementsNumber++; elementFound = \"1\"; if (element.isDisplayed()) {{ displayedElementsNumber++; elementDisplayed = \"1\"; }} }} catch (Exception e) {{ System.out.println(\"failed: {1}\"); }} writeData(fileWriter, \"{0}\", \"{1}\", elementFound, elementDisplayed);",
-                    entries.ToList().ForEach(eltDef => tempWriter.WriteLine("testLocator(By.{0}(\"{1}\"), \"{0}\", \"{1}\");",
+                    // 20160715
+                    // TODO: work only with code entries
+                    // entries.ToList().ForEach(eltDef => tempWriter.WriteLine("testLocator(By.{0}(\"{1}\"), \"{0}\", \"{1}\");",
+                    onlyPageMembers
+                        .ForEach(eltDef => tempWriter.WriteLine("testLocator(By.{0}(\"{1}\"), \"{0}\", \"{1}\");",
                         // static void testLocator(org.openqa.selenium.By by, String locatorName, String locatorPath) {
                         eltDef.Locators.Any() ? eltDef.Locators.First(loc => loc.IsBestChoice).SearchTypePreference.ToString() : "_",
                         eltDef.Locators.Any() ? eltDef.Locators.First(loc => loc.IsBestChoice).SearchString : "_"
@@ -175,23 +189,10 @@
                     tempWriter.Flush();
                     tempWriter.Close();
                 }
-                /*
-                using (var tempWriter = new StreamWriter(folderForExportFiles + @"\" + (400 + fileNumber)))
-                {
-                    tempWriter.WriteLine("tag;css;name;id;class");
-                    entries.ToList().ForEach(eltDef => tempWriter.WriteLine("{0};{1};{2};{3};{4}",
-                        eltDef.HtmlMemberType.ToString().ToLower(),
-                        eltDef.Locators.Any(l => l.SearchTypePreference == SearchTypePreferences.css) ? eltDef.Locators.FirstOrDefault(l => l.SearchTypePreference == SearchTypePreferences.css).SearchString : string.Empty,
-                        eltDef.Locators.Any(l => l.SearchTypePreference == SearchTypePreferences.name) ? eltDef.Locators.FirstOrDefault(l => l.SearchTypePreference == SearchTypePreferences.name).SearchString : string.Empty,
-                        eltDef.Locators.Any(l => l.SearchTypePreference == SearchTypePreferences.id) ? eltDef.Locators.FirstOrDefault(l => l.SearchTypePreference == SearchTypePreferences.id).SearchString : string.Empty,
-                        eltDef.Locators.Any(l => l.SearchTypePreference == SearchTypePreferences.className) ? eltDef.Locators.FirstOrDefault(l => l.SearchTypePreference == SearchTypePreferences.className).SearchString : string.Empty
-                        ));
-                    tempWriter.Flush();
-                    tempWriter.Close();
-                }
-                */
 
-                exporter.WriteToFile(entries, folderForExportFiles + @"\" + (100 + ++fileNumber));
+                // 20160715
+                // exporter.WriteToFile(entries, folderForExportFiles + @"\" + (100 + ++fileNumber));
+                exporter.WriteToFile(onlyPageMembers, folderForExportFiles + @"\" + (100 + ++fileNumber));
                 var importedEntries = importer.LoadFromFile<HtmlElementTypes>(folderForExportFiles + @"\" + (100 + fileNumber));
                 exporter.WriteToFile(importedEntries, folderForExportFiles + @"\" + (200 + fileNumber));
 

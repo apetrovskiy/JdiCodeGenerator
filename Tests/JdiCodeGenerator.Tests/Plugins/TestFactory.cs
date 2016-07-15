@@ -131,5 +131,13 @@
             entries.AddRange(pageLoader.GetCodeEntriesFromNode<HtmlElementTypes>(document.DocumentNode, ExcludeList, applicableAnalyzers));
             return entries.Cast<PageMemberCodeEntry<HtmlElementTypes>>().ToArray()[elementPosition];
         }
+
+        public List<IPieceOfCode<HtmlElementTypes>> GetPiecesOfCodeCollection(HtmlDocument document, Type[] applicableAnalyzers)
+        {
+            var pageLoader = new PageLoader();
+            var entries = new List<IPieceOfCode<HtmlElementTypes>>();
+            entries.AddRange(pageLoader.GetCodeEntriesFromNode<HtmlElementTypes>(document.DocumentNode, ExcludeList, applicableAnalyzers));
+            return entries;
+        }
     }
 }

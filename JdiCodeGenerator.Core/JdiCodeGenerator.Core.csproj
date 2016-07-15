@@ -107,6 +107,7 @@
     <Compile Include="ImportExport\ElementMemberCodeEntriesImporter.cs" />
     <Compile Include="ImportExport\DtoJsonConverter.cs" />
     <Compile Include="ObjectModel\Abstract\ICodeEntry.cs" />
+    <Compile Include="ObjectModel\Abstract\IPredefinedCodeUnit.cs" />
     <Compile Include="ObjectModel\Enums\ElementMemberCodeEntryTypes.cs" />
     <Compile Include="ObjectModel\Enums\PageMemberCodeEntryTypes.cs" />
     <Compile Include="ObjectModel\Enums\CodeUnitTypes.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="ObjectModel\Enums\Markers.cs" />
     <Compile Include="ObjectModel\Enums\NamingPreferences.cs" />
     <Compile Include="ObjectModel\Enums\NodeRelationships.cs" />
+    <Compile Include="ObjectModel\Enums\PiecesOfCodeClasses.cs" />
     <Compile Include="ObjectModel\Enums\SearchTypePreferences.cs" />
     <Compile Include="ObjectModel\Enums\SupportedLanguages.cs" />
     <Compile Include="ObjectModel\ElementMemberCodeEntry.cs" />

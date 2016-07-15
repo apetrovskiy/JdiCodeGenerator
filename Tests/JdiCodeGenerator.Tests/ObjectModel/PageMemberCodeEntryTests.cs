@@ -14,12 +14,12 @@
     using Web.ObjectModel.Abstract;
     using Xunit;
 
-    public class CodeEntryTests
+    public class PageMemberCodeEntryTests
     {
         IPageMemberCodeEntry<HtmlElementTypes> _entry;
         string _code;
 
-        public CodeEntryTests()
+        public PageMemberCodeEntryTests()
         {
             _entry = null;
             _code = string.Empty;
@@ -48,7 +48,7 @@
         [InlineData(new[] { "linkText", "/aa/bb/cc" }, "input", "textfield", "textFieldAaBbCc")]
         [InlineData(new[] { "tagName", "ttt" }, "input", "textfield", "textFieldTtt")]
         [InlineData(new[] { "tagName", "ttt" }, "?xml", "element", "elementTtt")]
-        [Trait("Category", "EntryTitle")]
+        [Trait("Category", "PageMemberCodeEntry Title")]
         public void GeneratesEntryTitle(string[] stringLocatorDefinitions, string memberType, string jdiMemberType, string expectedTitle)
         {
             var locatorDefinitions = ConvertStringArrayToLocatorDefinitions(stringLocatorDefinitions);
@@ -67,7 +67,7 @@
         [InlineData(new[] { "id", "id" }, "img", "image", "IImage")]
         // [InlineData(new[] { "id", "id" }, "textarea", "textarea", "ITextArea")]
         // [InlineData(new[] { "id", "id" }, "label", "label", "ILabel")]
-        [Trait("Category", "EntryJdiType")]
+        [Trait("Category", "PageMemberCodeEntry JdiType")]
         public void GenerateCodeEntryWithBestLocator(string[] stringLocatorDefinitions, string memberType, string jdiMemberType, string expectedJdiType)
         {
             var locatorDefinitions = ConvertStringArrayToLocatorDefinitions(stringLocatorDefinitions);

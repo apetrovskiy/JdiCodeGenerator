@@ -8,5 +8,6 @@
         Guid Id { get; set; }
         Guid ParentId { get; set; }
         string GenerateCode(SupportedLanguages language);
+        PiecesOfCodeClasses CodeClass { get; set; }
     }
 }

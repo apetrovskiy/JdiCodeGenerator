@@ -20,6 +20,7 @@
         public ElementMemberCodeEntry()
         {
             Id = Guid.NewGuid();
+            CodeClass = PiecesOfCodeClasses.ElementMember;
         }
 
         public string GenerateCode(SupportedLanguages language)
@@ -27,5 +28,7 @@
             // TODO: write code
             return string.Empty;
         }
+
+        public PiecesOfCodeClasses CodeClass { get; set; }
     }
 }

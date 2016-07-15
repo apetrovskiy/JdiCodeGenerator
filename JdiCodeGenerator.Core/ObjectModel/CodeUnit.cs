@@ -16,6 +16,7 @@
             Id = Guid.NewGuid();
             Dependencies = new List<string>();
             Type = unitType;
+            CodeClass = PiecesOfCodeClasses.CodeUnit;
             switch (unitType)
             {
                 case CodeUnitTypes.ClassForSite:
@@ -62,6 +63,8 @@
             // TODO: write code
             return string.Empty;
         }
+
+        public PiecesOfCodeClasses CodeClass { get; set; }
 
         public Guid DependsOnId { get; set; }
         public List<string> Dependencies { get; set; }

@@ -3,10 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using System.Threading;
     using Awesomium.Core;
     using HtmlAgilityPack;
     using Core.Helpers;
+    using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
     using Core.ObjectModel.Enums;
     using ObjectModel.Abstract;
@@ -20,6 +22,7 @@
         //static ChromiumWebBrowser _browser;
         // 20160715
         List<IPieceOfCode<HtmlElementTypes>> _pageCodeEntries;
+        Guid _pageGuid;
 
         // 20160715
         public PageLoader()
@@ -180,33 +183,49 @@
 
         // 20160715
         // TODO: return type
-        public IEnumerable<IPageMemberCodeEntry<T>> GetCodeEntriesFromUrl<T>(string url, IEnumerable<string> excludeList, Type[] analyzers)
+        // public IEnumerable<IPageMemberCodeEntry<T>> GetCodeEntriesFromUrl<T>(string url, IEnumerable<string> excludeList, Type[] analyzers)
+        public IEnumerable<IPieceOfCode<T>> GetCodeEntriesFromUrl<T>(string url, IEnumerable<string> excludeList, Type[] analyzers)
         // public IEnumerable<IPieceOfCode> GetCodeEntriesFromUrl<T>(string url, IEnumerable<string> excludeList, Type[] analyzers)
         {
             // 20160715
             // TODO: create a page unit and add it to the collection
+            // var regex = new Regex(@"(?");
+            _pageCodeEntries.Add(CodeUnit<HtmlElementTypes>.NewPage("page name".ToPascalCase()));
+            _pageGuid = _pageCodeEntries[0].Id;
+
             CreateDocumentNodeByUrl(url);
             // 20160715
             // TODO: add the result to the collection and return the collection
             return GetCodeEntriesFromNode<T>(_docNode, excludeList, analyzers);
+            // return _pageCodeEntries.AddRange(GetCodeEntriesFromNode<T>(_docNode, excludeList, analyzers).Cast<IPieceOfCode<HtmlElementTypes>>());
         }
 
         // 20160715
         // TODO: return type
-        public IEnumerable<IPageMemberCodeEntry<T>> GetCodeEntriesFromPageSource<T>(string pageSource, IEnumerable<string> excludeList, Type[] analyzers)
+        // public IEnumerable<IPageMemberCodeEntry<T>> GetCodeEntriesFromPageSource<T>(string pageSource, IEnumerable<string> excludeList, Type[] analyzers)
+        public IEnumerable<IPieceOfCode<T>> GetCodeEntriesFromPageSource<T>(string pageSource, IEnumerable<string> excludeList, Type[] analyzers)
         // public IEnumerable<IPieceOfCode> GetCodeEntriesFromPageSource<T>(string pageSource, IEnumerable<string> excludeList, Type[] analyzers)
         {
             // 20160715
             // TODO: create a page unit from the title of the page and add it to the collection
+            var titleNode = _docNode.Descendants().Any(node => "title" == node.OriginalName)
+                ? _docNode.Descendants().First(node => "title" == node.OriginalName).InnerText
+                : "page name".ToPascalCase();
+            _pageCodeEntries.Add(CodeUnit<HtmlElementTypes>.NewPage(titleNode));
+            _pageGuid = _pageCodeEntries[0].Id;
+
             CreateDocumentNodeFromSource(pageSource);
             // 20160715
             // TODO: add the result to the collection and return the collection
             return GetCodeEntriesFromNode<T>(_docNode, excludeList, analyzers);
+            // return _pageCodeEntries.AddRange(GetCodeEntriesFromNode<T>(_docNode, excludeList, analyzers).Cast<IPieceOfCode<HtmlElementTypes>>());
         }
 
         internal IEnumerable<IPageMemberCodeEntry<T>> GetCodeEntriesFromNode<T>(HtmlNode docNode, IEnumerable<string> excludeList, Type[] analyzers)
         {
-            var convertor = new HtmlElementToElementMemberCodeEntryConvertor();
+            // 20160715
+            // var convertor = new HtmlElementToElementMemberCodeEntryConvertor();
+            var convertor = new HtmlElementToElementMemberCodeEntryConvertor(_pageGuid);
 
             var rootNode = docNode.Descendants().FirstOrDefault(bodyNode => bodyNode.OriginalName.ToLower() == WebNames.ElementTypeBody);
             if (null == rootNode)

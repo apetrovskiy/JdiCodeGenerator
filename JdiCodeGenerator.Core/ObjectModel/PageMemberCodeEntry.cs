@@ -182,6 +182,7 @@
             Id = Guid.NewGuid();
             Locators = new List<LocatorDefinition>();
             ListMemberNames = new List<string>();
+            CodeClass = PiecesOfCodeClasses.PageMember;
         }
 
         public string GenerateCode(SupportedLanguages language)
@@ -197,6 +198,8 @@
 
             return result;
         }
+
+        public PiecesOfCodeClasses CodeClass { get; set; }
 
         public string EnumerationTypeName { get; set; }
         public string AnalyzerThatWon { get; set; }

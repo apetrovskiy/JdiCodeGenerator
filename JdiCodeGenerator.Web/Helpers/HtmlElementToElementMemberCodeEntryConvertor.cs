@@ -15,6 +15,14 @@
     {
         Type[] _analyzers;
         IPageMemberCodeEntry<HtmlElementTypes> _pageMemberCodeEntry;
+        // 20160715
+        Guid _parentPageGuid;
+
+        // 20160715
+        public HtmlElementToElementMemberCodeEntryConvertor(Guid parentPageGuid)
+        {
+            _parentPageGuid = parentPageGuid;
+        }
 
         public IPageMemberCodeEntry<HtmlElementTypes> ConvertToCodeEntry(HtmlNode node, Type[] analyzers)
         {
@@ -39,15 +47,22 @@
             // temporarily!
             _pageMemberCodeEntry.MemberType = node.GetOriginalNameOfElement().CleanUpFromWrongCharacters();
 
+            // 20160715
+            _pageMemberCodeEntry.ParentId = _parentPageGuid;
+
             return _pageMemberCodeEntry;
         }
 
+        // 20160715
+        // TODO: use more wider type for the list
         public IEnumerable<IPageMemberCodeEntry<HtmlElementTypes>> ConvertToCodeEntries(HtmlNode rootNode, Type[] analyzers)
         {
             _analyzers = analyzers;
 
             var processChildren = rootNode.OriginalName == WebNames.ElementTypeBody || ConvertToCodeEntry(rootNode, _analyzers).ProcessChildren;
 
+            // 20160715
+            // TODO: use more wider type for the list
             var resultList = new List<IPageMemberCodeEntry<HtmlElementTypes>>();
             if (rootNode.OriginalName != WebNames.ElementTypeBody)
                 resultList.Add(ConvertToCodeEntry(rootNode, _analyzers));
