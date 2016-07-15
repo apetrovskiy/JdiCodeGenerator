@@ -8,11 +8,6 @@
     public class ElementMemberCodeEntry<T> : IElementMemberCodeEntry<T>
     {
         public Guid Id { get; set; }
-        public string GenerateCodeForEntry(SupportedLanguages language)
-        {
-            // TODO: write code
-            return string.Empty;
-        }
 
         // public Guid DependsOn { get; set; }
         public string MemberLogicalName { get; set; }
@@ -20,6 +15,17 @@
         public JdiElementTypes JdiMemberType { get; set; }
         public ElementMemberCodeEntryTypes MemberType { get; set; }
         public Guid ParentId { get; set; }
-        public Guid UsesId { get; set; }
+        // public Guid UsesId { get; set; }
+
+        public ElementMemberCodeEntry()
+        {
+            Id = Guid.NewGuid();
+        }
+
+        public string GenerateCode(SupportedLanguages language)
+        {
+            // TODO: write code
+            return string.Empty;
+        }
     }
 }

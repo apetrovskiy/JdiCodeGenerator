@@ -99,7 +99,7 @@
 
             _entry.JdiMemberType = _entry.SourceMemberType[0].ConvertHtmlTypeToJdiType();
 
-            _code = _entry.GenerateCodeForEntry(SupportedLanguages.Java);
+            _code = _entry.GenerateCode(SupportedLanguages.Java);
         }
 
         void ThenTitleIs(string expectedTitle)

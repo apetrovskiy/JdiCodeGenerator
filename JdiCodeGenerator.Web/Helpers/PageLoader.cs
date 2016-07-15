@@ -9,6 +9,7 @@
     using Core.Helpers;
     using Core.ObjectModel.Abstract;
     using Core.ObjectModel.Enums;
+    using ObjectModel.Abstract;
 
     //using CefSharp;
     //using CefSharp.OffScreen;
@@ -17,6 +18,14 @@
     {
         HtmlNode _docNode;
         //static ChromiumWebBrowser _browser;
+        // 20160715
+        List<IPieceOfCode<HtmlElementTypes>> _pageCodeEntries;
+
+        // 20160715
+        public PageLoader()
+        {
+            _pageCodeEntries = new List<IPieceOfCode<HtmlElementTypes>>();
+        }
 
         //public PageLoader()
         //{
@@ -24,7 +33,7 @@
         //}
 
 #region this version is for CefSharp
-        //void LoadPageByUrl(string url)
+        //void CreateDocumentNodeByUrl(string url)
         //{
         //    var settings = new CefSettings();
         //    // Disable GPU in WPF and Offscreen examples until #1634 has been resolved
@@ -118,27 +127,20 @@
         */
         #endregion
         #region classic with HTML Agility Pack
-        //void LoadPageByUrl(string url)
+        //void CreateDocumentNodeByUrl(string url)
         //{
         //    var web = new HtmlWeb();
         //    _docNode = web.Load(url).DocumentNode;
         //}
         #endregion
         #region Awesomium
-        void LoadPageByUrl(string url)
+        void CreateDocumentNodeByUrl(string url)
         {
             var htmlAsString = GetPageFromAwesomium(url);
-            //var web = new HtmlWeb();
-            //_docNode = web.Load(url).DocumentNode;
-            /*
-            var doc = new HtmlDocument();
-            doc.LoadHtml(htmlAsString);
-            _docNode = doc.DocumentNode;
-            */
-            LoadPageAsSource(htmlAsString);
+            CreateDocumentNodeFromSource(htmlAsString);
         }
 
-        void LoadPageAsSource(string pageSource)
+        void CreateDocumentNodeFromSource(string pageSource)
         {
             var doc = new HtmlDocument();
             doc.LoadHtml(pageSource);
@@ -176,15 +178,29 @@
         }
         #endregion
 
+        // 20160715
+        // TODO: return type
         public IEnumerable<IPageMemberCodeEntry<T>> GetCodeEntriesFromUrl<T>(string url, IEnumerable<string> excludeList, Type[] analyzers)
+        // public IEnumerable<IPieceOfCode> GetCodeEntriesFromUrl<T>(string url, IEnumerable<string> excludeList, Type[] analyzers)
         {
-            LoadPageByUrl(url);
+            // 20160715
+            // TODO: create a page unit and add it to the collection
+            CreateDocumentNodeByUrl(url);
+            // 20160715
+            // TODO: add the result to the collection and return the collection
             return GetCodeEntriesFromNode<T>(_docNode, excludeList, analyzers);
         }
 
+        // 20160715
+        // TODO: return type
         public IEnumerable<IPageMemberCodeEntry<T>> GetCodeEntriesFromPageSource<T>(string pageSource, IEnumerable<string> excludeList, Type[] analyzers)
+        // public IEnumerable<IPieceOfCode> GetCodeEntriesFromPageSource<T>(string pageSource, IEnumerable<string> excludeList, Type[] analyzers)
         {
-            LoadPageAsSource(pageSource);
+            // 20160715
+            // TODO: create a page unit from the title of the page and add it to the collection
+            CreateDocumentNodeFromSource(pageSource);
+            // 20160715
+            // TODO: add the result to the collection and return the collection
             return GetCodeEntriesFromNode<T>(_docNode, excludeList, analyzers);
         }
 
@@ -196,8 +212,14 @@
             if (null == rootNode)
                 return new List<IPageMemberCodeEntry<T>>();
 
+            // 20160715
+            // TODO: add to the existing collection
             var codeEntries = convertor.ConvertToCodeEntries(rootNode, analyzers);
 
+            // 20160715
+            // TODO: remote the setting of best choice, probably
+            // 20160715
+            // TODO: set distinguished names for page member entries and element entries separately
             // experimental
             return
                 codeEntries.Where(codeEntry => codeEntry.JdiMemberType != JdiElementTypes.Element)

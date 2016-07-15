@@ -10,6 +10,7 @@
     public class PageMemberCodeEntry<T> : IPageMemberCodeEntry<T>
     {
         public Guid Id { get; set; }
+        public Guid ParentId { get; set; }
         public List<LocatorDefinition> Locators { get; set; }
         public string MemberName { get; set; }
         public List<T> SourceMemberType { get; set; }
@@ -183,7 +184,7 @@
             ListMemberNames = new List<string>();
         }
 
-        public string GenerateCodeForEntry(SupportedLanguages language)
+        public string GenerateCode(SupportedLanguages language)
         {
             var result = string.Empty;
 
@@ -295,7 +296,5 @@
             // return "SomeEnum";
             return MemberName.Substring(0, 1).ToUpper() + MemberName.Substring(1);
         }
-
-        public Guid ParentId { get; set; }
     }
 }

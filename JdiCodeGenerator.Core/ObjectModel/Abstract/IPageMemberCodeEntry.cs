@@ -3,14 +3,14 @@
     using System.Collections.Generic;
     using Enums;
 
-    public interface IPageMemberCodeEntry<T> : ICodeEntry // IPieceOfCode
+    public interface IPageMemberCodeEntry<T> : ICodeEntry<T> // IPieceOfCode
     {
         List<LocatorDefinition> Locators { get; set; }
         string MemberName { get; set; }
         List<T> SourceMemberType { get; set; }
         JdiElementTypes JdiMemberType { get; set; }
         string MemberType { get; set; }
-        // string GenerateCodeForEntry(SupportedLanguages language);
+        // string GenerateCode(SupportedLanguages language);
         string EnumerationTypeName { get; set; }
 
         string AnalyzerThatWon { get; set; }

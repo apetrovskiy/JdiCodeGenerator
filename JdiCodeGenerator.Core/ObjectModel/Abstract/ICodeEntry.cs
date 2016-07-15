@@ -2,8 +2,8 @@
 {
     using System;
 
-    public interface ICodeEntry : IPieceOfCode
+    public interface ICodeEntry<T> : IPieceOfCode<T>
     {
-        Guid ParentId { get; set; }
+        // Guid ParentId { get; set; }
     }
 }

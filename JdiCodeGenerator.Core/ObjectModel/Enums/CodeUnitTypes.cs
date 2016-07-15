@@ -2,8 +2,9 @@
 {
     public enum CodeUnitTypes
     {
-        Class,
-        Interface,
-        Enum
+        ClassForSite,
+        ClassForPage,
+        // Interface,
+        EnumForMembers
     }
 }

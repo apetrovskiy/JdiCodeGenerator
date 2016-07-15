@@ -3,9 +3,10 @@
     using System;
     using Enums;
 
-    public interface IPieceOfCode
+    public interface IPieceOfCode<T>
     {
         Guid Id { get; set; }
-        string GenerateCodeForEntry(SupportedLanguages language);
+        Guid ParentId { get; set; }
+        string GenerateCode(SupportedLanguages language);
     }
 }

@@ -5,11 +5,13 @@
     using System.IO;
     using System.Linq;
     using Core.ImportExport;
+    using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
     using Core.ObjectModel.Enums;
     using Helpers;
     using ObjectModel.Abstract;
     using ObjectModel.Plugins.BootstrapAndCompetitors;
+    using ObjectModel.Plugins.JavaScript;
     using ObjectModel.Plugins.Plain;
 
     class Program
@@ -109,6 +111,13 @@
             var exporter = new ElementMemberCodeEntriesExporter();
             var importer = new ElementMemberCodeEntriesImporter();
             var fileNumber = 0;
+            // 20160715
+            // TODO: create common collection of code entries and units
+            var wholeSiteCollection = new List<IPieceOfCode<HtmlElementTypes>>();
+            // 20160715
+            // TODO: create a site code unit
+            wholeSiteCollection.Add(CodeUnit<HtmlElementTypes>.NewSite("project name"));
+
             list.ForEach(url =>
             {
                 Console.WriteLine("===============================================================================");
@@ -116,18 +125,23 @@
                 Console.WriteLine("===============================================================================");
                 // 20160706
                 // var applicableAnalyzers = new[] { typeof(Bootstrap3), typeof(PlainHtml5) };
-                var applicableAnalyzers = new[] { typeof(Bootstrap3), typeof(PlainHtml5), typeof(Jdi) };
+                // var applicableAnalyzers = new[] { typeof(Bootstrap3), typeof(PlainHtml5), typeof(Jdi) };
+                var applicableAnalyzers = new[] { typeof(Bootstrap3), typeof(PlainHtml5), typeof(JqueryBootstrapSelect), typeof(Jdi) };
                 // var codeEntries = loader.GetCodeEntriesFromUrl<HtmlElementTypes>(url, listNotToDisplay);
+                // 20160715
+                // TODO: add code entries and code units to the existing collection
                 var codeEntries = fromUrl
                     ? loader.GetCodeEntriesFromUrl<HtmlElementTypes>(url, listNotToDisplay, applicableAnalyzers)
                     : loader.GetCodeEntriesFromPageSource<HtmlElementTypes>(pageSource, listNotToDisplay, applicableAnalyzers);
+                // 20160714
                 var entries = codeEntries as IList<IPageMemberCodeEntry<HtmlElementTypes>> ?? codeEntries.ToList();
+                // var entries = codeEntries as IList<IPieceOfCode<HtmlElementTypes>> ?? codeEntries.ToList();
                 using (var writer = new StreamWriter(folderForExportFiles + @"\" + (300 + fileNumber)))
                 {
                     writer.WriteLine(@"// {0}", url);
                     entries.ToList().ForEach(elementDefinition =>
                     {
-                        var codeEntryString = elementDefinition.GenerateCodeForEntry(SupportedLanguages.Java);
+                        var codeEntryString = elementDefinition.GenerateCode(SupportedLanguages.Java);
                         Console.WriteLine(codeEntryString);
                         writer.WriteLine(codeEntryString);
 
