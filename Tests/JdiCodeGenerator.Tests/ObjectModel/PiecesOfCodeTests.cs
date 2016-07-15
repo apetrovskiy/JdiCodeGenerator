@@ -29,7 +29,7 @@
         [InlineData(@"..\Data\Jdi\Simple\TimePicker.txt", "ITimePicker")]
         [InlineData(@"..\Data\Jdi\Simple\Button.txt", "IButton")]
 
-        [Trait("Category", "JDI, single element")]
+        [Trait("Category", "pieces of code, single element")]
 
         public void ParsePlainHtml5ForSingleElement(string input, string expectedType)
         {
@@ -40,7 +40,7 @@
 
         [Theory]
         [InlineData(@"..\Data\Jdi\Simple\DatePicker.txt", "IDatePicker", 1)]
-        [Trait("Category", "JDI, single element, positional")]
+        [Trait("Category", "pieces of code, single element, positional")]
 
         public void ParsePlainHtml5ForSingleElementWithPosition(string input, string expectedType, int elementPosition)
         {
