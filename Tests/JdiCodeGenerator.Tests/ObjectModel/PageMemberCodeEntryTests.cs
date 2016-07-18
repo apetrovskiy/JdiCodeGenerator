@@ -16,8 +16,6 @@
 
     public class PageMemberCodeEntryTests
     {
-        //20160718
-        // IPageMemberCodeEntry<HtmlElementTypes> _entry;
         IPageMemberCodeEntry _entry;
         string _code;
 

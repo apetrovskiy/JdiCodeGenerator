@@ -14,8 +14,6 @@
     public class HtmlElementToElementMemberCodeEntryConvertor
     {
         Type[] _analyzers;
-        //20160718
-        // IPageMemberCodeEntry<HtmlElementTypes> _pageMemberCodeEntry;
         IPageMemberCodeEntry _pageMemberCodeEntry;
         // 20160715
         Guid _parentPageGuid;
@@ -26,8 +24,6 @@
             _parentPageGuid = parentPageGuid;
         }
 
-        //20160718
-        // public IPageMemberCodeEntry<HtmlElementTypes> ConvertToCodeEntry(HtmlNode node, Type[] analyzers)
         public IPageMemberCodeEntry ConvertToCodeEntry(HtmlNode node, Type[] analyzers)
         {
             _pageMemberCodeEntry = node.ConvertToCodeEntry();
@@ -61,8 +57,6 @@
 
         // 20160715
         // TODO: use more wider type for the list
-        //20160718
-        // public IEnumerable<IPageMemberCodeEntry<HtmlElementTypes>> ConvertToCodeEntries(HtmlNode rootNode, Type[] analyzers)
         public IEnumerable<IPageMemberCodeEntry> ConvertToCodeEntries(HtmlNode rootNode, Type[] analyzers)
         {
             _analyzers = analyzers;
@@ -71,8 +65,6 @@
 
             // 20160715
             // TODO: use more wider type for the list
-            //20160718
-            // var resultList = new List<IPageMemberCodeEntry<HtmlElementTypes>>();
             var resultList = new List<IPageMemberCodeEntry>();
             if (rootNode.OriginalName != WebNames.ElementTypeBody)
                 resultList.Add(ConvertToCodeEntry(rootNode, _analyzers));

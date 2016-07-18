@@ -1,8 +1,10 @@
 ﻿namespace JdiCodeGenerator.Tests.ObjectModel
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
+    using Core.ObjectModel.Enums;
     using HtmlAgilityPack;
     using Plugins;
     using Web.ObjectModel.Plugins.Plain;
@@ -10,20 +12,14 @@
 
     public class PiecesOfCodeTests
     {
-        //20160718
-        // PageMemberCodeEntry<HtmlElementTypes> _entry;
         PageMemberCodeEntry _entry;
         HtmlDocument _doc;
-        //20160718
-        // List<IPieceOfCode<HtmlElementTypes>> _entries;
         List<IPieceOfCode> _entries;
 
         public PiecesOfCodeTests()
         {
             _entry = null;
             _doc = null;
-            //20160718
-            // _entries = new List<IPieceOfCode<HtmlElementTypes>>();
             _entries = new List<IPieceOfCode>();
         }
 
@@ -38,7 +34,7 @@
         {
             GivenHtmlFromFile(input);
             WhenParsing(expectedType);
-            ThenThereIsElementOfTypeAndPageCodeUnit(expectedType);
+            ThenThereIsPageCodeUnit(expectedType);
         }
 
         [Theory]
@@ -49,7 +45,7 @@
         {
             GivenHtmlFromFile(input);
             WhenParsing(elementPosition);
-            ThenThereIsElementOfTypeAndPageCodeUnit(expectedType);
+            ThenThereIsPageCodeUnit(expectedType);
         }
 
         //[Theory]
@@ -78,14 +74,15 @@
 
         void WhenParsing(int elementPosition)
         {
-            // _entry = TestFactory.Instance.GetEntryExpected(_doc, new[] { typeof(Jdi) }, elementPosition);
             _entries = TestFactory.Instance.GetPiecesOfCodeCollection(_doc, new[] {typeof(Jdi)});
         }
 
-        void ThenThereIsElementOfTypeAndPageCodeUnit(string expectedType)
+        void ThenThereIsPageCodeUnit(string expectedType)
         {
-            // Assert.True(_entry.GenerateCode(SupportedLanguages.Java).Contains(expectedType));
-            Assert.Equal(typeof(PageMemberCodeEntry), _entries[0].GetType());
+            Assert.True(_entries.Any(entry => PiecesOfCodeClasses.CodeUnit == entry.CodeClass));
+            Assert.True(_entries.Any(entry => PiecesOfCodeClasses.PageMember == entry.CodeClass));
+            Assert.True( _entries.Any(entry => entry is CodeUnit));
+            Assert.True(_entries.Any(entry => entry is PageMemberCodeEntry));
         }
     }
 }

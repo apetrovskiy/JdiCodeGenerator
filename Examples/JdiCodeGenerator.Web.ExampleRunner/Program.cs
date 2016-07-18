@@ -136,8 +136,6 @@
                     : loader.GetCodeEntriesFromPageSource<HtmlElementTypes>(pageSource, listNotToDisplay, applicableAnalyzers);
                 */
                 wholeSiteCollection.AddRange(fromUrl
-                    // 20160718
-                    // ? loader.GetCodeEntriesFromUrl<HtmlElementTypes>(url, listNotToDisplay, applicableAnalyzers)
                     ? loader.GetCodeEntriesFromUrl(url, listNotToDisplay, applicableAnalyzers)
                     : loader.GetCodeEntriesFromPageSource<HtmlElementTypes>(pageSource, listNotToDisplay, applicableAnalyzers));
 
@@ -172,8 +170,6 @@
                 // 20160715
                 var onlyPageMembers = entries
                     .Where(entry => PiecesOfCodeClasses.PageMember == entry.CodeClass)
-                    // 20160718
-                    // .Cast<IPageMemberCodeEntry<HtmlElementTypes>>()
                     .Cast<IPageMemberCodeEntry>()
                     .ToList();
 

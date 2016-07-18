@@ -135,6 +135,8 @@
         {
             var pageLoader = new PageLoader();
             var entries = new List<IPieceOfCode>();
+            // TODO: temporarily
+            entries.Add(CodeUnit.NewPage("page"));
             entries.AddRange(pageLoader.GetCodeEntriesFromNode(document.DocumentNode, ExcludeList, applicableAnalyzers));
             return entries;
         }

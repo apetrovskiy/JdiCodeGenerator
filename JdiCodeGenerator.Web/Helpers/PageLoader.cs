@@ -19,16 +19,12 @@
         HtmlNode _docNode;
         //static ChromiumWebBrowser _browser;
         // 20160715
-        //20160718
-        // List<IPieceOfCode<HtmlElementTypes>> _pageCodeEntries;
         List<IPieceOfCode> _pageCodeEntries;
         Guid _pageGuid;
 
         // 20160715
         public PageLoader()
         {
-            //20160718
-            // _pageCodeEntries = new List<IPieceOfCode<HtmlElementTypes>>();
             _pageCodeEntries = new List<IPieceOfCode>();
         }
 
@@ -194,16 +190,12 @@
             // 20160715
             // TODO: create a page unit and add it to the collection
             // var regex = new Regex(@"(?");
-            //20160718
-            // _pageCodeEntries.Add(CodeUnit<HtmlElementTypes>.NewPage("page name".ToPascalCase()));
             _pageCodeEntries.Add(CodeUnit.NewPage("page name".ToPascalCase()));
             _pageGuid = _pageCodeEntries[0].Id;
 
             CreateDocumentNodeByUrl(url);
             // 20160715
             // TODO: add the result to the collection and return the collection
-            //20160718
-            // return GetCodeEntriesFromNode<T>(_docNode, excludeList, analyzers);
             return GetCodeEntriesFromNode(_docNode, excludeList, analyzers);
             // return _pageCodeEntries.AddRange(GetCodeEntriesFromNode<T>(_docNode, excludeList, analyzers).Cast<IPieceOfCode<HtmlElementTypes>>());
         }
@@ -241,7 +233,8 @@
 
             // 20160715
             // TODO: add to the existing collection
-            var codeEntries = convertor.ConvertToCodeEntries(rootNode, analyzers);
+            // var codeEntries = convertor.ConvertToCodeEntries(rootNode, analyzers);
+            _pageCodeEntries.AddRange(convertor.ConvertToCodeEntries(rootNode, analyzers));
 
             // 20160715
             // TODO: remote the setting of best choice, probably
@@ -249,7 +242,8 @@
             // TODO: set distinguished names for page member entries and element entries separately
             // experimental
             return
-                codeEntries.Where(codeEntry => codeEntry.JdiMemberType != JdiElementTypes.Element)
+                // codeEntries.Where(codeEntry => codeEntry.JdiMemberType != JdiElementTypes.Element)
+                _pageCodeEntries.Cast<PageMemberCodeEntry>().Where(codeEntry => codeEntry.JdiMemberType != JdiElementTypes.Element)
                     .SetBestChoice()
                     .SetDistinguishNamesForMembers();
 
