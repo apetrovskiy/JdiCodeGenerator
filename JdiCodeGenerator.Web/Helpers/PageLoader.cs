@@ -244,7 +244,8 @@
             return
                 // codeEntries.Where(codeEntry => codeEntry.JdiMemberType != JdiElementTypes.Element)
                 _pageCodeEntries.Cast<PageMemberCodeEntry>().Where(codeEntry => codeEntry.JdiMemberType != JdiElementTypes.Element)
-                    .SetBestChoice()
+                    // 20160718
+                    // .SetBestChoice()
                     .SetDistinguishNamesForMembers();
 
             // return codeEntries.SetBestChoice().SetDistinguishNamesForMembers();

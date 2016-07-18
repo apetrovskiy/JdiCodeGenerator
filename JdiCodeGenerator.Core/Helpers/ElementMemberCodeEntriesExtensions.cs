@@ -71,18 +71,28 @@
             return wronglyFormattedString;
         }
 
-        [Obsolete("Currently this is set in the code entry itself and there's a question about this method")]
-        public static IEnumerable<IPageMemberCodeEntry> SetBestChoice(this IEnumerable<IPageMemberCodeEntry> codeEntries)
-        {
-            var entries = codeEntries as IPageMemberCodeEntry[] ?? codeEntries.ToArray();
-            entries.ToList().ForEach(codeEntry => codeEntry.Locators.ForEach(locator => locator.IsBestChoice = false));
-            entries.ToList().ForEach(codeEntry => codeEntry.Locators.OrderBy(locator => (int)locator.SearchTypePreference).First().IsBestChoice = true);
-            return entries;
-        }
+        // 20160718
+        //[Obsolete("Currently this is set in the code entry itself and there's a question about this method")]
+        //public static IEnumerable<IPageMemberCodeEntry> SetBestChoice(this IEnumerable<IPageMemberCodeEntry> codeEntries)
+        //{
+        //    // 20160718
+        //    // var entries = codeEntries as IPageMemberCodeEntry[] ?? codeEntries.ToArray();
+        //    // var entries = codeEntries.Cast<IPieceOfCode>() ?? codeEntries.ToArray();
+        //    var entries = codeEntries as IPieceOfCode[] ?? codeEntries.ToArray();
+        //    // 20160718
+        //    // entries.ToList().ForEach(codeEntry => codeEntry.Locators.ForEach(locator => locator.IsBestChoice = false));
+        //    entries.Where(entry => PiecesOfCodeClasses.PageMember == entry.CodeClass).Cast<IPageMemberCodeEntry>().ToList().ForEach(codeEntry => codeEntry.Locators.ForEach(locator => locator.IsBestChoice = false));
+        //    // 20160718
+        //    // entries.ToList().ForEach(codeEntry => codeEntry.Locators.OrderBy(locator => (int)locator.SearchTypePreference).First().IsBestChoice = true);
+        //    entries.Where(entry => PiecesOfCodeClasses.PageMember == entry.CodeClass).Cast<IPageMemberCodeEntry>()ToList().ForEach(codeEntry => codeEntry.Locators.OrderBy(locator => (int)locator.SearchTypePreference).First().IsBestChoice = true);
+        //    return entries;
+        //}
 
         public static IEnumerable<IPageMemberCodeEntry> SetDistinguishNamesForMembers(this IEnumerable<IPageMemberCodeEntry> codeEntries)
         {
-            var distinguishNamesForMembers = codeEntries as IPageMemberCodeEntry[] ?? codeEntries.ToArray();
+            // 20160718
+            // var distinguishNamesForMembers = codeEntries as IPageMemberCodeEntry[] ?? codeEntries.ToArray();
+            var distinguishNamesForMembers = codeEntries.Where(entry => PiecesOfCodeClasses.PageMember == entry.CodeClass).Cast<IPageMemberCodeEntry>().ToArray();
             distinguishNamesForMembers.ToList().ForEach(codeEntry => codeEntry.MemberName = codeEntry.GenerateNameBasedOnNamingPreferences());
             distinguishNamesForMembers
                 .GroupBy(codeEntryName => codeEntryName.MemberName)
