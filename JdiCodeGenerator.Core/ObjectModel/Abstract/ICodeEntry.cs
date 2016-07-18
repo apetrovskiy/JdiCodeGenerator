@@ -1,9 +1,8 @@
 ﻿namespace JdiCodeGenerator.Core.ObjectModel.Abstract
 {
-    using System;
-
-    public interface ICodeEntry<T> : IPieceOfCode<T>
+    public interface ICodeEntry : IPieceOfCode
     {
         // Guid ParentId { get; set; }
+        SourceMemberTypeHolder SourceMemberType { get; set; }
     }
 }

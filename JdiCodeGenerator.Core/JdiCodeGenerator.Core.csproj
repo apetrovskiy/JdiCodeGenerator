@@ -108,6 +108,7 @@
     <Compile Include="ImportExport\DtoJsonConverter.cs" />
     <Compile Include="ObjectModel\Abstract\ICodeEntry.cs" />
     <Compile Include="ObjectModel\Abstract\IPredefinedCodeUnit.cs" />
+    <Compile Include="ObjectModel\Abstract\SourceMemberTypeHolder.cs" />
     <Compile Include="ObjectModel\Enums\ElementMemberCodeEntryTypes.cs" />
     <Compile Include="ObjectModel\Enums\PageMemberCodeEntryTypes.cs" />
     <Compile Include="ObjectModel\Enums\CodeUnitTypes.cs" />

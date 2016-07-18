@@ -1,12 +1,10 @@
 ﻿namespace JdiCodeGenerator.Specs.Steps
 {
     using Core.ObjectModel;
-    using Core.ObjectModel.Abstract;
     using Core.ObjectModel.Enums;
     using HtmlAgilityPack;
     using TechTalk.SpecFlow;
     using Tests.Plugins;
-    using Web.ObjectModel.Abstract;
     using Web.ObjectModel.Plugins.BootstrapAndCompetitors;
     using Web.ObjectModel.Plugins.Plain;
 
@@ -14,7 +12,7 @@
     public class FindElementSteps
     {
         HtmlDocument _doc;
-        PageMemberCodeEntry<HtmlElementTypes> _entry;
+        PageMemberCodeEntry _entry;
 
         [Given(@"I have a Bootstrap web page ""(.*)""")]
         public void GivenIHaveABootstrapPage(string path)

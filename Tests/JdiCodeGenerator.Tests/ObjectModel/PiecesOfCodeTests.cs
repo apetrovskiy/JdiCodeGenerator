@@ -1,27 +1,30 @@
 ﻿namespace JdiCodeGenerator.Tests.ObjectModel
 {
     using System.Collections.Generic;
-    using Core.Helpers;
     using Core.ObjectModel;
     using Core.ObjectModel.Abstract;
-    using Core.ObjectModel.Enums;
     using HtmlAgilityPack;
     using Plugins;
-    using Web.ObjectModel.Abstract;
     using Web.ObjectModel.Plugins.Plain;
     using Xunit;
 
     public class PiecesOfCodeTests
     {
-        PageMemberCodeEntry<HtmlElementTypes> _entry;
+        //20160718
+        // PageMemberCodeEntry<HtmlElementTypes> _entry;
+        PageMemberCodeEntry _entry;
         HtmlDocument _doc;
-        List<IPieceOfCode<HtmlElementTypes>> _entries;
+        //20160718
+        // List<IPieceOfCode<HtmlElementTypes>> _entries;
+        List<IPieceOfCode> _entries;
 
         public PiecesOfCodeTests()
         {
             _entry = null;
             _doc = null;
-            _entries = new List<IPieceOfCode<HtmlElementTypes>>();
+            //20160718
+            // _entries = new List<IPieceOfCode<HtmlElementTypes>>();
+            _entries = new List<IPieceOfCode>();
         }
 
         [Theory]
@@ -82,22 +85,7 @@
         void ThenThereIsElementOfTypeAndPageCodeUnit(string expectedType)
         {
             // Assert.True(_entry.GenerateCode(SupportedLanguages.Java).Contains(expectedType));
-            Assert.Equal(typeof(ICodeUnit<HtmlElementTypes>), _entries[0].GetType());
+            Assert.Equal(typeof(PageMemberCodeEntry), _entries[0].GetType());
         }
-
-        //void ThenThereIsCollectionOfElementsOfType(string expectedType, string rootSearchString, string valueSearchString, string listSearchString)
-        //{
-        //    var generatedCodeEntry = _entry.GenerateCode(SupportedLanguages.Java);
-        //    Assert.True(generatedCodeEntry.Contains(expectedType));
-        //    if (_entry.JdiMemberType.IsComplexControl())
-        //    {
-        //        if (!string.IsNullOrEmpty(rootSearchString))
-        //            Assert.False(string.IsNullOrEmpty(_entry.Root.SearchString));
-        //        if (!string.IsNullOrEmpty(valueSearchString))
-        //            Assert.False(string.IsNullOrEmpty(_entry.Value.SearchString));
-        //        if (!string.IsNullOrEmpty(listSearchString))
-        //            Assert.False(string.IsNullOrEmpty(_entry.List.SearchString));
-        //    }
-        //}
     }
 }

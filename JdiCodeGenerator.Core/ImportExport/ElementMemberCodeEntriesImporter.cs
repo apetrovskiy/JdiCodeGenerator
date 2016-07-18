@@ -7,7 +7,7 @@
 
     public class ElementMemberCodeEntriesImporter
     {
-        public IEnumerable<IPageMemberCodeEntry<T>> LoadFromFile<T>(string path)
+        public IEnumerable<IPageMemberCodeEntry> LoadFromFile<T>(string path)
         {
             var serializedCodeEntries = new List<string>();
             using (var reader = new StreamReader(path))

@@ -6,7 +6,7 @@
     using Enums;
     using Helpers;
 
-    public class CodeUnit<T> : ICodeUnit<T>
+    public class CodeUnit : ICodeUnit
     {
         public Guid Id { get; set; }
         public Guid ParentId { get; set; }
@@ -36,26 +36,26 @@
             }
         }
 
-        public static CodeUnit<T> NewSite(string siteName)
+        public static CodeUnit NewSite(string siteName)
         {
             // 20160715
             // TODO: generate name from the project name
             // 20160715
             // TODO: use resources or alike for "Site"
             var projectName = siteName.ToPascalCase() + "Site";
-            return new CodeUnit<T>(CodeUnitTypes.ClassForSite) { Name = projectName };
+            return new CodeUnit(CodeUnitTypes.ClassForSite) { Name = projectName };
         }
 
-        public static CodeUnit<T> NewPage(string pageName)
+        public static CodeUnit NewPage(string pageName)
         {
             // 20160715
             // TODO: use resources or alike for "Page"
-            return new CodeUnit<T>(CodeUnitTypes.ClassForPage) { Name = pageName.ToPascalCase() + "Page" };
+            return new CodeUnit(CodeUnitTypes.ClassForPage) { Name = pageName.ToPascalCase() + "Page" };
         }
 
-        public static CodeUnit<T> NewEnum(string enumName)
+        public static CodeUnit NewEnum(string enumName)
         {
-            return new CodeUnit<T>(CodeUnitTypes.EnumForMembers) { Name = enumName.ToPascalCase() };
+            return new CodeUnit(CodeUnitTypes.EnumForMembers) { Name = enumName.ToPascalCase() };
         }
 
         public string GenerateCode(SupportedLanguages language)

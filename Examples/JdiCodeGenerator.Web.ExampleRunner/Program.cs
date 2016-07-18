@@ -111,11 +111,11 @@
             var fileNumber = 0;
             // 20160715
             // TODO: create common collection of code entries and units
-            var wholeSiteCollection = new List<IPieceOfCode<HtmlElementTypes>>
+            var wholeSiteCollection = new List<IPieceOfCode>
             {
                 // 20160715
                 // TODO: create a site code unit
-                CodeUnit<HtmlElementTypes>.NewSite("project name")
+                CodeUnit.NewSite("project name")
             };
 
             list.ForEach(url =>
@@ -136,7 +136,9 @@
                     : loader.GetCodeEntriesFromPageSource<HtmlElementTypes>(pageSource, listNotToDisplay, applicableAnalyzers);
                 */
                 wholeSiteCollection.AddRange(fromUrl
-                    ? loader.GetCodeEntriesFromUrl<HtmlElementTypes>(url, listNotToDisplay, applicableAnalyzers)
+                    // 20160718
+                    // ? loader.GetCodeEntriesFromUrl<HtmlElementTypes>(url, listNotToDisplay, applicableAnalyzers)
+                    ? loader.GetCodeEntriesFromUrl(url, listNotToDisplay, applicableAnalyzers)
                     : loader.GetCodeEntriesFromPageSource<HtmlElementTypes>(pageSource, listNotToDisplay, applicableAnalyzers));
 
                 // 20160715
@@ -170,7 +172,9 @@
                 // 20160715
                 var onlyPageMembers = entries
                     .Where(entry => PiecesOfCodeClasses.PageMember == entry.CodeClass)
-                    .Cast<IPageMemberCodeEntry<HtmlElementTypes>>()
+                    // 20160718
+                    // .Cast<IPageMemberCodeEntry<HtmlElementTypes>>()
+                    .Cast<IPageMemberCodeEntry>()
                     .ToList();
 
                 using (var tempWriter = new StreamWriter(folderForExportFiles + @"\" + (400 + fileNumber)))

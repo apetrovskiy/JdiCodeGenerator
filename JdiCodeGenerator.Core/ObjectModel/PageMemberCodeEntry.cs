@@ -7,13 +7,13 @@
     using Enums;
     using Helpers;
 
-    public class PageMemberCodeEntry<T> : IPageMemberCodeEntry<T>
+    public class PageMemberCodeEntry : IPageMemberCodeEntry
     {
         public Guid Id { get; set; }
         public Guid ParentId { get; set; }
         public List<LocatorDefinition> Locators { get; set; }
         public string MemberName { get; set; }
-        public List<T> SourceMemberType { get; set; }
+        public SourceMemberTypeHolder SourceMemberType { get; set; }
         public JdiElementTypes JdiMemberType { get; set; }
         // for debugging purposes
         // public string MemberType { get; set; }
@@ -183,6 +183,8 @@
             Locators = new List<LocatorDefinition>();
             ListMemberNames = new List<string>();
             CodeClass = PiecesOfCodeClasses.PageMember;
+            // SourceMemberType = SourceMemberTypeHolder.GetInstance<>();
+            SourceMemberType = new SourceMemberTypeHolder();
         }
 
         public string GenerateCode(SupportedLanguages language)

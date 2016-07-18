@@ -72,17 +72,17 @@
         }
 
         [Obsolete("Currently this is set in the code entry itself and there's a question about this method")]
-        public static IEnumerable<IPageMemberCodeEntry<T>> SetBestChoice<T>(this IEnumerable<IPageMemberCodeEntry<T>> codeEntries)
+        public static IEnumerable<IPageMemberCodeEntry> SetBestChoice(this IEnumerable<IPageMemberCodeEntry> codeEntries)
         {
-            var entries = codeEntries as IPageMemberCodeEntry<T>[] ?? codeEntries.ToArray();
+            var entries = codeEntries as IPageMemberCodeEntry[] ?? codeEntries.ToArray();
             entries.ToList().ForEach(codeEntry => codeEntry.Locators.ForEach(locator => locator.IsBestChoice = false));
             entries.ToList().ForEach(codeEntry => codeEntry.Locators.OrderBy(locator => (int)locator.SearchTypePreference).First().IsBestChoice = true);
             return entries;
         }
 
-        public static IEnumerable<IPageMemberCodeEntry<T>> SetDistinguishNamesForMembers<T>(this IEnumerable<IPageMemberCodeEntry<T>> codeEntries)
+        public static IEnumerable<IPageMemberCodeEntry> SetDistinguishNamesForMembers(this IEnumerable<IPageMemberCodeEntry> codeEntries)
         {
-            var distinguishNamesForMembers = codeEntries as IPageMemberCodeEntry<T>[] ?? codeEntries.ToArray();
+            var distinguishNamesForMembers = codeEntries as IPageMemberCodeEntry[] ?? codeEntries.ToArray();
             distinguishNamesForMembers.ToList().ForEach(codeEntry => codeEntry.MemberName = codeEntry.GenerateNameBasedOnNamingPreferences());
             distinguishNamesForMembers
                 .GroupBy(codeEntryName => codeEntryName.MemberName)
@@ -106,7 +106,7 @@
         */
 
         internal const string NoName = "NoName";
-        internal static string GenerateNameBasedOnNamingPreferences<T>(this IPageMemberCodeEntry<T> pageMemberCodeEntry)
+        internal static string GenerateNameBasedOnNamingPreferences(this IPageMemberCodeEntry pageMemberCodeEntry)
         {
             var prefix = pageMemberCodeEntry.JdiMemberType.ToString().Substring(0, 1).ToLower() + pageMemberCodeEntry.JdiMemberType.ToString().Substring(1);
             if (!pageMemberCodeEntry.Locators.Any())

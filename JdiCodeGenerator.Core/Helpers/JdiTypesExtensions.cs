@@ -1,6 +1,5 @@
 ﻿namespace JdiCodeGenerator.Core.Helpers
 {
-    using ObjectModel.Abstract;
     using ObjectModel.Enums;
 
     public static class JdiTypesExtensions

@@ -16,7 +16,9 @@
 
     public class PageMemberCodeEntryTests
     {
-        IPageMemberCodeEntry<HtmlElementTypes> _entry;
+        //20160718
+        // IPageMemberCodeEntry<HtmlElementTypes> _entry;
+        IPageMemberCodeEntry _entry;
         string _code;
 
         public PageMemberCodeEntryTests()
@@ -78,13 +80,13 @@
 
         void GivenCodeEntry(IEnumerable<LocatorDefinition> locatorDefinitions, string jdiMemberType, string memberType)
         {
-            _entry = new PageMemberCodeEntry<HtmlElementTypes>
+            _entry = new PageMemberCodeEntry
             {
                 Locators = locatorDefinitions.ToList(),
-                SourceMemberType = new List<HtmlElementTypes> { Enum.GetValues(typeof(HtmlElementTypes)).Cast<HtmlElementTypes>().FirstOrDefault(val => 0 == string.Compare(val.ToString().ToLower(), memberType, StringComparison.Ordinal)) },
                 JdiMemberType = Enum.GetValues(typeof(JdiElementTypes)).Cast<JdiElementTypes>().FirstOrDefault(val => 0 == string.Compare(val.ToString().ToLower(), jdiMemberType, StringComparison.Ordinal)),
                 MemberType = memberType
             };
+            _entry.SourceMemberType.Set(new List<HtmlElementTypes> { Enum.GetValues(typeof(HtmlElementTypes)).Cast<HtmlElementTypes>().FirstOrDefault(val => 0 == string.Compare(val.ToString().ToLower(), memberType, StringComparison.Ordinal)) });
         }
 
         void WhenGeneratingTitle()
@@ -97,7 +99,7 @@
             var node = Substitute.For<HtmlNodeMock>(HtmlNodeType.Element, new HtmlDocument(), 1);
             node.OriginalName.Returns(_entry.MemberType);
 
-            _entry.JdiMemberType = _entry.SourceMemberType[0].ConvertHtmlTypeToJdiType();
+            _entry.JdiMemberType = _entry.SourceMemberType.Get<HtmlElementTypes>()[0].ConvertHtmlTypeToJdiType();
 
             _code = _entry.GenerateCode(SupportedLanguages.Java);
         }

@@ -8,7 +8,7 @@
 
     public class ElementMemberCodeEntriesExporter
     {
-        public void WriteToFile<T>(IEnumerable<IPageMemberCodeEntry<T>> codeEntries, string path)
+        public void WriteToFile(IEnumerable<IPageMemberCodeEntry> codeEntries, string path)
         {
             using (var writer = new StreamWriter(path))
             {

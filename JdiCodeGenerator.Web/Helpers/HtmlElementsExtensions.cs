@@ -4,7 +4,6 @@
     using System.Linq;
     using HtmlAgilityPack;
     using Core.ObjectModel;
-    using Core.ObjectModel.Abstract;
     using Core.ObjectModel.Enums;
     using ObjectModel.Abstract;
 

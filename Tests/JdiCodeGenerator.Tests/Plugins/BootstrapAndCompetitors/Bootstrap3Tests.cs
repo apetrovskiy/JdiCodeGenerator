@@ -2,16 +2,14 @@
 {
     using Core.Helpers;
     using Core.ObjectModel;
-    using Core.ObjectModel.Abstract;
     using Core.ObjectModel.Enums;
     using HtmlAgilityPack;
-    using Web.ObjectModel.Abstract;
     using Web.ObjectModel.Plugins.BootstrapAndCompetitors;
     using Xunit;
 
     public class Bootstrap3Tests
     {
-        PageMemberCodeEntry<HtmlElementTypes> _entry;
+        PageMemberCodeEntry _entry;
         HtmlDocument _doc;
 
         public Bootstrap3Tests()

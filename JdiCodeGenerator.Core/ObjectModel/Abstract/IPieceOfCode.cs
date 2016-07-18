@@ -3,7 +3,7 @@
     using System;
     using Enums;
 
-    public interface IPieceOfCode<T>
+    public interface IPieceOfCode
     {
         Guid Id { get; set; }
         Guid ParentId { get; set; }

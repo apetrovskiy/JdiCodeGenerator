@@ -3,21 +3,17 @@
     using System.Collections.Generic;
     using Enums;
 
-    public interface IPageMemberCodeEntry<T> : ICodeEntry<T> // IPieceOfCode
+    public interface IPageMemberCodeEntry : ICodeEntry
     {
         List<LocatorDefinition> Locators { get; set; }
         string MemberName { get; set; }
-        List<T> SourceMemberType { get; set; }
         JdiElementTypes JdiMemberType { get; set; }
         string MemberType { get; set; }
-        // string GenerateCode(SupportedLanguages language);
         string EnumerationTypeName { get; set; }
 
         string AnalyzerThatWon { get; set; }
         string RuleThatWon { get; set; }
 
-        // temporarily!
-        // string Type { get; set; }
         bool ProcessChildren { get; }
 
         /*

@@ -14,7 +14,9 @@
     public class HtmlElementToElementMemberCodeEntryConvertor
     {
         Type[] _analyzers;
-        IPageMemberCodeEntry<HtmlElementTypes> _pageMemberCodeEntry;
+        //20160718
+        // IPageMemberCodeEntry<HtmlElementTypes> _pageMemberCodeEntry;
+        IPageMemberCodeEntry _pageMemberCodeEntry;
         // 20160715
         Guid _parentPageGuid;
 
@@ -24,7 +26,9 @@
             _parentPageGuid = parentPageGuid;
         }
 
-        public IPageMemberCodeEntry<HtmlElementTypes> ConvertToCodeEntry(HtmlNode node, Type[] analyzers)
+        //20160718
+        // public IPageMemberCodeEntry<HtmlElementTypes> ConvertToCodeEntry(HtmlNode node, Type[] analyzers)
+        public IPageMemberCodeEntry ConvertToCodeEntry(HtmlNode node, Type[] analyzers)
         {
             _pageMemberCodeEntry = node.ConvertToCodeEntry();
             _pageMemberCodeEntry.JdiMemberType = node.ApplyApplicableAnalyzers(analyzers);
@@ -39,7 +43,9 @@
                 WorkOutInternalElements(HtmlNodesExtensions.AnalyzerThatWon.RuleThatWon, node);
 
             if (JdiElementTypes.Element == _pageMemberCodeEntry.JdiMemberType)
-                _pageMemberCodeEntry.JdiMemberType = _pageMemberCodeEntry.SourceMemberType[0].ConvertHtmlTypeToJdiType();
+                //20160718
+                // _pageMemberCodeEntry.JdiMemberType = _pageMemberCodeEntry.SourceMemberType[0].ConvertHtmlTypeToJdiType();
+                _pageMemberCodeEntry.JdiMemberType = _pageMemberCodeEntry.SourceMemberType.Get<HtmlElementTypes>()[0].ConvertHtmlTypeToJdiType();
 
             // temporarily!
             // _pageMemberCodeEntry.Type = node.GetOriginalNameOfElement().CleanUpFromWrongCharacters();
@@ -55,7 +61,9 @@
 
         // 20160715
         // TODO: use more wider type for the list
-        public IEnumerable<IPageMemberCodeEntry<HtmlElementTypes>> ConvertToCodeEntries(HtmlNode rootNode, Type[] analyzers)
+        //20160718
+        // public IEnumerable<IPageMemberCodeEntry<HtmlElementTypes>> ConvertToCodeEntries(HtmlNode rootNode, Type[] analyzers)
+        public IEnumerable<IPageMemberCodeEntry> ConvertToCodeEntries(HtmlNode rootNode, Type[] analyzers)
         {
             _analyzers = analyzers;
 
@@ -63,7 +71,9 @@
 
             // 20160715
             // TODO: use more wider type for the list
-            var resultList = new List<IPageMemberCodeEntry<HtmlElementTypes>>();
+            //20160718
+            // var resultList = new List<IPageMemberCodeEntry<HtmlElementTypes>>();
+            var resultList = new List<IPageMemberCodeEntry>();
             if (rootNode.OriginalName != WebNames.ElementTypeBody)
                 resultList.Add(ConvertToCodeEntry(rootNode, _analyzers));
 
