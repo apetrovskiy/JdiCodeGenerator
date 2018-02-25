@@ -3,7 +3,7 @@
     using System;
     using Abstract;
     using Enums;
-
+    /*
     public class ElementMemberCodeEntry : IElementMemberCodeEntry
     {
         public Guid Id { get; set; }
@@ -28,4 +28,5 @@
 
         public PiecesOfCodeClasses CodeClass { get; set; }
     }
+    */
 }

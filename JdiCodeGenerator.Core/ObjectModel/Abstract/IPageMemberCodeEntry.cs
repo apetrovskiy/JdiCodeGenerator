@@ -3,7 +3,8 @@
     using System.Collections.Generic;
     using Enums;
 
-    public interface IPageMemberCodeEntry : ICodeEntry
+    public interface IPageMemberCodeEntry // : ICodeEntry
+        : IPieceOfCode
     {
         List<LocatorDefinition> Locators { get; set; }
         string MemberName { get; set; }
@@ -25,5 +26,7 @@ IDropDown<JobCategories> category;
         LocatorDefinition List { get; set; }
         List<string> ListMemberNames { get; set; }
         PageMemberCodeEntryTypes Type { get; }
+
+        SourceMemberTypeHolder SourceMemberType { get; set; }
     }
 }
