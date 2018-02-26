@@ -3,8 +3,8 @@
     public enum PiecesOfCodeClasses
     {
         CodeUnit,
-        PageMember,
-        ElementMember,
-        SpecialUnit
+        PageMember // ,
+        // ElementMember,
+        // SpecialUnit
     }
 }
