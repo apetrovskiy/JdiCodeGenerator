@@ -106,7 +106,6 @@
     <Compile Include="ImportExport\ElementMemberCodeEntriesExporter.cs" />
     <Compile Include="ImportExport\ElementMemberCodeEntriesImporter.cs" />
     <Compile Include="ImportExport\DtoJsonConverter.cs" />
-    <Compile Include="ObjectModel\Abstract\IPredefinedCodeFile.cs" />
     <Compile Include="ObjectModel\Abstract\SourceMemberTypeHolder.cs" />
     <Compile Include="ObjectModel\Enums\PageMemberCodeEntryTypes.cs" />
     <Compile Include="ObjectModel\Enums\CodeFileTypes.cs" />
