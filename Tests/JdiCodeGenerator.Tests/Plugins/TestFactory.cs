@@ -131,12 +131,12 @@
             return entries.Cast<PageMemberCodeEntry>().ToArray()[elementPosition];
         }
 
-        public List<IPieceOfCode> GetPiecesOfCodeCollection(HtmlDocument document, Type[] applicableAnalyzers)
+        public List<IPieceOfPackage> GetPiecesOfCodeCollection(HtmlDocument document, Type[] applicableAnalyzers)
         {
             var pageLoader = new PageLoader();
-            var entries = new List<IPieceOfCode>();
+            var entries = new List<IPieceOfPackage>();
             // TODO: temporarily
-            entries.Add(CodeUnit.NewPage("page"));
+            entries.Add(CodeFile.NewPage("page"));
             entries.AddRange(pageLoader.GetCodeEntriesFromNode(document.DocumentNode, ExcludeList, applicableAnalyzers));
             return entries;
         }

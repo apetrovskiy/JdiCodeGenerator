@@ -19,13 +19,13 @@
         HtmlNode _docNode;
         //static ChromiumWebBrowser _browser;
         // 20160715
-        List<IPieceOfCode> _pageCodeEntries;
+        List<IPieceOfPackage> _pageCodeEntries;
         Guid _pageGuid;
 
         // 20160715
         public PageLoader()
         {
-            _pageCodeEntries = new List<IPieceOfCode>();
+            _pageCodeEntries = new List<IPieceOfPackage>();
         }
 
         //public PageLoader()
@@ -184,13 +184,13 @@
         // public IEnumerable<IPageMemberCodeEntry<T>> GetCodeEntriesFromUrl<T>(string url, IEnumerable<string> excludeList, Type[] analyzers)
         //20160718
         // public IEnumerable<IPieceOfCode<T>> GetCodeEntriesFromUrl<T>(string url, IEnumerable<string> excludeList, Type[] analyzers)
-        public IEnumerable<IPieceOfCode> GetCodeEntriesFromUrl(string url, IEnumerable<string> excludeList, Type[] analyzers)
+        public IEnumerable<IPieceOfPackage> GetCodeEntriesFromUrl(string url, IEnumerable<string> excludeList, Type[] analyzers)
         // public IEnumerable<IPieceOfCode> GetCodeEntriesFromUrl<T>(string url, IEnumerable<string> excludeList, Type[] analyzers)
         {
             // 20160715
             // TODO: create a page unit and add it to the collection
             // var regex = new Regex(@"(?");
-            _pageCodeEntries.Add(CodeUnit.NewPage("page name".ToPascalCase()));
+            _pageCodeEntries.Add(CodeFile.NewPage("page name".ToPascalCase()));
             _pageGuid = _pageCodeEntries[0].Id;
 
             CreateDocumentNodeByUrl(url);
@@ -203,7 +203,7 @@
         // 20160715
         // TODO: return type
         // public IEnumerable<IPageMemberCodeEntry<T>> GetCodeEntriesFromPageSource<T>(string pageSource, IEnumerable<string> excludeList, Type[] analyzers)
-        public IEnumerable<IPieceOfCode> GetCodeEntriesFromPageSource<T>(string pageSource, IEnumerable<string> excludeList, Type[] analyzers)
+        public IEnumerable<IPieceOfPackage> GetCodeEntriesFromPageSource<T>(string pageSource, IEnumerable<string> excludeList, Type[] analyzers)
         // public IEnumerable<IPieceOfCode> GetCodeEntriesFromPageSource<T>(string pageSource, IEnumerable<string> excludeList, Type[] analyzers)
         {
             // 20160715
@@ -211,7 +211,7 @@
             var titleNode = _docNode.Descendants().Any(node => "title" == node.OriginalName)
                 ? _docNode.Descendants().First(node => "title" == node.OriginalName).InnerText
                 : "page name".ToPascalCase();
-            _pageCodeEntries.Add(CodeUnit.NewPage(titleNode));
+            _pageCodeEntries.Add(CodeFile.NewPage(titleNode));
             _pageGuid = _pageCodeEntries[0].Id;
 
             CreateDocumentNodeFromSource(pageSource);
@@ -243,7 +243,11 @@
             // experimental
             return
                 // codeEntries.Where(codeEntry => codeEntry.JdiMemberType != JdiElementTypes.Element)
-                _pageCodeEntries.Cast<PageMemberCodeEntry>().Where(codeEntry => codeEntry.JdiMemberType != JdiElementTypes.Element)
+                // _pageCodeEntries.Cast<PageMemberCodeEntry>().Where(codeEntry => codeEntry.JdiMemberType != JdiElementTypes.Element)
+				_pageCodeEntries
+					.Where(codeEntry => PiecesOfCodeClasses.PageMember == codeEntry.CodeClass)
+					.Cast<PageMemberCodeEntry>()
+					.Where(codeEntry => codeEntry.JdiMemberType != JdiElementTypes.Element)
                     // 20160718
                     // .SetBestChoice()
                     .SetDistinguishNamesForMembers();

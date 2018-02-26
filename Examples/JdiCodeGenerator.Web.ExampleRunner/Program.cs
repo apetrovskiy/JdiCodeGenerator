@@ -111,11 +111,11 @@
             var fileNumber = 0;
             // 20160715
             // TODO: create common collection of code entries and units
-            var wholeSiteCollection = new List<IPieceOfCode>
+            var wholeSiteCollection = new List<IPieceOfPackage>
             {
                 // 20160715
                 // TODO: create a site code unit
-                CodeUnit.NewSite("project name")
+                CodeFile.NewSite("project name")
             };
 
             list.ForEach(url =>

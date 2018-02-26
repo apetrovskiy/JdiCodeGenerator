@@ -90,10 +90,11 @@
 
         public static IEnumerable<IPageMemberCodeEntry> SetDistinguishNamesForMembers(this IEnumerable<IPageMemberCodeEntry> codeEntries)
         {
-            // 20160718
-            // var distinguishNamesForMembers = codeEntries as IPageMemberCodeEntry[] ?? codeEntries.ToArray();
-            var distinguishNamesForMembers = codeEntries.Where(entry => PiecesOfCodeClasses.PageMember == entry.CodeClass).Cast<IPageMemberCodeEntry>().ToArray();
-            distinguishNamesForMembers.ToList().ForEach(codeEntry => codeEntry.MemberName = codeEntry.GenerateNameBasedOnNamingPreferences());
+			// 20160718
+			// var distinguishNamesForMembers = codeEntries as IPageMemberCodeEntry[] ?? codeEntries.ToArray();
+			// var distinguishNamesForMembers = codeEntries.Where(entry => PiecesOfCodeClasses.PageMember == entry.CodeClass).Cast<IPageMemberCodeEntry>().ToArray();
+			var distinguishNamesForMembers = codeEntries.Where(entry => PiecesOfCodeClasses.PageMember == entry.CodeClass).ToArray();
+			distinguishNamesForMembers.ToList().ForEach(codeEntry => codeEntry.MemberName = codeEntry.GenerateNameBasedOnNamingPreferences());
             distinguishNamesForMembers
                 .GroupBy(codeEntryName => codeEntryName.MemberName)
                 .Select(grouping =>

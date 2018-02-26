@@ -2,9 +2,7 @@
 {
     public enum PiecesOfCodeClasses
     {
-        CodeUnit,
-        PageMember // ,
-        // ElementMember,
-        // SpecialUnit
+        CodeFile,
+        PageMember
     }
 }

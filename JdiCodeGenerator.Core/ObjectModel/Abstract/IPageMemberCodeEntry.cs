@@ -4,7 +4,7 @@
     using Enums;
 
     public interface IPageMemberCodeEntry // : ICodeEntry
-        : IPieceOfCode
+        : IPieceOfPackage
     {
         List<LocatorDefinition> Locators { get; set; }
         string MemberName { get; set; }

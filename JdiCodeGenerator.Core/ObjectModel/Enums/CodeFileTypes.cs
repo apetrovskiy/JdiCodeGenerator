@@ -1,6 +1,6 @@
 ﻿namespace JdiCodeGenerator.Core.ObjectModel.Enums
 {
-    public enum CodeUnitTypes
+    public enum CodeFileTypes
     {
         ClassForSite,
         ClassForPage,

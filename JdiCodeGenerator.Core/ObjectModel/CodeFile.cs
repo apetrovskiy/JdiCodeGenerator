@@ -6,56 +6,56 @@
     using Enums;
     using Helpers;
 
-    public class CodeUnit : ICodeUnit
+    public class CodeFile : ICodeFile
     {
         public Guid Id { get; set; }
         public Guid ParentId { get; set; }
 
-        CodeUnit(CodeUnitTypes unitType)
+        CodeFile(CodeFileTypes fileType)
         {
             Id = Guid.NewGuid();
             Dependencies = new List<string>();
-            Type = unitType;
-            CodeClass = PiecesOfCodeClasses.CodeUnit;
-            switch (unitType)
+            Type = fileType;
+            CodeClass = PiecesOfCodeClasses.CodeFile;
+            switch (fileType)
             {
-                case CodeUnitTypes.ClassForSite:
+                case CodeFileTypes.ClassForSite:
                     // 20160715
                     // TODO: site default dependencies
                     break;
-                case CodeUnitTypes.ClassForPage:
+                case CodeFileTypes.ClassForPage:
                     // 20160715
                     // TODO: page default dependencies
                     break;
-                case CodeUnitTypes.EnumForMembers:
+                case CodeFileTypes.EnumForMembers:
                     // 20160715
                     // TODO: enum default dependencies
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(unitType), unitType, null);
+                    throw new ArgumentOutOfRangeException(nameof(fileType), fileType, null);
             }
         }
 
-        public static CodeUnit NewSite(string siteName)
+        public static CodeFile NewSite(string siteName)
         {
             // 20160715
             // TODO: generate name from the project name
             // 20160715
             // TODO: use resources or alike for "Site"
             var projectName = siteName.ToPascalCase() + "Site";
-            return new CodeUnit(CodeUnitTypes.ClassForSite) { Name = projectName };
+            return new CodeFile(CodeFileTypes.ClassForSite) { Name = projectName };
         }
 
-        public static CodeUnit NewPage(string pageName)
+        public static CodeFile NewPage(string pageName)
         {
             // 20160715
             // TODO: use resources or alike for "Page"
-            return new CodeUnit(CodeUnitTypes.ClassForPage) { Name = pageName.ToPascalCase() + "Page" };
+            return new CodeFile(CodeFileTypes.ClassForPage) { Name = pageName.ToPascalCase() + "Page" };
         }
 
-        public static CodeUnit NewEnum(string enumName)
+        public static CodeFile NewEnum(string enumName)
         {
-            return new CodeUnit(CodeUnitTypes.EnumForMembers) { Name = enumName.ToPascalCase() };
+            return new CodeFile(CodeFileTypes.EnumForMembers) { Name = enumName.ToPascalCase() };
         }
 
         public string GenerateCode(SupportedLanguages language)
@@ -80,6 +80,6 @@
         //    set { throw new NotImplementedException(); }
         //}
 
-        public CodeUnitTypes Type { get; set; }
+        public CodeFileTypes Type { get; set; }
     }
 }

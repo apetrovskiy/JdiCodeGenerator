@@ -1,6 +1,6 @@
 ﻿namespace JdiCodeGenerator.Core.ObjectModel.Abstract
 {
-    public interface IPredefinedCodeUnit : IPieceOfCode
+    public interface IPredefinedCodeFile : IPieceOfPackage
     {
         string Value { get; set; }
     }

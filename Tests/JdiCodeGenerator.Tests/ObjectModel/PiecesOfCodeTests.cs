@@ -14,13 +14,13 @@
     {
         PageMemberCodeEntry _entry;
         HtmlDocument _doc;
-        List<IPieceOfCode> _entries;
+        List<IPieceOfPackage> _entries;
 
         public PiecesOfCodeTests()
         {
             _entry = null;
             _doc = null;
-            _entries = new List<IPieceOfCode>();
+            _entries = new List<IPieceOfPackage>();
         }
 
         [Theory]
@@ -34,7 +34,7 @@
         {
             GivenHtmlFromFile(input);
             WhenParsing(expectedType);
-            ThenThereIsPageCodeUnit(expectedType);
+            ThenThereIsPageCodeFile(expectedType);
         }
 
         [Theory]
@@ -45,7 +45,7 @@
         {
             GivenHtmlFromFile(input);
             WhenParsing(elementPosition);
-            ThenThereIsPageCodeUnit(expectedType);
+            ThenThereIsPageCodeFile(expectedType);
         }
 
         //[Theory]
@@ -77,11 +77,11 @@
             _entries = TestFactory.Instance.GetPiecesOfCodeCollection(_doc, new[] {typeof(Jdi)});
         }
 
-        void ThenThereIsPageCodeUnit(string expectedType)
+        void ThenThereIsPageCodeFile(string expectedType)
         {
-            Assert.True(_entries.Any(entry => PiecesOfCodeClasses.CodeUnit == entry.CodeClass));
+            Assert.True(_entries.Any(entry => PiecesOfCodeClasses.CodeFile == entry.CodeClass));
             Assert.True(_entries.Any(entry => PiecesOfCodeClasses.PageMember == entry.CodeClass));
-            Assert.True( _entries.Any(entry => entry is CodeUnit));
+            Assert.True( _entries.Any(entry => entry is CodeFile));
             Assert.True(_entries.Any(entry => entry is PageMemberCodeEntry));
         }
     }
