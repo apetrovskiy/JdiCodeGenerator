@@ -114,7 +114,7 @@
 
         public PageMemberCodeEntry GetEntryExpected(HtmlDocument document, Type[] applicableAnalyzers, string expectedTypeName)
         {
-            var pageLoader = new PageLoader();
+            var pageLoader = new AwesomiumPageLoader();
             var entries = new List<IPageMemberCodeEntry>();
             entries.AddRange(pageLoader.GetCodeEntriesFromNode(document.DocumentNode, ExcludeList, applicableAnalyzers));
             // TODO: IndexOf '<'
@@ -125,7 +125,7 @@
 
         public PageMemberCodeEntry GetEntryExpected(HtmlDocument document, Type[] applicableAnalyzers, int elementPosition)
         {
-            var pageLoader = new PageLoader();
+            var pageLoader = new AwesomiumPageLoader();
             var entries = new List<IPageMemberCodeEntry>();
             entries.AddRange(pageLoader.GetCodeEntriesFromNode(document.DocumentNode, ExcludeList, applicableAnalyzers));
             return entries.Cast<PageMemberCodeEntry>().ToArray()[elementPosition];
@@ -133,7 +133,7 @@
 
         public List<IPieceOfPackage> GetPiecesOfCodeCollection(HtmlDocument document, Type[] applicableAnalyzers)
         {
-            var pageLoader = new PageLoader();
+            var pageLoader = new AwesomiumPageLoader();
             var entries = new List<IPieceOfPackage>();
             // TODO: temporarily
             entries.Add(CodeFile.NewPage("page"));

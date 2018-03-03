@@ -105,7 +105,7 @@
                 folderForExportFiles = args[0];
             if (!Directory.Exists(folderForExportFiles))
                 Directory.CreateDirectory(folderForExportFiles);
-            var loader = new PageLoader();
+            var loader = new AwesomiumPageLoader();
             var exporter = new ElementMemberCodeEntriesExporter();
             var importer = new ElementMemberCodeEntriesImporter();
             var fileNumber = 0;
