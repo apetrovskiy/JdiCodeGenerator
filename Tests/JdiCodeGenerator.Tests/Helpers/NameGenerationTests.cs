@@ -83,7 +83,8 @@
         [InlineData("file'(0)", "File0")]
         [InlineData("file™(0)", "File0")]
         [InlineData("file\"(0)", "File0")]
-        [InlineData("file (0)", "File0")]
+        [InlineData(@"file""""(0)", "File0")]
+		[InlineData("file (0)", "File0")]
         [InlineData("file№(0)", "File0")]
         [InlineData("file—(0)", "File0")]
         [InlineData("file¬(0)", "File0")]
@@ -94,7 +95,7 @@
         public void ConvertStringToPascalCase(string input, string expected)
         {
             GivenSourceName(input);
-            WhenPrepatingName();
+            WhenPreparingName();
             ThenThereIsResult(expected);
         }
 
@@ -103,7 +104,7 @@
             _sourceName = name;
         }
 
-        void WhenPrepatingName()
+        void WhenPreparingName()
         {
             _sourceName = _sourceName.ToPascalCase();
         }
