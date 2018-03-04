@@ -22,9 +22,8 @@
             RuleThatWon = firstRule;
             HtmlNodesExtensions.AnalyzerThatWon = this;
 
-            // return firstRule?.TargetType ?? JdiElementTypes.Element;
-            return null == firstRule ? JdiElementTypes.Element : firstRule.TargetType;
-        }
+			return firstRule?.TargetType ?? JdiElementTypes.Element;
+		}
 
         public IEnumerable<IRule<HtmlElementTypes>> Rules { get; set; }
         public IEnumerable<string> ExcludeList { get; set; }

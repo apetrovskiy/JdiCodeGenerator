@@ -63,8 +63,8 @@
 
         static bool NodeWithAttributes(HtmlNode node)
         {
-            return null != node && null != node.Attributes && node.Attributes.Any();
-        }
+			return null != node?.Attributes && node.Attributes.Any();
+		}
 
         public static bool HasAttributeValue(this HtmlNode node, string attributeName, string attributeValue)
         {

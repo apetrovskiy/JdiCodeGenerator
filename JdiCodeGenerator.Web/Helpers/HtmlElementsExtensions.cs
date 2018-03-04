@@ -15,14 +15,14 @@
         {
             var originalName = node.GetOriginalNameOfElement();
 
-            if (Enumerable.Contains(new[]
+            if (new[]
             {
-                WebNames.ElementTypeHtml,
-                WebNames.ElementTypeHead,
-                WebNames.ElementTypeBody,
-                WebNames.ElementTypeComment,
-                WebNames.ElementTypeText
-            }, originalName))
+	            WebNames.ElementTypeHtml,
+	            WebNames.ElementTypeHead,
+	            WebNames.ElementTypeBody,
+	            WebNames.ElementTypeComment,
+	            WebNames.ElementTypeText
+            }.Contains(originalName))
                 return string.Empty;
 
             var result = string.Empty;

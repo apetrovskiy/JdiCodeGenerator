@@ -18,7 +18,7 @@
         Type[] _analyzers;
         IPageMemberCodeEntry _pageMemberCodeEntry;
         // 20160715
-        Guid _parentPageGuid;
+	    readonly Guid _parentPageGuid;
 
         // 20160715
         public HtmlElementToElementMemberCodeEntryConvertor(Guid parentPageGuid)

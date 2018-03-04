@@ -16,7 +16,7 @@
 	public class AwesomiumPageLoader : IPageLoader
     {
         HtmlNode _docNode;
-        List<IPieceOfPackage> _pageCodeEntries;
+	    readonly List<IPieceOfPackage> _pageCodeEntries;
         Guid _pageGuid;
 
         public AwesomiumPageLoader()

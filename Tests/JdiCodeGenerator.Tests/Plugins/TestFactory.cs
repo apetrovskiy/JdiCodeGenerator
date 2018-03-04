@@ -16,7 +16,7 @@
         public static string[] ExcludeList = { "html", "head", "body", "#comment", "#text", "meta", "h1", "h2", "h3", "h4", "h5", "h6", "small", "font", "script", "i", "br", "hr", "strong", "style", "title", "img", "noscript" };
 
         private static volatile TestFactory _instance;
-        private static object syncRoot = new object();
+        private static readonly object syncRoot = new object();
 
         private TestFactory() { }
 
