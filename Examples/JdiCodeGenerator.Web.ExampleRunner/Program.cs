@@ -147,7 +147,7 @@
                     writer.WriteLine(@"// {0}", url);
                     entries.ToList().ForEach(elementDefinition =>
                     {
-                        var codeEntryString = elementDefinition.GenerateCode(SupportedLanguages.Java);
+                        var codeEntryString = elementDefinition.GenerateCode(SupportedTargetLanguages.Java);
                         Console.WriteLine(codeEntryString);
                         writer.WriteLine(codeEntryString);
 
@@ -169,7 +169,7 @@
 
                 // 20160715
                 var onlyPageMembers = entries
-                    .Where(entry => PiecesOfCodeClasses.PageMember == entry.CodeClass)
+                    .Where(entry => PageObjectParts.CodeOfMember == entry.CodeClass)
                     .Cast<IPageMemberCodeEntry>()
                     .ToList();
 
@@ -183,7 +183,7 @@
                     onlyPageMembers
                         .ForEach(eltDef => tempWriter.WriteLine("testLocator(By.{0}(\"{1}\"), \"{0}\", \"{1}\");",
                         // static void testLocator(org.openqa.selenium.By by, String locatorName, String locatorPath) {
-                        eltDef.Locators.Any() ? eltDef.Locators.First(loc => loc.IsBestChoice).SearchTypePreference.ToString() : "_",
+                        eltDef.Locators.Any() ? eltDef.Locators.First(loc => loc.IsBestChoice).ElementSearchTypePreference.ToString() : "_",
                         eltDef.Locators.Any() ? eltDef.Locators.First(loc => loc.IsBestChoice).SearchString : "_"
                         ));
                     tempWriter.Flush();

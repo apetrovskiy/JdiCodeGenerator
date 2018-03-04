@@ -28,7 +28,7 @@
 
         public string RuleThatWon { get; set; }
         // public string Type { get; set; }
-        public PageMemberCodeEntryTypes Type
+        public JdiPageMemberCodeEntryTypes Type
         {
             get
             {
@@ -48,7 +48,7 @@
                     case JdiElementTypes.TextField:
                     case JdiElementTypes.MenuItem:
                     case JdiElementTypes.TabItem:
-                        return PageMemberCodeEntryTypes.Simple;
+                        return JdiPageMemberCodeEntryTypes.Simple;
                     case JdiElementTypes.NavBar:
                     case JdiElementTypes.Pager:
                     case JdiElementTypes.Progress:
@@ -57,11 +57,11 @@
                     case JdiElementTypes.Popover:
                     case JdiElementTypes.Carousel:
                     case JdiElementTypes.CheckList:
-                        return PageMemberCodeEntryTypes.Unknown;
+                        return JdiPageMemberCodeEntryTypes.Unknown;
                     case JdiElementTypes.ComboBox:
-                        return PageMemberCodeEntryTypes.ComplexWithConstructor;
+                        return JdiPageMemberCodeEntryTypes.ComplexWithConstructor;
                     case JdiElementTypes.DropDown:
-                        return PageMemberCodeEntryTypes.ComplexWithAnnotations;
+                        return JdiPageMemberCodeEntryTypes.ComplexWithAnnotations;
                     case JdiElementTypes.DropList:
                     case JdiElementTypes.Form:
                     case JdiElementTypes.Group:
@@ -74,9 +74,9 @@
                     case JdiElementTypes.Selector:
                     case JdiElementTypes.Tabs:
                     case JdiElementTypes.TextList:
-                        return PageMemberCodeEntryTypes.ComplexWithConstructor;
+                        return JdiPageMemberCodeEntryTypes.ComplexWithConstructor;
                     case JdiElementTypes.Table:
-                        return PageMemberCodeEntryTypes.ComplexWithConstructor;
+                        return JdiPageMemberCodeEntryTypes.ComplexWithConstructor;
                     case JdiElementTypes.Cell:
                     case JdiElementTypes.Column:
                     case JdiElementTypes.Coulmns:
@@ -86,11 +86,11 @@
                     case JdiElementTypes.RowColumn:
                     case JdiElementTypes.Rows:
                     case JdiElementTypes.TableLine:
-                        return PageMemberCodeEntryTypes.Unknown;
+                        return JdiPageMemberCodeEntryTypes.Unknown;
                     //case JdiElementTypes.StopProcessing:
                     //    break;
                     default:
-                        return PageMemberCodeEntryTypes.Simple;
+                        return JdiPageMemberCodeEntryTypes.Simple;
                 }
             }
         }
@@ -177,24 +177,24 @@
         public List<string> ListMemberNames { get; set; }
         // public Guid DependsOn { get; set; }
 
-        SupportedLanguages _language;
+        SupportedTargetLanguages _targetLanguage;
 
         public PageMemberCodeEntry()
         {
             Id = Guid.NewGuid();
             Locators = new List<LocatorDefinition>();
             ListMemberNames = new List<string>();
-            CodeClass = PiecesOfCodeClasses.PageMember;
+            CodeClass = PageObjectParts.CodeOfMember;
             // SourceMemberType = SourceMemberTypeHolder.GetInstance<>();
             SourceMemberType = new SourceMemberTypeHolder();
         }
 
-        public string GenerateCode(SupportedLanguages language)
+        public string GenerateCode(SupportedTargetLanguages targetLanguage)
         {
             var result = string.Empty;
 
             // TODO: for the future use
-            _language = language;
+            _targetLanguage = targetLanguage;
 
             // FilterOutWrongLocators();
 
@@ -203,7 +203,7 @@
             return result;
         }
 
-        public PiecesOfCodeClasses CodeClass { get; set; }
+        public PageObjectParts CodeClass { get; set; }
 
         public string EnumerationTypeName { get; set; }
         public string AnalyzerThatWon { get; set; }
@@ -224,31 +224,31 @@
 
             var bestLocator = Locators.First(locator => locator.IsBestChoice);
             var result = string.Empty;
-            if (SupportedLanguages.Java == _language)
-                result = $"\r\n@{bestLocator.Attribute}({bestLocator.SearchTypePreference}=\"{bestLocator.SearchString}\")";
-            if (SupportedLanguages.CSharp == _language)
-                result = $"\r\n[{bestLocator.Attribute}({bestLocator.SearchTypePreference}=\"{bestLocator.SearchString}\")]";
+            if (SupportedTargetLanguages.Java == _targetLanguage)
+                result = $"\r\n@{bestLocator.Attribute}({bestLocator.ElementSearchTypePreference}=\"{bestLocator.SearchString}\")";
+            if (SupportedTargetLanguages.CSharp == _targetLanguage)
+                result = $"\r\n[{bestLocator.Attribute}({bestLocator.ElementSearchTypePreference}=\"{bestLocator.SearchString}\")]";
 
             /*
             @JDropdown(root = @FindBy(css = "dropdown"), value = @FindBy(id = "dropdownMenu1"), list = @FindBy(tagName = "li"))
             IDropDown<JobCategories> category;
             */
             if (JdiMemberType.IsComplexControl())
-                result += GenerateAnnotationForComplexType(_language);
+                result += GenerateAnnotationForComplexType(_targetLanguage);
 
             var overallResult = string.Empty;
 
-            if (SupportedLanguages.Java == _language || SupportedLanguages.CSharp == _language)
+            if (SupportedTargetLanguages.Java == _targetLanguage || SupportedTargetLanguages.CSharp == _targetLanguage)
                 overallResult = string.IsNullOrEmpty(result) ? result : $"{result}\r\npublic {JdiMemberType.ConvertToTypeString(EnumerationTypeName)} {MemberName};";
 
             return overallResult;
         }
 
         // TODO: get enumeration type name via Id that is bound, probably
-        string GenerateAnnotationForComplexType(SupportedLanguages supportedLanguage)
+        string GenerateAnnotationForComplexType(SupportedTargetLanguages supportedTargetLanguage)
         {
             EnumerationTypeName = GenerateEnumerationTypeName();
-            return $"\r\n@J{GetNormalizedLocatorName()}({GetDropDownRootLocator(supportedLanguage)}, {GetDropDownValueLocator(supportedLanguage)}, {GetDropDownListLocator(supportedLanguage)})";
+            return $"\r\n@J{GetNormalizedLocatorName()}({GetDropDownRootLocator(supportedTargetLanguage)}, {GetDropDownValueLocator(supportedTargetLanguage)}, {GetDropDownListLocator(supportedTargetLanguage)})";
         }
 
         string GetNormalizedLocatorName()
@@ -256,20 +256,20 @@
             return JdiMemberType.ToString().Substring(0, 1).ToUpper() + JdiMemberType.ToString().Substring(1).ToLower();
         }
 
-        string GetDropDownRootLocator(SupportedLanguages supportedLanguage)
+        string GetDropDownRootLocator(SupportedTargetLanguages supportedTargetLanguage)
         {
             // return null != Root ? Root.SearchString : string.Empty;
-            return null != Root ? GetLocatorText(Root, "root", supportedLanguage) : string.Empty;
+            return null != Root ? GetLocatorText(Root, "root", supportedTargetLanguage) : string.Empty;
         }
 
-        string GetDropDownValueLocator(SupportedLanguages supportedLanguage)
+        string GetDropDownValueLocator(SupportedTargetLanguages supportedTargetLanguage)
         {
-            return null != Value ? GetLocatorText(Value, "value", supportedLanguage) : string.Empty;
+            return null != Value ? GetLocatorText(Value, "value", supportedTargetLanguage) : string.Empty;
         }
 
-        string GetDropDownListLocator(SupportedLanguages supportedLanguage)
+        string GetDropDownListLocator(SupportedTargetLanguages supportedTargetLanguage)
         {
-            return null != List ? GetLocatorText(List, "list", supportedLanguage) : string.Empty;
+            return null != List ? GetLocatorText(List, "list", supportedTargetLanguage) : string.Empty;
         }
 
         /*
@@ -287,12 +287,12 @@
     IDropDown city;
         */
 
-        string GetLocatorText(LocatorDefinition locator, string locatorName, SupportedLanguages supportedLanguage)
+        string GetLocatorText(LocatorDefinition locator, string locatorName, SupportedTargetLanguages supportedTargetLanguage)
         {
-            if (SupportedLanguages.Java == supportedLanguage)
-                return $"\r\n{locatorName} = @{locator.Attribute}({locator.SearchTypePreference}=\"{locator.SearchString}\")";
-            if (SupportedLanguages.CSharp == supportedLanguage)
-                return $"\r\n{locatorName} = [{locator.Attribute}({locator.SearchTypePreference}=\"{locator.SearchString}\")]";
+            if (SupportedTargetLanguages.Java == supportedTargetLanguage)
+                return $"\r\n{locatorName} = @{locator.Attribute}({locator.ElementSearchTypePreference}=\"{locator.SearchString}\")";
+            if (SupportedTargetLanguages.CSharp == supportedTargetLanguage)
+                return $"\r\n{locatorName} = [{locator.Attribute}({locator.ElementSearchTypePreference}=\"{locator.SearchString}\")]";
             return string.Empty;
         }
 

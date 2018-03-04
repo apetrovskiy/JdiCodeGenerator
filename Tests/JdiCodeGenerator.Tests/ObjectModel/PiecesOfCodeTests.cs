@@ -79,8 +79,8 @@
 
         void ThenThereIsPageCodeFile(string expectedType)
         {
-            Assert.True(_entries.Any(entry => PiecesOfCodeClasses.CodeFile == entry.CodeClass));
-            Assert.True(_entries.Any(entry => PiecesOfCodeClasses.PageMember == entry.CodeClass));
+            Assert.True(_entries.Any(entry => PageObjectParts.ClassFile == entry.CodeClass));
+            Assert.True(_entries.Any(entry => PageObjectParts.CodeOfMember == entry.CodeClass));
             Assert.True( _entries.Any(entry => entry is CodeFile));
             Assert.True(_entries.Any(entry => entry is PageMemberCodeEntry));
         }

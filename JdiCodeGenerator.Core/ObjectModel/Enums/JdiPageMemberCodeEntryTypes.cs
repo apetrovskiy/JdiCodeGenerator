@@ -1,6 +1,6 @@
 ﻿namespace CodeGenerator.Core.ObjectModel.Enums
 {
-    public enum PageMemberCodeEntryTypes
+    public enum JdiPageMemberCodeEntryTypes
     {
         Simple,
         ComplexWithAnnotations,

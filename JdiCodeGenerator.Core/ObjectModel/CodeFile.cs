@@ -16,7 +16,7 @@
             Id = Guid.NewGuid();
             Dependencies = new List<string>();
             Type = fileType;
-            CodeClass = PiecesOfCodeClasses.CodeFile;
+            CodeClass = PageObjectParts.ClassFile;
             switch (fileType)
             {
                 case CodeFileTypes.ClassForSite:
@@ -58,13 +58,13 @@
             return new CodeFile(CodeFileTypes.EnumForMembers) { Name = enumName.ToPascalCase() };
         }
 
-        public string GenerateCode(SupportedLanguages language)
+        public string GenerateCode(SupportedTargetLanguages targetLanguage)
         {
             // TODO: write code
             return string.Empty;
         }
 
-        public PiecesOfCodeClasses CodeClass { get; set; }
+        public PageObjectParts CodeClass { get; set; }
 
         public Guid DependsOnId { get; set; }
         public List<string> Dependencies { get; set; }

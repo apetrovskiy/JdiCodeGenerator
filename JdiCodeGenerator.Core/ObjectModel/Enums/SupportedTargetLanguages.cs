@@ -1,6 +1,6 @@
 ﻿namespace CodeGenerator.Core.ObjectModel.Enums
 {
-    public enum SupportedLanguages
+    public enum SupportedTargetLanguages
     {
         Java,
         CSharp

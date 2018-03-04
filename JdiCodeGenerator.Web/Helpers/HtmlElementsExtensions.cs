@@ -44,27 +44,27 @@
 
         public static LocatorDefinition CreateClassLocator(this HtmlNode node)
         {
-            return node.CreateDomLocatorByAttribute(WebNames.AttributeNameClass, SearchTypePreferences.className);
+            return node.CreateDomLocatorByAttribute(WebNames.AttributeNameClass, ElementSearchTypePreferences.className);
         }
 
         public static LocatorDefinition CreateTagLocator(this HtmlNode node)
         {
-            return node.CreateDomLocatorByAttribute(WebNames.AttributeNameTag, SearchTypePreferences.tagName);
+            return node.CreateDomLocatorByAttribute(WebNames.AttributeNameTag, ElementSearchTypePreferences.tagName);
         }
 
         public static LocatorDefinition CreateIdLocator(this HtmlNode node)
         {
-            return node.CreateDomLocatorByAttribute(WebNames.AttributeNameId, SearchTypePreferences.id);
+            return node.CreateDomLocatorByAttribute(WebNames.AttributeNameId, ElementSearchTypePreferences.id);
         }
 
         public static LocatorDefinition CreateNameLocator(this HtmlNode node)
         {
-            return node.CreateDomLocatorByAttribute(WebNames.AttributeNameName, SearchTypePreferences.name);
+            return node.CreateDomLocatorByAttribute(WebNames.AttributeNameName, ElementSearchTypePreferences.name);
         }
 
         public static LocatorDefinition CreateLinkTextLocator(this HtmlNode node)
         {
-            // return node.CreateDomLocatorByAttribute(WebNames.AttributeNameHref, SearchTypePreferences.linkText);
+            // return node.CreateDomLocatorByAttribute(WebNames.AttributeNameHref, ElementSearchTypePreferences.linkText);
             var fullLinkText = node.InnerText;
 
             // experimental
@@ -77,8 +77,8 @@
                 fullLinkTextParts = fullLinkText.Split('\n');
             return new LocatorDefinition
             {
-                Attribute = FindTypes.FindBy,
-                SearchTypePreference = fullLinkTextParts.Any() ? SearchTypePreferences.partialLinkText : SearchTypePreferences.linkText,
+                Attribute = FindAnnotationTypes.FindBy,
+                ElementSearchTypePreference = fullLinkTextParts.Any() ? ElementSearchTypePreferences.partialLinkText : ElementSearchTypePreferences.linkText,
                 SearchString = fullLinkTextParts.Any() ? fullLinkTextParts.OrderByDescending(part => part.Length).First().Trim() : fullLinkText
             };
         }

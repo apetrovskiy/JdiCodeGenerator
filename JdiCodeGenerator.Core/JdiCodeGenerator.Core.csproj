@@ -106,9 +106,9 @@
     <Compile Include="ImportExport\ElementMemberCodeEntriesImporter.cs" />
     <Compile Include="ImportExport\DtoJsonConverter.cs" />
     <Compile Include="ObjectModel\Abstract\SourceMemberTypeHolder.cs" />
-    <Compile Include="ObjectModel\Enums\PageMemberCodeEntryTypes.cs" />
+    <Compile Include="ObjectModel\Enums\JdiPageMemberCodeEntryTypes.cs" />
     <Compile Include="ObjectModel\Enums\CodeFileTypes.cs" />
-    <Compile Include="ObjectModel\Enums\FindTypes.cs" />
+    <Compile Include="ObjectModel\Enums\FindAnnotationTypes.cs" />
     <Compile Include="ObjectModel\Abstract\IPageMemberCodeEntry.cs" />
     <Compile Include="ObjectModel\Abstract\ICodeFile.cs" />
     <Compile Include="ObjectModel\Abstract\IPieceOfPackage.cs" />
@@ -117,9 +117,9 @@
     <Compile Include="ObjectModel\Enums\Markers.cs" />
     <Compile Include="ObjectModel\Enums\NamingPreferences.cs" />
     <Compile Include="ObjectModel\Enums\NodeRelationships.cs" />
-    <Compile Include="ObjectModel\Enums\PiecesOfCodeClasses.cs" />
-    <Compile Include="ObjectModel\Enums\SearchTypePreferences.cs" />
-    <Compile Include="ObjectModel\Enums\SupportedLanguages.cs" />
+    <Compile Include="ObjectModel\Enums\PageObjectParts.cs" />
+    <Compile Include="ObjectModel\Enums\ElementSearchTypePreferences.cs" />
+    <Compile Include="ObjectModel\Enums\SupportedTargetLanguages.cs" />
     <Compile Include="ObjectModel\PageMemberCodeEntry.cs" />
     <Compile Include="ObjectModel\CodeFile.cs" />
     <Compile Include="ObjectModel\LocatorDefinition.cs" />

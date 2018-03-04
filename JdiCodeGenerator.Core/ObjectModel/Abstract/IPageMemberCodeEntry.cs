@@ -26,7 +26,7 @@ IDropDown<JobCategories> category;
         LocatorDefinition Value { get; set; }
         LocatorDefinition List { get; set; }
         List<string> ListMemberNames { get; set; }
-        PageMemberCodeEntryTypes Type { get; }
+        JdiPageMemberCodeEntryTypes Type { get; }
 
         SourceMemberTypeHolder SourceMemberType { get; set; }
     }

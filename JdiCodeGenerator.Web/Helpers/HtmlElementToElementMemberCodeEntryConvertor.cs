@@ -96,8 +96,8 @@
                 {
                     _pageMemberCodeEntry.List = new LocatorDefinition
                     {
-                        Attribute = FindTypes.FindBy,
-                        SearchTypePreference = SearchTypePreferences.xpath,
+                        Attribute = FindAnnotationTypes.FindBy,
+                        ElementSearchTypePreference = ElementSearchTypePreferences.xpath,
                         SearchString = string.Empty,
                         IsBestChoice = true
                     };

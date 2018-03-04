@@ -1,6 +1,6 @@
 ﻿namespace CodeGenerator.Core.ObjectModel.Enums
 {
-    public enum FindTypes
+    public enum FindAnnotationTypes
     {
         FindBy,
         FindAll,

@@ -31,7 +31,7 @@
         [Then(@"the result should be an element of type ""(.*)""")]
         public void ThenTheResultShouldBeAnElementOfType(string p0)
         {
-            Xunit.Assert.True(_entry.GenerateCode(SupportedLanguages.Java).Contains(p0));
+            Xunit.Assert.True(_entry.GenerateCode(SupportedTargetLanguages.Java).Contains(p0));
         }
 
         [Then(@"the result should be a ""(.*)""")]
@@ -43,7 +43,7 @@
         [Then(@"the result should be a collection of elements")]
         public void ThenTheResultShouldBeACollectionOfElements()
         {
-            Xunit.Assert.True(!string.IsNullOrEmpty(_entry.GenerateCode(SupportedLanguages.Java)));
+            Xunit.Assert.True(!string.IsNullOrEmpty(_entry.GenerateCode(SupportedTargetLanguages.Java)));
         }
     }
 }

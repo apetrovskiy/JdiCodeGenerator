@@ -36,7 +36,7 @@
         void GivenCodeEntries(string memberTypeName, string[] originalSequence)
         {
             _codeEntries = new List<IPageMemberCodeEntry>();
-            originalSequence.ToList().ForEach(item => _codeEntries.Add(new PageMemberCodeEntry { MemberName = item, MemberType = memberTypeName, JdiMemberType = GetJdiElementType(memberTypeName), Locators = new List<LocatorDefinition> { new LocatorDefinition { IsBestChoice = true, SearchString = item, Attribute = FindTypes.FindBy, SearchTypePreference = SearchTypePreferences.id } } }));
+            originalSequence.ToList().ForEach(item => _codeEntries.Add(new PageMemberCodeEntry { MemberName = item, MemberType = memberTypeName, JdiMemberType = GetJdiElementType(memberTypeName), Locators = new List<LocatorDefinition> { new LocatorDefinition { IsBestChoice = true, SearchString = item, Attribute = FindAnnotationTypes.FindBy, ElementSearchTypePreference = ElementSearchTypePreferences.id } } }));
             for (int i = 0; i < originalSequence.Length; i++)
                 _codeEntries[i].MemberName = originalSequence[i];
         }

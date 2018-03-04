@@ -709,12 +709,12 @@ Panel content
 
         void ThenThereIsElementOfType(string expected)
         {
-            Assert.True(_entry.GenerateCode(SupportedLanguages.Java).Contains(expected));
+            Assert.True(_entry.GenerateCode(SupportedTargetLanguages.Java).Contains(expected));
         }
 
         void ThenThereIsCollectionOfElementsOfType(string expected, string rootSearchString, string valueSearchString, string listSearchString)
         {
-            var generatedCodeEntry = _entry.GenerateCode(SupportedLanguages.Java);
+            var generatedCodeEntry = _entry.GenerateCode(SupportedTargetLanguages.Java);
             Assert.True(generatedCodeEntry.Contains(expected));
             if (_entry.JdiMemberType.IsComplexControl())
             {

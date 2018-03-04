@@ -99,12 +99,12 @@
 
         void ThenThereIsElementOfType(string expectedType)
         {
-            Assert.True(_entry.GenerateCode(SupportedLanguages.Java).Contains(expectedType));
+            Assert.True(_entry.GenerateCode(SupportedTargetLanguages.Java).Contains(expectedType));
         }
 
         void ThenThereIsCollectionOfElementsOfType(string expectedType, string rootSearchString, string valueSearchString, string listSearchString)
         {
-            var generatedCodeEntry = _entry.GenerateCode(SupportedLanguages.Java);
+            var generatedCodeEntry = _entry.GenerateCode(SupportedTargetLanguages.Java);
             Assert.True(generatedCodeEntry.Contains(expectedType));
             if (_entry.JdiMemberType.IsComplexControl())
             {

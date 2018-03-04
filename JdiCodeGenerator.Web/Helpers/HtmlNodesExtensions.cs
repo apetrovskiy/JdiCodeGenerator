@@ -104,7 +104,7 @@
             return !string.IsNullOrEmpty(node.OriginalName) ? node.OriginalName : "*";
         }
 
-        public static LocatorDefinition CreateDomLocatorByAttribute(this HtmlNode node, string attributeName, SearchTypePreferences searchTypePreference)
+        public static LocatorDefinition CreateDomLocatorByAttribute(this HtmlNode node, string attributeName, ElementSearchTypePreferences elementSearchTypePreference)
         {
             if (!node.Attributes.Contains(attributeName))
                 return null;
@@ -117,7 +117,7 @@
 
             return new LocatorDefinition
             {
-                Attribute = FindTypes.FindBy, SearchTypePreference = searchTypePreference, SearchString = attributeValue
+                Attribute = FindAnnotationTypes.FindBy, ElementSearchTypePreference = elementSearchTypePreference, SearchString = attributeValue
             };
         }
 
@@ -128,7 +128,7 @@
                 return null;
             return new LocatorDefinition
             {
-                Attribute = FindTypes.FindBy, SearchTypePreference = SearchTypePreferences.css, SearchString = searchString
+                Attribute = FindAnnotationTypes.FindBy, ElementSearchTypePreference = ElementSearchTypePreferences.css, SearchString = searchString
             };
         }
 
@@ -137,7 +137,7 @@
             var searchString = GenerateElementXpath(node);
             return new LocatorDefinition
             {
-                Attribute = FindTypes.FindBy, SearchTypePreference = SearchTypePreferences.xpath, SearchString = searchString
+                Attribute = FindAnnotationTypes.FindBy, ElementSearchTypePreference = ElementSearchTypePreferences.xpath, SearchString = searchString
             };
         }
 
@@ -260,7 +260,7 @@
             codeEntry.Locators.RemoveAll(locator => null == locator || locator.SearchString == string.Empty);
 
             codeEntry.Locators.ForEach(locator => locator.IsBestChoice = false);
-            codeEntry.Locators.OrderBy(locator => (int)locator.SearchTypePreference).First().IsBestChoice = true;
+            codeEntry.Locators.OrderBy(locator => (int)locator.ElementSearchTypePreference).First().IsBestChoice = true;
 
             return codeEntry;
         }

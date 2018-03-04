@@ -1,15 +1,8 @@
 ﻿namespace CodeGenerator.Core.ObjectModel.Enums
 {
     // TODO: convert to a rule for every generator
-    public enum SearchTypePreferences
+    public enum ElementSearchTypePreferences
     {
-        //id,
-        //name,
-        //tagName,
-        //className,
-        //linkText,
-        //css,
-        //xpath,
         id = 0,
         name = 1,
         tagName = 2,

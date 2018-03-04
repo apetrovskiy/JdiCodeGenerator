@@ -9,7 +9,7 @@
     {
         public static IEnumerable<IPageMemberCodeEntry> SetDistinguishNamesForMembers(this IEnumerable<IPageMemberCodeEntry> codeEntries)
         {
-			var distinguishNamesForMembers = codeEntries.Where(entry => PiecesOfCodeClasses.PageMember == entry.CodeClass).ToArray();
+			var distinguishNamesForMembers = codeEntries.Where(entry => PageObjectParts.CodeOfMember == entry.CodeClass).ToArray();
 			distinguishNamesForMembers.ToList().ForEach(codeEntry => codeEntry.MemberName = codeEntry.GenerateNameBasedOnNamingPreferences());
             distinguishNamesForMembers
                 .GroupBy(codeEntryName => codeEntryName.MemberName)
@@ -38,20 +38,20 @@
             var prefix = pageMemberCodeEntry.JdiMemberType.ToString().Substring(0, 1).ToLower() + pageMemberCodeEntry.JdiMemberType.ToString().Substring(1);
             if (!pageMemberCodeEntry.Locators.Any())
                 return prefix + NoName;
-            if (pageMemberCodeEntry.Locators.Any(locator => locator.SearchTypePreference == SearchTypePreferences.name))
-                return prefix + pageMemberCodeEntry.Locators.First(locator => locator.SearchTypePreference == SearchTypePreferences.name).SearchString.ToPascalCase();
+            if (pageMemberCodeEntry.Locators.Any(locator => locator.ElementSearchTypePreference == ElementSearchTypePreferences.name))
+                return prefix + pageMemberCodeEntry.Locators.First(locator => locator.ElementSearchTypePreference == ElementSearchTypePreferences.name).SearchString.ToPascalCase();
 
-            if (pageMemberCodeEntry.Locators.Any(locator => locator.SearchTypePreference == SearchTypePreferences.id))
-                return prefix + pageMemberCodeEntry.Locators.First(locator => locator.SearchTypePreference == SearchTypePreferences.id).SearchString.ToPascalCase();
+            if (pageMemberCodeEntry.Locators.Any(locator => locator.ElementSearchTypePreference == ElementSearchTypePreferences.id))
+                return prefix + pageMemberCodeEntry.Locators.First(locator => locator.ElementSearchTypePreference == ElementSearchTypePreferences.id).SearchString.ToPascalCase();
 
-            if (pageMemberCodeEntry.Locators.Any(locator => locator.SearchTypePreference == SearchTypePreferences.tagName))
-                return prefix + pageMemberCodeEntry.Locators.First(locator => locator.SearchTypePreference == SearchTypePreferences.tagName).SearchString.ToPascalCase();
+            if (pageMemberCodeEntry.Locators.Any(locator => locator.ElementSearchTypePreference == ElementSearchTypePreferences.tagName))
+                return prefix + pageMemberCodeEntry.Locators.First(locator => locator.ElementSearchTypePreference == ElementSearchTypePreferences.tagName).SearchString.ToPascalCase();
 
-            if (pageMemberCodeEntry.Locators.Any(locator => locator.SearchTypePreference == SearchTypePreferences.linkText))
-                return prefix + pageMemberCodeEntry.Locators.First(locator => locator.SearchTypePreference == SearchTypePreferences.linkText).SearchString.ToPascalCase();
+            if (pageMemberCodeEntry.Locators.Any(locator => locator.ElementSearchTypePreference == ElementSearchTypePreferences.linkText))
+                return prefix + pageMemberCodeEntry.Locators.First(locator => locator.ElementSearchTypePreference == ElementSearchTypePreferences.linkText).SearchString.ToPascalCase();
 
-            if (pageMemberCodeEntry.Locators.Any(locator => locator.SearchTypePreference == SearchTypePreferences.className))
-                return prefix + pageMemberCodeEntry.Locators.First(locator => locator.SearchTypePreference == SearchTypePreferences.className).SearchString.ToPascalCase();
+            if (pageMemberCodeEntry.Locators.Any(locator => locator.ElementSearchTypePreference == ElementSearchTypePreferences.className))
+                return prefix + pageMemberCodeEntry.Locators.First(locator => locator.ElementSearchTypePreference == ElementSearchTypePreferences.className).SearchString.ToPascalCase();
 
             return prefix + NoName;
         }

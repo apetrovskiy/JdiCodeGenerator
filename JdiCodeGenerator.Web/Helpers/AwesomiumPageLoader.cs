@@ -121,7 +121,7 @@
                 // codeEntries.Where(codeEntry => codeEntry.JdiMemberType != JdiElementTypes.Element)
                 // _pageCodeEntries.Cast<PageMemberCodeEntry>().Where(codeEntry => codeEntry.JdiMemberType != JdiElementTypes.Element)
 				_pageCodeEntries
-					.Where(codeEntry => PiecesOfCodeClasses.PageMember == codeEntry.CodeClass)
+					.Where(codeEntry => PageObjectParts.CodeOfMember == codeEntry.CodeClass)
 					.Cast<PageMemberCodeEntry>()
 					.Where(codeEntry => codeEntry.JdiMemberType != JdiElementTypes.Element)
                     // 20160718

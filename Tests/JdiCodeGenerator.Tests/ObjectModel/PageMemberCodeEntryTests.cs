@@ -100,7 +100,7 @@
 
             _entry.JdiMemberType = _entry.SourceMemberType.Get<HtmlElementTypes>()[0].ConvertHtmlTypeToJdiType();
 
-            _code = _entry.GenerateCode(SupportedLanguages.Java);
+            _code = _entry.GenerateCode(SupportedTargetLanguages.Java);
         }
 
         void ThenTitleIs(string expectedTitle)
@@ -113,32 +113,32 @@
             Assert.True(_code.Contains(expectedJdiType));
         }
 
-        SearchTypePreferences ConvertStringToSearchTypePreference(string stringTypePreference)
+        ElementSearchTypePreferences ConvertStringToSearchTypePreference(string stringTypePreference)
         {
             switch (stringTypePreference)
             {
                 case "id":
-                    return SearchTypePreferences.id;
+                    return ElementSearchTypePreferences.id;
                 case "name":
-                    return SearchTypePreferences.name;
+                    return ElementSearchTypePreferences.name;
                 case "css":
-                    return SearchTypePreferences.css;
+                    return ElementSearchTypePreferences.css;
                 case "className":
-                    return SearchTypePreferences.className;
+                    return ElementSearchTypePreferences.className;
                 case "xpath":
-                    return SearchTypePreferences.xpath;
+                    return ElementSearchTypePreferences.xpath;
                 case "linkText":
-                    return SearchTypePreferences.linkText;
+                    return ElementSearchTypePreferences.linkText;
                 case "tagName":
-                    return SearchTypePreferences.tagName;
+                    return ElementSearchTypePreferences.tagName;
                 default:
-                    return SearchTypePreferences.id;
+                    return ElementSearchTypePreferences.id;
             }
         }
 
         List<LocatorDefinition> ConvertStringArrayToLocatorDefinitions(string[] stringLocatorDefinitions)
         {
-            return new List<LocatorDefinition> { new LocatorDefinition { Attribute = FindTypes.FindBy, IsBestChoice = true, SearchTypePreference = ConvertStringToSearchTypePreference(stringLocatorDefinitions[0]), SearchString = stringLocatorDefinitions[1] } };
+            return new List<LocatorDefinition> { new LocatorDefinition { Attribute = FindAnnotationTypes.FindBy, IsBestChoice = true, ElementSearchTypePreference = ConvertStringToSearchTypePreference(stringLocatorDefinitions[0]), SearchString = stringLocatorDefinitions[1] } };
         }
     }
 }
