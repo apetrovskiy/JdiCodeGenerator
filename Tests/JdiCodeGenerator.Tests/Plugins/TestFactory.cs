@@ -4,8 +4,8 @@
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
-	using Core.ObjectModel;
-	using Core.ObjectModel.Abstract;
+	using Core.ObjectModel.Abstract.Results;
+	using Core.ObjectModel.Results;
 	using HtmlAgilityPack;
 	using JdiConverters.ObjectModel.Enums;
 	using Web.Helpers;

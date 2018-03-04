@@ -5,9 +5,10 @@
 	using System.Linq;
 	using Core;
 	using Core.Helpers;
-	using Core.ObjectModel;
-	using Core.ObjectModel.Abstract;
+	using Core.ObjectModel.Abstract.Results;
+	using Core.ObjectModel.Abstract.Rules;
 	using Core.ObjectModel.Enums;
+	using Core.ObjectModel.Results;
 	using HtmlAgilityPack;
 	using JdiConverters.ObjectModel.Enums;
 	using ObjectModel.Abstract;

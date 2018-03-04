@@ -1,7 +1,7 @@
 ﻿namespace CodeGenerator.Specs.Steps
 {
-	using Core.ObjectModel;
 	using Core.ObjectModel.Enums;
+	using Core.ObjectModel.Results;
 	using HtmlAgilityPack;
 	using TechTalk.SpecFlow;
 	using Tests.Plugins;

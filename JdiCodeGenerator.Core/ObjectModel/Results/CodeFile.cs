@@ -1,8 +1,8 @@
-﻿namespace CodeGenerator.Core.ObjectModel
+﻿namespace CodeGenerator.Core.ObjectModel.Results
 {
 	using System;
 	using System.Collections.Generic;
-	using Abstract;
+	using Abstract.Results;
 	using Enums;
 	using Helpers;
 

@@ -2,7 +2,7 @@
 {
 	using System;
 	using System.Collections.Generic;
-	using Core.ObjectModel.Abstract;
+	using Core.ObjectModel.Abstract.Results;
 
 	public interface IPageLoader
 	{

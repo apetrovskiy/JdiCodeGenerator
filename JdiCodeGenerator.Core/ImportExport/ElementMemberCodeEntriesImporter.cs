@@ -3,7 +3,7 @@
 	using System.Collections.Generic;
 	using System.IO;
 	using Helpers;
-	using ObjectModel.Abstract;
+	using ObjectModel.Abstract.Results;
 
 	public class ElementMemberCodeEntriesImporter
     {

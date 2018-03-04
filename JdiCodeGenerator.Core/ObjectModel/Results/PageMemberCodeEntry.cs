@@ -1,9 +1,10 @@
-﻿namespace CodeGenerator.Core.ObjectModel
+﻿namespace CodeGenerator.Core.ObjectModel.Results
 {
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using Abstract;
+	using Abstract.Results;
 	using Enums;
 	using Helpers;
 	using JdiConverters.Helpers;

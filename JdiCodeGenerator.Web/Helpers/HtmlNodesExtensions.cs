@@ -4,9 +4,10 @@
 	using System.Collections.Generic;
 	using System.Linq;
 	using Core;
-	using Core.ObjectModel;
-	using Core.ObjectModel.Abstract;
+	using Core.ObjectModel.Abstract.Results;
+	using Core.ObjectModel.Abstract.Rules;
 	using Core.ObjectModel.Enums;
+	using Core.ObjectModel.Results;
 	using HtmlAgilityPack;
 	using JdiConverters.ObjectModel.Enums;
 	using ObjectModel.Abstract;
@@ -20,14 +21,14 @@
             return node.Attributes.Any(attribute => attribute.Name.ToLower() == attributeName);
         }
 
-        public static bool HasAttribute(this HtmlNode node, Markers marker)
+        public static bool HasAttribute(this HtmlNode node, MarkerAttributes markerAttribute)
         {
-            return Markers.OtherAttribute == marker ? node.HasAttributes : HasAttribute(node, ConvertMarkerToStringNameOfAttribute(marker));
+            return MarkerAttributes.OtherAttribute == markerAttribute ? node.HasAttributes : HasAttribute(node, ConvertMarkerToStringNameOfAttribute(markerAttribute));
         }
 
-        static string ConvertMarkerToStringNameOfAttribute(this Markers marker)
+        static string ConvertMarkerToStringNameOfAttribute(this MarkerAttributes markerAttribute)
         {
-            return marker.ToString().ToLower();
+            return markerAttribute.ToString().ToLower();
         }
 
         public static string GetAttributeValue(this HtmlNode node, string attributeName)
@@ -39,23 +40,23 @@
             return NodeWithAttributes(node) ? node.Attributes.First(attribute => attribute.Name.ToLower() == attributeName).Value : string.Empty;
         }
 
-        public static string GetAttributeValue(this HtmlNode node, Markers marker)
+        public static string GetAttributeValue(this HtmlNode node, MarkerAttributes markerAttribute)
         {
             if (null == node)
                 return string.Empty;
-            if (Markers.Tag == marker)
+            if (MarkerAttributes.Tag == markerAttribute)
                 return node.OriginalName;
-            return NodeWithAttributes(node) ? node.Attributes.First(attribute => attribute.Name.ToLower() == ConvertMarkerToStringNameOfAttribute(marker)).Value : string.Empty;
+            return NodeWithAttributes(node) ? node.Attributes.First(attribute => attribute.Name.ToLower() == ConvertMarkerToStringNameOfAttribute(markerAttribute)).Value : string.Empty;
         }
 
-        public static string GetAttributeValue(this HtmlNode node, Markers marker, string attributeValue)
+        public static string GetAttributeValue(this HtmlNode node, MarkerAttributes markerAttribute, string attributeValue)
         {
             if (null == node)
                 return string.Empty;
-            if (Markers.Tag == marker)
+            if (MarkerAttributes.Tag == markerAttribute)
                 return node.OriginalName;
-            // return NodeWithAttributes(node) ? node.Attributes.First(attribute => attribute.Name.ToLower() == ConvertMarkerToStringNameOfAttribute(marker)).Value : string.Empty;
-            if (Markers.OtherAttribute != marker)
+            // return NodeWithAttributes(node) ? node.Attributes.First(attribute => attribute.Name.ToLower() == ConvertMarkerToStringNameOfAttribute(markerAttribute)).Value : string.Empty;
+            if (MarkerAttributes.OtherAttribute != markerAttribute)
                 return string.Empty;
             return NodeWithAttributes(node) ? node.Attributes.First(attribute => attributeValue == attribute.Value).Value : string.Empty;
         }
@@ -164,39 +165,39 @@
             return HtmlNodeType.Comment != node.NodeType && HtmlNodeType.Document != node.NodeType && HtmlNodeType.Text != node.NodeType;
         }
 
-        public static IEnumerable<HtmlNode> GetNodesThatMatchTheCondition(this HtmlNode node, NodeRelationships relationship, Markers marker)
+        public static IEnumerable<HtmlNode> GetNodesThatMatchTheCondition(this HtmlNode node, NodeRelationships relationship, MarkerAttributes markerAttribute)
         {
             // TODO: refactor this!
             switch (relationship)
             {
                 case NodeRelationships.Self:
-                    var result = node.HasAttribute(marker) ? new List<HtmlNode> { node } : new List<HtmlNode> { null };
+                    var result = node.HasAttribute(markerAttribute) ? new List<HtmlNode> { node } : new List<HtmlNode> { null };
                     return result;
                 case NodeRelationships.Sibling:
                     // TODO: write better code!
                     return new List<HtmlNode> { null };
                 case NodeRelationships.Parent:
-                    return node.ParentNode.HasAttribute(marker) ? new List<HtmlNode> { node.ParentNode } : new List<HtmlNode> { null };
+                    return node.ParentNode.HasAttribute(markerAttribute) ? new List<HtmlNode> { node.ParentNode } : new List<HtmlNode> { null };
                 case NodeRelationships.Ancestor:
-                    return node.Ancestors().Any(ancestor => ancestor.HasAttribute(marker))
-                        ? node.Ancestors().Where(ancestor => ancestor.HasAttribute(marker)).ToList()
+                    return node.Ancestors().Any(ancestor => ancestor.HasAttribute(markerAttribute))
+                        ? node.Ancestors().Where(ancestor => ancestor.HasAttribute(markerAttribute)).ToList()
                         : new List<HtmlNode> { null };
                 case NodeRelationships.Child:
-                    return node.ChildNodes.Any(childNode => childNode.HasAttribute(marker))
-                        ? node.ChildNodes.Where(childNode => childNode.HasAttribute(marker)).ToList()
+                    return node.ChildNodes.Any(childNode => childNode.HasAttribute(markerAttribute))
+                        ? node.ChildNodes.Where(childNode => childNode.HasAttribute(markerAttribute)).ToList()
                         : new List<HtmlNode> { null };
-                //return node.SelectNodes("*").Any(childNode => childNode.HasAttribute(marker))
-                //    ? node.SelectNodes("*").Where(childNode => childNode.HasAttribute(marker)).ToList()
+                //return node.SelectNodes("*").Any(childNode => childNode.HasAttribute(markerAttribute))
+                //    ? node.SelectNodes("*").Where(childNode => childNode.HasAttribute(markerAttribute)).ToList()
                 //    : new List<HtmlNode> { null };
                 case NodeRelationships.Descendant:
-                    //return node.Descendants().Any(descendant => descendant.HasAttribute(marker))
-                    //    ? node.Descendants().Where(childNode => childNode.HasAttribute(marker)).ToList()
+                    //return node.Descendants().Any(descendant => descendant.HasAttribute(markerAttribute))
+                    //    ? node.Descendants().Where(childNode => childNode.HasAttribute(markerAttribute)).ToList()
                     //    : new List<HtmlNode> { null };
-                    var result2 = node.Descendants().Any(descendant => descendant.HasAttribute(marker))
-                        ? node.Descendants().Where(childNode => childNode.HasAttribute(marker)).ToList()
+                    var result2 = node.Descendants().Any(descendant => descendant.HasAttribute(markerAttribute))
+                        ? node.Descendants().Where(childNode => childNode.HasAttribute(markerAttribute)).ToList()
                         : new List<HtmlNode> { null };
-                    //var result2 = node.SelectNodes("*").Any(descendant => descendant.HasAttribute(marker))
-                    //    ? node.SelectNodes("*").Where(childNode => childNode.HasAttribute(marker)).ToList()
+                    //var result2 = node.SelectNodes("*").Any(descendant => descendant.HasAttribute(markerAttribute))
+                    //    ? node.SelectNodes("*").Where(childNode => childNode.HasAttribute(markerAttribute)).ToList()
                     //    : new List<HtmlNode> { null };
                     return result2;
                 default:
@@ -206,11 +207,11 @@
 
         public static bool CheckCondition(this HtmlNode node, IRuleCondition condition)
         {
-            var nodesForCondition = GetNodesThatMatchTheCondition(node, condition.Relationship, condition.Marker);
+            var nodesForCondition = GetNodesThatMatchTheCondition(node, condition.NodeRelationship, condition.MarkerAttribute);
             var forCondition = nodesForCondition as HtmlNode[] ?? nodesForCondition.ToArray();
             if (!forCondition.Any())
                 return false;
-            return forCondition.Any(probeNode => NodeMatchesTheCondition(probeNode, condition.Marker, condition.MarkerValues));
+            return forCondition.Any(probeNode => NodeMatchesTheCondition(probeNode, condition.MarkerAttribute, condition.MarkerValues));
         }
 
         public static bool IsRuleResolvableToJdiType(this IRule<HtmlElementTypes> rule, HtmlNode node)
@@ -219,15 +220,15 @@
             (!rule.AndConditions.Any() || rule.AndConditions.All(condition => CheckCondition(node, condition)));
         }
 
-        public static bool NodeMatchesTheCondition(this HtmlNode nodeForCondition, Markers marker, List<string> markerValues)
+        public static bool NodeMatchesTheCondition(this HtmlNode nodeForCondition, MarkerAttributes markerAttribute, List<string> markerValues)
         {
             if (null == nodeForCondition)
                 return false;
 
-            if (Markers.OtherAttribute == marker)
+            if (MarkerAttributes.OtherAttribute == markerAttribute)
                 return markerValues.Any(markerValue => nodeForCondition.Attributes.Any(attribute => markerValue == attribute.Value));
 
-            var attributeValue = nodeForCondition.GetAttributeValue(marker);
+            var attributeValue = nodeForCondition.GetAttributeValue(markerAttribute);
             return markerValues.Any(markerValue => attributeValue.Contains(markerValue));
         }
 

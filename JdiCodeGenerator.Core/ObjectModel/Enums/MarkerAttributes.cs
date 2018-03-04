@@ -1,6 +1,6 @@
 ﻿namespace CodeGenerator.Core.ObjectModel.Enums
 {
-    public enum Markers
+    public enum MarkerAttributes
     {
         Id,
         Name,

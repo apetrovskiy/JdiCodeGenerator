@@ -5,9 +5,9 @@
 	using System.IO;
 	using System.Linq;
 	using Core.ImportExport;
-	using Core.ObjectModel;
-	using Core.ObjectModel.Abstract;
+	using Core.ObjectModel.Abstract.Results;
 	using Core.ObjectModel.Enums;
+	using Core.ObjectModel.Results;
 	using Helpers;
 	using ObjectModel.Abstract;
 	using ObjectModel.Plugins.BootstrapAndCompetitors;

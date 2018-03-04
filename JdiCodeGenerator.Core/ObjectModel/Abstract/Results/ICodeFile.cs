@@ -1,4 +1,4 @@
-﻿namespace CodeGenerator.Core.ObjectModel.Abstract
+﻿namespace CodeGenerator.Core.ObjectModel.Abstract.Results
 {
 	using System;
 	using System.Collections.Generic;

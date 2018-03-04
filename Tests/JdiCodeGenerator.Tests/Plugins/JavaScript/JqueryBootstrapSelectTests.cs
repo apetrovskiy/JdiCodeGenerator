@@ -1,7 +1,7 @@
 ﻿namespace CodeGenerator.Tests.Plugins.JavaScript
 {
-	using Core.ObjectModel;
 	using Core.ObjectModel.Enums;
+	using Core.ObjectModel.Results;
 	using HtmlAgilityPack;
 	using JdiConverters.Helpers;
 	using Web.ObjectModel.Plugins.JavaScript;

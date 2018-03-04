@@ -3,8 +3,8 @@
 	using System.Collections.Generic;
 	using System.Linq;
 	using Newtonsoft.Json;
-	using ObjectModel;
-	using ObjectModel.Abstract;
+	using ObjectModel.Abstract.Results;
+	using ObjectModel.Results;
 
 	public static class ImportExportExtensions
     {

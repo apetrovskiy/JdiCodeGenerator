@@ -1,7 +1,7 @@
-﻿namespace CodeGenerator.Core.ObjectModel
+﻿namespace CodeGenerator.Core.ObjectModel.Rules
 {
 	using System.Collections.Generic;
-	using Abstract;
+	using Abstract.Rules;
 	using JdiConverters.ObjectModel.Enums;
 
 	public class Rule<T> : IRule<T>

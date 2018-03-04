@@ -3,9 +3,9 @@
 	using System.Collections.Generic;
 	using Abstract;
 	using Core;
-	using Core.ObjectModel;
-	using Core.ObjectModel.Abstract;
+	using Core.ObjectModel.Abstract.Rules;
 	using Core.ObjectModel.Enums;
+	using Core.ObjectModel.Rules;
 	using JdiConverters.ObjectModel.Enums;
 
 	public class PlainHtml5 : FrameworkAlignmentAnalysisPlugin
@@ -22,7 +22,7 @@
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Input },
                     TargetType = JdiElementTypes.TextField,
                     OrConditions = new List<IRuleCondition>
-                    { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Type, MarkerValues = new List<string> { "text", "email" } } }
+                    { new RuleCondition { NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.Type, MarkerValues = new List<string> { "text", "email" } } }
                 },
                 /*
 <button class="uui-button dark-blue" type="submit" id="submit-button">Submit</button>
@@ -37,10 +37,10 @@
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Button, HtmlElementTypes.Input },
                     TargetType = JdiElementTypes.Button,
                     OrConditions = new List<IRuleCondition>
-                    // { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "button" } } }
+                    // { new RuleCondition { NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "button" } } }
                     {
-                        new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "button" } },
-                        new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Type, MarkerValues = new List<string> { "submit" }}
+                        new RuleCondition { NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "button" } },
+                        new RuleCondition { NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.Type, MarkerValues = new List<string> { "submit" }}
                     }
                 },
                 new Rule<HtmlElementTypes>
@@ -49,7 +49,7 @@
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Link },
                     TargetType = JdiElementTypes.Link,
                     OrConditions = new List<IRuleCondition>
-                    { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "link" } } }
+                    { new RuleCondition { NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "link" } } }
                 },
                 new Rule<HtmlElementTypes>
                 {
@@ -57,7 +57,7 @@
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Textarea },
                     TargetType = JdiElementTypes.TextArea,
                     OrConditions = new List<IRuleCondition>
-                    { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "textarea" } } }
+                    { new RuleCondition { NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "textarea" } } }
                 },
                 new Rule<HtmlElementTypes>
                 {
@@ -65,7 +65,7 @@
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.A },
                     TargetType = JdiElementTypes.Link,
                     OrConditions = new List<IRuleCondition>
-                    { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "a" } } }
+                    { new RuleCondition { NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "a" } } }
                 },
                 new Rule<HtmlElementTypes>
                 {
@@ -73,7 +73,7 @@
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Label },
                     TargetType = JdiElementTypes.Label,
                     OrConditions = new List<IRuleCondition>
-                    { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "label" } } }
+                    { new RuleCondition { NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "label" } } }
                 },
                 new Rule<HtmlElementTypes>
                 {
@@ -81,7 +81,7 @@
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Body },
                     TargetType = JdiElementTypes.Button,
                     OrConditions = new List<IRuleCondition>
-                    { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "hzhz" } } }
+                    { new RuleCondition { NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "hzhz" } } }
                 },
                 /*
 <select>
@@ -97,7 +97,7 @@
                 //    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> {  Types = new List<HtmlElementTypes> { HtmlElementTypes.Select } } },
                 //    TargetType = JdiElementTypes.DropDown,
                 //    OrConditions = new List<IRuleCondition>
-                //    { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "select" } } },
+                //    { new RuleCondition { NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "select" } } },
                 //},
                 new Rule<HtmlElementTypes>
                 {
@@ -105,16 +105,16 @@
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Select },
                     TargetType = JdiElementTypes.ComboBox,
                     OrConditions = new List<IRuleCondition>
-                    { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "select" } } },
+                    { new RuleCondition { NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "select" } } },
                     InternalElements = new Dictionary<string, IRule<HtmlElementTypes>>
                     {
-                        //{ Resources.Jdi_DropDown_root, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Select } } }, TargetType = JdiElementTypes.DropDown, OrConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "select" } } } } },
-                        //{ Resources.Jdi_DropDown_value, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Select } } }, TargetType = JdiElementTypes.DropDown, OrConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "select" } } } } },
-                        //{ Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Option } } }, TargetType = JdiElementTypes.ListItem, OrConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Tag, MarkerValues = new List<string> { "option" } } } } }
-                        { Resources.Jdi_DropDown_root, new Rule<HtmlElementTypes> { SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Select }, TargetType = JdiElementTypes.DropDown, AndConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "select" } } } } },
-                        { Resources.Jdi_DropDown_value, new Rule<HtmlElementTypes> { SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Select }, TargetType = JdiElementTypes.DropDown, AndConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "select" } } } } },
-                        // { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Option } } }, TargetType = JdiElementTypes.ListItem, AndConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Tag, MarkerValues = new List<string> { "option" } } } } }
-                        { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Select }, TargetType = JdiElementTypes.DropDown, AndConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "select" } } } } }
+                        //{ Resources.Jdi_DropDown_root, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Select } } }, TargetType = JdiElementTypes.DropDown, OrConditions = new List<IRuleCondition> { new RuleCondition { NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "select" } } } } },
+                        //{ Resources.Jdi_DropDown_value, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Select } } }, TargetType = JdiElementTypes.DropDown, OrConditions = new List<IRuleCondition> { new RuleCondition { NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "select" } } } } },
+                        //{ Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Option } } }, TargetType = JdiElementTypes.ListItem, OrConditions = new List<IRuleCondition> { new RuleCondition { NodeRelationship = NodeRelationships.Descendant, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "option" } } } } }
+                        { Resources.Jdi_DropDown_root, new Rule<HtmlElementTypes> { SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Select }, TargetType = JdiElementTypes.DropDown, AndConditions = new List<IRuleCondition> { new RuleCondition { NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "select" } } } } },
+                        { Resources.Jdi_DropDown_value, new Rule<HtmlElementTypes> { SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Select }, TargetType = JdiElementTypes.DropDown, AndConditions = new List<IRuleCondition> { new RuleCondition { NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "select" } } } } },
+                        // { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Option } } }, TargetType = JdiElementTypes.ListItem, AndConditions = new List<IRuleCondition> { new RuleCondition { NodeRelationship = NodeRelationships.Descendant, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "option" } } } } }
+                        { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Select }, TargetType = JdiElementTypes.DropDown, AndConditions = new List<IRuleCondition> { new RuleCondition { NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "select" } } } } }
                     }
                 },
                 /*
@@ -130,7 +130,7 @@
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Form },
                     TargetType = JdiElementTypes.Form,
                     OrConditions = new List<IRuleCondition>
-                    { new RuleCondition {Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "form" } } }
+                    { new RuleCondition {NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "form" } } }
                 },
 //                ,
 //                /*
@@ -144,7 +144,7 @@
 //                    SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> {  Types = new List<HtmlElementTypes> { HtmlElementTypes.Select } } },
 //                    TargetType = JdiElementTypes.DropDown,
 //                    OrConditions = new List<IRuleCondition>
-//                    { new RuleCondition {Relationship = NodeRelationships.Self, Marker = Markers.Tag, MarkerValues = new List<string> { "form" } } }
+//                    { new RuleCondition {NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "form" } } }
 //                }
                 /*
 <section class="vertical-group" id="elements-checklist">
@@ -161,14 +161,14 @@
                     TargetType = JdiElementTypes.CheckList,
                     AndConditions = new List<IRuleCondition>
                     {
-                        new RuleCondition {  Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "vertical-group" } },
-                        new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Tag, MarkerValues = new List<string> { "input" } },
-                        new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Type, MarkerValues = new List<string> { "checkbox" } }
+                        new RuleCondition {  NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.Class, MarkerValues = new List<string> { "vertical-group" } },
+                        new RuleCondition { NodeRelationship = NodeRelationships.Descendant, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "input" } },
+                        new RuleCondition { NodeRelationship = NodeRelationships.Descendant, MarkerAttribute = MarkerAttributes.Type, MarkerValues = new List<string> { "checkbox" } }
                     },
                     InternalElements = new Dictionary<string, IRule<HtmlElementTypes>>
                     {
-                        // { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Input } } }, TargetType = JdiElementTypes.CheckBox, AndConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Tag, MarkerValues = new List<string> { "input" } }, new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Type, MarkerValues = new List<string> { "checkbox" } } } } }
-                        // { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Label } } }, TargetType = JdiElementTypes.CheckBox, AndConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Tag, MarkerValues = new List<string> { "label" } } } } }
+                        // { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Input } } }, TargetType = JdiElementTypes.CheckBox, AndConditions = new List<IRuleCondition> { new RuleCondition { NodeRelationship = NodeRelationships.Descendant, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "input" } }, new RuleCondition { NodeRelationship = NodeRelationships.Descendant, MarkerAttribute = MarkerAttributes.Type, MarkerValues = new List<string> { "checkbox" } } } } }
+                        // { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Label } } }, TargetType = JdiElementTypes.CheckBox, AndConditions = new List<IRuleCondition> { new RuleCondition { NodeRelationship = NodeRelationships.Descendant, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "label" } } } } }
                         { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Label }, TargetType = JdiElementTypes.CheckBox } }
                     }
                 },
@@ -187,14 +187,14 @@
                     TargetType = JdiElementTypes.RadioButtons,
                     AndConditions = new List<IRuleCondition>
                     {
-                        new RuleCondition {  Relationship = NodeRelationships.Self, Marker = Markers.Class, MarkerValues = new List<string> { "horizontal-group" } },
-                        new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Tag, MarkerValues = new List<string> { "input" } },
-                        new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Type, MarkerValues = new List<string> { "radio" } }
+                        new RuleCondition {  NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.Class, MarkerValues = new List<string> { "horizontal-group" } },
+                        new RuleCondition { NodeRelationship = NodeRelationships.Descendant, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "input" } },
+                        new RuleCondition { NodeRelationship = NodeRelationships.Descendant, MarkerAttribute = MarkerAttributes.Type, MarkerValues = new List<string> { "radio" } }
                     },
                     InternalElements = new Dictionary<string, IRule<HtmlElementTypes>>
                     {
-                        // { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Input } } }, TargetType = JdiElementTypes.CheckBox, AndConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Tag, MarkerValues = new List<string> { "input" } }, new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Type, MarkerValues = new List<string> { "checkbox" } } } } }
-                        // { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Label } } }, TargetType = JdiElementTypes.CheckBox, AndConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Tag, MarkerValues = new List<string> { "label" } } } } }
+                        // { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Input } } }, TargetType = JdiElementTypes.CheckBox, AndConditions = new List<IRuleCondition> { new RuleCondition { NodeRelationship = NodeRelationships.Descendant, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "input" } }, new RuleCondition { NodeRelationship = NodeRelationships.Descendant, MarkerAttribute = MarkerAttributes.Type, MarkerValues = new List<string> { "checkbox" } } } } }
+                        // { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<SourceElementTypeCollection<HtmlElementTypes>> { new SourceElementTypeCollection<HtmlElementTypes> { Types = new List<HtmlElementTypes> { HtmlElementTypes.Label } } }, TargetType = JdiElementTypes.CheckBox, AndConditions = new List<IRuleCondition> { new RuleCondition { NodeRelationship = NodeRelationships.Descendant, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "label" } } } } }
                         { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Label }, TargetType = JdiElementTypes.RadioButtons } }
                     }
                 }

@@ -1,4 +1,4 @@
-﻿namespace CodeGenerator.Core.ObjectModel.Abstract
+﻿namespace CodeGenerator.Core.ObjectModel.Abstract.Rules
 {
 	using System.Collections.Generic;
 	using JdiConverters.ObjectModel.Enums;

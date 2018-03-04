@@ -1,7 +1,7 @@
 ﻿namespace CodeGenerator.Web.ObjectModel.Abstract
 {
 	using System.Collections.Generic;
-	using Core.ObjectModel.Abstract;
+	using Core.ObjectModel.Abstract.Rules;
 	using HtmlAgilityPack;
 	using JdiConverters.ObjectModel.Enums;
 

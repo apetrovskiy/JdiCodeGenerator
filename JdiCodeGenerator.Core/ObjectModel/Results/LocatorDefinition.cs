@@ -1,4 +1,4 @@
-﻿namespace CodeGenerator.Core.ObjectModel
+﻿namespace CodeGenerator.Core.ObjectModel.Results
 {
 	using Enums;
 

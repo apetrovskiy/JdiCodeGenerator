@@ -6,9 +6,9 @@
 	using System.Threading;
 	using Awesomium.Core;
 	using Core.Helpers;
-	using Core.ObjectModel;
-	using Core.ObjectModel.Abstract;
+	using Core.ObjectModel.Abstract.Results;
 	using Core.ObjectModel.Enums;
+	using Core.ObjectModel.Results;
 	using HtmlAgilityPack;
 	using JdiConverters.ObjectModel.Enums;
 	using Web;

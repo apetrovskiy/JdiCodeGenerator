@@ -2,7 +2,7 @@
 {
 	using System.Collections.Generic;
 	using System.Linq;
-	using ObjectModel.Abstract;
+	using ObjectModel.Abstract.Results;
 	using ObjectModel.Enums;
 
 	public static class ElementMemberCodeEntriesExtensions

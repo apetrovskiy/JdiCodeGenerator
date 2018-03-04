@@ -2,7 +2,7 @@
 {
 	using System.Collections.Generic;
 	using System.Linq;
-	using Core.ObjectModel.Abstract;
+	using Core.ObjectModel.Abstract.Rules;
 	using Helpers;
 	using HtmlAgilityPack;
 	using JdiConverters.ObjectModel.Enums;

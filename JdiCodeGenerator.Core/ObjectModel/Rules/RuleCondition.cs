@@ -1,14 +1,14 @@
-﻿namespace CodeGenerator.Core.ObjectModel
+﻿namespace CodeGenerator.Core.ObjectModel.Rules
 {
 	using System.Collections.Generic;
-	using Abstract;
+	using Abstract.Rules;
 	using Enums;
 
 	public class RuleCondition : IRuleCondition
     {
-        public Markers Marker { get; set; }
+        public MarkerAttributes MarkerAttribute { get; set; }
         public List<string> MarkerValues { get; set; }
-        public NodeRelationships Relationship { get; set; }
+        public NodeRelationships NodeRelationship { get; set; }
 
         public RuleCondition()
         {

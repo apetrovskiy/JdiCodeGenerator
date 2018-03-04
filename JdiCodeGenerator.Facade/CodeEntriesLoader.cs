@@ -1,7 +1,7 @@
 ﻿namespace CodeGenerator.Facade
 {
 	using System.Collections.Generic;
-	using Core.ObjectModel.Abstract;
+	using Core.ObjectModel.Abstract.Results;
 
 	public class CodeEntriesLoader
     {

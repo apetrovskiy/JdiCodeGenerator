@@ -3,9 +3,9 @@
 	using System.Collections.Generic;
 	using Abstract;
 	using Core;
-	using Core.ObjectModel;
-	using Core.ObjectModel.Abstract;
+	using Core.ObjectModel.Abstract.Rules;
 	using Core.ObjectModel.Enums;
+	using Core.ObjectModel.Rules;
 	using JdiConverters.ObjectModel.Enums;
 
 	public class Jdi : FrameworkAlignmentAnalysisPlugin
@@ -21,12 +21,12 @@
                     Description = "Pagination",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Ul },
                     TargetType = JdiElementTypes.Pagination,
-                    AndConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.OtherAttribute, MarkerValues = new List<string> { "IPagination" } } },
+                    AndConditions = new List<IRuleCondition> { new RuleCondition { NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.OtherAttribute, MarkerValues = new List<string> { "IPagination" } } },
                     InternalElements = new Dictionary<string, IRule<HtmlElementTypes>>
                     {
                         // root?
                         // value?
-                        { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Li }, TargetType = JdiElementTypes.ListItem, AndConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Descendant, Marker = Markers.Tag, MarkerValues = new List<string> { "li" } } } } }
+                        { Resources.Jdi_DropDown_list, new Rule<HtmlElementTypes> { SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Li }, TargetType = JdiElementTypes.ListItem, AndConditions = new List<IRuleCondition> { new RuleCondition { NodeRelationship = NodeRelationships.Descendant, MarkerAttribute = MarkerAttributes.Tag, MarkerValues = new List<string> { "li" } } } } }
                     }
                 },
                 // <input id="Name" type="text" class="uui-form-element" jdi-type="ITextField" jdi-name="Name" jdi-parent="contactForm">
@@ -35,7 +35,7 @@
                     Description = "TextField",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Input },
                     TargetType = JdiElementTypes.TextField,
-                    AndConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.OtherAttribute, MarkerValues = new List<string> { "ITextField" } } }
+                    AndConditions = new List<IRuleCondition> { new RuleCondition { NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.OtherAttribute, MarkerValues = new List<string> { "ITextField" } } }
                 },
                 /*
 	<div id="datepicker" class="date uui-datepicker date-button small">
@@ -50,7 +50,7 @@
                     Description = "DatePicker",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Input },
                     TargetType = JdiElementTypes.DatePicker,
-                    AndConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.OtherAttribute, MarkerValues = new List<string> { "IDatePicker" } } }
+                    AndConditions = new List<IRuleCondition> { new RuleCondition { NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.OtherAttribute, MarkerValues = new List<string> { "IDatePicker" } } }
                 },
                 /*
 <div class="input-append bootstrap-timepicker uui-timepicker time-button">
@@ -65,7 +65,7 @@
                     Description = "TimePicker",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Input },
                     TargetType = JdiElementTypes.TimePicker,
-                    AndConditions = new List<IRuleCondition> { new RuleCondition { Relationship = NodeRelationships.Self, Marker = Markers.OtherAttribute, MarkerValues = new List<string> { "ITimePicker" } } }
+                    AndConditions = new List<IRuleCondition> { new RuleCondition { NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.OtherAttribute, MarkerValues = new List<string> { "ITimePicker" } } }
                 },
                 // <button class="uui-button dark-blue m-t35" type="submit" jdi-type="IButton" jdi-parent="contactForm" jdi-name="submit">Submit</button>
                 new Rule<HtmlElementTypes>
@@ -73,7 +73,7 @@
                     Description = "Button",
                     SourceTypes = new List<HtmlElementTypes> { HtmlElementTypes.Button },
                     TargetType = JdiElementTypes.Button,
-                    AndConditions = new List<IRuleCondition> { new RuleCondition {  Relationship = NodeRelationships.Self, Marker = Markers.OtherAttribute, MarkerValues = new List<string> { "IButton" } } }
+                    AndConditions = new List<IRuleCondition> { new RuleCondition {  NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.OtherAttribute, MarkerValues = new List<string> { "IButton" } } }
                 }
 
             };
