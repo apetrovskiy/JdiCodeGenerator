@@ -1,9 +1,9 @@
-﻿namespace JdiCodeGenerator.Tests.Helpers
+﻿namespace CodeGenerator.Tests.Helpers
 {
-    using Xunit;
-    using Core.Helpers;
+	using Core.Helpers;
+	using Xunit;
 
-    public class NameGenerationTests
+	public class NameGenerationTests
     {
         string _sourceName;
 

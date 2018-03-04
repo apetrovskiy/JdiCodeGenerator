@@ -1,10 +1,10 @@
-﻿namespace JdiCodeGenerator.Core.ObjectModel.Abstract
+﻿namespace CodeGenerator.Core.ObjectModel.Abstract
 {
-    using System;
-    using System.Collections.Generic;
-    using Enums;
+	using System;
+	using System.Collections.Generic;
+	using Enums;
 
-    public interface ICodeFile : IPieceOfPackage
+	public interface ICodeFile : IPieceOfPackage
     {
         string MemberName { get; set; }
         string MemberType { get; set; }

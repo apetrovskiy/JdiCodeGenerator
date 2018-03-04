@@ -1,4 +1,4 @@
-﻿namespace JdiCodeGenerator.Core.ObjectModel.Enums
+﻿namespace CodeGenerator.Core.ObjectModel.Enums
 {
     public enum SupportedLanguages
     {

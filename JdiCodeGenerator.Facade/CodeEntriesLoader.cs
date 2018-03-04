@@ -1,9 +1,9 @@
-﻿namespace JdiCodeGenerator.Facade
+﻿namespace CodeGenerator.Facade
 {
-    using System.Collections.Generic;
-    using Core.ObjectModel.Abstract;
+	using System.Collections.Generic;
+	using Core.ObjectModel.Abstract;
 
-    public class CodeEntriesLoader
+	public class CodeEntriesLoader
     {
         public IEnumerable<IPageMemberCodeEntry> LoadWeb(string[] addresses)
         {

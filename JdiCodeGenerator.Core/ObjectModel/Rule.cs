@@ -1,10 +1,10 @@
-﻿namespace JdiCodeGenerator.Core.ObjectModel
+﻿namespace CodeGenerator.Core.ObjectModel
 {
-    using System.Collections.Generic;
-    using Abstract;
-    using Enums;
+	using System.Collections.Generic;
+	using Abstract;
+	using JdiConverters.ObjectModel.Enums;
 
-    public class Rule<T> : IRule<T>
+	public class Rule<T> : IRule<T>
     {
         public IEnumerable<IRuleCondition> OrConditions { get; set; }
         public IEnumerable<IRuleCondition> AndConditions { get; set; }

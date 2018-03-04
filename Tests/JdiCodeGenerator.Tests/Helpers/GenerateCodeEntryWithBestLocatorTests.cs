@@ -1,4 +1,4 @@
-﻿namespace JdiCodeGenerator.Tests.Helpers
+﻿namespace CodeGenerator.Tests.Helpers
 {
     public class GenerateCodeEntryWithBestLocatorTests
     {

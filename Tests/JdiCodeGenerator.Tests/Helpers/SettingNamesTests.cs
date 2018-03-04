@@ -1,14 +1,15 @@
-﻿namespace JdiCodeGenerator.Tests.Helpers
+﻿namespace CodeGenerator.Tests.Helpers
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using Core.Helpers;
-    using Core.ObjectModel;
-    using Core.ObjectModel.Abstract;
-    using Core.ObjectModel.Enums;
-    using Xunit;
+	using System.Collections.Generic;
+	using System.Linq;
+	using Core.Helpers;
+	using Core.ObjectModel;
+	using Core.ObjectModel.Abstract;
+	using Core.ObjectModel.Enums;
+	using JdiConverters.ObjectModel.Enums;
+	using Xunit;
 
-    public class SettingNamesTests
+	public class SettingNamesTests
     {
         List<IPageMemberCodeEntry> _codeEntries;
 

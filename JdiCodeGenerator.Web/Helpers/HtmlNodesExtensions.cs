@@ -1,16 +1,17 @@
-﻿namespace JdiCodeGenerator.Web.Helpers
+﻿namespace CodeGenerator.Web.Helpers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Core;
-    using HtmlAgilityPack;
-    using Core.ObjectModel;
-    using Core.ObjectModel.Abstract;
-    using Core.ObjectModel.Enums;
-    using ObjectModel.Abstract;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using Core;
+	using Core.ObjectModel;
+	using Core.ObjectModel.Abstract;
+	using Core.ObjectModel.Enums;
+	using HtmlAgilityPack;
+	using JdiConverters.ObjectModel.Enums;
+	using ObjectModel.Abstract;
 
-    public static class HtmlNodesExtensions
+	public static class HtmlNodesExtensions
     {
         public static bool HasAttribute(this HtmlNode node, string attributeName)
         {
@@ -145,19 +146,22 @@
             var originalName = GetOriginalNameOfElement(node);
             if (WebNames.ElementTypeBody == originalName)
                 return "/";
-
-            var result = !string.IsNullOrEmpty(node.Id) ? string.Format(@"/{0}[@id='{1}']", originalName, node.Id) : HasAttribute(node, (string) WebNames.AttributeNameName) ? string.Format(@"/{0}[@name='{1}']", originalName, GetAttributeValue(node, (string) WebNames.AttributeNameName)) : HasAttribute(node, (string) WebNames.AttributeNameClass) && !GetAttributeValue(node, (string) WebNames.AttributeNameClass).Contains(" ") ? string.Format(@"/{0}[@class='{1}']", originalName, GetAttributeValue(node, (string) WebNames.AttributeNameClass))
-                : string.Format(@"/{0}", originalName);
+	        var result = !string.IsNullOrEmpty(node.Id)
+		        ? $"/{originalName}[@id='{node.Id}']"
+		        : HasAttribute(node, (string) WebNames.AttributeNameName)
+			        ? $"/{originalName}[@name='{GetAttributeValue(node, (string) WebNames.AttributeNameName)}']"
+			        : HasAttribute(node, (string) WebNames.AttributeNameClass) &&
+			          !GetAttributeValue(node, (string) WebNames.AttributeNameClass).Contains(" ")
+				        ? $"/{originalName}[@class='{GetAttributeValue(node, (string) WebNames.AttributeNameClass)}']"
+				        : $@"/{originalName}";
+	
             return NodeIsAppropriateForXpathBuilding(node.ParentNode) ? GenerateElementXpath(node.ParentNode) + result : result;
         }
 
         static bool NodeIsAppropriateForXpathBuilding(this HtmlNode node)
         {
-            if (null == node)
-                return false;
-            if (HtmlNodeType.Comment == node.NodeType || HtmlNodeType.Document == node.NodeType || HtmlNodeType.Text == node.NodeType)
-                return false;
-            return true;
+            if (null == node) return false;
+            return HtmlNodeType.Comment != node.NodeType && HtmlNodeType.Document != node.NodeType && HtmlNodeType.Text != node.NodeType;
         }
 
         public static IEnumerable<HtmlNode> GetNodesThatMatchTheCondition(this HtmlNode node, NodeRelationships relationship, Markers marker)
@@ -166,7 +170,6 @@
             switch (relationship)
             {
                 case NodeRelationships.Self:
-                    // return node.HasAttribute(marker) ? new List<HtmlNode> {node} : new List<HtmlNode> {null};
                     var result = node.HasAttribute(marker) ? new List<HtmlNode> { node } : new List<HtmlNode> { null };
                     return result;
                 case NodeRelationships.Sibling:

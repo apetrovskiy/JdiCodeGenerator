@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using JdiCodeGenerator.Core.ObjectModel.Abstract;
-
-namespace JdiCodeGenerator.Web.Helpers
+﻿namespace CodeGenerator.Web.Helpers
 {
+	using System;
+	using System.Collections.Generic;
+	using Core.ObjectModel.Abstract;
+
 	public interface IPageLoader
 	{
 		IEnumerable<IPieceOfPackage> GetCodeEntriesFromUrl(string url, IEnumerable<string> excludeList, Type[] analyzers)

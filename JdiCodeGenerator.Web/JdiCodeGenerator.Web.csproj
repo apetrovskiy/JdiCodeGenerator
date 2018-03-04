@@ -7,8 +7,8 @@
     <ProjectGuid>{451D339D-AFF9-4F6E-91C2-6C975DDE7656}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JdiCodeGenerator.Web</RootNamespace>
-    <AssemblyName>JdiCodeGenerator.Web</AssemblyName>
+    <RootNamespace>CodeGenerator.Web</RootNamespace>
+    <AssemblyName>CodeGenerator.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -125,6 +125,10 @@
     <ProjectReference Include="..\JdiCodeGenerator.Core\JdiCodeGenerator.Core.csproj">
       <Project>{ba031019-f185-472c-be8c-cd53be4823ec}</Project>
       <Name>JdiCodeGenerator.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Plugins\JdiCodeGenerator.JdiConverters\JdiCodeGenerator.JdiConverters.csproj">
+      <Project>{3d9801e7-7673-460a-b337-30f613fa10e4}</Project>
+      <Name>JdiCodeGenerator.JdiConverters</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

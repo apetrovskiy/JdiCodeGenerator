@@ -7,8 +7,8 @@
     <ProjectGuid>{2768F671-E7D5-4735-8EF3-4170E58DF807}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JdiCodeGenerator.Facade</RootNamespace>
-    <AssemblyName>JdiCodeGenerator.Facade</AssemblyName>
+    <RootNamespace>CodeGenerator.Facade</RootNamespace>
+    <AssemblyName>CodeGenerator.Facade</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

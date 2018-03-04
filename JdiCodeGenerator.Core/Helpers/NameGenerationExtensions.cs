@@ -1,4 +1,4 @@
-﻿namespace JdiCodeGenerator.Core.Helpers
+﻿namespace CodeGenerator.Core.Helpers
 {
 	using System;
 	using System.Collections.Generic;

@@ -1,13 +1,13 @@
-﻿namespace JdiCodeGenerator.Web.ObjectModel.Abstract
+﻿namespace CodeGenerator.Web.ObjectModel.Abstract
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using Core.ObjectModel.Abstract;
-    using Core.ObjectModel.Enums;
-    using Helpers;
-    using HtmlAgilityPack;
+	using System.Collections.Generic;
+	using System.Linq;
+	using Core.ObjectModel.Abstract;
+	using Helpers;
+	using HtmlAgilityPack;
+	using JdiConverters.ObjectModel.Enums;
 
-    public abstract class FrameworkAlignmentAnalysisPlugin : IFrameworkAlingmentAnalysisPlugin<HtmlElementTypes>
+	public abstract class FrameworkAlignmentAnalysisPlugin : IFrameworkAlingmentAnalysisPlugin<HtmlElementTypes>
     {
         protected FrameworkAlignmentAnalysisPlugin()
         {

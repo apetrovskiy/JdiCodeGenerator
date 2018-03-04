@@ -7,8 +7,8 @@
     <ProjectGuid>{BA031019-F185-472C-BE8C-CD53BE4823EC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JdiCodeGenerator.Core</RootNamespace>
-    <AssemblyName>JdiCodeGenerator.Core</AssemblyName>
+    <RootNamespace>CodeGenerator.Core</RootNamespace>
+    <AssemblyName>CodeGenerator.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -100,7 +100,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\ImportExportExtensions.cs" />
-    <Compile Include="Helpers\JdiTypesExtensions.cs" />
     <Compile Include="Helpers\ElementMemberCodeEntriesExtensions.cs" />
     <Compile Include="Helpers\NameGenerationExtensions.cs" />
     <Compile Include="ImportExport\ElementMemberCodeEntriesExporter.cs" />
@@ -115,7 +114,6 @@
     <Compile Include="ObjectModel\Abstract\IPieceOfPackage.cs" />
     <Compile Include="ObjectModel\Abstract\IRule.cs" />
     <Compile Include="ObjectModel\Abstract\IRuleCondition.cs" />
-    <Compile Include="ObjectModel\Enums\JdiElementTypes.cs" />
     <Compile Include="ObjectModel\Enums\Markers.cs" />
     <Compile Include="ObjectModel\Enums\NamingPreferences.cs" />
     <Compile Include="ObjectModel\Enums\NodeRelationships.cs" />
@@ -142,6 +140,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Plugins\JdiCodeGenerator.JdiConverters\JdiCodeGenerator.JdiConverters.csproj">
+      <Project>{3d9801e7-7673-460a-b337-30f613fa10e4}</Project>
+      <Name>JdiCodeGenerator.JdiConverters</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

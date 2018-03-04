@@ -1,11 +1,11 @@
-﻿namespace JdiCodeGenerator.Web.ObjectModel.Abstract
+﻿namespace CodeGenerator.Web.ObjectModel.Abstract
 {
-    using System.Collections.Generic;
-    using HtmlAgilityPack;
-    using Core.ObjectModel.Abstract;
-    using Core.ObjectModel.Enums;
+	using System.Collections.Generic;
+	using Core.ObjectModel.Abstract;
+	using HtmlAgilityPack;
+	using JdiConverters.ObjectModel.Enums;
 
-    public interface IFrameworkAlingmentAnalysisPlugin<T>
+	public interface IFrameworkAlingmentAnalysisPlugin<T>
     {
         JdiElementTypes Analyze(HtmlNode node);
         IEnumerable<IRule<T>> Rules { get; set; }

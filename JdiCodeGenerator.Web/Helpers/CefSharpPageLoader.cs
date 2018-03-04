@@ -1,9 +1,10 @@
-﻿namespace JdiCodeGenerator.Web.Helpers
+﻿namespace CodeGenerator.Web.Helpers
 {
 	using System;
 	using System.Collections.Generic;
 	using Core.ObjectModel.Abstract;
 	using HtmlAgilityPack;
+
 	//using CefSharp;
 	//using CefSharp.OffScreen;
 

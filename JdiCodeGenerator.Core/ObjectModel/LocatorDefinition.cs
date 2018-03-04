@@ -1,8 +1,8 @@
-﻿namespace JdiCodeGenerator.Core.ObjectModel
+﻿namespace CodeGenerator.Core.ObjectModel
 {
-    using Enums;
+	using Enums;
 
-    public class LocatorDefinition
+	public class LocatorDefinition
     {
         public bool IsBestChoice { get; set; }
         public bool IsUnique { get; set; }

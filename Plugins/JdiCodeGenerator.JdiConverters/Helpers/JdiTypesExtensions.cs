@@ -1,8 +1,8 @@
-﻿namespace JdiCodeGenerator.Core.Helpers
+﻿namespace CodeGenerator.JdiConverters.Helpers
 {
-    using ObjectModel.Enums;
+	using ObjectModel.Enums;
 
-    public static class JdiTypesExtensions
+	public static class JdiTypesExtensions
     {
         public static string ConvertToTypeString(this JdiElementTypes jdiType, string typeName = "")
         {
@@ -47,9 +47,9 @@
                 case JdiElementTypes.Selector:
                 case JdiElementTypes.Tabs:
                 case JdiElementTypes.TextList:
-                    return "I" + jdiType + string.Format(@"<{0}>", typeName);
+                    return $"I{jdiType}<{typeName}>";
                 case JdiElementTypes.Table:
-                    return "I" + jdiType + string.Format(@"<{0}>", typeName);
+                    return $"I{jdiType}<{typeName}>";
                 default:
                     return "IElement";
             }

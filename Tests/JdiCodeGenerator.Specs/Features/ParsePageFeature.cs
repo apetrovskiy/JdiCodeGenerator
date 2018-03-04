@@ -1,8 +1,6 @@
-﻿namespace JdiCodeGenerator.Specs
+﻿namespace CodeGenerator.Specs.Features
 {
-    using Features;
-
-    public partial class ParsePageFeature : FeatureBase
+	public partial class ParsePageFeature : FeatureBase
     {
         
     }

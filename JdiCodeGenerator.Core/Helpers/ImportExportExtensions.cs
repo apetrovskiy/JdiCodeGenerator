@@ -1,12 +1,12 @@
-﻿namespace JdiCodeGenerator.Core.Helpers
+﻿namespace CodeGenerator.Core.Helpers
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using Newtonsoft.Json;
-    using ObjectModel;
-    using ObjectModel.Abstract;
+	using System.Collections.Generic;
+	using System.Linq;
+	using Newtonsoft.Json;
+	using ObjectModel;
+	using ObjectModel.Abstract;
 
-    public static class ImportExportExtensions
+	public static class ImportExportExtensions
     {
         public static IEnumerable<string> ExportCodeEntriesToJson(this IEnumerable<IPageMemberCodeEntry> codeEntries)
         {

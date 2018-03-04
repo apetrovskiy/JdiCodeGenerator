@@ -1,13 +1,13 @@
-﻿namespace JdiCodeGenerator.Tests.Plugins.BootstrapAndCompetitors
+﻿namespace CodeGenerator.Tests.Plugins.BootstrapAndCompetitors
 {
-    using Core.Helpers;
-    using Core.ObjectModel;
-    using Core.ObjectModel.Enums;
-    using HtmlAgilityPack;
-    using Web.ObjectModel.Plugins.BootstrapAndCompetitors;
-    using Xunit;
+	using Core.ObjectModel;
+	using Core.ObjectModel.Enums;
+	using HtmlAgilityPack;
+	using JdiConverters.Helpers;
+	using Web.ObjectModel.Plugins.BootstrapAndCompetitors;
+	using Xunit;
 
-    public class Bootstrap3Tests
+	public class Bootstrap3Tests
     {
         PageMemberCodeEntry _entry;
         HtmlDocument _doc;

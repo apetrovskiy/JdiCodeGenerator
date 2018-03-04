@@ -1,10 +1,10 @@
-﻿namespace JdiCodeGenerator.Core.ObjectModel
+﻿namespace CodeGenerator.Core.ObjectModel
 {
-    using System.Collections.Generic;
-    using Abstract;
-    using Enums;
+	using System.Collections.Generic;
+	using Abstract;
+	using Enums;
 
-    public class RuleCondition : IRuleCondition
+	public class RuleCondition : IRuleCondition
     {
         public Markers Marker { get; set; }
         public List<string> MarkerValues { get; set; }

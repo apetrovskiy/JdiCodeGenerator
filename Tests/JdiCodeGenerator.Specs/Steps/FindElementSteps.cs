@@ -1,14 +1,14 @@
-﻿namespace JdiCodeGenerator.Specs.Steps
+﻿namespace CodeGenerator.Specs.Steps
 {
-    using Core.ObjectModel;
-    using Core.ObjectModel.Enums;
-    using HtmlAgilityPack;
-    using TechTalk.SpecFlow;
-    using Tests.Plugins;
-    using Web.ObjectModel.Plugins.BootstrapAndCompetitors;
-    using Web.ObjectModel.Plugins.Plain;
+	using Core.ObjectModel;
+	using Core.ObjectModel.Enums;
+	using HtmlAgilityPack;
+	using TechTalk.SpecFlow;
+	using Tests.Plugins;
+	using Web.ObjectModel.Plugins.BootstrapAndCompetitors;
+	using Web.ObjectModel.Plugins.Plain;
 
-    [Binding]
+	[Binding]
     public class FindElementSteps
     {
         HtmlDocument _doc;

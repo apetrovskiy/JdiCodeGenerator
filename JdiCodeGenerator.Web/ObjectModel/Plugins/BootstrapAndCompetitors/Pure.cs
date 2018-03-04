@@ -1,9 +1,9 @@
-﻿namespace JdiCodeGenerator.Web.ObjectModel.Plugins.BootstrapAndCompetitors
+﻿namespace CodeGenerator.Web.ObjectModel.Plugins.BootstrapAndCompetitors
 {
-    using Abstract;
-    using HtmlAgilityPack;
+	using Abstract;
+	using HtmlAgilityPack;
 
-    public class Pure // : IFrameworkAlingmentAnalysisPlugin
+	public class Pure // : IFrameworkAlingmentAnalysisPlugin
     {
         // http://modernweb.com/2014/02/17/8-bootstrap-alternatives/
         public HtmlElementTypes Analyze(HtmlNode node)

@@ -1,17 +1,19 @@
-﻿namespace JdiCodeGenerator.Web.Helpers
+﻿namespace CodeGenerator.Web.Helpers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading;
-    using Awesomium.Core;
-    using HtmlAgilityPack;
-    using Core.Helpers;
-    using Core.ObjectModel;
-    using Core.ObjectModel.Abstract;
-    using Core.ObjectModel.Enums;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Threading;
+	using Awesomium.Core;
+	using Core.Helpers;
+	using Core.ObjectModel;
+	using Core.ObjectModel.Abstract;
+	using Core.ObjectModel.Enums;
+	using HtmlAgilityPack;
+	using JdiConverters.ObjectModel.Enums;
+	using Web;
 
-    public class AwesomiumPageLoader : IPageLoader
+	public class AwesomiumPageLoader : IPageLoader
     {
         HtmlNode _docNode;
         List<IPieceOfPackage> _pageCodeEntries;

@@ -1,4 +1,4 @@
-﻿namespace JdiCodeGenerator.Core.ObjectModel.Enums
+﻿namespace CodeGenerator.JdiConverters.ObjectModel.Enums
 {
     public enum JdiElementTypes
     {

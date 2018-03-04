@@ -1,9 +1,9 @@
-namespace JdiCodeGenerator.Core.ObjectModel.Abstract
+namespace CodeGenerator.Core.ObjectModel.Abstract
 {
-    using System.Collections.Generic;
-    using System.Linq;
+	using System.Collections.Generic;
+	using System.Linq;
 
-    public class SourceMemberTypeHolder
+	public class SourceMemberTypeHolder
     {
         List<object> _list;
 

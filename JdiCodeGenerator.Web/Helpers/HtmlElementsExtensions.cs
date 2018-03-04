@@ -1,13 +1,15 @@
-﻿namespace JdiCodeGenerator.Web.Helpers
+﻿namespace CodeGenerator.Web.Helpers
 {
-    using System;
-    using System.Linq;
-    using HtmlAgilityPack;
-    using Core.ObjectModel;
-    using Core.ObjectModel.Enums;
-    using ObjectModel.Abstract;
+	using System;
+	using System.Linq;
+	using Core.ObjectModel;
+	using Core.ObjectModel.Enums;
+	using HtmlAgilityPack;
+	using JdiConverters.ObjectModel.Enums;
+	using ObjectModel.Abstract;
+	using Web;
 
-    public static class HtmlElementsExtensions
+	public static class HtmlElementsExtensions
     {
         public static string GenerateElementCss(this HtmlNode node)
         {
@@ -27,16 +29,15 @@
 
             // [id='createUserId']
             if (!string.IsNullOrEmpty(node.Id))
-                result += string.Format((string) @"[id='{0}']", (object) node.Id);
+                result += $"[id='{(object) node.Id}']";
             // [name='createUser']
             if (node.HasAttribute((string) WebNames.AttributeNameName))
-                result += string.Format(@"[name='{0}']", node.GetAttributeValue((string) WebNames.AttributeNameName));
+                result += $"[name='{node.GetAttributeValue((string)WebNames.AttributeNameName)}']";
 
             // [title*='Hello beautiful']
             // [title='Hello beautiful']
             if (node.HasAttribute("title"))
-                result += string.Format(@"[title='{0}']",
-                    node.GetAttributeValue("title"));
+                result += $"[title='{node.GetAttributeValue("title")}']";
 
             return result;
         }

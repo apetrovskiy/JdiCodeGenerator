@@ -7,8 +7,8 @@
     <ProjectGuid>{0CAD787A-50E5-4135-A01E-D2F641E08988}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JdiCodeGenerator.Web.ExampleRunner</RootNamespace>
-    <AssemblyName>JdiCodeGenerator.Web.ExampleRunner</AssemblyName>
+    <RootNamespace>CodeGenerator.Web.ExampleRunner</RootNamespace>
+    <AssemblyName>CodeGenerator.Web.ExampleRunner</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

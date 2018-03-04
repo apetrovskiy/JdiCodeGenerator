@@ -1,13 +1,14 @@
-﻿namespace JdiCodeGenerator.Web.ObjectModel.Plugins.JavaScript
+﻿namespace CodeGenerator.Web.ObjectModel.Plugins.JavaScript
 {
-    using System.Collections.Generic;
-    using Abstract;
-    using Core;
-    using Core.ObjectModel;
-    using Core.ObjectModel.Abstract;
-    using Core.ObjectModel.Enums;
+	using System.Collections.Generic;
+	using Abstract;
+	using Core;
+	using Core.ObjectModel;
+	using Core.ObjectModel.Abstract;
+	using Core.ObjectModel.Enums;
+	using JdiConverters.ObjectModel.Enums;
 
-    public class JqueryBootstrapSelect : FrameworkAlignmentAnalysisPlugin
+	public class JqueryBootstrapSelect : FrameworkAlignmentAnalysisPlugin
     {
         public JqueryBootstrapSelect()
         {

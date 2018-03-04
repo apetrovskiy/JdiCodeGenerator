@@ -1,8 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-# SharpDevelop 5.1
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JdiCodeGenerator.Core", "JdiCodeGenerator.Core\JdiCodeGenerator.Core.csproj", "{BA031019-F185-472C-BE8C-CD53BE4823EC}"
 EndProject
@@ -21,6 +20,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JdiCodeGenerator.Web.ExampleRunner", "Examples\JdiCodeGenerator.Web.ExampleRunner\JdiCodeGenerator.Web.ExampleRunner.csproj", "{0CAD787A-50E5-4135-A01E-D2F641E08988}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JdiCodeGenerator.Facade", "JdiCodeGenerator.Facade\JdiCodeGenerator.Facade.csproj", "{2768F671-E7D5-4735-8EF3-4170E58DF807}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{96428C0E-1B79-4334-9D5B-335EB57FBDC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JdiCodeGenerator.JdiConverters", "Plugins\JdiCodeGenerator.JdiConverters\JdiCodeGenerator.JdiConverters.csproj", "{3D9801E7-7673-460A-B337-30F613FA10E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -104,6 +107,18 @@ Global
 		{2768F671-E7D5-4735-8EF3-4170E58DF807}.Release|x64.Build.0 = Release|Any CPU
 		{2768F671-E7D5-4735-8EF3-4170E58DF807}.Release|x86.ActiveCfg = Release|x86
 		{2768F671-E7D5-4735-8EF3-4170E58DF807}.Release|x86.Build.0 = Release|x86
+		{3D9801E7-7673-460A-B337-30F613FA10E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D9801E7-7673-460A-B337-30F613FA10E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D9801E7-7673-460A-B337-30F613FA10E4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3D9801E7-7673-460A-B337-30F613FA10E4}.Debug|x64.Build.0 = Debug|Any CPU
+		{3D9801E7-7673-460A-B337-30F613FA10E4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3D9801E7-7673-460A-B337-30F613FA10E4}.Debug|x86.Build.0 = Debug|Any CPU
+		{3D9801E7-7673-460A-B337-30F613FA10E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D9801E7-7673-460A-B337-30F613FA10E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D9801E7-7673-460A-B337-30F613FA10E4}.Release|x64.ActiveCfg = Release|Any CPU
+		{3D9801E7-7673-460A-B337-30F613FA10E4}.Release|x64.Build.0 = Release|Any CPU
+		{3D9801E7-7673-460A-B337-30F613FA10E4}.Release|x86.ActiveCfg = Release|Any CPU
+		{3D9801E7-7673-460A-B337-30F613FA10E4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -112,5 +127,9 @@ Global
 		{7B96A8CE-D149-4911-A31D-484BA31CAD53} = {18EAB0EC-0D5C-45BC-84A9-7D3854150AED}
 		{E38FCB6A-3338-428B-AB3F-3E62A0D4F2A6} = {18EAB0EC-0D5C-45BC-84A9-7D3854150AED}
 		{0CAD787A-50E5-4135-A01E-D2F641E08988} = {86A31EF1-EEF6-43C9-A5B8-A6773988708F}
+		{3D9801E7-7673-460A-B337-30F613FA10E4} = {96428C0E-1B79-4334-9D5B-335EB57FBDC4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CBA92E52-DF1C-4BA4-9A7E-06137F9A498C}
 	EndGlobalSection
 EndGlobal

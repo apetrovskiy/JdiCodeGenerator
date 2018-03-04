@@ -1,4 +1,4 @@
-﻿namespace JdiCodeGenerator.Web.ObjectModel.Abstract
+﻿namespace CodeGenerator.Web.ObjectModel.Abstract
 {
     /*
 <!--...-->	Defines a comment

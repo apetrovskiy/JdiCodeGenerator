@@ -1,13 +1,14 @@
-﻿namespace JdiCodeGenerator.Web.ObjectModel.Plugins.Plain
+﻿namespace CodeGenerator.Web.ObjectModel.Plugins.Plain
 {
-    using System.Collections.Generic;
-    using Abstract;
-    using Core;
-    using Core.ObjectModel;
-    using Core.ObjectModel.Abstract;
-    using Core.ObjectModel.Enums;
+	using System.Collections.Generic;
+	using Abstract;
+	using Core;
+	using Core.ObjectModel;
+	using Core.ObjectModel.Abstract;
+	using Core.ObjectModel.Enums;
+	using JdiConverters.ObjectModel.Enums;
 
-    public class Jdi : FrameworkAlignmentAnalysisPlugin
+	public class Jdi : FrameworkAlignmentAnalysisPlugin
     {
         public Jdi()
         {

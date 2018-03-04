@@ -1,17 +1,18 @@
-﻿namespace JdiCodeGenerator.Web.Helpers
+﻿namespace CodeGenerator.Web.Helpers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Core;
-    using HtmlAgilityPack;
-    using Core.Helpers;
-    using Core.ObjectModel;
-    using Core.ObjectModel.Abstract;
-    using Core.ObjectModel.Enums;
-    using ObjectModel.Abstract;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using Core;
+	using Core.Helpers;
+	using Core.ObjectModel;
+	using Core.ObjectModel.Abstract;
+	using Core.ObjectModel.Enums;
+	using HtmlAgilityPack;
+	using JdiConverters.ObjectModel.Enums;
+	using ObjectModel.Abstract;
 
-    public class HtmlElementToElementMemberCodeEntryConvertor
+	public class HtmlElementToElementMemberCodeEntryConvertor
     {
         Type[] _analyzers;
         IPageMemberCodeEntry _pageMemberCodeEntry;

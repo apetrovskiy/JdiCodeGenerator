@@ -1,9 +1,9 @@
-﻿namespace JdiCodeGenerator.Web.ObjectModel.Plugins.BootstrapAndCompetitors
+﻿namespace CodeGenerator.Web.ObjectModel.Plugins.BootstrapAndCompetitors
 {
-    using Abstract;
-    using HtmlAgilityPack;
+	using Abstract;
+	using HtmlAgilityPack;
 
-    public class Ink // : IFrameworkAlingmentAnalysisPlugin
+	public class Ink // : IFrameworkAlingmentAnalysisPlugin
     {
         // InK
         // http://modernweb.com/2014/02/17/8-bootstrap-alternatives/

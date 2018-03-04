@@ -10,12 +10,11 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace JdiCodeGenerator.Specs
+namespace CodeGenerator.Specs
 {
-    using TechTalk.SpecFlow;
-    
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
+	using TechTalk.SpecFlow;
+
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public partial class ParsePageFeature : Xunit.IClassFixture<ParsePageFeature.FixtureData>, System.IDisposable
     {

@@ -1,9 +1,10 @@
-﻿namespace JdiCodeGenerator.Core.ObjectModel.Abstract
+﻿namespace CodeGenerator.Core.ObjectModel.Abstract
 {
-    using System.Collections.Generic;
-    using Enums;
+	using System.Collections.Generic;
+	using Enums;
+	using JdiConverters.ObjectModel.Enums;
 
-    public interface IPageMemberCodeEntry // : ICodeEntry
+	public interface IPageMemberCodeEntry // : ICodeEntry
         : IPieceOfPackage
     {
         List<LocatorDefinition> Locators { get; set; }

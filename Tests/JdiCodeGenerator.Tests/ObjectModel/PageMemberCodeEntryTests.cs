@@ -1,20 +1,21 @@
-﻿namespace JdiCodeGenerator.Tests.ObjectModel
+﻿namespace CodeGenerator.Tests.ObjectModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Core.Helpers;
-    using Core.ObjectModel;
-    using Core.ObjectModel.Abstract;
-    using Core.ObjectModel.Enums;
-    using HtmlAgilityPack;
-    using Mocks;
-    using NSubstitute;
-    using Web.Helpers;
-    using Web.ObjectModel.Abstract;
-    using Xunit;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using Core.Helpers;
+	using Core.ObjectModel;
+	using Core.ObjectModel.Abstract;
+	using Core.ObjectModel.Enums;
+	using HtmlAgilityPack;
+	using JdiConverters.ObjectModel.Enums;
+	using Mocks;
+	using NSubstitute;
+	using Web.Helpers;
+	using Web.ObjectModel.Abstract;
+	using Xunit;
 
-    public class PageMemberCodeEntryTests
+	public class PageMemberCodeEntryTests
     {
         IPageMemberCodeEntry _entry;
         string _code;

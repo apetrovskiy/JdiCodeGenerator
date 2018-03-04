@@ -1,13 +1,14 @@
-﻿namespace JdiCodeGenerator.Web.ObjectModel.Plugins.BootstrapAndCompetitors
+﻿namespace CodeGenerator.Web.ObjectModel.Plugins.BootstrapAndCompetitors
 {
-    using System.Collections.Generic;
-    using Core.ObjectModel;
-    using Core.ObjectModel.Abstract;
-    using Abstract;
-    using Core;
-    using Core.ObjectModel.Enums;
+	using System.Collections.Generic;
+	using Abstract;
+	using Core;
+	using Core.ObjectModel;
+	using Core.ObjectModel.Abstract;
+	using Core.ObjectModel.Enums;
+	using JdiConverters.ObjectModel.Enums;
 
-    public class Bootstrap3 : FrameworkAlignmentAnalysisPlugin
+	public class Bootstrap3 : FrameworkAlignmentAnalysisPlugin
     {
         public Bootstrap3()
         {

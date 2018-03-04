@@ -1,4 +1,4 @@
-﻿namespace JdiCodeGenerator.Tests.Convertors
+﻿namespace CodeGenerator.Tests.Convertors
 {
     public class ElementToMemberConvertorTests
     {

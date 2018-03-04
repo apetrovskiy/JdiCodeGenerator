@@ -1,8 +1,8 @@
-﻿namespace JdiCodeGenerator.Specs.Steps
+﻿namespace CodeGenerator.Specs.Steps
 {
-    using TechTalk.SpecFlow;
+	using TechTalk.SpecFlow;
 
-    [Binding]
+	[Binding]
     public class CommonSteps
     {
         

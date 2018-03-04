@@ -1,9 +1,9 @@
-﻿namespace JdiCodeGenerator.Core.ObjectModel.Abstract
+﻿namespace CodeGenerator.Core.ObjectModel.Abstract
 {
-    using System.Collections.Generic;
-    using Enums;
+	using System.Collections.Generic;
+	using JdiConverters.ObjectModel.Enums;
 
-    public interface IRule<T>
+	public interface IRule<T>
     {
         List<T> SourceTypes { get; set; }
         JdiElementTypes TargetType { get; set; }

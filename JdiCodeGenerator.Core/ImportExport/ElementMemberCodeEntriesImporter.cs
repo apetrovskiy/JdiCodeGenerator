@@ -1,11 +1,11 @@
-﻿namespace JdiCodeGenerator.Core.ImportExport
+﻿namespace CodeGenerator.Core.ImportExport
 {
-    using System.Collections.Generic;
-    using System.IO;
-    using Helpers;
-    using ObjectModel.Abstract;
+	using System.Collections.Generic;
+	using System.IO;
+	using Helpers;
+	using ObjectModel.Abstract;
 
-    public class ElementMemberCodeEntriesImporter
+	public class ElementMemberCodeEntriesImporter
     {
         public IEnumerable<IPageMemberCodeEntry> LoadFromFile<T>(string path)
         {

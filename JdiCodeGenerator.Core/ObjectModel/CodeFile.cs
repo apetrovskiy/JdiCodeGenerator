@@ -1,12 +1,12 @@
-﻿namespace JdiCodeGenerator.Core.ObjectModel
+﻿namespace CodeGenerator.Core.ObjectModel
 {
-    using System;
-    using System.Collections.Generic;
-    using Abstract;
-    using Enums;
-    using Helpers;
+	using System;
+	using System.Collections.Generic;
+	using Abstract;
+	using Enums;
+	using Helpers;
 
-    public class CodeFile : ICodeFile
+	public class CodeFile : ICodeFile
     {
         public Guid Id { get; set; }
         public Guid ParentId { get; set; }

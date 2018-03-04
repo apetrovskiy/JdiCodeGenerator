@@ -1,13 +1,15 @@
-﻿namespace JdiCodeGenerator.Core.ObjectModel
+﻿namespace CodeGenerator.Core.ObjectModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Abstract;
-    using Enums;
-    using Helpers;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using Abstract;
+	using Enums;
+	using Helpers;
+	using JdiConverters.Helpers;
+	using JdiConverters.ObjectModel.Enums;
 
-    public class PageMemberCodeEntry : IPageMemberCodeEntry
+	public class PageMemberCodeEntry : IPageMemberCodeEntry
     {
         public Guid Id { get; set; }
         public Guid ParentId { get; set; }
@@ -223,9 +225,9 @@
             var bestLocator = Locators.First(locator => locator.IsBestChoice);
             var result = string.Empty;
             if (SupportedLanguages.Java == _language)
-                result = string.Format("\r\n@{0}({1}=\"{2}\")", bestLocator.Attribute, bestLocator.SearchTypePreference, bestLocator.SearchString);
+                result = $"\r\n@{bestLocator.Attribute}({bestLocator.SearchTypePreference}=\"{bestLocator.SearchString}\")";
             if (SupportedLanguages.CSharp == _language)
-                result = string.Format("\r\n[{0}({1}=\"{2}\")]", bestLocator.Attribute, bestLocator.SearchTypePreference, bestLocator.SearchString);
+                result = $"\r\n[{bestLocator.Attribute}({bestLocator.SearchTypePreference}=\"{bestLocator.SearchString}\")]";
 
             /*
             @JDropdown(root = @FindBy(css = "dropdown"), value = @FindBy(id = "dropdownMenu1"), list = @FindBy(tagName = "li"))
@@ -237,8 +239,7 @@
             var overallResult = string.Empty;
 
             if (SupportedLanguages.Java == _language || SupportedLanguages.CSharp == _language)
-                // overallResult = string.IsNullOrEmpty(result) ? result : result + string.Format("\r\npublic {0} {1};", JdiMemberType.ConvertToTypeString(), MemberName);
-                overallResult = string.IsNullOrEmpty(result) ? result : result + string.Format("\r\npublic {0} {1};", JdiMemberType.ConvertToTypeString(EnumerationTypeName), MemberName);
+                overallResult = string.IsNullOrEmpty(result) ? result : $"{result}\r\npublic {JdiMemberType.ConvertToTypeString(EnumerationTypeName)} {MemberName};";
 
             return overallResult;
         }
@@ -247,7 +248,7 @@
         string GenerateAnnotationForComplexType(SupportedLanguages supportedLanguage)
         {
             EnumerationTypeName = GenerateEnumerationTypeName();
-            return string.Format("\r\n@J{0}({1}, {2}, {3})", GetNormalizedLocatorName(), GetDropDownRootLocator(supportedLanguage), GetDropDownValueLocator(supportedLanguage), GetDropDownListLocator(supportedLanguage));
+            return $"\r\n@J{GetNormalizedLocatorName()}({GetDropDownRootLocator(supportedLanguage)}, {GetDropDownValueLocator(supportedLanguage)}, {GetDropDownListLocator(supportedLanguage)})";
         }
 
         string GetNormalizedLocatorName()
@@ -289,9 +290,9 @@
         string GetLocatorText(LocatorDefinition locator, string locatorName, SupportedLanguages supportedLanguage)
         {
             if (SupportedLanguages.Java == supportedLanguage)
-                return string.Format("\r\n{0} = @{1}({2}=\"{3}\")", locatorName, locator.Attribute, locator.SearchTypePreference, locator.SearchString);
+                return $"\r\n{locatorName} = @{locator.Attribute}({locator.SearchTypePreference}=\"{locator.SearchString}\")";
             if (SupportedLanguages.CSharp == supportedLanguage)
-                return string.Format("\r\n{0} = [{1}({2}=\"{3}\")]", locatorName, locator.Attribute, locator.SearchTypePreference, locator.SearchString);
+                return $"\r\n{locatorName} = [{locator.Attribute}({locator.SearchTypePreference}=\"{locator.SearchString}\")]";
             return string.Empty;
         }
 

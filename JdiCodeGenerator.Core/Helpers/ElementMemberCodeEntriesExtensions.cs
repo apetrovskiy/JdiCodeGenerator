@@ -1,11 +1,11 @@
-﻿namespace JdiCodeGenerator.Core.Helpers
+﻿namespace CodeGenerator.Core.Helpers
 {
 	using System.Collections.Generic;
-    using System.Linq;
+	using System.Linq;
 	using ObjectModel.Abstract;
-    using ObjectModel.Enums;
+	using ObjectModel.Enums;
 
-    public static class ElementMemberCodeEntriesExtensions
+	public static class ElementMemberCodeEntriesExtensions
     {
         public static IEnumerable<IPageMemberCodeEntry> SetDistinguishNamesForMembers(this IEnumerable<IPageMemberCodeEntry> codeEntries)
         {
