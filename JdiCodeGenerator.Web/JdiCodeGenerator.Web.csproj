@@ -92,7 +92,6 @@
     <Compile Include="Helpers\HtmlElementToElementMemberCodeEntryConvertor.cs" />
     <Compile Include="Helpers\IPageLoader.cs" />
     <Compile Include="Helpers\AwesomiumPageLoader.cs" />
-    <Compile Include="Helpers\NameGenerationExtensions.cs" />
     <Compile Include="ObjectModel\Abstract\FrameworkAlignmentAnalysisPlugin.cs" />
     <Compile Include="ObjectModel\Abstract\HtmlElementTypes.cs" />
     <Compile Include="ObjectModel\Abstract\IFrameworkAlingmentAnalysisPlugin.cs" />

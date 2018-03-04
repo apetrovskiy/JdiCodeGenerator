@@ -100,7 +100,7 @@
             pageSource = LoadPageFromFile();
 
             var listNotToDisplay = new[] { "html", "head", "body", "#comment", "#text", "meta", "h1", "h2", "h3", "h4", "h5", "h6", "small", "font", "script", "i", "br", "hr", "strong", "style", "title", "img", "noscript" };
-            var folderForExportFiles = @"D:\333";
+            var folderForExportFiles = Path.Combine(Environment.CurrentDirectory, "results");
             if (null != args && args.Any() && !string.IsNullOrEmpty(args[0]))
                 folderForExportFiles = args[0];
             if (!Directory.Exists(folderForExportFiles))

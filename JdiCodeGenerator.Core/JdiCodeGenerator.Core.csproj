@@ -102,6 +102,7 @@
     <Compile Include="Helpers\ImportExportExtensions.cs" />
     <Compile Include="Helpers\JdiTypesExtensions.cs" />
     <Compile Include="Helpers\ElementMemberCodeEntriesExtensions.cs" />
+    <Compile Include="Helpers\NameGenerationExtensions.cs" />
     <Compile Include="ImportExport\ElementMemberCodeEntriesExporter.cs" />
     <Compile Include="ImportExport\ElementMemberCodeEntriesImporter.cs" />
     <Compile Include="ImportExport\DtoJsonConverter.cs" />
