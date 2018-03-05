@@ -1,13 +1,13 @@
 ﻿namespace CodeGenerator.Tests.Plugins.JavaScript
 {
-	using Core.ObjectModel.Enums;
-	using Core.ObjectModel.Results;
-	using HtmlAgilityPack;
-	using JdiConverters.Helpers;
-	using Web.ObjectModel.Plugins.JavaScript;
-	using Xunit;
+    using Core.ObjectModel.Enums;
+    using Core.ObjectModel.Results;
+    using HtmlAgilityPack;
+    using JdiConverters.Helpers;
+    using Web.ObjectModel.Plugins.JavaScript;
+    using Xunit;
 
-	public class JqueryBootstrapSelectTests
+    public class JqueryBootstrapSelectTests
     {
         PageMemberCodeEntry _entry;
         HtmlDocument _doc;

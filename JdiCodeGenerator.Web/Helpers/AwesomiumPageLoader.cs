@@ -1,22 +1,22 @@
 ﻿namespace CodeGenerator.Web.Helpers
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Threading;
-	using Awesomium.Core;
-	using Core.Helpers;
-	using Core.ObjectModel.Abstract.Results;
-	using Core.ObjectModel.Enums;
-	using Core.ObjectModel.Results;
-	using HtmlAgilityPack;
-	using JdiConverters.ObjectModel.Enums;
-	using Web;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using Awesomium.Core;
+    using Core.Helpers;
+    using Core.ObjectModel.Abstract.Results;
+    using Core.ObjectModel.Enums;
+    using Core.ObjectModel.Results;
+    using HtmlAgilityPack;
+    using JdiConverters.ObjectModel.Enums;
+    using Web;
 
-	public class AwesomiumPageLoader : IPageLoader
+    public class AwesomiumPageLoader : IPageLoader
     {
         HtmlNode _docNode;
-	    readonly List<IPieceOfPackage> _pageCodeEntries;
+        readonly List<IPieceOfPackage> _pageCodeEntries;
         Guid _pageGuid;
 
         public AwesomiumPageLoader()
@@ -81,8 +81,8 @@
 
         public IEnumerable<IPieceOfPackage> GetCodeEntriesFromUrl(string url, IEnumerable<string> excludeList, Type[] analyzers)
         {
-			_pageCodeEntries.Add(CodeFile.NewPage(url.GenerateNameFromUrl().ToPascalCase()));
-			_pageGuid = _pageCodeEntries[0].Id;
+            _pageCodeEntries.Add(CodeFile.NewPage(url.GenerateNameFromUrl().ToPascalCase()));
+            _pageGuid = _pageCodeEntries[0].Id;
 
             CreateDocumentNodeByUrl(url);
             return GetCodeEntriesFromNode(_docNode, excludeList, analyzers);
@@ -120,10 +120,10 @@
             return
                 // codeEntries.Where(codeEntry => codeEntry.JdiMemberType != JdiElementTypes.Element)
                 // _pageCodeEntries.Cast<PageMemberCodeEntry>().Where(codeEntry => codeEntry.JdiMemberType != JdiElementTypes.Element)
-				_pageCodeEntries
-					.Where(codeEntry => PageObjectParts.CodeOfMember == codeEntry.CodeClass)
-					.Cast<PageMemberCodeEntry>()
-					.Where(codeEntry => codeEntry.JdiMemberType != JdiElementTypes.Element)
+                _pageCodeEntries
+                    .Where(codeEntry => PageObjectParts.CodeOfMember == codeEntry.CodeClass)
+                    .Cast<PageMemberCodeEntry>()
+                    .Where(codeEntry => codeEntry.JdiMemberType != JdiElementTypes.Element)
                     // 20160718
                     // .SetBestChoice()
                     .SetDistinguishNamesForMembers();

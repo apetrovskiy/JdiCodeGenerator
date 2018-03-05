@@ -1,14 +1,14 @@
 ﻿namespace CodeGenerator.Web.ObjectModel.Plugins.Plain
 {
-	using System.Collections.Generic;
-	using Abstract;
-	using Core;
-	using Core.ObjectModel.Abstract.Rules;
-	using Core.ObjectModel.Enums;
-	using Core.ObjectModel.Rules;
-	using JdiConverters.ObjectModel.Enums;
+    using System.Collections.Generic;
+    using Abstract;
+    using Core;
+    using Core.ObjectModel.Abstract.Rules;
+    using Core.ObjectModel.Enums;
+    using Core.ObjectModel.Rules;
+    using JdiConverters.ObjectModel.Enums;
 
-	public class Jdi : FrameworkAlignmentAnalysisPlugin
+    public class Jdi : FrameworkAlignmentAnalysisPlugin
     {
         public Jdi()
         {
@@ -38,12 +38,12 @@
                     AndConditions = new List<IRuleCondition> { new RuleCondition { NodeRelationship = NodeRelationships.Self, MarkerAttribute = MarkerAttributes.OtherAttribute, MarkerValues = new List<string> { "ITextField" } } }
                 },
                 /*
-	<div id="datepicker" class="date uui-datepicker date-button small">
-		<input type="text" class="uui-form-element small" jdi-type="IDatePicker" jdi-parent="contactForm" jdi-name="date">
-		<span class="input-group-addon uui-button small">
-			<i class="fa fa-calendar"></i>
-		</span>
-	</div>
+    <div id="datepicker" class="date uui-datepicker date-button small">
+        <input type="text" class="uui-form-element small" jdi-type="IDatePicker" jdi-parent="contactForm" jdi-name="date">
+        <span class="input-group-addon uui-button small">
+            <i class="fa fa-calendar"></i>
+        </span>
+    </div>
                 */
                 new Rule<HtmlElementTypes>
                 {
@@ -54,10 +54,10 @@
                 },
                 /*
 <div class="input-append bootstrap-timepicker uui-timepicker time-button">
-	<input id="timepicker" type="text" class="uui-form-element small" jdi-type="ITimePicker" jdi-parent="contactForm" jdi-name="time">
-	<span class="add-on uui-button small">
-		<i class="fa fa-clock-o"></i>
-	</span>
+    <input id="timepicker" type="text" class="uui-form-element small" jdi-type="ITimePicker" jdi-parent="contactForm" jdi-name="time">
+    <span class="add-on uui-button small">
+        <i class="fa fa-clock-o"></i>
+    </span>
 </div>
                 */
                 new Rule<HtmlElementTypes>

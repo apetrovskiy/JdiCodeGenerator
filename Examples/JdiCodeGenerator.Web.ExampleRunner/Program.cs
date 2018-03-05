@@ -1,20 +1,20 @@
 ﻿namespace CodeGenerator.Web.ExampleRunner
 {
-	using System;
-	using System.Collections.Generic;
-	using System.IO;
-	using System.Linq;
-	using Core.ImportExport;
-	using Core.ObjectModel.Abstract.Results;
-	using Core.ObjectModel.Enums;
-	using Core.ObjectModel.Results;
-	using Helpers;
-	using ObjectModel.Abstract;
-	using ObjectModel.Plugins.BootstrapAndCompetitors;
-	using ObjectModel.Plugins.JavaScript;
-	using ObjectModel.Plugins.Plain;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using Core.ImportExport;
+    using Core.ObjectModel.Abstract.Results;
+    using Core.ObjectModel.Enums;
+    using Core.ObjectModel.Results;
+    using Helpers;
+    using ObjectModel.Abstract;
+    using ObjectModel.Plugins.BootstrapAndCompetitors;
+    using ObjectModel.Plugins.JavaScript;
+    using ObjectModel.Plugins.Plain;
 
-	class Program
+    class Program
     {
         static bool fromUrl = true;
         const string PathToExamplePage = @"SharepointSample.txt";

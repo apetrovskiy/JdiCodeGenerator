@@ -1,11 +1,11 @@
 ﻿namespace CodeGenerator.Core.ImportExport
 {
-	using System.Collections.Generic;
-	using System.IO;
-	using Helpers;
-	using ObjectModel.Abstract.Results;
+    using System.Collections.Generic;
+    using System.IO;
+    using Helpers;
+    using ObjectModel.Abstract.Results;
 
-	public class ElementMemberCodeEntriesImporter
+    public class ElementMemberCodeEntriesImporter
     {
         public IEnumerable<IPageMemberCodeEntry> LoadFromFile<T>(string path)
         {

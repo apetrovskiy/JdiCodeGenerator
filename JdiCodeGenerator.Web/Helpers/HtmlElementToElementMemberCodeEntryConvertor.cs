@@ -1,24 +1,24 @@
 ﻿namespace CodeGenerator.Web.Helpers
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using Core;
-	using Core.Helpers;
-	using Core.ObjectModel.Abstract.Results;
-	using Core.ObjectModel.Abstract.Rules;
-	using Core.ObjectModel.Enums;
-	using Core.ObjectModel.Results;
-	using HtmlAgilityPack;
-	using JdiConverters.ObjectModel.Enums;
-	using ObjectModel.Abstract;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Core;
+    using Core.Helpers;
+    using Core.ObjectModel.Abstract.Results;
+    using Core.ObjectModel.Abstract.Rules;
+    using Core.ObjectModel.Enums;
+    using Core.ObjectModel.Results;
+    using HtmlAgilityPack;
+    using JdiConverters.ObjectModel.Enums;
+    using ObjectModel.Abstract;
 
-	public class HtmlElementToElementMemberCodeEntryConvertor
+    public class HtmlElementToElementMemberCodeEntryConvertor
     {
         Type[] _analyzers;
         IPageMemberCodeEntry _pageMemberCodeEntry;
         // 20160715
-	    readonly Guid _parentPageGuid;
+        readonly Guid _parentPageGuid;
 
         // 20160715
         public HtmlElementToElementMemberCodeEntryConvertor(Guid parentPageGuid)

@@ -1,16 +1,16 @@
 ﻿namespace CodeGenerator.Core.ObjectModel.Results
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using Abstract;
-	using Abstract.Results;
-	using Enums;
-	using Helpers;
-	using JdiConverters.Helpers;
-	using JdiConverters.ObjectModel.Enums;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Abstract;
+    using Abstract.Results;
+    using Enums;
+    using Helpers;
+    using JdiConverters.Helpers;
+    using JdiConverters.ObjectModel.Enums;
 
-	public class PageMemberCodeEntry : IPageMemberCodeEntry
+    public class PageMemberCodeEntry : IPageMemberCodeEntry
     {
         public Guid Id { get; set; }
         public Guid ParentId { get; set; }

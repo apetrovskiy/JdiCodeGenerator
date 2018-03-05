@@ -1,15 +1,15 @@
 ﻿namespace CodeGenerator.Web.Helpers
 {
-	using System;
-	using System.Linq;
-	using Core.ObjectModel.Enums;
-	using Core.ObjectModel.Results;
-	using HtmlAgilityPack;
-	using JdiConverters.ObjectModel.Enums;
-	using ObjectModel.Abstract;
-	using Web;
+    using System;
+    using System.Linq;
+    using Core.ObjectModel.Enums;
+    using Core.ObjectModel.Results;
+    using HtmlAgilityPack;
+    using JdiConverters.ObjectModel.Enums;
+    using ObjectModel.Abstract;
+    using Web;
 
-	public static class HtmlElementsExtensions
+    public static class HtmlElementsExtensions
     {
         public static string GenerateElementCss(this HtmlNode node)
         {
@@ -17,11 +17,11 @@
 
             if (new[]
             {
-	            WebNames.ElementTypeHtml,
-	            WebNames.ElementTypeHead,
-	            WebNames.ElementTypeBody,
-	            WebNames.ElementTypeComment,
-	            WebNames.ElementTypeText
+                WebNames.ElementTypeHtml,
+                WebNames.ElementTypeHead,
+                WebNames.ElementTypeBody,
+                WebNames.ElementTypeComment,
+                WebNames.ElementTypeText
             }.Contains(originalName))
                 return string.Empty;
 

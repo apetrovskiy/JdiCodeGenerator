@@ -1,12 +1,12 @@
 ﻿namespace CodeGenerator.Core.Helpers
 {
-	using System.Collections.Generic;
-	using System.Linq;
-	using Newtonsoft.Json;
-	using ObjectModel.Abstract.Results;
-	using ObjectModel.Results;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Newtonsoft.Json;
+    using ObjectModel.Abstract.Results;
+    using ObjectModel.Results;
 
-	public static class ImportExportExtensions
+    public static class ImportExportExtensions
     {
         public static IEnumerable<string> ExportCodeEntriesToJson(this IEnumerable<IPageMemberCodeEntry> codeEntries)
         {

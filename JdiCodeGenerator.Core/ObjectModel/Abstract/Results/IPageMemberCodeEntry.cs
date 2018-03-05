@@ -1,11 +1,11 @@
 ﻿namespace CodeGenerator.Core.ObjectModel.Abstract.Results
 {
-	using System.Collections.Generic;
-	using Enums;
-	using JdiConverters.ObjectModel.Enums;
-	using ObjectModel.Results;
+    using System.Collections.Generic;
+    using Enums;
+    using JdiConverters.ObjectModel.Enums;
+    using ObjectModel.Results;
 
-	public interface IPageMemberCodeEntry // : ICodeEntry
+    public interface IPageMemberCodeEntry // : ICodeEntry
         : IPieceOfPackage
     {
         List<LocatorDefinition> Locators { get; set; }

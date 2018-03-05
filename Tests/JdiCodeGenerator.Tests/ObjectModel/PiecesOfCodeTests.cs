@@ -1,16 +1,16 @@
 ﻿namespace CodeGenerator.Tests.ObjectModel
 {
-	using System.Collections.Generic;
-	using System.Linq;
-	using Core.ObjectModel.Abstract.Results;
-	using Core.ObjectModel.Enums;
-	using Core.ObjectModel.Results;
-	using HtmlAgilityPack;
-	using Plugins;
-	using Web.ObjectModel.Plugins.Plain;
-	using Xunit;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Core.ObjectModel.Abstract.Results;
+    using Core.ObjectModel.Enums;
+    using Core.ObjectModel.Results;
+    using HtmlAgilityPack;
+    using Plugins;
+    using Web.ObjectModel.Plugins.Plain;
+    using Xunit;
 
-	public class PiecesOfCodeTests
+    public class PiecesOfCodeTests
     {
         PageMemberCodeEntry _entry;
         HtmlDocument _doc;

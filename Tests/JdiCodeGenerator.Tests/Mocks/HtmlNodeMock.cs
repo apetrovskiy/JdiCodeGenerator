@@ -1,9 +1,9 @@
 ﻿namespace CodeGenerator.Tests.Mocks
 {
-	using System.Xml.XPath;
-	using HtmlAgilityPack;
+    using System.Xml.XPath;
+    using HtmlAgilityPack;
 
-	public class HtmlNodeMock : HtmlNode, IXPathNavigable
+    public class HtmlNodeMock : HtmlNode, IXPathNavigable
     {
         //
         // Summary:

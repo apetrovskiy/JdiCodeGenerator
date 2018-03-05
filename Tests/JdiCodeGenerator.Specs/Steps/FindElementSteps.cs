@@ -1,14 +1,14 @@
 ﻿namespace CodeGenerator.Specs.Steps
 {
-	using Core.ObjectModel.Enums;
-	using Core.ObjectModel.Results;
-	using HtmlAgilityPack;
-	using TechTalk.SpecFlow;
-	using Tests.Plugins;
-	using Web.ObjectModel.Plugins.BootstrapAndCompetitors;
-	using Web.ObjectModel.Plugins.Plain;
+    using Core.ObjectModel.Enums;
+    using Core.ObjectModel.Results;
+    using HtmlAgilityPack;
+    using TechTalk.SpecFlow;
+    using Tests.Plugins;
+    using Web.ObjectModel.Plugins.BootstrapAndCompetitors;
+    using Web.ObjectModel.Plugins.Plain;
 
-	[Binding]
+    [Binding]
     public class FindElementSteps
     {
         HtmlDocument _doc;

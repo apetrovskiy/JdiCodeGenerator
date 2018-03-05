@@ -1,12 +1,12 @@
 ﻿namespace CodeGenerator.Core.ObjectModel.Results
 {
-	using System;
-	using System.Collections.Generic;
-	using Abstract.Results;
-	using Enums;
-	using Helpers;
+    using System;
+    using System.Collections.Generic;
+    using Abstract.Results;
+    using Enums;
+    using Helpers;
 
-	public class CodeFile : ICodeFile
+    public class CodeFile : ICodeFile
     {
         public Guid Id { get; set; }
         public Guid ParentId { get; set; }

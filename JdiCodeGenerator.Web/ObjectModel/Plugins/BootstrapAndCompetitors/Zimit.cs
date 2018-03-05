@@ -1,9 +1,9 @@
 ﻿namespace CodeGenerator.Web.ObjectModel.Plugins.BootstrapAndCompetitors
 {
-	using Abstract;
-	using HtmlAgilityPack;
+    using Abstract;
+    using HtmlAgilityPack;
 
-	public class Zimit // : IFrameworkAlingmentAnalysisPlugin
+    public class Zimit // : IFrameworkAlingmentAnalysisPlugin
     {
         // http://modernweb.com/2014/02/17/8-bootstrap-alternatives/
         public HtmlElementTypes Analyze(HtmlNode node)

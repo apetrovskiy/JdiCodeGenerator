@@ -1,14 +1,14 @@
 ﻿namespace CodeGenerator.Web.ObjectModel.Plugins.Plain
 {
-	using System.Collections.Generic;
-	using Abstract;
-	using Core;
-	using Core.ObjectModel.Abstract.Rules;
-	using Core.ObjectModel.Enums;
-	using Core.ObjectModel.Rules;
-	using JdiConverters.ObjectModel.Enums;
+    using System.Collections.Generic;
+    using Abstract;
+    using Core;
+    using Core.ObjectModel.Abstract.Rules;
+    using Core.ObjectModel.Enums;
+    using Core.ObjectModel.Rules;
+    using JdiConverters.ObjectModel.Enums;
 
-	public class PlainHtml5 : FrameworkAlignmentAnalysisPlugin
+    public class PlainHtml5 : FrameworkAlignmentAnalysisPlugin
     {
         public PlainHtml5()
         {
@@ -135,8 +135,8 @@
 //                ,
 //                /*
 //<div class="ma-data-wrap">
-//	<select class="ma-ddl">
-//		<option value="afg">Afghanistan</option>
+//    <select class="ma-ddl">
+//        <option value="afg">Afghanistan</option>
 //                */
 //                new Rule<HtmlElementTypes>
 //                {
@@ -148,10 +148,10 @@
 //                }
                 /*
 <section class="vertical-group" id="elements-checklist">
-	<p class="checkbox">
-		<input type="checkbox" id="g1" class="uui-form-element blue">
-		<label for="g1">Water</label>
-	</p>
+    <p class="checkbox">
+        <input type="checkbox" id="g1" class="uui-form-element blue">
+        <label for="g1">Water</label>
+    </p>
 </section>
                 */
                 new Rule<HtmlElementTypes>
@@ -174,10 +174,10 @@
                 },
                 /*
 <section class="horizontal-group" id="odds-selector">
-	<p class="radio">
-		<input type="radio" name="custom_radio_odd" id="p1" checked="" class="uui-form-element">
-		<label for="p1">1</label>
-	</p>
+    <p class="radio">
+        <input type="radio" name="custom_radio_odd" id="p1" checked="" class="uui-form-element">
+        <label for="p1">1</label>
+    </p>
 </section>
                 */
                 new Rule<HtmlElementTypes>

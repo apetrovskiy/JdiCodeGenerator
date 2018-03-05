@@ -1,13 +1,13 @@
 ﻿namespace CodeGenerator.Tests.Plugins.Plain
 {
-	using Core.ObjectModel.Enums;
-	using Core.ObjectModel.Results;
-	using HtmlAgilityPack;
-	using JdiConverters.Helpers;
-	using Web.ObjectModel.Plugins.Plain;
-	using Xunit;
+    using Core.ObjectModel.Enums;
+    using Core.ObjectModel.Results;
+    using HtmlAgilityPack;
+    using JdiConverters.Helpers;
+    using Web.ObjectModel.Plugins.Plain;
+    using Xunit;
 
-	public class JdiTests
+    public class JdiTests
     {
         PageMemberCodeEntry _entry;
         HtmlDocument _doc;

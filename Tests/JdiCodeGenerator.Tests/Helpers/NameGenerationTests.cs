@@ -1,9 +1,9 @@
 ﻿namespace CodeGenerator.Tests.Helpers
 {
-	using Core.Helpers;
-	using Xunit;
+    using Core.Helpers;
+    using Xunit;
 
-	public class NameGenerationTests
+    public class NameGenerationTests
     {
         string _sourceName;
 
@@ -84,7 +84,7 @@
         [InlineData("file™(0)", "File0")]
         [InlineData("file\"(0)", "File0")]
         [InlineData(@"file""""(0)", "File0")]
-		[InlineData("file (0)", "File0")]
+        [InlineData("file (0)", "File0")]
         [InlineData("file№(0)", "File0")]
         [InlineData("file—(0)", "File0")]
         [InlineData("file¬(0)", "File0")]

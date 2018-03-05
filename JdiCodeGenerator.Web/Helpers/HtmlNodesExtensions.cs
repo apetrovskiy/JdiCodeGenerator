@@ -1,18 +1,18 @@
 ﻿namespace CodeGenerator.Web.Helpers
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using Core;
-	using Core.ObjectModel.Abstract.Results;
-	using Core.ObjectModel.Abstract.Rules;
-	using Core.ObjectModel.Enums;
-	using Core.ObjectModel.Results;
-	using HtmlAgilityPack;
-	using JdiConverters.ObjectModel.Enums;
-	using ObjectModel.Abstract;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Core;
+    using Core.ObjectModel.Abstract.Results;
+    using Core.ObjectModel.Abstract.Rules;
+    using Core.ObjectModel.Enums;
+    using Core.ObjectModel.Results;
+    using HtmlAgilityPack;
+    using JdiConverters.ObjectModel.Enums;
+    using ObjectModel.Abstract;
 
-	public static class HtmlNodesExtensions
+    public static class HtmlNodesExtensions
     {
         public static bool HasAttribute(this HtmlNode node, string attributeName)
         {
@@ -63,8 +63,8 @@
 
         static bool NodeWithAttributes(HtmlNode node)
         {
-			return null != node?.Attributes && node.Attributes.Any();
-		}
+            return null != node?.Attributes && node.Attributes.Any();
+        }
 
         public static bool HasAttributeValue(this HtmlNode node, string attributeName, string attributeValue)
         {
@@ -147,15 +147,15 @@
             var originalName = GetOriginalNameOfElement(node);
             if (WebNames.ElementTypeBody == originalName)
                 return "/";
-	        var result = !string.IsNullOrEmpty(node.Id)
-		        ? $"/{originalName}[@id='{node.Id}']"
-		        : HasAttribute(node, (string) WebNames.AttributeNameName)
-			        ? $"/{originalName}[@name='{GetAttributeValue(node, (string) WebNames.AttributeNameName)}']"
-			        : HasAttribute(node, (string) WebNames.AttributeNameClass) &&
-			          !GetAttributeValue(node, (string) WebNames.AttributeNameClass).Contains(" ")
-				        ? $"/{originalName}[@class='{GetAttributeValue(node, (string) WebNames.AttributeNameClass)}']"
-				        : $@"/{originalName}";
-	
+            var result = !string.IsNullOrEmpty(node.Id)
+                ? $"/{originalName}[@id='{node.Id}']"
+                : HasAttribute(node, (string) WebNames.AttributeNameName)
+                    ? $"/{originalName}[@name='{GetAttributeValue(node, (string) WebNames.AttributeNameName)}']"
+                    : HasAttribute(node, (string) WebNames.AttributeNameClass) &&
+                      !GetAttributeValue(node, (string) WebNames.AttributeNameClass).Contains(" ")
+                        ? $"/{originalName}[@class='{GetAttributeValue(node, (string) WebNames.AttributeNameClass)}']"
+                        : $@"/{originalName}";
+    
             return NodeIsAppropriateForXpathBuilding(node.ParentNode) ? GenerateElementXpath(node.ParentNode) + result : result;
         }
 

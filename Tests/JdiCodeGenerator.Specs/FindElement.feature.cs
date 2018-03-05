@@ -12,9 +12,9 @@
 #pragma warning disable
 namespace CodeGenerator.Specs
 {
-	using TechTalk.SpecFlow;
+    using TechTalk.SpecFlow;
 
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public partial class FindElementFeature : Xunit.IClassFixture<FindElementFeature.FixtureData>, System.IDisposable
     {

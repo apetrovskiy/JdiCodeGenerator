@@ -1,8 +1,8 @@
 ﻿namespace CodeGenerator.Core.ObjectModel.Results
 {
-	using Enums;
+    using Enums;
 
-	public class LocatorDefinition
+    public class LocatorDefinition
     {
         public bool IsBestChoice { get; set; }
         public bool IsUnique { get; set; }

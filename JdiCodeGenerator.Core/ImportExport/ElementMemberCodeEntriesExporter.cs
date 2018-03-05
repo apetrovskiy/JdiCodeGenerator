@@ -1,12 +1,12 @@
 ﻿namespace CodeGenerator.Core.ImportExport
 {
-	using System.Collections.Generic;
-	using System.IO;
-	using System.Linq;
-	using Helpers;
-	using ObjectModel.Abstract.Results;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using Helpers;
+    using ObjectModel.Abstract.Results;
 
-	public class ElementMemberCodeEntriesExporter
+    public class ElementMemberCodeEntriesExporter
     {
         public void WriteToFile(IEnumerable<IPageMemberCodeEntry> codeEntries, string path)
         {

@@ -1,15 +1,15 @@
 ﻿namespace CodeGenerator.Tests.Helpers
 {
-	using System.Collections.Generic;
-	using System.Linq;
-	using Core.Helpers;
-	using Core.ObjectModel.Abstract.Results;
-	using Core.ObjectModel.Enums;
-	using Core.ObjectModel.Results;
-	using JdiConverters.ObjectModel.Enums;
-	using Xunit;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Core.Helpers;
+    using Core.ObjectModel.Abstract.Results;
+    using Core.ObjectModel.Enums;
+    using Core.ObjectModel.Results;
+    using JdiConverters.ObjectModel.Enums;
+    using Xunit;
 
-	public class SettingNamesTests
+    public class SettingNamesTests
     {
         List<IPageMemberCodeEntry> _codeEntries;
 
@@ -25,7 +25,7 @@
         [InlineData(new[] { "a", "a", "a", "b", "c" }, "button", new[] { "buttonA", "buttonA1", "buttonA2", "buttonB", "buttonC" })]
         [InlineData(new[] { "a", "b", "c", "a", "c" }, "button", new[] { "buttonA", "buttonB", "buttonC", "buttonA1", "buttonC1" })]
         [InlineData(new[] { "a", "b", "c", "a", "c" }, "combobox", new[] { "comboBoxA", "comboBoxB", "comboBoxC", "comboBoxA1", "comboBoxC1" })]
-		[Trait("Category", "SettingNames")]
+        [Trait("Category", "SettingNames")]
         public void SetsDistinctNames(string[] originalSequence, string memberTypeName, string[] expectedSequence)
         {
             GivenCodeEntries(memberTypeName, originalSequence);
@@ -41,18 +41,18 @@
                 _codeEntries[i].MemberName = originalSequence[i];
         }
 
-	    JdiElementTypes GetJdiElementType(string memberTypeName)
-	    {
-		    switch (memberTypeName.ToUpper())
-		    {
-				case "BUTTON":
-					return JdiElementTypes.Button;
-				case "COMBOBOX":
-					return JdiElementTypes.ComboBox;
-				default:
-					return JdiElementTypes.Button;
-		    }
-	    }
+        JdiElementTypes GetJdiElementType(string memberTypeName)
+        {
+            switch (memberTypeName.ToUpper())
+            {
+                case "BUTTON":
+                    return JdiElementTypes.Button;
+                case "COMBOBOX":
+                    return JdiElementTypes.ComboBox;
+                default:
+                    return JdiElementTypes.Button;
+            }
+        }
 
         void WhenCalculatingNames()
         {

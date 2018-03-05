@@ -1,10 +1,10 @@
 ﻿namespace CodeGenerator.Core.ObjectModel.Rules
 {
-	using System.Collections.Generic;
-	using Abstract.Rules;
-	using JdiConverters.ObjectModel.Enums;
+    using System.Collections.Generic;
+    using Abstract.Rules;
+    using JdiConverters.ObjectModel.Enums;
 
-	public class Rule<T> : IRule<T>
+    public class Rule<T> : IRule<T>
     {
         public IEnumerable<IRuleCondition> OrConditions { get; set; }
         public IEnumerable<IRuleCondition> AndConditions { get; set; }

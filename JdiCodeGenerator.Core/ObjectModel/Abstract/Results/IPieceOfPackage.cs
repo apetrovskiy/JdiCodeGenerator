@@ -1,9 +1,9 @@
 ﻿namespace CodeGenerator.Core.ObjectModel.Abstract.Results
 {
-	using System;
-	using Enums;
+    using System;
+    using Enums;
 
-	public interface IPieceOfPackage
+    public interface IPieceOfPackage
     {
         Guid Id { get; set; }
         Guid ParentId { get; set; }
