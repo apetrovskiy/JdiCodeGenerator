@@ -47,22 +47,6 @@
             return GetHtml(PlainHtml5FirstPart, path, PlainHtml5LastPart);
         }
 
-        string GetHtml(string firstPart, string path, string lastPart)
-        {
-            var fullHtml = string.Empty;
-#if DEBUG
-            path = @"Debug\" + path;
-#else
-            path = @"Release\" + path;
-#endif
-            using (var reader = new StreamReader(path))
-            {
-                fullHtml = firstPart + reader.ReadToEnd() + lastPart;
-                reader.Close();
-            }
-            return fullHtml;
-        }
-
         const string Bootstrap3FirstPart = @"
 <!DOCTYPE html>
 <html lang=""en"">
@@ -140,5 +124,21 @@
             entries.AddRange(pageLoader.GetCodeEntriesFromNode(document.DocumentNode, ExcludeList, applicableAnalyzers));
             return entries;
         }
-    }
+
+        string GetHtml(string firstPart, string path, string lastPart)
+        {
+            var fullHtml = string.Empty;
+#if DEBUG
+            path = @"Debug\" + path;
+#else
+            path = @"Release\" + path;
+#endif
+            using (var reader = new StreamReader(path))
+            {
+                fullHtml = firstPart + reader.ReadToEnd() + lastPart;
+                reader.Close();
+            }
+            return fullHtml;
+        }
+	}
 }
